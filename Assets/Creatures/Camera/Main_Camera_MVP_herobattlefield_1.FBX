@@ -1,0 +1,643 @@
+; FBX 7.1.0 project file
+; Copyright (C) 1997-2009 Autodesk Inc. and/or its licensors.
+; All rights reserved.
+; ----------------------------------------------------
+
+FBXHeaderExtension:  {
+    FBXHeaderVersion: 1003
+    FBXVersion: 7100
+    CreationTimeStamp:  {
+        Version: 1000
+        Year: 2017
+        Month: 8
+        Day: 2
+        Hour: 12
+        Minute: 42
+        Second: 33
+        Millisecond: 44
+    }
+    Creator: "FBX SDK/FBX Plugins version 2011.1"
+    SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
+        Type: "UserData"
+        Version: 100
+        MetaData:  {
+            Version: 100
+            Title: ""
+            Subject: ""
+            Author: ""
+            Keywords: ""
+            Revision: ""
+            Comment: ""
+        }
+        Properties70:  {
+            P: "DocumentUrl", "KString", "Url", "", "D:\DragonNest_work\FBX\CutSceneAnimation\MVP全场最佳cutscene\Main_Camera_CutScene_MVP全场最佳-拉远1.FBX"
+            P: "SrcDocumentUrl", "KString", "Url", "", "D:\DragonNest_work\FBX\CutSceneAnimation\MVP全场最佳cutscene\Main_Camera_CutScene_MVP全场最佳-拉远1.FBX"
+            P: "Original", "Compound", "", ""
+            P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
+            P: "Original|ApplicationName", "KString", "", "", "3ds Max"
+            P: "Original|ApplicationVersion", "KString", "", "", "2011.1"
+            P: "Original|DateTime_GMT", "DateTime", "", "", "02/08/2017 04:42:33.043"
+            P: "Original|FileName", "KString", "", "", "D:\DragonNest_work\FBX\CutSceneAnimation\MVP全场最佳cutscene\Main_Camera_CutScene_MVP全场最佳-拉远1.FBX"
+            P: "LastSaved", "Compound", "", ""
+            P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
+            P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
+            P: "LastSaved|ApplicationVersion", "KString", "", "", "2011.1"
+            P: "LastSaved|DateTime_GMT", "DateTime", "", "", "02/08/2017 04:42:33.043"
+        }
+    }
+}
+GlobalSettings:  {
+    Version: 1000
+    Properties70:  {
+        P: "UpAxis", "int", "Integer", "",2
+        P: "UpAxisSign", "int", "Integer", "",1
+        P: "FrontAxis", "int", "Integer", "",1
+        P: "FrontAxisSign", "int", "Integer", "",-1
+        P: "CoordAxis", "int", "Integer", "",0
+        P: "CoordAxisSign", "int", "Integer", "",1
+        P: "OriginalUpAxis", "int", "Integer", "",2
+        P: "OriginalUpAxisSign", "int", "Integer", "",1
+        P: "UnitScaleFactor", "double", "Number", "",1
+        P: "OriginalUnitScaleFactor", "double", "Number", "",1
+        P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
+        P: "DefaultCamera", "KString", "", "", "Producer Perspective"
+        P: "TimeMode", "enum", "", "",6
+        P: "TimeSpanStart", "KTime", "Time", "",0
+        P: "TimeSpanStop", "KTime", "Time", "",153953860000
+    }
+}
+
+; Documents Description
+;------------------------------------------------------------------
+
+Documents:  {
+    Count: 1
+    Document: 1678561168, "", "Scene" {
+        Properties70:  {
+            P: "SourceObject", "object", "", ""
+            P: "ActiveAnimStackName", "KString", "", "", ""
+        }
+        RootNode: 0
+    }
+}
+
+; Document References
+;------------------------------------------------------------------
+
+References:  {
+}
+
+; Object definitions
+;------------------------------------------------------------------
+
+Definitions:  {
+    Version: 100
+    Count: 23
+    ObjectType: "GlobalSettings" {
+        Count: 1
+    }
+    ObjectType: "AnimationStack" {
+        Count: 1
+        PropertyTemplate: "KFbxAnimStack" {
+            Properties70:  {
+                P: "Description", "KString", "", "", ""
+                P: "LocalStart", "KTime", "Time", "",0
+                P: "LocalStop", "KTime", "Time", "",0
+                P: "ReferenceStart", "KTime", "Time", "",0
+                P: "ReferenceStop", "KTime", "Time", "",0
+            }
+        }
+    }
+    ObjectType: "AnimationLayer" {
+        Count: 1
+        PropertyTemplate: "KFbxAnimLayer" {
+            Properties70:  {
+                P: "Label", "KString", "", "", "Layer"
+                P: "Weight", "Number", "", "A+",100
+                P: "Mute", "bool", "", "",0
+                P: "Solo", "bool", "", "",0
+                P: "Lock", "bool", "", "",0
+                P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+                P: "BlendMode", "enum", "", "",0
+                P: "RotationAccumulationMode", "enum", "", "",0
+                P: "ScaleAccumulationMode", "enum", "", "",0
+                P: "BlendModeBypass", "ULongLong", "", "",0
+            }
+        }
+    }
+    ObjectType: "Model" {
+        Count: 2
+        PropertyTemplate: "KFbxNode" {
+            Properties70:  {
+                P: "QuaternionInterpolate", "bool", "", "",0
+                P: "RotationOffset", "Vector3D", "Vector", "",0,0,0
+                P: "RotationPivot", "Vector3D", "Vector", "",0,0,0
+                P: "ScalingOffset", "Vector3D", "Vector", "",0,0,0
+                P: "ScalingPivot", "Vector3D", "Vector", "",0,0,0
+                P: "TranslationActive", "bool", "", "",0
+                P: "TranslationMin", "Vector3D", "Vector", "",0,0,0
+                P: "TranslationMax", "Vector3D", "Vector", "",0,0,0
+                P: "TranslationMinX", "bool", "", "",0
+                P: "TranslationMinY", "bool", "", "",0
+                P: "TranslationMinZ", "bool", "", "",0
+                P: "TranslationMaxX", "bool", "", "",0
+                P: "TranslationMaxY", "bool", "", "",0
+                P: "TranslationMaxZ", "bool", "", "",0
+                P: "RotationOrder", "enum", "", "",0
+                P: "RotationSpaceForLimitOnly", "bool", "", "",0
+                P: "RotationStiffnessX", "double", "Number", "",0
+                P: "RotationStiffnessY", "double", "Number", "",0
+                P: "RotationStiffnessZ", "double", "Number", "",0
+                P: "AxisLen", "double", "Number", "",10
+                P: "PreRotation", "Vector3D", "Vector", "",0,0,0
+                P: "PostRotation", "Vector3D", "Vector", "",0,0,0
+                P: "RotationActive", "bool", "", "",0
+                P: "RotationMin", "Vector3D", "Vector", "",0,0,0
+                P: "RotationMax", "Vector3D", "Vector", "",0,0,0
+                P: "RotationMinX", "bool", "", "",0
+                P: "RotationMinY", "bool", "", "",0
+                P: "RotationMinZ", "bool", "", "",0
+                P: "RotationMaxX", "bool", "", "",0
+                P: "RotationMaxY", "bool", "", "",0
+                P: "RotationMaxZ", "bool", "", "",0
+                P: "InheritType", "enum", "", "",0
+                P: "ScalingActive", "bool", "", "",0
+                P: "ScalingMin", "Vector3D", "Vector", "",0,0,0
+                P: "ScalingMax", "Vector3D", "Vector", "",1,1,1
+                P: "ScalingMinX", "bool", "", "",0
+                P: "ScalingMinY", "bool", "", "",0
+                P: "ScalingMinZ", "bool", "", "",0
+                P: "ScalingMaxX", "bool", "", "",0
+                P: "ScalingMaxY", "bool", "", "",0
+                P: "ScalingMaxZ", "bool", "", "",0
+                P: "GeometricTranslation", "Vector3D", "Vector", "",0,0,0
+                P: "GeometricRotation", "Vector3D", "Vector", "",0,0,0
+                P: "GeometricScaling", "Vector3D", "Vector", "",1,1,1
+                P: "MinDampRangeX", "double", "Number", "",0
+                P: "MinDampRangeY", "double", "Number", "",0
+                P: "MinDampRangeZ", "double", "Number", "",0
+                P: "MaxDampRangeX", "double", "Number", "",0
+                P: "MaxDampRangeY", "double", "Number", "",0
+                P: "MaxDampRangeZ", "double", "Number", "",0
+                P: "MinDampStrengthX", "double", "Number", "",0
+                P: "MinDampStrengthY", "double", "Number", "",0
+                P: "MinDampStrengthZ", "double", "Number", "",0
+                P: "MaxDampStrengthX", "double", "Number", "",0
+                P: "MaxDampStrengthY", "double", "Number", "",0
+                P: "MaxDampStrengthZ", "double", "Number", "",0
+                P: "PreferedAngleX", "double", "Number", "",0
+                P: "PreferedAngleY", "double", "Number", "",0
+                P: "PreferedAngleZ", "double", "Number", "",0
+                P: "LookAtProperty", "object", "", ""
+                P: "UpVectorProperty", "object", "", ""
+                P: "Show", "bool", "", "",1
+                P: "NegativePercentShapeSupport", "bool", "", "",1
+                P: "DefaultAttributeIndex", "int", "Integer", "",-1
+                P: "Freeze", "bool", "", "",0
+                P: "LODBox", "bool", "", "",0
+                P: "Lcl Translation", "Lcl Translation", "", "A+",0,0,0
+                P: "Lcl Rotation", "Lcl Rotation", "", "A+",0,0,0
+                P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+                P: "Visibility", "Visibility", "", "A+",1
+            }
+        }
+    }
+    ObjectType: "NodeAttribute" {
+        Count: 2
+        PropertyTemplate: "KFbxNull" {
+            Properties70:  {
+                P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+                P: "Size", "double", "Number", "",100
+                P: "Look", "enum", "", "",1
+            }
+        }
+    }
+    ObjectType: "AnimationCurve" {
+        Count: 12
+    }
+    ObjectType: "AnimationCurveNode" {
+        Count: 4
+    }
+}
+
+; Object properties
+;------------------------------------------------------------------
+
+Objects:  {
+    NodeAttribute: 2230916048, "NodeAttribute::", "Null" {
+        Properties70:  {
+            P: "Look", "enum", "", "",0
+        }
+        TypeFlags: "Null"
+    }
+    NodeAttribute: 2127240176, "NodeAttribute::", "Camera" {
+        Properties70:  {
+            P: "Position", "Vector", "", "A+",1306.708984375,108.37451171875,231.029663085938
+            P: "UpVector", "Vector", "", "A+",0,0,1
+            P: "InterestPosition", "Vector", "", "A+",1279.72718789067,355.762483986471,254.928906499551
+            P: "AspectWidth", "double", "Number", "",640
+            P: "AspectHeight", "double", "Number", "",480
+            P: "FilmWidth", "double", "Number", "",1.41732287406921
+            P: "FilmHeight", "double", "Number", "",1.06299209594727
+            P: "FilmAspectRatio", "double", "Number", "",1.33333340809669
+            P: "FieldOfView", "FieldOfView", "", "A+",57.8224002028642
+            P: "FocalLength", "Number", "", "A+",24.4439123511044
+            P: "AutoComputeClipPanes", "bool", "", "",1
+            P: "Color", "ColorRGB", "Color", "",0.341176470588235,0.470588235294118,0.8
+        }
+        TypeFlags: "Camera"
+        GeometryVersion: 124
+        Position: 1306.708984375,108.37451171875,231.029663085938
+        Up: 0,0,1
+        LookAt: 1279.72718789067,355.762483986471,254.928906499551
+        ShowInfoOnMoving: 1
+        ShowAudio: 0
+        AudioColor: 0,1,0
+        CameraOrthoZoom: 1
+    }
+    Model: 2449034864, "Model::Dummy002", "Null" {
+        Version: 232
+        Properties70:  {
+            P: "InheritType", "enum", "", "",1
+            P: "ScalingMin", "Vector3D", "Vector", "",1,1,1
+            P: "DefaultAttributeIndex", "int", "Integer", "",0
+            P: "Lcl Translation", "Lcl Translation", "", "A+",-5429.638671875,-6048.5849609375,0
+            P: "MaxHandle", "int", "Integer", "U",291
+        }
+        MultiLayer: 0
+        MultiTake: 1
+        Shading: T
+        Culling: "CullingOff"
+    }
+    Model: 2449045280, "Model::Main Camera", "Camera" {
+        Version: 232
+        Properties70:  {
+            P: "PostRotation", "Vector3D", "Vector", "",-0,-90,0
+            P: "RotationActive", "bool", "", "",1
+            P: "InheritType", "enum", "", "",1
+            P: "ScalingMin", "Vector3D", "Vector", "",1,1,1
+            P: "DefaultAttributeIndex", "int", "Integer", "",0
+            P: "Lcl Translation", "Lcl Translation", "", "A+",1306.708984375,108.37451171875,231.029663085938
+            P: "Lcl Rotation", "Lcl Rotation", "", "A+",83.6380977351485,-5.48568026711156,96.2244598355831
+            P: "MaxHandle", "int", "Integer", "U",292
+        }
+        MultiLayer: 0
+        MultiTake: 0
+        Shading: T
+        Culling: "CullingOff"
+    }
+    AnimationStack: 2175411824, "AnimStack::Take 001", "" {
+    }
+    AnimationLayer: 1678561840, "AnimLayer::BaseLayer", "" {
+    }
+    AnimationCurveNode: 2231738784, "AnimCurveNode::T", "" {
+        Properties70:  {
+            P: "d", "Compound", "", ""
+            P: "d|X", "Number", "", "A+",-5429.638671875
+            P: "d|Y", "Number", "", "A+",-6048.5849609375
+            P: "d|Z", "Number", "", "A+",0
+        }
+    }
+    AnimationCurveNode: 2231741728, "AnimCurveNode::R", "" {
+        Properties70:  {
+            P: "d", "Compound", "", ""
+            P: "d|X", "Number", "", "A+",0
+            P: "d|Y", "Number", "", "A+",0
+            P: "d|Z", "Number", "", "A+",0
+        }
+    }
+    AnimationCurveNode: 2231750688, "AnimCurveNode::T", "" {
+        Properties70:  {
+            P: "d", "Compound", "", ""
+            P: "d|X", "Number", "", "A+",1306.708984375
+            P: "d|Y", "Number", "", "A+",108.37451171875
+            P: "d|Z", "Number", "", "A+",231.029663085938
+        }
+    }
+    AnimationCurveNode: 2231747360, "AnimCurveNode::R", "" {
+        Properties70:  {
+            P: "d", "Compound", "", ""
+            P: "d|X", "Number", "", "A+",83.6380977351485
+            P: "d|Y", "Number", "", "A+",-5.48568026711156
+            P: "d|Z", "Number", "", "A+",96.2244598355831
+        }
+    }
+    AnimationCurve: 2194673200, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *2 {
+a: 0,153953860000
+} 
+        KeyValueFloat: *2 {
+a: -5429.639,-5429.639
+} 
+        KeyAttrFlags: *2 {
+a: 50332680,16778248
+} 
+        KeyAttrDataFloat: *8 {
+a: 0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *2 {
+a: 1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194673280, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *2 {
+a: 0,153953860000
+} 
+        KeyValueFloat: *2 {
+a: -6048.585,-6048.585
+} 
+        KeyAttrFlags: *2 {
+a: 50332680,16778248
+} 
+        KeyAttrDataFloat: *8 {
+a: 0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *2 {
+a: 1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194674160, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *2 {
+a: 0,153953860000
+} 
+        KeyValueFloat: *2 {
+a: 0,0
+} 
+        KeyAttrFlags: *2 {
+a: 50332680,16778248
+} 
+        KeyAttrDataFloat: *8 {
+a: 0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *2 {
+a: 1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194674240, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *2 {
+a: 0,153953860000
+} 
+        KeyValueFloat: *2 {
+a: 0,0
+} 
+        KeyAttrFlags: *2 {
+a: 50332680,16778248
+} 
+        KeyAttrDataFloat: *8 {
+a: 0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *2 {
+a: 1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194675680, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *2 {
+a: 0,153953860000
+} 
+        KeyValueFloat: *2 {
+a: 0,0
+} 
+        KeyAttrFlags: *2 {
+a: 50332680,16778248
+} 
+        KeyAttrDataFloat: *8 {
+a: 0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *2 {
+a: 1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194680800, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *2 {
+a: 0,153953860000
+} 
+        KeyValueFloat: *2 {
+a: 0,0
+} 
+        KeyAttrFlags: *2 {
+a: 50332680,16778248
+} 
+        KeyAttrDataFloat: *8 {
+a: 0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *2 {
+a: 1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194681920, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *6 {
+a: 0,30790772000,72358314200,93911854600,121623549400,153953860000
+} 
+        KeyValueFloat: *6 {
+a: 1306.709,282.7394,165.6362,182.9489,214.8523,229.5055
+} 
+        KeyAttrFlags: *6 {
+a: 50332680,50332680,50332680,50332680,50332680,16778248
+} 
+        KeyAttrDataFloat: *24 {
+a: 0,-343.9745,4.069131e-031,0,-343.9745,0,4.069131e-031,0,0,46.14009,4.069131e-031,0,46.14009,35.81276,4.069131e-031,0,35.81276,-0,4.069131e-031,0,0,0,4.099946e-031,0
+} 
+        KeyAttrRefCount: *6 {
+a: 1,1,1,1,1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194678640, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *6 {
+a: 0,30790772000,72358314200,93911854600,121623549400,153953860000
+} 
+        KeyValueFloat: *6 {
+a: 108.3747,61.34916,10.25239,-7.188006,-25.57378,-38.12313
+} 
+        KeyAttrFlags: *6 {
+a: 50332680,50332680,50332680,50332680,50332680,16778248
+} 
+        KeyAttrDataFloat: *24 {
+a: 0,-62.63129,4.069131e-031,0,-62.63129,-50.14915,4.069131e-031,0,-50.14915,-33.58703,4.069131e-031,0,-33.58703,-23.79625,4.069131e-031,0,-23.79625,-0,4.069131e-031,0,0,0,4.099946e-031,0
+} 
+        KeyAttrRefCount: *6 {
+a: 1,1,1,1,1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194678880, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *6 {
+a: 0,30790772000,72358314200,93911854600,121623549400,153953860000
+} 
+        KeyValueFloat: *6 {
+a: 231.0297,49.76677,30.97903,30.16643,20.48473,6.237064
+} 
+        KeyAttrFlags: *6 {
+a: 50332680,50332680,50332680,50332680,50332680,16778248
+} 
+        KeyAttrDataFloat: *24 {
+a: 0,-54.65584,4.069131e-031,0,-54.65584,-4.693625,4.069131e-031,0,-4.693625,-4.921926,4.069131e-031,0,-4.921926,-18.4072,4.069131e-031,0,-18.4072,-0,4.069131e-031,0,0,0,4.099946e-031,0
+} 
+        KeyAttrRefCount: *6 {
+a: 1,1,1,1,1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194679920, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *4 {
+a: 0,30790772000,72358314200,153953860000
+} 
+        KeyValueFloat: *4 {
+a: 83.6381,91.13153,97.37598,108.8089
+} 
+        KeyAttrFlags: *4 {
+a: 50332680,50332680,50332680,16778248
+} 
+        KeyAttrDataFloat: *16 {
+a: 0,8.768861,4.069131e-031,0,8.768861,6.629029,4.069131e-031,0,6.629029,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *4 {
+a: 1,1,1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194681360, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *4 {
+a: 0,30790772000,72358314200,153953860000
+} 
+        KeyValueFloat: *4 {
+a: -5.48568,2.924059,-4.225538,1.764734
+} 
+        KeyAttrFlags: *4 {
+a: 50332680,50332680,50332680,16778248
+} 
+        KeyAttrDataFloat: *16 {
+a: 0,0,4.069131e-031,0,0,0,4.069131e-031,0,0,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *4 {
+a: 1,1,1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+    AnimationCurve: 2194678080, "AnimCurve::", "" {
+        Default: 0
+        KeyVer: 4007
+        KeyTime: *4 {
+a: 0,30790772000,72358314200,153953860000
+} 
+        KeyValueFloat: *4 {
+a: -263.7755,-255.0386,-266.1078,-277.7359
+} 
+        KeyAttrFlags: *4 {
+a: 50332680,50332680,50332680,16778248
+} 
+        KeyAttrDataFloat: *16 {
+a: 0,0,4.069131e-031,0,0,-8.511485,4.069131e-031,0,-8.511485,-0,4.069131e-031,0,0,0,4.103033e-031,0
+} 
+        KeyAttrRefCount: *4 {
+a: 1,1,1,1
+} 
+        Post-Extrapolation:  {
+            Type: C
+            Repetition: 1
+        }
+    }
+}
+
+; Object connections
+;------------------------------------------------------------------
+
+Connections:  {
+    C: "OO",2449034864,0
+    C: "OO",1678561840,2175411824
+    C: "OO",2231738784,1678561840
+    C: "OO",2231741728,1678561840
+    C: "OO",2231750688,1678561840
+    C: "OO",2231747360,1678561840
+    C: "OO",2449045280,2449034864
+    C: "OO",2230916048,2449034864
+    C: "OP",2231738784,2449034864, "Lcl Translation"
+    C: "OP",2231741728,2449034864, "Lcl Rotation"
+    C: "OO",2127240176,2449045280
+    C: "OP",2231750688,2449045280, "Lcl Translation"
+    C: "OP",2231747360,2449045280, "Lcl Rotation"
+    C: "OP",2194673200,2231738784, "d|X"
+    C: "OP",2194673280,2231738784, "d|Y"
+    C: "OP",2194674160,2231738784, "d|Z"
+    C: "OP",2194674240,2231741728, "d|X"
+    C: "OP",2194675680,2231741728, "d|Y"
+    C: "OP",2194680800,2231741728, "d|Z"
+    C: "OP",2194681920,2231750688, "d|X"
+    C: "OP",2194678640,2231750688, "d|Y"
+    C: "OP",2194678880,2231750688, "d|Z"
+    C: "OP",2194679920,2231747360, "d|X"
+    C: "OP",2194681360,2231747360, "d|Y"
+    C: "OP",2194678080,2231747360, "d|Z"
+}
+;Takes section
+;----------------------------------------------------
+
+Takes:  {
+    Current: ""
+    Take: "Take 001" {
+        FileName: "Take_001.tak"
+        LocalTime: 0,153953860000
+        ReferenceTime: 0,153953860000
+    }
+}
