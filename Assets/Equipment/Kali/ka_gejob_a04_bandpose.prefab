@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1171396246206106}
+  m_IsPrefabParent: 1
+--- !u!1 &1171396246206106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4177546747648662}
+  - component: {fileID: 114120263386948998}
+  m_Layer: 0
+  m_Name: ka_gejob_a04_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4177546747648662
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171396246206106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114120263386948998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171396246206106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100092, guid: 868a8b8bf62e46f4e913178283fff86f, type: 3}
+  srcName: 01
+  replaceName: 04
+  srcDir: Equipments/gejob_a01
+  targetDir: Equipments/gejob_a04
+  ReplaceMeshList:
+  - srcMeshName: ka_gejob_a01_body
+    replaceEquipName: ka_body
+    replaceTex: {fileID: 2800000, guid: db959e1f4e6473b41a57efb56b1ceae1, type: 3}
+    isShareTex: 0
+  - srcMeshName: ka_gejob_a01_boots
+    replaceEquipName: ka_boots
+    replaceTex: {fileID: 2800000, guid: cea30a0a521784b45b073c78ded877da, type: 3}
+    isShareTex: 0
+  - srcMeshName: ka_gejob_a01_charm
+    replaceEquipName: ka_second
+    replaceTex: {fileID: 2800000, guid: c34a1bf65ad8a3a4199b24c115ce856c, type: 3}
+    isShareTex: 0
+  - srcMeshName: ka_gejob_a01_glove
+    replaceEquipName: ka_glove
+    replaceTex: {fileID: 2800000, guid: 4c7d357f34ba61a40978f70ab64f3e6f, type: 3}
+    isShareTex: 0
+  - srcMeshName: ka_gejob_a01_helmet
+    replaceEquipName: ka_helmet
+    replaceTex: {fileID: 2800000, guid: 1d300d0b7f0647a428788e29114c7110, type: 3}
+    isShareTex: 0
+  - srcMeshName: ka_gejob_a01_leg
+    replaceEquipName: ka_leg
+    replaceTex: {fileID: 2800000, guid: 37f8739a77cf48948af51add74e02ec5, type: 3}
+    isShareTex: 0
+  - srcMeshName: ka_gejob_a01_fan_weapon
+    replaceEquipName: ka_weapon
+    replaceTex: {fileID: 2800000, guid: b49879b6fb3f84c458d5af4df296a691, type: 3}
+    isShareTex: 0

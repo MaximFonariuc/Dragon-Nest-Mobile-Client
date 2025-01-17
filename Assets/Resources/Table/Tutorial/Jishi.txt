@@ -1,0 +1,31 @@
+﻿start tutorial
+
+
+step 集市
+scond nostackui
+scond inlevel 1
+scond MainUI
+directsys 572
+econd SysOpened
+
+step 点击福利
+scond inlevel 1
+forceclick HallDlg _canvas/SecondMenuFrame/SecondMenu/H2/SysGridH2_1/SysGWelfare 1
+internaldelay 0.5
+
+step 点击异域
+scond inlevel 1
+forceclick WelfareDlg Bg/TabList/TabGrid/item1 1
+internaldelay 0.5
+
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]波普大人从异域新进了一批货物，大家可使用金币，龙币，钻石进行购买哦[-] -200
+--audio Audio/VO/guide/guide11
+internaldelay 0.5
+
+
+
+end tutorial

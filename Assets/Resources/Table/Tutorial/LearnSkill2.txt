@@ -1,0 +1,59 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 打开技能界面
+scond nostackui
+scond inlevel 1
+scond item 5=1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysBSkill 1
+internaldelay 0.3
+--text 打开技能界面 -200 0
+
+step 选择技能4
+scond inlevel 1
+forceclick SkillTree Bg/SkillTreeFrame/SkillTree/Skill/Skill7 1 1 0 0
+text 选择一个技能 210 0
+internaldelay 0.3
+
+step 点击学习
+skip CurSkillNoLearn 1
+scond inlevel 1
+forceclick SkillTree Bg/SkillTreeFrame/DetailWindow/DetailSkillBg/LearnButton 1
+nodestroyoverlay
+text 消耗技能点学习 -210 0
+internaldelay 0.5
+econd SkillLevelup
+
+step 点击装备按钮
+scond inlevel 1
+forceclick SkillTree Bg/SkillTreeFrame/DetailWindow/DetailSkillBg/CatchButton 1
+--text 消耗技能点学习 -210 0
+internaldelay 0.3
+
+step 装备
+scond inlevel 1
+forceclick SkillTree Bg/SkillTreeFrame/CatchWindow/BaseSkill/Skill5 1
+internaldelay 1.5
+--text 点击装备技能 -210 0
+econd SkillBind
+
+step 关闭技能界面
+scond inlevel 1
+forceclick SkillTree Bg/Close 1
+internaldelay 0.2
+text 返回主城 210 0
+
+--step 点任务页签
+--skip InTaskTab
+--scond inlevel 1
+--noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TabList/Task 1.4
+
+step 点任务
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+
+end tutorial

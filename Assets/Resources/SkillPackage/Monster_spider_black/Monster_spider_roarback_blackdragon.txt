@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_roarback_blackdragon</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>6</Runningtime>
+        <Velocity>4</Velocity>
+        <Radius>2.1</Radius>
+        <Prefab>Prefabs/Bullets/Monster_golem_lotus_roarback_blackdragon_clip01</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <End_Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_golem_lotus_stompleft_ice_clip01</End_Fx>
+        <EndFx_LifeTime>2</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <At_Y>2</At_Y>
+        <At_Z>-12</At_Z>
+        <Refine_Cycle>0.1</Refine_Cycle>
+        <Refine_Count>4</Refine_Count>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.2</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <Fx_Follow>false</Fx_Follow>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>4</Not_Move_End>
+    <CanCancelAt>4</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>4</Time>
+  <Cast_Range_Upper>60</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

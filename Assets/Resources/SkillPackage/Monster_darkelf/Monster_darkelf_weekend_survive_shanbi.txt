@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_darkelf_weekend_survive_shanbi</Name>
+  <ClipName>Animation/Monster_darkelf/Monster_darkelf_dash</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_darkelf/Monster_darkelf_dash_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_darkelf/Monster_darkelf_dash_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_darkelf/Monster_darkelf_dash_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_darkelf/Monster_darkelf_gray_roll</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>2</CanReplacedby>
+    <Not_Move_End>0.667</Not_Move_End>
+    <CanCastAt_QTE>1048576</CanCastAt_QTE>
+    <QTE_Key>1</QTE_Key>
+    <CanCancelAt>0.667</CanCancelAt>
+  </Logical>
+  <Time>0.667</Time>
+  <Cast_Range_Upper>15</Cast_Range_Upper>
+  <Cast_Range_Lower>3</Cast_Range_Lower>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

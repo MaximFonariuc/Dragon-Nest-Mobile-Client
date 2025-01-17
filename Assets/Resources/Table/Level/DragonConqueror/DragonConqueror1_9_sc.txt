@@ -1,0 +1,53 @@
+
+func:opendoor
+opendoor Blockwall4 
+
+func:opendoor1
+opendoor platform on
+
+func:aicommand
+aicommand -1 randombuff 44020
+
+func:aicommand1
+aicommand -1 trap 44020
+
+func:trap
+aicommand 43012 trap
+
+func:npcpopspeek
+npcpopspeek 2 3004 [403831][ff0000]全屏毒云[-]即将释放，迅速移动到[ff0000]场景四角的台子[-]上。 7
+
+func:notice
+notice [ffdc00]石人蒙塔愤怒了，攻击力得到了增强 7
+
+func:notice1
+notice [ffdc00]石人蒙塔狂暴了，动作变得更加敏捷 7
+
+func:notice2
+notice [ffdc00]4秒后石人蒙塔释放全屏毒云|[ffdc00]3秒后石人蒙塔释放全屏毒云|[ffdc00]2秒后石人蒙塔释放全屏毒云|[ffdc00]1秒后石人蒙塔释放全屏毒云|[ffdc00]石人蒙塔释放全屏毒云
+
+func:notice5
+notice [ffdc00]石人蒙塔狂暴了，攻击力增加50%
+
+func:blockwall50
+opendoor wall50
+
+func:blockwall51
+opendoor wall51
+
+func:blockwall52
+opendoor wall52
+
+func:blockwall53
+opendoor wall53
+
+
+
+
+
+
+info:platform 52.21673|9.537228|46.92384|0 on
+info:wall50 232.1594|5.47191|44.4125|45.00001 on 50
+info:wall51 251.1654|4.96191|44.5525|135 on 50
+info:wall52 251.0694|5.001909|63.7425|45.00001 on 50
+info:wall53 232.0594|5.05191|63.1925|135 on 50

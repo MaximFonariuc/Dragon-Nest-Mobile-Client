@@ -1,0 +1,20 @@
+﻿start tutorial
+
+step 点击PVP活动页签
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysEPVP 1 1 0 0
+internaldelay 1
+
+step 进入moba
+scond inlevel 1
+forceclick MobaActivityDlg Bg/PVPActivityFrame/Panel/item2 
+internaldelay 0.2
+text 点击这里进入英雄峡谷 200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]4v4对抗推塔玩法，选择合适的英雄，击倒对方水晶，与好友组队获得最高荣誉哟[-] -200
+internaldelay 0.3
+
+end tutorial

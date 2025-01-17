@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_DragonConqueror4_1>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" I_monsternum1="0" I_monsternum2="0" I_totalnum="0" F_random="0" B_IsInitialized1="0" B_IsInitialized2="0" B_key="0" I_string="0" I_HeartRateCount="0" I_HeartRateMax="3" I_monsternum3="0" I_monsternum4="0" I_monsternum5="0" I_monsternum6="0" I_monsternum7="0" I_monsternum8="0" I_num1="0" I_num2="0" I_num3="0" I_HeartRateNew="33">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="0" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Dead" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="44055" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="44056" Shared_BuffIdName="" Shared_BuffIdmValue="6743" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="0" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="0" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+        <CallScript FuncName="notice8" DelayTime="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="0" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="zhaohuan" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="119" MonsterId="44055" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="0" Shared_PosName="" Shared_PosmValue="50.88:4.86:46.32" BornType="1" Pos1="50.88:4.86:46.32" Pos2="50.88:4.86:46.32" Pos3="50.88:4.86:46.32" Pos4="50.88:4.86:46.32" FinalPos="50.88:4.86:46.32" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="50" MonsterId="44056" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="" Shared_PosmValue="50.8:4.86:32.5" BornType="1" Pos1="50.8:4.86:32.5" Pos2="50.8:4.86:32.5" Pos3="50.8:4.86:32.5" Pos4="50.8:4.86:32.5" FinalPos="50.8:4.86:32.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-43" MonsterId="44056" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="" Shared_PosmValue="63.4:4.88:32.5" BornType="1" Pos1="63.4:4.88:32.5" Pos2="63.4:4.88:32.5" Pos3="63.4:4.88:32.5" Pos4="63.4:4.88:32.5" FinalPos="63.4:4.88:32.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-140" MonsterId="44056" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="" Shared_PosmValue="63.78:4.88:46.5" BornType="1" Pos1="63.78:4.88:46.5" Pos2="63.78:4.88:46.5" Pos3="63.78:4.88:46.5" Pos4="63.78:4.88:46.5" FinalPos="63.78:4.88:46.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice7" DelayTime="0" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_DragonConqueror4_1>

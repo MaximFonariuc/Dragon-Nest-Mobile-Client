@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_phoenix_attack_rage</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.50000012</At>
+      <End>3.66666675</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_phoenix_attack_rage_01</Fx>
+      <Bone>Bip01_phoenix/Bip01 Pelvis_phoenix/Bip01 Spine_phoenix/Bip01 Spine1_phoenix/Bip01 Spine2_phoenix/Bip01 Neck_phoenix/Bip01 Neck1_phoenix/Bip01 Head_phoenix/Bone01_phoenix</Bone>
+      <Destroy_Delay>10000</Destroy_Delay>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_phoenix/Monster_phoenix_attack_rage</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_phoenix_attack_rage_start</Name>
+      <End>2</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_phoenix_attack_rage_loop</Name>
+      <End>0.50000006</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_phoenix_attack_rage_end</Name>
+      <End>1.16666675</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.667</Not_Move_End>
+    <CanCancelAt>3.667</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CoolDown>100</CoolDown>
+  <Time>3.667</Time>
+  <Cast_Range_Upper>100</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

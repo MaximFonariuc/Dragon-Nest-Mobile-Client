@@ -1,0 +1,16 @@
+﻿start tutorial
+
+step 点击语音
+scond inlevel 1016
+forceclick BattleDlg YuyinDlg(Clone)/leftRoot/pool/4/SPEAK 0 0 0 0
+internaldelay 0.5
+text 点击这里 140 0
+
+step 引导
+scond inlevel 1016
+empty
+ailin [301b0a]点击麦克风开启实时语音，可从队伍或者排行查看队员开启情况[-] -200
+audio Audio/VO/guide/guide27
+internaldelay 0.3
+
+end tutorial

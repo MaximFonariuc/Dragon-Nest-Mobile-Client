@@ -1,0 +1,85 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState2
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 开放家园系统
+scond MainUI
+scond nostackui
+scond inlevel 1
+directsys 150
+econd SysOpened
+
+step 打开家园icon
+scond inlevel 1
+scond item 5009=5
+scond item 5511=3
+scond item 5502=1
+scond item 5500=10
+scond item 5209=3
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH0/SysB_Home
+internaldelay 0.8
+
+step 打开家园界面
+scond inlevel 1
+empty
+ailin [301b0a]在我的家园面板可以查看家园的基础信息以及与好友的互动记录哦[-] -220
+internaldelay 0.8
+
+step 点击进入
+scond inlevel 1
+forceclick HomeMainView Bg/Handlers/MyHomeHandler/HomeInfo/GoToHome 1 1 0 0
+internaldelay 0.8
+
+step 引导烹饪
+scond inlevel 7
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH3/SysC_HomeCooking 1 1 0 0
+internaldelay 0.8
+
+step 做料理
+scond inlevel 7
+empty
+ailin [301b0a]在家园中可以通过收获的材料制作各式料理哦，我们先做一个吧[-] -220
+internaldelay 0.3
+
+step 点击制作
+scond inlevel 7
+forceclick HomeMainView Bg/Handlers/CookingHandler/MakeBtn 1 1 0 0
+internaldelay 0.5
+
+step 点击确认
+scond inlevel 7
+forceclick HomeMainView Bg/Handlers/CookingHandler/Content/CookingProgressFrame/Do 1 1 0 0
+internaldelay 0.5
+
+--step 点击关闭
+--scond inlevel 7
+--forceclick HomeMainView Bg/Close 1 1 0 0
+--internaldelay 0.3
+
+step 说明种植
+scond inlevel 7
+empty
+ailin [301b0a]可以通过种植来收获农作物哦，会出现丰收和额外产物哟~[-] -220
+internaldelay 0.8
+pause
+
+step 点击钓鱼
+scond inlevel 7
+forceclick HallDlg _canvas/Home/HomeHandler/Fishing 1 1 0 0
+internaldelay 0.3
+
+step 钓鱼说明
+scond inlevel 7
+empty
+ailin [301b0a]可以消耗鱼饵钓鱼，随着钓鱼等级越高，钓到的种类及概率也会提升[-] -220
+internaldelay 0.8
+
+step 引导点击钓鱼
+scond inlevel 7
+forceclick FishingDlg Bg/NotFishingFrame/StartFishingBtn 1
+internaldelay 0.3
+
+end tutorial

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_Dragon_Level4>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" F_floatarg="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="floatarg" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="dancetime" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <RandomEntityPos TemplateId="43006" Radius="1" CenterPos="0:0:0" FinalPos="70.34:5:50" NearPlayerTemplateId="-1" />
+        <CallScript FuncName="notice3" DelayTime="0" />
+        <GetEntityPos IsPlayer="0" TemplateId="43006" Shared_StorePosName="eventpos" Shared_StorePosmValue="0:0:0" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="callmonster" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" DelayTime="1" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="floatarg" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callmonster" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <Sequence>
+          <CallMonster Shared_DistName="" Shared_DistmValue="5" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="43007" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="12" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="5" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="43007" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="12" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="60" HPPercent="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="5" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="43007" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="12" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="120" HPPercent="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="5" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="43007" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="12" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="180" HPPercent="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="5" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="43007" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="12" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="240" HPPercent="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="5" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="43007" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="12" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="300" HPPercent="0" />
+        </Sequence>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_Dragon_Level4>

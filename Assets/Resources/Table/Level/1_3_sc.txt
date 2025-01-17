@@ -1,0 +1,109 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice
+notice 请注意保护好莉莉寻找姐姐，千万别让莉莉死亡
+
+func:notice1
+notice 莉莉遇到了危险！
+
+func:notice2
+notice 小心背后！！！
+
+func:notice3
+notice 不好！莉莉被包围了
+
+func:notice4
+notice 森林圣域的巨人朱诺克出现了
+
+func:notice5
+opendoor Blockwall
+
+func:notice6
+opendoor Blockwall1
+
+func:notice9
+opendoor Blockwall2
+
+func:direction1
+showdirection direction1
+
+func:direction2
+showdirection direction2
+
+func:direction3
+showdirection direction3
+
+func:direction4
+showdirection direction4
+
+func:direction5
+showdirection direction5
+
+func:direction6
+showdirection direction6
+
+func:talk
+talkl [player] [ffebad]这是……魔物巢穴的地图的碎片？ Audio/VO/Warrior/warrior5|Audio/VO/Archer/archer5|Audio/VO/Sorceress/sorceress5|Audio/VO/Cleric/cleric5|Audio/VO/Academic/academic5|Audio/VO/Assassin/assassin5|Audio/VO/kali/kali5
+talkl [player] [ffebad]……这些怪物都是笨蛋么？不随身携带自家的地图，应该是反派守则第一条吧…… Audio/VO/Warrior/warrior6|Audio/VO/Archer/archer6|Audio/VO/Sorceress/sorceress6|Audio/VO/Cleric/cleric6|Audio/VO/Academic/academic3|Audio/VO/Assassin/assassin3|Audio/VO/kali/kali6
+talkr 24 [ffebad]冒险家，你为什么拿着羊皮纸笑呀？是有用的东西么？ Audio/VO/lines/lines42
+talkl [player] [ffebad]嗯，真是意外的收获。莉莉你真乖，咱们回家吧，剩下的交给我就好了。 Audio/VO/Warrior/warrior10|Audio/VO/Archer/archer10|Audio/VO/Sorceress/sorceress10|Audio/VO/Cleric/cleric10|Audio/VO/Academic/academic10|Audio/VO/Assassin/assassin10|Audio/VO/kali/kali10
+stoptalk
+
+func:talk1
+talkl [player] [ffebad]莉莉！终于找到你了……这里不是你能来的地方，快回家！ Audio/VO/Warrior/warrior8|Audio/VO/Archer/archer8|Audio/VO/Sorceress/sorceress8|Audio/VO/Cleric/cleric8|Audio/VO/Academic/academic8|Audio/VO/Assassin/assassin8|Audio/VO/kali/kali8
+talkr 24 [ffebad]不！莉莉知道姐姐来过这里……莉莉感受得到！ Audio/VO/lines/lines41
+talkl [player] [ffebad]莉莉，你忘了之前我们的约定了吗……莉莉！别再往前跑了！危险！ Audio/VO/Warrior/warrior9|Audio/VO/Archer/archer9|Audio/VO/Sorceress/sorceress9|Audio/VO/Cleric/cleric9|Audio/VO/Academic/academic9|Audio/VO/Assassin/assassin9|Audio/VO/kali/kali9
+stoptalk
+
+func:bosstalk
+bubble 50310 姐姐，你在哪里啊？呜呜，莉莉有点害怕... 6
+
+func:bosstalk_1
+bubble 50310 莉莉才不怕你们，快把萝丝姐姐给莉莉。 4
+
+func:bosstalk_2
+bubble 50310 谢谢您又救了莉莉！我们一起去找姐姐吧 4
+
+func:bosstalk_3
+bubble 50310 好可怕的怪物！呜呜，他们欺负莉莉！ 4
+
+func:bosstalk_8
+bubble 50310 啊！到处都是怪物！ 4
+
+func:bosstalk_4
+bubble 50310 抓走姐姐的坏蛋就在前面 4
+
+func:bosstalk_5
+bubble 50310 啊！你们这些怪物，莉莉才不怕你们！ 4
+
+func:bosstalk_6
+bubble 50310 那里有扇大门，姐姐是不是在那里？ 4
+
+func:bosstalk_7
+bubble 50310 就是它们，请您一定要帮莉莉好好教训它们！ 4
+
+func:bosstalk_9
+bubble 50310 呜呜！姐姐不在这！莉莉要姐姐，呜呜呜！ 4
+
+func:closedoor
+opendoor Door on
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 52.46 3.85 22.1476 180 50302
+
+func:operation7
+clientrecord 103before
+
+func:operation8
+clientrecord 103after
+
+
+info:Blockwall 52.682|5.406376|29.48361|0 on 10
+info:Blockwall1 76.52222|1.592904|51.76142|0 on 10
+info:Blockwall2 53.10561|4.862423|56.03898|0 on 13.86985
+info:Door 52.6256|4.762423|26.54898|0 off 15

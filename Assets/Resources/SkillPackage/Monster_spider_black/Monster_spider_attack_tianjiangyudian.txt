@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_attack_tianjiangyudian</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_Middleattack</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.2</At>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>1.7</Runningtime>
+        <Velocity>3</Velocity>
+        <Radius>1</Radius>
+        <Prefab>Prefabs/Bullets/empty</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <Refine_Cycle>0.08</Refine_Cycle>
+        <Refine_Count>8</Refine_Count>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <Fx_Follow>false</Fx_Follow>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>1.56666672</Time>
+  <Cast_Range_Upper>6</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

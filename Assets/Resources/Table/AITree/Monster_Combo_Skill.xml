@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_Combo_Skill>
+  <EntryTask F_heartrate="2" T_target="" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="1" I_skillid="0" F_target_distance="0" F_random="0" F_attack_range="0" F_min_keep_range="0" B_IsInitialized="0">
+    <Selector>
+      <Sequence>
+        <Inverter>
+          <ValueTarget Shared_TargetName="target" />
+        </Inverter>
+        <ResetTargets />
+        <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="100" FilterImmortal="0" />
+        <DoSelectNearest />
+      </Sequence>
+      <Sequence>
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="1" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+        <DoSelectSkillRandom />
+        <DoCastSkill Shared_TargetName="target" />
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+      </Sequence>
+      <Sequence>
+        <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="1" UseInstall="0" SkillType="1" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+        <DoSelectSkillRandom />
+        <StopCastingSkill />
+        <DoCastSkill Shared_TargetName="target" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Monster_Combo_Skill>

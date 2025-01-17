@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack_shandianzhizhua</Name>
+  <TypeToken>3</TypeToken>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_kali/Player_kali_attack_shandianzhizhua</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>0.15</Time>
+      <FovAmp>3</FovAmp>
+      <Frequency>30</Frequency>
+      <Coordinate>Camera</Coordinate>
+      <AmplitudeX>0.05</AmplitudeX>
+      <AmplitudeY>0.05</AmplitudeY>
+      <AmplitudeZ>0.05</AmplitudeZ>
+      <At>0.266666681</At>
+      <Combined>true</Combined>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Combined>
+    <XCombinedData>
+      <Name>Player_kali_attack_shandianzhizhua_start</Name>
+      <End>1.36666679</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Player_kali_jump_landing</Name>
+      <End>0.333333343</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.53333342</Not_Move_End>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>1.7</End>
+      </XQTEData>
+      <XQTEData>
+        <QTE>18</QTE>
+        <At>0.533333361</At>
+        <End>1.00000012</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>1.53333342</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CameraPostEffect>
+    <At>0.266666681</At>
+    <End>0.400000036</End>
+    <Effect>RadialBlur</Effect>
+  </CameraPostEffect>
+  <CoolDown>10</CoolDown>
+  <Time>1.7</Time>
+  <Cast_Range_Upper>7.5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+  <CameraTurnBack>3</CameraTurnBack>
+</XSkillData>

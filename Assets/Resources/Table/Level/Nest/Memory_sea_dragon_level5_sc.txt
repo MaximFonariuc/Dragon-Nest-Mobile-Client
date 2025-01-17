@@ -1,0 +1,76 @@
+﻿
+func:opendoor
+opendoor Blockwall4 
+
+func:opendoor1
+opendoor platform on
+
+func:transferWall4
+opendoor TransferWall4 on 43.31|6.68|39.11|2 0|0|0
+
+func:aicommand
+aicommand -1 randombuff 140009
+
+func:aicommand1
+aicommand -1 trap 140009
+
+func:aicommand2
+aicommand -1 callmonster 140009
+
+func:aicommand3
+aicommand -1 cleanbuff 140009
+
+func:trap
+aicommand 140012 trap
+
+func:jiesuan
+notice 5秒以后进入结算界面|4秒以后进入结算界面|3秒以后进入结算界面|2秒以后进入结算界面|1秒以后进入结算界面 2
+
+func:notice1
+notice [ffdc00]小心！独眼巨人已出现
+
+func:notice2
+notice [ffdc00]4秒后石人蒙塔释放全屏毒云|[ffdc00]3秒后石人蒙塔释放全屏毒云|[ffdc00]2秒后石人蒙塔释放全屏毒云|[ffdc00]1秒后石人蒙塔释放全屏毒云|[ffdc00]石人蒙塔释放全屏毒云
+
+func:notice3
+notice [ffdc00]小心！石人蒙塔释放毒孢子
+
+func:notice4
+notice [ffdc00]石人蒙塔释放藤蔓，请注意救援被捆队友
+
+func:notice5
+notice [ffdc00]石人蒙塔狂暴了，攻击力增加50%
+
+func:notice6
+notice [ffdc00]30|[ffdc00]29|[ffdc00]28|[ffdc00]27|[ffdc00]26|[ffdc00]25|[ffdc00]24|[ffdc00]23|[ffdc00]22|[ffdc00]21|[ffdc00]20|[ffdc00]19|[ffdc00]18|[ffdc00]17|[ffdc00]16|[ffdc00]15|[ffdc00]14|[ffdc00]13|[ffdc00]12|[ffdc00]11|[ffdc00]10|[ffdc00]9|[ffdc00]8|[ffdc00]7|[ffdc00]6|[ffdc00]5|[ffdc00]4|[ffdc00]3|[ffdc00]2|[ffdc00]1|[ffdc00]石人蒙塔钻出地面,请注意躲避攻击！
+
+func:blockwall50
+opendoor wall50
+
+func:blockwall51
+opendoor wall51
+
+func:blockwall52
+opendoor wall52
+
+func:blockwall53
+opendoor wall53
+
+func:killspawn
+killspawn 0
+
+func:killspawn1
+killspawn 1
+
+func:killspawn2
+killspawn 2
+
+func:killspawn3
+killspawn 3
+
+
+
+
+
+
+info:platform 52.21673|9.537228|46.92384|0 on

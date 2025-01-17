@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_618_wujing>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" I_monsternum1="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="hummer" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="153801" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="clearplayerbuff" Shared_PosName="" Shared_PosmValue="175.26:5.1:44.97" DelayTime="12" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="clearbuff" Shared_PosName="" Shared_PosmValue="175.26:5.1:44.97" DelayTime="5" />
+        <AIDoodad Shared_DoodadIdName="" Shared_DoodadIdmValue="20309" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="8" DelayTime="0" />
+        <AIDoodad Shared_DoodadIdName="" Shared_DoodadIdmValue="20309" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="8" DelayTime="0" />
+        <AIDoodad Shared_DoodadIdName="" Shared_DoodadIdmValue="20309" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="8" DelayTime="0" />
+        <AIDoodad Shared_DoodadIdName="" Shared_DoodadIdmValue="20309" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="8" DelayTime="0" />
+        <AIDoodad Shared_DoodadIdName="" Shared_DoodadIdmValue="20309" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="8" DelayTime="0" />
+        <CallScript FuncName="warnning" DelayTime="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="clearbuff" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <RemoveSceneBuff BuffId="20309" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="clearplayerbuff" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <RemoveBuff MonsterId="-1" BuffId="50090" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_618_wujing>

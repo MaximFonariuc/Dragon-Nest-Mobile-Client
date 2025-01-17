@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_manticorehellish_star3>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Dead" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <Selector>
+          <Sequence>
+            <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="222206" />
+            <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="222207" MsgStr="end" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="0" />
+          </Sequence>
+          <Sequence>
+            <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="222210" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="10" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="222210" CopyMonsterId="0" MaxMonsterNum="8" LifeTime="0" DelayTime="10" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="73.27:6.09:140.46" Pos2="73.27:6.09:140.46" Pos3="73.27:6.09:140.46" Pos4="73.27:6.09:140.46" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_manticorehellish_star3>

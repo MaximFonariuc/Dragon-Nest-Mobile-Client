@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_warrior_attack_banyuezhan_ex_start</Name>
+  <ClipName>Animation/Player_warrior/Player_warrior_attack_halfmoonslash</ClipName>
+  <Result>
+    <XResultData>
+      <At>1.4333334</At>
+      <Range>6</Range>
+      <Scope>120</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_warrior/Player_warrior_attack_halfmoonslash_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_warrior/Player_warrior_attack_halfmoonslash_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.2</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>2</Offset>
+      <Height>0.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>3.36666679</Time>
+  <Cast_Range_Upper>6</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

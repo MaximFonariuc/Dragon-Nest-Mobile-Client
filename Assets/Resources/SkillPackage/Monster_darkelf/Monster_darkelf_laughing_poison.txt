@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_darkelf_laughing_poison</Name>
+  <ClipName>Animation/Monster_darkelf/Monster_darkelf_laughing</ClipName>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_darkelf/Monster_darkelf_laughing_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_darkelf/Monster_darkelf_laughing_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.933333337</At>
+      <End>5.533334</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_darkelf_laughing_poison_01</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_darkelf/Monster_darkelf_laughing_poison</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Full_Endure</StrickenMask>
+    <Not_Move_End>5.533334</Not_Move_End>
+    <CanCancelAt>5.533334</CanCancelAt>
+    <Exstring>redspeak</Exstring>
+  </Logical>
+  <CoolDown>5.533334</CoolDown>
+  <Time>5.533334</Time>
+  <Cast_Range_Upper>30</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

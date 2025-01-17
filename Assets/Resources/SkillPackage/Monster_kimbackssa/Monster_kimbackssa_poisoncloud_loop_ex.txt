@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_kimbackssa_poisoncloud_loop_ex</Name>
+  <ClipName>Animation/Monster_kimbackssa/Monster_kimbackssa_poisoncloud_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <Range>1</Range>
+      <Scope>360</Scope>
+      <Group>true</Group>
+      <Deviation_Angle>30</Deviation_Angle>
+      <Angle_Step>60</Angle_Step>
+      <Group_Count>6</Group_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>5</Runningtime>
+        <Velocity>5</Velocity>
+        <Radius>1</Radius>
+        <Prefab>Prefabs/Bullets/Monster_kimbackssa_opencover_nest_04</Prefab>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <Time>1</Time>
+</XSkillData>

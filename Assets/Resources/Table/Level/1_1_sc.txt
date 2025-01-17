@@ -1,0 +1,72 @@
+﻿
+func:notice2
+showcutscene CutScene/1_1_cutscene_boss_start 102.391 9.96 104.343 0
+
+func:levelup
+levelupfx
+
+func:showskill1
+showskillslot 0
+
+func:showskill2
+showskillslot 1
+
+func:notice7
+opendoor Blockwall
+
+func:notice11
+showdirection direction1
+
+func:notice12
+notice 那位勇士，我们来帮你！
+
+func:notice13
+showcutscene CutScene/1_0_start
+
+func:talk1
+talkr 31 [ffebad]唔咕，太强了，这次、这次就先放过你！别追过来啊！ Audio/VO/lines/lines14
+talkl [player] [ffebad]可恶，跑的好快！那个女孩被带到什么地方去了！ Audio/VO/Warrior/warrior3|Audio/VO/Archer/archer3|Audio/VO/Sorceress/sorceress3|Audio/VO/Cleric/cleric3|Audio/VO/Academic/academic3|Audio/VO/Assassin/assassin3|Audio/VO/kali/kali3
+talkl [player] [ffebad]这样犯愁也不是办法，先把莉莉送回去，再从长计议吧。 Audio/VO/Warrior/warrior6|Audio/VO/Archer/archer6|Audio/VO/Sorceress/sorceress6|Audio/VO/Cleric/cleric6|Audio/VO/Academic/academic6|Audio/VO/Assassin/assassin6|Audio/VO/kali/kali3
+stoptalk
+
+func:talk
+talkr 24 [ffebad]呜……姐姐……姐姐……呜咕咕…… Audio/VO/lines/lines12
+talkl [player] [ffebad]别怕！那些魔物已经被消灭了，你没受伤吧？小妹妹，你为什么会一个人跑到这种地方来？ Audio/VO/Warrior/warrior8|Audio/VO/Archer/archer8|Audio/VO/Sorceress/sorceress8|Audio/VO/Cleric/cleric8|Audio/VO/Academic/academic8|Audio/VO/Assassin/assassin8|Audio/VO/kali/kali8
+talkr 24 [ffebad]姐姐……萝丝姐姐她……呜呜……被怪物……被怪物劫走了，呜……求求你救救莉莉的姐姐…… Audio/VO/lines/lines13
+talkl [player] [ffebad]你姐姐被怪物抓走了！？莉莉，你躲在草丛里别动，我现在就去救你姐姐。 Audio/VO/Warrior/warrior2|Audio/VO/Archer/archer2|Audio/VO/Sorceress/sorceress2|Audio/VO/Cleric/cleric2|Audio/VO/Academic/academic2|Audio/VO/Assassin/assassin2|Audio/VO/kali/kali2
+stoptalk
+
+func:helpertalk
+newbienotice [ffebad]那位勇士，我来帮你！
+
+func:callhelper
+callnewbiehelper
+
+func:protect
+addbuff 0 110 1
+
+func:opencutscenewall
+opendoor 1_0cutscene on
+
+func:mayday
+addbuff 0 120 1
+
+func:ultraskill
+settutorial ultraskill
+
+func:closedoor
+opendoor Door on
+
+func:operation1
+clientrecord 100before
+
+func:operation2
+clientrecord 100after
+
+
+
+
+
+
+info:Blockwall 105.263|7.635541|89.01718|0 on 33.20988 17.59851 0.06641977
+info:Door 102.413|10.42554|100.4272|0 off 33.2099 20.38851 0.0664198

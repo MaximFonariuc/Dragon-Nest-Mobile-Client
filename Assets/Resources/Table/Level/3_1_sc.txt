@@ -1,0 +1,87 @@
+﻿
+func:killwave
+killwave 0
+
+func:killwave1
+killwave 4
+
+func:killwave2
+killwave 1
+
+func:killwave3
+killwave 5
+
+func:killwave4
+killwave 2
+
+func:killwave5
+killwave 7
+
+func:killwave6
+killwave 8
+
+func:killwave7
+killwave 9
+
+func:talk
+talkl [player] [ffebad]时间宝贵，我必须尽快找到零件修好飞艇！ Audio/VO/Warrior/warrior26|Audio/VO/Archer/archer26|Audio/VO/Sorceress/sorceress26|Audio/VO/Cleric/cleric26|Audio/VO/Academic/academic3|Audio/VO/Assassin/assassin3|Audio/VO/kali/kali12
+talkr 41 [ffebad]喂！你！飞艇碎片就散落在里面。可是魔物太多了！收集零件的任务就交给你了！ Audio/VO/lines/lines151
+stoptalk
+
+func:notice
+notice 请避开魔物的预警圈潜入敌军深处破坏水晶 10
+
+func:notice1
+notice 踏入蓝色的法阵可激活法阵杀死魔物 6
+
+func:notice2
+notice 法阵被激活，重甲兽人被消灭了，下一段道路即将开启 6
+
+func:notice3
+notice 法阵被激活，两只食人魔奴隶被消灭了 6
+
+func:notice4
+notice 法阵被激活，又有两只食人魔奴隶被消灭了，下一段道路即将开启 6
+
+func:notice5
+notice 黑暗水晶就在眼前，请避开食人魔队长破坏黑暗水晶 6
+
+func:notice6
+notice 这个魔法阵似乎没有魔力了，无法被激活 6
+
+func:blockwall2
+opendoor Blockwall2
+
+func:blockwall3
+opendoor Blockwall3
+
+func:operation50
+clientrecord 204before
+
+func:operation51
+clientrecord 204after
+
+func:opendoor
+opendoor fz on
+
+func:opendoor1
+opendoor fz1 on
+
+func:opendoor2
+opendoor fz2 on
+
+func:wodblock
+opendoor wodblock
+
+
+
+
+
+
+
+info:Blockwall2 78.6128|10.62267|116.601|20 on 18.79878 18.79878 0.0939939
+info:Blockwall3 116.2728|17.17267|160.681|80.00001 on 35.34037 35.34038 0.1767019
+info:fz 78.22|9.799999|115.34|15.26445 off 2 2 2
+info:fz1 82|12.49|147.49|11.27964 off 2 2 2
+info:fz2 114.4388|15.24467|159.881|73.08217 off 2 2 2
+info:wodblock 65.7128|12.85267|75.83099|14.99998 on 18.79878 18.79878 0.0939939

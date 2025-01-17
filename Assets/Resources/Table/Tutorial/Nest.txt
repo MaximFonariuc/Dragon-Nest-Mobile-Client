@@ -1,0 +1,62 @@
+﻿start tutorial
+
+step 点击日常玩法
+scond nostackui
+scond inlevel 1
+scond MainUI
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+internaldelay 0.2
+text 点击这里进入日常玩法 -200 0
+
+step 点击日常活动
+scond inlevel 1
+forceclick DailyActivityDlg Bg/Tabs/XSys_Activity/Bg 1
+internaldelay 0.2
+
+step 打开巢穴界面
+scond inlevel 1
+scond activityopen
+scroll Activity 520
+--ailin [301b0a]吼啦，您的实力已经这么强啦，可以闯一下[7100ff]巢穴[-]了哦。[-] -200 [301b0a]巢穴中会掉落[7100ff]橙色装备[-]等稀有物品，注意收集哦。[-]
+forceclick DailyActivityDlg Bg/ActivityFrame/Panel/item4 1
+internaldelay 0.2
+text 巢穴系统在这里 200 0
+
+step 引导
+scond inlevel 1
+notewindow TheExpDlg Bg/Close 15|15|2000
+ailin [301b0a]4人组队挑战，需要娴熟的操作，默契的配合，才能够战胜Boss赢取高品质装备[-] -200
+audio Audio/VO/guide/guide11
+internaldelay 0.3
+
+--step 切换巢穴
+--scond inlevel 1
+--forceclick ActivityDlg Bg/Tabs/XSys_Activity_Nest/Bg 1
+--internaldelay 0.3
+--text 点击切换巢穴 200 0
+
+--step 打开巢穴
+--scond inlevel 1
+--forceclick ActivityDlg Bg/NestFrame/Panel/{1} 1
+--internaldelay 0.3
+--text 进入地狱犬巢穴 -200 0
+
+--step 入场
+--scond inlevel 1
+--forceclick NestDlg Bg/GoBattle 1
+--internaldelay 0.3
+--text 入场 -200 0
+
+--step 关闭巢穴面板
+--scond inlevel 1
+--forceclick NestDlg Bg/Close 1
+--internaldelay 0.3
+--text 关闭巢穴界面 -200 0
+
+--step 关闭巢穴面板
+--scond inlevel 1
+--forceclick ActivityDlg Bg/Close 1
+--internaldelay 0.3
+--text 关闭巢穴界面 -200 0
+
+end tutorial

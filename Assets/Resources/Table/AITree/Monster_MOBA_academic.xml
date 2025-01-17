@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_MOBA_academic>
+  <EntryTask T_target="" T_master="" F_heartrate="0.1" T_navtarget="" F_movespeed="1" V_movedir="0:0:0" V_movedest="0:0:0" F_target_distance="0" F_master_distance="0" F_normal_attack_prob="0" F_enter_fight_range="0" F_fight_together_dis="0" B_is_wander="0" I_type="0" F_target_rotation="0" F_attack_range="0" F_min_keep_range="0" B_is_casting_skill="0" B_is_fighting="0" B_is_qte_state="0" I_compres="0">
+    <Selector>
+      <ReturnFailure>
+        <Sequence>
+          <DetectEnimyInSight />
+          <Selector>
+            <Sequence>
+              <TargetByHatredList Shared_DistanceName="" Shared_DistancemValue="0" FilterImmortal="0" />
+            </Sequence>
+            <Sequence>
+              <FindTargetByDistance Shared_DistanceName="enter_fight_range" Shared_DistancemValue="0" FilterImmortal="0" Angle="0" Delta="0" TargetType="0" />
+            </Sequence>
+          </Selector>
+          <DoSelectNearest />
+        </Sequence>
+      </ReturnFailure>
+      <Sequence>
+        <ValueTarget Shared_TargetName="target" />
+        <Selector>
+          <IsCastingSkill />
+          <Sequence>
+            <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+            <DoSelectSkillInOrder />
+            <DoCastSkill Shared_TargetName="target" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="4" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="min_keep_range" float2Value="0" />
+            <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="attack_range" float2Value="0" />
+            <PhysicalAttack Shared_TargetName="target" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="enter_fight_range" float2Value="0" />
+            <NavToTarget Shared_TargetName="target" Shared_NavTargetName="navtarget" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          </Sequence>
+          <ReturnFailure>
+            <Sequence>
+              <FloatComparison type="5" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="enter_fight_range" float2Value="0" />
+              <ResetHartedList />
+              <DoSelectByUID Shared_UIDName="" Shared_UIDmValue="0" />
+              <CallScript FuncName="test1" DelayTime="0" />
+            </Sequence>
+          </ReturnFailure>
+        </Selector>
+      </Sequence>
+      <Sequence>
+        <CalDistance Shared_ObjectName="master" Shared_DistanceName="master_distance" Shared_DistancemValue="0" Shared_DestPointName="" Shared_DestPointmValue="0:0:0" />
+        <FloatComparison type="5" Shared_Float1Name="master_distance" float1Value="0" Shared_Float2Name="" float2Value="3" />
+        <Selector>
+          <Sequence>
+            <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="master" Shared_NavName="" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="1" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="2" AdjustDir="2" SetDestType="1" />
+            <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          </Sequence>
+          <NavToTarget Shared_TargetName="master" Shared_NavTargetName="master" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          <Sequence>
+            <FindNavPath />
+            <NavToTarget Shared_TargetName="target" Shared_NavTargetName="navtarget" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Monster_MOBA_academic>

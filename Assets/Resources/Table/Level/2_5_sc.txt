@@ -1,0 +1,98 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice1-2
+showdirection direction3
+
+func:callearthquerk
+aicommand -1 earthquerk 0
+
+func:closeearthquerk
+aicommand -1 close 0
+
+func:killwave15
+killwave 15
+
+func:killwave0
+killwave 0
+
+func:start
+notice 勇士们，请消灭食尸鬼克雷德 6
+
+func:start_1
+bubble 51421 肉...新鲜的人肉... 6
+
+func:turnstart
+notice 克雷生气了，开始对玩家进行地震打击！ 4
+
+func:turnstart_1
+notice 克雷德再次生气的离开场地，开始对玩家进行地震打击！ 4
+
+func:expression
+bubble 51421 你们惹怒我了 3
+
+func:expression_1
+bubble 51422 够了，在次准备承受我的怒火吧 3
+
+func:bossturnchapter
+notice [ffdc00]15秒后克雷德引导的地震结束|[ffdc00]14秒后克雷德引导的地震结束|[ffdc00]13秒后克雷德引导的地震结束|[ffdc00]12秒后克雷德引导的地震结束|[ffdc00]11秒后克雷德引导的地震结束|[ffdc00]10秒后克雷德引导的地震结束|[ffdc00]9秒后克雷德引导的地震结束|[ffdc00]8秒后克雷德引导的地震结束|[ffdc00]7秒后克雷德引导的地震结束|[ffdc00]6秒后克雷德引导的地震结束|[ffdc00]5秒后克雷德引导的地震结束|[ffdc00]4秒后克雷德引导的地震结束|[ffdc00]3秒后克雷德引导的地震结束|[ffdc00]2秒后克雷德引导的地震结束|[ffdc00]1秒后克雷德引导的地震结束|地震已结束！
+
+func:bossspeak-2
+notice 小心！地面有异样！ 5
+
+func:bossspeak-3
+notice 避开克雷德更疯狂的攻击！ 5
+
+func:bossspeak-4
+notice 额...晕了... 5
+
+func:bossspeak-5
+notice 去哪了...打不到... 5
+
+func:bossspeak-6
+notice 可恶...克雷德...生气了！ 5
+
+func:bossspeak-7
+notice 不玩了...克雷德...要咬死你！ 5
+
+func:callxiaobing
+notice 小心！克雷德进入了狂暴状态！ 5
+
+func:callxiaobing1
+notice 小心！克雷德进入了狂暴状态！ 5
+
+func:talk1
+talkr 50 [ffebad]不，这不可能！咳…… Audio/VO/lines/lines107
+talkl [player] [ffebad]快说！黑骑士在哪里？ Audio/VO/Warrior/warrior27|Audio/VO/Archer/archer27|Audio/VO/Sorceress/sorceress27|Audio/VO/Cleric/cleric27|Audio/VO/Academic/academic13|Audio/VO/Assassin/assassin13|Audio/VO/kali/kali14
+talkr 50 [ffebad]哈哈，就算你打败了我，也绝对不可能活着见到我的主人！ Audio/VO/lines/lines108
+talkl [player] [ffebad]你在这里卑微地为他死去，恐怕他却从来没有把你当做部下吧。 Audio/VO/Warrior/warrior12|Audio/VO/Archer/archer12|Audio/VO/Sorceress/sorceress12|Audio/VO/Cleric/cleric12|Audio/VO/Academic/academic27|Audio/VO/Assassin/assassin27|Audio/VO/kali/kali12
+talkr 50 [ffebad]咳咳……他那样强大的人，不需要我这样的部下。到神圣遗迹去吧，那是他最后一次露面的地方…… Audio/VO/lines/lines109
+talkr 50 [ffebad]还有……如果可以的话，请你告诉主人……啊不……告诉那位黑骑士大人，这里存在着一位卑微的，他的追随者…… Audio/VO/lines/lines110
+talkl [player] [ffebad]…… Audio/VO/Warrior/warrior6|Audio/VO/Archer/archer6|Audio/VO/Sorceress/sorceress6|Audio/VO/Cleric/cleric6|Audio/VO/Academic/academic6|Audio/VO/Assassin/assassin6|Audio/VO/kali/kali6
+stoptalk
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 51421
+
+func:closedoor
+opendoor Door on
+
+func:callxiaobing2
+summon 6503 6507 2
+
+func:operation21
+clientrecord 205before
+
+func:operation22
+clientrecord 205after
+
+
+
+info:Blockwall 81.44526|16.67467|56.13036|40 on 20
+info:Blockwall1 121.7588|10.9339|98.42712|80.00001 on 30.81201
+info:Blockwall2 142.4546|13.38263|132.2047|0 on 26.88598
+info:Door 142.3313|15.021|132.5165|0 off 20

@@ -1,0 +1,106 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice1
+notice 墓穴神殿中心似乎有动静，前往探查吧
+
+func:broonotice
+bubble 50504 小心，布洛怪唤醒了大批墓穴亡灵！ 5
+
+func:brootalk_1
+bubble 4404 醒来吧...！ 4
+
+func:notice4
+opendoor Blockwall
+
+func:notice5
+opendoor Blockwall1
+
+func:notice3
+showdirection direction
+
+func:notice6
+showdirection direction1
+
+func:notice7
+showdirection direction2
+
+func:notice8
+showdirection direction3
+
+func:notice9
+notice 墓穴亡灵被惊醒了！注意躲避火蛇机关，前方好像有宝箱！ 10
+
+func:notice10
+notice 有人偷宝箱了！快！杀了他！ 5
+
+func:talk
+talkl [player] [ffebad]这里有好多魔物，看来不能硬闯。
+talkr 38 [ffebad]好的，我们小心点，不要惊动了魔物。
+stoptalk
+
+func:talk1
+talkr 38 [ffebad]萝丝！我终于找到你了！啊，好多魔物！
+talkl [player] [ffebad]你们快跑，我来断后！快走！
+stoptalk
+
+func:bosstalk_1
+bubble 4405 翁拉克在这里！ 3
+
+func:bosstalk_2
+bubble 4405 别想通过！ 3
+
+func:boss_recovery
+bubble 4405 哞～！！！ 3
+
+func:showcutscene
+showcutscene CutScene/1_4_cutscene_start 87.02 0 95 90 50405
+
+func:closedoor
+opendoor Door on
+
+func:operation9
+clientrecord 104before
+
+func:operation10
+clientrecord 104after
+
+func:killwave5
+killwave 5
+
+func:timosespeak
+bubble 5036 萝丝，我一定会救你出去的！ 6
+
+func:timosespeak_1
+bubble 5036 萝丝，我，我一定要保护好你。 6
+
+func:generalbubble_1
+bubble 50423 萝丝，你在哪里呀？ 5
+
+func:generalbubble_2
+bubble 50423 萝丝现在很危险，我要赶去救她！ 5
+
+func:generalbubble_3
+bubble 50423 魔物虽然可怕，但是为了萝丝，我什么都不怕！ 5
+
+func:killwave13
+killwave 13
+
+func:killwave10
+killwave 10
+
+func:orcspeak
+bubble 50416 不要让先知跑了！ 5
+
+func:killwave2
+killwave 2
+
+
+
+info:Blockwall 41.9818|1.104458|96.33728|90.00001 on 50 26.10446 0.1
+info:Blockwall1 73.645|0.749567|96.19153|90.00001 on 14.78579 8.142459 0.07392892
+info:Door 80.45021|0.918622|96.0358|90.00001 off 50 25.91862 0.1

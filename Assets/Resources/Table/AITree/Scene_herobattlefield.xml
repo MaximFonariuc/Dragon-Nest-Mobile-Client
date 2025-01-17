@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_herobattlefield>
+  <EntryTask F_heartrate="1.5" B_IsPlayerBuffed="1" B_IsEnemyBuffed="0" I_compareres="0" I_typeid="0" V_eventpos="0:0:0" F_random="0" I_FinishPlayers="0" I_CurrentPlayers="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventstr" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventstr" Shared_SecondStringName="" secondString="fetchdoodad" Shared_ResultName="compareres" />
+        <IntComparison type="2" Shared_Int1Name="compareres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AIDoodad Shared_DoodadIdName="typeid" Shared_DoodadIdmValue="0" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="0" DelayTime="30" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_herobattlefield>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_calamary_laser_nest_red</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>2.33333325</At>
+      <End>6.266667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_calamary_laser_nest_01</Fx>
+      <ScaleX>0.7</ScaleX>
+      <ScaleY>0.7</ScaleY>
+      <ScaleZ>0.7</ScaleZ>
+      <OffsetY>1.55</OffsetY>
+      <OffsetZ>1.9</OffsetZ>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_calamary/Monster_calamary_laser_nest</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_calamary_laser_star</Name>
+      <End>2</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_calamary_laser_loop</Name>
+      <End>1</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_calamary_laser_loop_45f</Name>
+      <End>1.50000012</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>3</Index>
+      <Name>Monster_calamary_laser_end</Name>
+      <End>1.76666677</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>6.267</Not_Move_End>
+    <CanCancelAt>6.267</CanCancelAt>
+  </Logical>
+  <Time>6.267</Time>
+  <Cast_Range_Upper>5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

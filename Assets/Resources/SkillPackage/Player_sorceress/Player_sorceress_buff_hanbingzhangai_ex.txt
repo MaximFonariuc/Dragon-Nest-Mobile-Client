@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_sorceress_buff_hanbingzhangai_ex</Name>
+  <ClipName>Animation/Player_sorceress/Player_sorceress_attack_fireworm</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_sorceress/Player_sorceress_attack_fireworm_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_sorceress/Player_sorceress_attack_fireworm_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.4666667</At>
+      <End>1.16666675</End>
+      <Fx>Effects/High_Resources/Prefabs/Soceress/Player_sorceress_buff_hanbingzhangai_Clip04</Fx>
+      <Follow>false</Follow>
+      <Destroy_Delay>0.5</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_sorceress/Player_sorceress_buff_hanbingzhangai_ex</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.833333433</Not_Move_End>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>1.16666675</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>0.833333433</CanCancelAt>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>1.16666675</Time>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

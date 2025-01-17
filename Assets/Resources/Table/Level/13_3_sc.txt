@@ -1,0 +1,90 @@
+
+func:notice2
+notice 遗迹亡灵从沉睡中醒来
+
+func:start
+notice 看样子要强行闯入了... 5
+
+func:part2_s
+notice 将这闯入者赶出去！ 5
+
+func:part2_e
+notice 通道已开启！ 3
+
+func:pvp_1
+notice 小心！隐藏的入侵者出现！ 5
+
+func:part3_s
+npcpopspeek 2 3003 当心布洛怪释放强大的光环！ 7
+
+func:part4_s
+notice 闯入者上来了！包围起来！ 5
+
+func:part4_e
+notice 最后的通道打开了！ 5
+
+func:boss_1
+notice 你是谁！？居然敢来这里！ 3
+
+func:boss_2
+notice 滚！快滚！不然敲扁你...！ 5
+
+func:notice1
+opendoor Blockwall
+
+func:notice3
+opendoor Blockwall1
+
+func:notice4
+opendoor Blockwall2
+
+func:notice7
+showdirection direction
+
+func:notice8
+showdirection direction1
+
+func:notice9
+showdirection direction2
+
+func:outline
+outline 1
+
+func:showcutscene
+showcutscene CutScene/3_6_Start 64.57 0.501 139.74 40
+
+func:notice5
+opendoor 3_6cutscene
+
+func:help1
+bubble 17512 干完这一票，车房都有了！ 7
+
+func:help2
+bubble 17512 兄弟们上，宝藏是我们的！ 7
+
+func:call
+notice 独眼巨人[ff0000]召唤了援军[-],并且[ff0000]技能[-]增强了！ 6
+
+func:call_two
+notice 独眼巨人[ff0000]召唤了援军[-]，并且[ff0000]技能[-]进一步增强了！ 6
+
+func:clean_1
+aicommand -1 clean 17508
+
+func:clean_2
+aicommand -1 clean 17508
+
+func:closedoor
+opendoor Door on
+
+func:barrierdoor
+opendoor barrierdoor
+
+
+
+
+info:Blockwall 54.17863|3.881351|79.24291|0 on 35.95292 21.8578 0.1797645
+info:Blockwall1 55.89543|4.746607|128.7527|20 on 35.95292 22.72306 0.1797645
+info:Blockwall2 52.9567|2.823335|54.75397|0 on 17.70044 11.67355 0.08850213
+info:Door 60.48048|5.821335|136.6684|29.99999 off 35.95292 23.79778 0.1797645
+info:barrierdoor 84.65|1.51|142.98|290 on 50 26.51 0.1

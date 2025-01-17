@@ -1,0 +1,59 @@
+﻿start tutorial
+
+step 时装
+scond inlevel 1
+--ailin [301b0a]勇士，从深渊副本中掉落的[7100ff]时装碎片[-]可用来合成时装呢，一起来看看吧。[-] -300
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysDFashion 1
+internaldelay 0.1
+text 可以合成时装啦 200 0
+
+step 选择时装
+scond inlevel 1
+forceclick FashionDlg Bg/WardrobePanel/SuitListFrame/LimitPanel/Panel/Bg/suit9/Bg 1
+internaldelay 0.5
+text 获得了时装的碎片 200 0
+
+step 选择时装头
+scond inlevel 1
+forceclick FashionDlg Bg/WardrobePanel/SuitViewFrame/SuitFrame/ListFrame/{1}/Icon 1
+internaldelay 0.3
+text 选择合成的时装 -200 0
+
+step 合成
+scond inlevel 1
+forceclick FashionDlg Bg/WardrobePanel/ComposeFrame/Compose/Compose 1
+internaldelay 0.3
+econd ComposeFashion
+--text 选择手套 -200 0
+
+step 穿戴合成后的手套
+scond inlevel 1
+forceclick FashionDlg Bg/WardrobePanel/ComposeFrame/Place/Place 1
+internaldelay 1
+text 放入衣柜吧 -200 0
+
+--step 选择关卡
+--noforceclick HallDlg _canvas/SecondMenu/Icon 1.4
+--econd WorldMapShow
+
+--step 深渊难度
+--forceclick DungeonSelect Bg/Hard 1
+--internaldelay 0.3
+--text 选择深渊难度 -200 0
+
+--step 选关卡
+--forceclick DungeonSelect Bg/LevelFramePanel/chapter11/Levels/114/SprBtn 1
+--internaldelay 0.3
+--text 请选择关卡 200 0
+
+--step 进入
+--genericclick 271 495
+--noforceclick DungeonSelect Bg/DetailFrame/Bg/GoBattle 1
+--internaldelay 0.3
+--text 深渊三星将获得双倍技能点 250 0
+
+--step 进入
+--forceclick DungeonSelect Bg/DetailFrame/Bg/GoBattle 1
+--text 进入副本 -240 0
+
+end tutorial

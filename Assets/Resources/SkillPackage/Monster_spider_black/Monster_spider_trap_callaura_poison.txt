@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_trap_callaura_poison</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_summon</ClipName>
+  <Result>
+    <XResultData>
+      <At>2.33333349</At>
+      <Range>0.1</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.7</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <Height>2</Height>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Mob>
+    <XMobUnitData>
+      <At>2.33333349</At>
+      <TemplateID>17520</TemplateID>
+      <Offset_At_Z>4</Offset_At_Z>
+    </XMobUnitData>
+  </Mob>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.533</Not_Move_End>
+    <CanCancelAt>2.533</CanCancelAt>
+    <AttackOnHitDown>false</AttackOnHitDown>
+  </Logical>
+  <Time>2.533</Time>
+  <Cast_Range_Upper>100</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

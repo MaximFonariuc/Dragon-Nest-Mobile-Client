@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_meteorfairyqueen_armageddon_end_ex</Name>
+  <ClipName>Animation/Monster_meteorfairyqueen/Monster_meteorfairyqueen_armageddon_end</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.8333334</At>
+      <Range>8</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_meteorfairyqueen/Monster_meteorfairyqueen_armageddon_end_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_meteorfairyqueen/Monster_meteorfairyqueen_armageddon_end_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_meteorfairyqueen/Monster_meteorfairyqueen_armageddon_end_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <State>Hit_Freezed</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_time</Fx>
+      <FreezeDuration>5</FreezeDuration>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.66666675</Not_Move_End>
+    <CanCancelAt>3.66666675</CanCancelAt>
+  </Logical>
+  <CoolDown>3.666667</CoolDown>
+  <Time>3.66666675</Time>
+</XSkillData>

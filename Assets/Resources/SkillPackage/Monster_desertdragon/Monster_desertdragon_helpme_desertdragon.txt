@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_desertdragon_helpme_desertdragon</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>7.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_desertdragon_flyattack_dragon_03</Fx>
+      <Bone>Bip01_desertdragon/Bip01 Pelvis_desertdragon/Bip01 Spine_desertdragon/Bip01 L Thigh_desertdragon/Bip01 L Calf_desertdragon/Bip01 L HorseLink_desertdragon/Bip01 L Foot_desertdragon/Bip01 L Toe1_desertdragon</Bone>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>7.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_desertdragon_flyattack_dragon_03</Fx>
+      <Bone>Bip01_desertdragon/Bip01 Pelvis_desertdragon/Bip01 Spine_desertdragon/Bip01 R Thigh_desertdragon/Bip01 R Calf_desertdragon/Bip01 R HorseLink_desertdragon/Bip01 R Foot_desertdragon/Bip01 R Toe1_desertdragon</Bone>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>2</Index>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>7.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_desertdragon_flyattack_dragon_03</Fx>
+      <Bone>Bip01_desertdragon/Bip01 Pelvis_desertdragon/Bip01 Spine_desertdragon/Bip01 Spine1_desertdragon/Bip01 Neck_desertdragon/Bip01 L Clavicle_desertdragon/Bip01 L UpperArm_desertdragon/Bip01 L Forearm_desertdragon/Bip01 L Hand_desertdragon/Bip01 L Finger2_desertdragon</Bone>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>3</Index>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>7.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_desertdragon_flyattack_dragon_03</Fx>
+      <Bone>Bip01_desertdragon/Bip01 Pelvis_desertdragon/Bip01 Spine_desertdragon/Bip01 Spine1_desertdragon/Bip01 Neck_desertdragon/Bip01 R Clavicle_desertdragon/Bip01 R UpperArm_desertdragon/Bip01 R Forearm_desertdragon/Bip01 R Hand_desertdragon/Bip01 R Finger2_desertdragon</Bone>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_desertdragon/Monster_desertdragon_helpme_desertdragon</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_desertdragon_followingboom_start</Name>
+      <End>4</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_desertdragon_helpme_desertdragon_loop</Name>
+      <End>3</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_desertdragon_helpme_desertdragon_end</Name>
+      <End>3.00000024</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>9.999999</Not_Move_End>
+    <CanCancelAt>9.999999</CanCancelAt>
+    <Exstring>icebind</Exstring>
+  </Logical>
+  <Time>10</Time>
+  <Cast_Range_Upper>50</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

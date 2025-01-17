@@ -1,0 +1,81 @@
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice2
+npcpopspeek 2 3003 小心！布洛研究员的魔法会回复附近魔物！ 7
+
+func:broospeak
+bubble 150113 上呀～我会治愈你们的！ 7
+
+func:notice3
+notice 继续前进，前面汇聚了大批魔物。
+
+func:notice4
+notice 去迎接布洛怪兄弟的挑战吧！
+
+func:TransferWall
+opendoor TransferWall on
+
+func:Blockwall
+opendoor Blockwall
+
+func:Blockwall1
+opendoor Blockwall1
+
+func:notice1
+showdirection direction
+
+func:direction1
+showdirection direction1
+
+func:direction2
+showdirection direction2
+
+func:CutScene
+showcutscene CutScene/11_1 86.56 8.55 140.28 90
+
+func:blacknotice
+notice 黑暗布洛怪进入了[ff0000]无敌[-]状态。 6
+
+func:whitenotice
+notice 闪电布洛怪进入了[ff0000]无敌[-]状态。 6
+
+func:closedoor
+opendoor Door on
+
+func:blackimmortal
+addbuff 150112 21270 1
+
+func:whiteimmortal
+addbuff 150106 21271 1
+
+func:removebuff21270
+removebuff 150112 21270
+
+func:removebuff21271
+removebuff 150106 21271
+
+func:tips
+notice 我们是[ff0000]无敌[-]不可战胜的布洛怪兄弟！ 5
+
+func:promptblackbroo
+notice [ff0000]黑暗布洛怪[-]露出了破绽，[ff0000]无敌[-]消失了！ 6
+
+func:promptwhitebroo
+notice [ff0000]闪电布洛怪[-]露出了破绽，[ff0000]无敌[-]消失了！ 6
+
+
+
+
+
+
+
+
+
+
+
+info:Blockwall 80.8|9.78|140.076|77.97153 on 50 34.78 0.1

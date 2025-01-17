@@ -1,0 +1,795 @@
+﻿start tutorial
+--end tutorial
+-------------------------------------
+tutorial 1 新手关
+scond inlevel 100
+exec NewbieLevel
+-------------------------------------
+
+-------------------------------------
+tutorial 2 第一次进主城
+scond inlevel 1
+exec FirstTask
+-------------------------------------
+
+-------------------------------------
+--tutorial 3 闪避/倒地教学
+--scond inlevel 101
+--exec Dash
+-------------------------------------
+
+-------------------------------------
+tutorial 3 魅力榜
+scond nostackui
+scond inlevel 1
+scond SysNotify 24
+exec FlowerRank
+-------------------------------------
+
+-------------------------------------
+tutorial 4 第一次选关卡
+scond inlevel 1
+scond dotaskbattle 101
+exec SelectLevel
+-------------------------------------
+
+-------------------------------------
+tutorial 5 副本霸体引导
+scond inlevel 101
+exec SuperAomor
+-------------------------------------
+
+-------------------------------------
+tutorial 6 副本闪避引导
+scond inlevel 102
+exec Dash
+-------------------------------------
+
+-------------------------------------
+tutorial 7 技能系统教学
+scond nostackui
+scond inlevel 1
+scond SysNotify 13 1
+exec LearnSkill
+-------------------------------------
+
+-------------------------------------
+tutorial 8 第一次交任务
+scond inlevel 1
+scond taskscenefinished 3
+exec ReplyTask
+-------------------------------------
+
+-------------------------------------
+tutorial 9 观战
+scond nostackui
+scond inlevel 1
+scond SysNotify 56
+exec Spectate
+-------------------------------------
+
+-------------------------------------
+tutorial 10 第二次选关卡
+scond inlevel 1
+scond dotaskbattle 102
+exec SelectLevel102
+-------------------------------------
+
+-------------------------------------
+tutorial 11 Combo教学
+scond inlevel 104
+exec ComboBuff
+-------------------------------------
+
+-------------------------------------
+tutorial 12 第二次交任务
+scond inlevel 1
+scond taskscenefinished 4
+exec ReplyTask2
+-------------------------------------
+
+-------------------------------------
+tutorial 13 第三次选关卡
+scond inlevel 1
+scond dotaskbattle 103
+exec SelectLevel103
+-------------------------------------
+
+-------------------------------------
+tutorial 14 第三次交任务
+scond inlevel 1
+scond taskscenefinished 5
+exec ReplyTask3
+-------------------------------------
+
+-------------------------------------
+--tutorial 14 龙玉 
+--scond inlevel 1
+--scond SysNotify 122
+--exec Jade
+-------------------------------------
+
+-------------------------------------
+--tutorial 14 转职试炼前引导 
+--scond inlevel 1
+--scond dotaskbattle 21
+--exec Promote1
+-------------------------------------
+
+-------------------------------------
+tutorial 15 装备系统教学
+scond nostackui
+scond inlevel 1
+scond SysNotify 120 1
+exec EquipItem
+-------------------------------------
+
+-------------------------------------
+tutorial 16 第四次选关卡
+scond inlevel 1
+scond dotaskbattle 104
+exec SelectLevel104
+-------------------------------------
+
+-------------------------------------
+--tutorial 17 穿第二装备
+--scond inlevel 1
+--scond taskscenefinished 7
+--scond accepttask 8
+--exec EquipItem2
+-------------------------------------
+
+-------------------------------------
+tutorial 18 第五次选关卡
+scond nostackui
+scond inlevel 1
+scond dotaskbattle 105
+exec SelectLevel105
+-------------------------------------
+
+-------------------------------------
+tutorial 19 学第四技能
+scond nostackui
+scond inlevel 1
+scond playerlevel 6
+exec LearnSkill2
+-------------------------------------
+
+-------------------------------------
+tutorial 20 学QTE
+scond inlevel 201
+exec LeftRightQTE
+-------------------------------------
+
+-------------------------------------
+tutorial 21 第一次进入深渊引导
+scond inlevel 1
+scond dotaskbattle 112
+exec InFashionSuit
+-------------------------------------
+
+-------------------------------------
+tutorial 22 时装系统教学
+scond nostackui
+scond inlevel 1
+scond SysNotify 160 1
+exec FashionSuit
+-------------------------------------
+
+-------------------------------------
+tutorial 23 第二次进入深渊引导
+scond inlevel 1
+scond dotaskbattle 114
+exec InFashionSuit2
+-------------------------------------
+
+-------------------------------------
+tutorial 24 学buff技能
+scond nostackui
+scond inlevel 1
+scond playerlevel 12
+exec LearnSkill3
+-------------------------------------
+
+-------------------------------------
+--tutorial 24 第二次深渊副本教学
+--scond inlevel 1
+--scond taskscenefinished 12
+--exec Elite
+-------------------------------------
+
+-------------------------------------
+--tutorial 25 装备洗练系统教学
+--scond inlevel 1
+--scond SysNotify 124
+--scond taskfinish 31
+--exec EquipSmelting
+-------------------------------------
+
+-------------------------------------
+--tutorial 26 第一次卡等级引导
+--scond inlevel 1
+--scond dotaskbattle 204
+--exec LevelStop
+-------------------------------------
+
+-------------------------------------
+--tutorial 27 装备精通系统教学
+--scond inlevel 1
+--scond SysNotify 123
+--exec EquipStrong
+-------------------------------------
+
+-------------------------------------
+--tutorial 26 多人活动
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 55
+--exec MulActivity
+-------------------------------------
+
+-------------------------------------
+tutorial 28 技能转职系统教学
+scond nostackui
+scond inlevel 1
+scond SysNotify 131 1
+scond nopromote
+exec Promote
+-------------------------------------
+
+-------------------------------------
+--tutorial 27 转职试炼场景内切换职业技能引导
+--scond inlevel 21
+--exec PromoteTask
+-------------------------------------
+
+-------------------------------------
+--tutorial 29 转职试炼后引导 
+--scond inlevel 1
+--scond taskscenefinished 1
+--exec Promote1
+-------------------------------------
+
+-------------------------------------
+tutorial 30 阿尔杰塔之吻 must
+scond nostackui
+scond inlevel 1
+scond accepttask 35
+exec ArgentKiss
+-------------------------------------
+
+-------------------------------------
+--tutorial 31 竞技场系统教学
+--scond inlevel 1
+--scond SysNotify 51
+--exec Arena
+-------------------------------------
+
+-------------------------------------
+tutorial 32 公会
+scond nostackui
+scond inlevel 1
+scond SysNotify 17 1
+exec Guild
+-------------------------------------
+-------------------------------------
+--tutorial 33 巢穴
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 520 1
+--exec Nest
+-------------------------------------
+
+-------------------------------------
+--tutorial 34 强化
+--scond inlevel 1
+--scond SysNotify 121
+--exec EnhanceItem
+-------------------------------------
+
+-------------------------------------
+--tutorial 35 公会小妖精
+--scond inlevel 1
+--scond SysNotify 52
+--exec Goblin
+-------------------------------------
+
+-------------------------------------
+tutorial 36 BossRush
+scond nostackui
+scond inlevel 1
+scond SysNotify 48 1
+exec BossRush
+-------------------------------------
+
+-------------------------------------
+tutorial 35 龙之远征队
+scond nostackui
+scond inlevel 1
+scond SysNotify 50 1
+exec DNExpedition
+-------------------------------------
+
+-------------------------------------
+tutorial 34 龙玉
+scond nostackui 
+scond inlevel 1
+scond SysNotify 122 1
+exec Jade
+-------------------------------------
+
+-------------------------------------
+--tutorial 37 世界Boss
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 524 1
+--exec WorldBoss
+-------------------------------------
+-------------------------------------
+--tutorial 38 龙穴系统开放
+--scond inlevel 1
+--scond SysNotify 526
+--exec DragonNest
+-------------------------------------
+
+-------------------------------------
+--tutorial 39 搞基谷开放
+--scond inlevel 1
+--scond SysNotify 91
+--exec GayValley
+-------------------------------------
+
+-------------------------------------
+tutorial 40 自动战斗
+scond inlevel 100
+exec AutoBattle
+-------------------------------------
+
+-------------------------------------
+--tutorial 41 阵营
+--scond inlevel 1
+--scond SysNotify 26
+--exec Camp
+-------------------------------------
+
+-------------------------------------
+tutorial 42 交易所
+scond nostackui
+scond inlevel 1
+scond SysNotify 22 1
+exec AuctionHouse
+-------------------------------------
+
+-------------------------------------
+tutorial 43 纹章
+scond nostackui 
+scond inlevel 1
+scond SysNotify 141 1
+exec Emblem
+-------------------------------------
+
+-------------------------------------
+tutorial 44 1:1天梯赛
+scond nostackui 
+scond inlevel 1
+scond SysNotify 54 1
+exec RankingMatch
+-------------------------------------
+
+-------------------------------------
+--tutorial 45 JJC第二次引导 
+--scond inlevel 1
+--scond taskscenefinished 20
+--exec Arena2
+-------------------------------------
+
+-------------------------------------
+tutorial 46 黑暗神殿
+scond nostackui 
+scond inlevel 1
+scond SysNotify 530 1
+exec TeamTower
+-------------------------------------
+
+-------------------------------------
+tutorial 47 领取体力
+scond nostackui 
+scond inlevel 1
+scond SysNotify 44 1
+exec ReceiveEnergy
+-------------------------------------
+
+-------------------------------------
+--tutorial 48 开放装备分解
+--scond inlevel 1
+--scond SysNotify 45
+--exec EquipResolve
+-------------------------------------
+
+-------------------------------------
+tutorial 49 开放装备制作
+scond nostackui
+scond inlevel 1
+scond SysNotify 45 1
+exec EquipCreate
+-------------------------------------
+
+-------------------------------------
+--50之后为特殊系统，无需引导，但是需要脚本让他显示出来
+--现在引导均为并行
+-------------------------------------
+
+
+-------------------------------------
+--tutorial 50 十连抽
+--scond inlevel 1
+--scond SysNotify 31
+--exec Draw
+-------------------------------------
+
+-------------------------------------
+--tutorial 50 强化
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 121 1
+--exec EnhanceItem
+-------------------------------------
+
+-------------------------------------
+tutorial 51 商店
+scond nostackui
+scond inlevel 1
+scond SysNotify 65 1
+exec Shop
+-------------------------------------
+
+-------------------------------------
+--tutorial 52 开服活动
+--scond inlevel 1
+--scond SysNotify 37
+--exec ServerActivity
+-------------------------------------
+
+-------------------------------------
+tutorial 53 变强
+scond nostackui
+scond inlevel 1
+scond SysNotify 33 1
+exec Strengthen
+-------------------------------------
+
+-------------------------------------
+--tutorial 54 首充
+--scond inlevel 1
+--scond SysNotify 36
+-------------------------------------
+
+-------------------------------------
+--tutorial 55 保护队长
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 528 1
+--exec CaptainPVP
+-------------------------------------
+
+-------------------------------------
+--tutorial 56 排行榜
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 41
+--exec Rank
+-------------------------------------
+
+-------------------------------------
+--tutorial 57 回收
+--scond inlevel 1
+--scond SysNotify 18
+--exec Recycle
+-------------------------------------
+
+-------------------------------------
+tutorial 58 组队
+scond nostackui
+scond inlevel 1
+scond SysNotify 90
+exec Teams
+-------------------------------------
+
+-------------------------------------
+tutorial 59 奖励
+scond nostackui
+scond inlevel 1
+scond SysNotify 35
+exec DailyReward
+-------------------------------------
+
+-------------------------------------
+--tutorial 60 日常玩法
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 52
+--exec Activity
+-------------------------------------
+
+-------------------------------------
+tutorial 61 龙穴
+scond nostackui
+scond inlevel 1
+scond SysNotify 526 1
+exec DragonNest
+-------------------------------------
+
+-------------------------------------
+tutorial 62 女神的试炼
+scond nostackui
+scond inlevel 1
+scond SysNotify 360 1
+exec GoddessTrial
+-------------------------------------
+
+-------------------------------------
+tutorial 63 福利
+scond nostackui
+scond inlevel 1
+scond SysNotify 560 1
+exec Welfare
+-------------------------------------
+
+-------------------------------------
+tutorial 64 坐骑
+scond nostackui
+scond inlevel 1
+scond SysNotify 15 1
+exec Mounts
+-------------------------------------
+
+-------------------------------------
+tutorial 65 大冒险
+scond nostackui
+scond inlevel 1
+scond SysNotify 49 1
+exec SuperRisk
+-------------------------------------
+
+-------------------------------------
+tutorial 66 见面礼
+scond nostackui
+scond inlevel 1
+scond SysNotify 564 1
+exec FirstRechange
+-------------------------------------
+
+-------------------------------------
+--tutorial 67 无尽深渊
+--scond nostackui
+--scond inlevel 1
+--scond SysNotify 540 1
+--exec EndlessAbyss
+-------------------------------------
+
+-------------------------------------
+tutorial 68 图鉴
+scond nostackui
+scond inlevel 1
+scond SysNotify 25 1
+exec CardCollect
+-------------------------------------
+
+-------------------------------------
+tutorial 69 头衔
+scond nostackui
+scond inlevel 1
+scond SysNotify 94 1
+exec Title
+-------------------------------------
+
+-------------------------------------
+tutorial 70 登陆奖励
+scond nostackui
+scond inlevel 1
+scond SysNotify 93 1
+exec Login
+-------------------------------------
+
+-------------------------------------
+tutorial 71 好友
+scond nostackui
+scond inlevel 1
+scond SysNotify 72 1
+exec Friends
+-------------------------------------
+
+-------------------------------------
+tutorial 72 精彩活动
+scond nostackui
+scond inlevel 1 
+scond SysNotify 600 1
+exec OperatingActivity
+-------------------------------------
+
+-------------------------------------
+tutorial 73 精灵
+scond nostackui
+scond inlevel 1
+scond SysNotify 930 1
+exec Sprite
+-------------------------------------
+
+-------------------------------------
+--tutorial 74 时装外形
+--scond inlevel 1
+--scond SysNotify 120
+--exec Appearance
+-------------------------------------
+
+-------------------------------------
+--tutorial 75 实时语音
+--scond inlevel 1016
+--exec Speak
+-------------------------------------
+
+-------------------------------------
+tutorial 76 嘉年华
+scond nostackui
+scond inlevel 1
+scond SysNotify 67 1
+exec Carnival
+-------------------------------------
+
+-------------------------------------
+tutorial 77 公会boss
+scond nostackui
+scond inlevel 1
+scond SysNotify 85 1
+exec Guild_Dragon
+
+-------------------------------------
+tutorial 78 塔姐杰哥讨论先知 must
+scond nostackui
+scond inlevel 1
+scond accepttask 46
+exec TalkProphet
+-------------------------------------
+
+-------------------------------------
+tutorial 79 家园
+scond nostackui
+scond inlevel 1
+scond SysNotify 150 1
+exec Home
+-------------------------------------
+
+-------------------------------------
+--tutorial 80 跑环【不要用】
+--scond inlevel 1
+--scond SysNotify 886 1
+--exec Paohuan
+-------------------------------------
+
+-------------------------------------
+--tutorial 81 电台
+--scond inlevel 1
+--scond playerlevel 5
+--exec Diantai
+-------------------------------------
+
+-------------------------------------
+tutorial 82 英雄战场
+scond inlevel 1
+scond SysNotify 956 1
+exec HeroBattle
+-------------------------------------
+
+-------------------------------------
+tutorial 83 第四次交任务
+scond inlevel 1
+scond taskscenefinished 6
+exec ReplyTask4
+-------------------------------------
+
+-------------------------------------
+tutorial 84 第五次交任务
+scond inlevel 1
+scond taskscenefinished 8
+exec ReplyTask5
+-------------------------------------
+
+-------------------------------------
+tutorial 85 龙器
+scond inlevel 1
+scond SysNotify 370 1
+exec Artifact
+-------------------------------------
+
+-------------------------------------
+tutorial 86 第六次选关卡
+scond inlevel 1
+scond dotaskbattle 201
+exec SelectLevel201
+-------------------------------------
+
+-------------------------------------
+tutorial 87 第七次选关卡
+scond inlevel 1
+scond dotaskbattle 202
+exec SelectLevel202
+-------------------------------------
+
+-------------------------------------
+tutorial 88 第六次交任务
+scond inlevel 1
+scond taskscenefinished 9
+exec ReplyTask6
+-------------------------------------
+
+-------------------------------------
+tutorial 89 第七次交任务
+scond inlevel 1
+scond taskscenefinished 11
+exec ReplyTask7
+-------------------------------------
+
+-------------------------------------
+tutorial 90 第八次交任务
+scond inlevel 1
+scond taskscenefinished 12
+exec ReplyTask8
+-------------------------------------
+
+-------------------------------------
+tutorial 91 第九次交任务
+scond inlevel 1
+scond taskscenefinished 14
+exec ReplyTask9
+-------------------------------------
+
+-------------------------------------
+tutorial 92 第八次选关卡
+scond inlevel 1
+scond dotaskbattle 203
+exec SelectLevel203
+-------------------------------------
+
+-------------------------------------
+tutorial 93 第九次选关卡
+scond inlevel 1
+scond dotaskbattle 204
+exec SelectLevel204
+-------------------------------------
+
+-------------------------------------
+tutorial 94 moba
+scond nostackui 
+scond inlevel 1
+scond SysNotify 979 1
+exec MobaHero
+-------------------------------------
+
+-------------------------------------
+tutorial 95 跑环
+scond inlevel 1
+scond SysNotify 886 1
+exec NormalTask
+-------------------------------------
+
+-------------------------------------
+tutorial 96 集市
+scond inlevel 1
+scond SysNotify 572 1
+exec Jishi
+-------------------------------------
+
+-------------------------------------
+tutorial 97 圣物
+scond inlevel 1
+scond SysNotify 703 1
+exec NPCFavor
+-------------------------------------
+
+-------------------------------------
+tutorial 98 无限幻境
+scond inlevel 1
+scond SysNotify 927 1
+exec Mysterious
+
+end tutorial

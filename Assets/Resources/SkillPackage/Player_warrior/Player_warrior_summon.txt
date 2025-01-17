@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_warrior_summon</Name>
+  <ClipName>Animation/Player_warrior/Player_warrior_summon</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_warrior/Player_warrior_summon</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>0.17</Time>
+      <Frequency>60</Frequency>
+      <Coordinate>World</Coordinate>
+      <AmplitudeY>0.1</AmplitudeY>
+      <AmplitudeZ>0.05</AmplitudeZ>
+      <At>1.23333359</At>
+      <Random>true</Random>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.466667</Not_Move_End>
+    <CanCancelAt>2.1</CanCancelAt>
+  </Logical>
+  <CameraMotion>
+    <Motion3D>Animation/Main_Camera/Main_Camera_warrior_summon</Motion3D>
+    <Motion3DType>CameraBased</Motion3DType>
+    <Motion2_5D>Animation/Main_Camera/Main_Camera_warrior_summon_45</Motion2_5D>
+    <Motion2_5DType>CameraBased</Motion2_5DType>
+    <Coordinate>World</Coordinate>
+  </CameraMotion>
+  <Time>2.1</Time>
+</XSkillData>

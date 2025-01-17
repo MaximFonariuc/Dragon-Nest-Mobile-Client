@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_attack_herocanyon_shuijing</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <Attack_Only_Target>true</Attack_Only_Target>
+      <At>0.06666667</At>
+      <Range>0.3</Range>
+      <Scope>360</Scope>
+      <Cycle>0.266666681</Cycle>
+      <Loop_Count>13</Loop_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Follow>true</Follow>
+        <Runningtime>2</Runningtime>
+        <Velocity>4</Velocity>
+        <Radius>0.3</Radius>
+        <Prefab>Prefabs/Bullets/fire_herocanyon</Prefab>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <FlyWithTerrain>false</FlyWithTerrain>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.50000024</Not_Move_End>
+    <CanCancelAt>3.50000024</CanCancelAt>
+  </Logical>
+  <Time>0.5</Time>
+  <Cast_Range_Upper>8</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

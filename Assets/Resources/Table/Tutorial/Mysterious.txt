@@ -1,0 +1,36 @@
+﻿start tutorial
+
+step 点击日常玩法
+scond nostackui
+scond inlevel 1
+scond MainUI
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+internaldelay 0.2
+text 点击这里进入日常玩法 -200 0
+
+step 点击日常活动
+scond inlevel 1
+forceclick DailyActivityDlg Bg/Tabs/XSys_Activity/Bg 1
+internaldelay 0.2
+
+step 进入无限幻境
+scond inlevel 1
+scond activityopen
+scroll Activity 927
+forceclick DailyActivityDlg Bg/ActivityHandler/Bg/ActivityPanel/Item927/JoinBtn 1
+internaldelay 0.2
+text 这里就是无限幻境的入口 -200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]无限幻境为4人爬塔玩法，快喊上小伙伴们一起通关赢取龙器制作、龙器祭炼和幻境宝箱大奖吧！[-] -200
+internaldelay 0.3
+
+step 点击说明
+scond inlevel 1
+forceclick TeamMysteriousDlg Bg/Stage/Help 1
+text 可以点击这里进行查看说明 200
+internaldelay 0.2
+
+end tutorial

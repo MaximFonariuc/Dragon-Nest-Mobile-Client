@@ -1,0 +1,66 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice1
+opendoor Blockwall
+
+func:notice2
+opendoor Blockwall1
+
+func:notice3
+notice 即将进入遗弃之村
+
+func:notice4
+notice 小心蜘蛛女王的卵
+
+func:notice6
+notice 遗弃之村的亡灵惊醒了！
+
+func:notice5
+showdirection direction
+
+func:notice7
+showdirection direction1
+
+func:notice8
+showdirection direction2
+
+func:notice9
+notice 打破黑暗水晶才能继续前进
+
+func:notice10
+notice 守护怪出现了，杀掉他们才能打破水晶
+
+func:notice12
+notice 黑暗水晶的神秘力量消失了！
+
+func:notice13
+notice 守护怪召唤了援军！
+
+func:notice14
+notice 前方有什么东西出现了
+
+func:addbuff
+addbuff 90609 10002 1
+
+func:removebuff
+removebuff 90609 10002
+
+func:closedoor
+opendoor Door on
+
+func:showcutscene
+showcutscene CutScene/2_2_start 100.5371 6.999634 133.4081 60
+
+func:kunbang
+summon 90612 [player] 1
+
+
+
+info:Blockwall 95.65327|6.24786|78.73277|330 on 20
+info:Blockwall1 90.74711|5.584427|119.4112|28 on 20
+info:Door 95.45454|7.93795|129.1708|40 off 20

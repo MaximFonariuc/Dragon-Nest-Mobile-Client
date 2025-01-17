@@ -1,0 +1,38 @@
+﻿
+func:part1Blockwall
+opendoor part1Blockwall
+
+func:part2Blockwall
+opendoor part2Blockwall
+
+func:TransferWall
+opendoor TransferWall on
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 147.71 15.86 113.34 100 51306
+
+func:showdirection
+showdirection direction
+
+func:showdirection1
+showdirection direction1
+
+func:talk1
+talkl [player] [ffebad]果然在这里！萝丝，我这就救你出来！
+talkr 40 [ffebad]想抢走先知？人类，你什么都带不回去，包括你的小命。
+stoptalk
+
+func:killwave1
+killwave 1
+
+func:killwave6
+killwave 6
+
+info:part1Blockwall 113.81|17.84|32.84|290 on 10 22.84 0.1
+info:part2Blockwall 144.3365|15.64846|42.65635|10 on 10 20.64846 0.1

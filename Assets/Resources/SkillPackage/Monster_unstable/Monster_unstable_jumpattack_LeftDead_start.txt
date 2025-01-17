@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_unstable_jumpattack_LeftDead_start</Name>
+  <ClipName>Animation/Monster_unstable/Monster_unstable_jumpattack_start</ClipName>
+  <IgnoreCollision>true</IgnoreCollision>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.9000001</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <Offset_Z>1.5</Offset_Z>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_unstable/Monster_unstable_jumpattack_start_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_unstable/Monster_unstable_jumpattack_start_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_unstable/Monster_unstable_jumpattack_start_up</Curve_Up>
+      <AimTarget>true</AimTarget>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>0.1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.50000012</Not_Move_End>
+    <CanCancelAt>1.50000012</CanCancelAt>
+  </Logical>
+  <CoolDown>1.5</CoolDown>
+  <Time>1.50000012</Time>
+</XSkillData>

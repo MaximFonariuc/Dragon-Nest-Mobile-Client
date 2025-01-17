@@ -1,0 +1,21 @@
+﻿start tutorial
+
+step 飞图标
+--scond inlevel 1
+directsys 35
+--newsys 35
+--econd SysOpened
+
+--step 打开活跃度界面
+--scond inlevel 1
+--forceclick HallDlg _canvas/SecondMenu/SysGridH2/SysReward 1
+--internaldelay 0.3
+--text 打开活跃度界面 -200 0
+
+--step 切换到登录奖励界面
+--scond inlevel 1
+--forceclick RewardDlg Bg/Tabs/XSys_Reward_Login/Bg 1
+--internaldelay 0.3
+--text 切换到登录奖励界面 -200 0
+
+end tutorial

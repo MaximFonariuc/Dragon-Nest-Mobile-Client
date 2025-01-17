@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_desertdragon_dragonbreath_dragon</Name>
+  <ClipName>Animation/Monster_desertdragon/Monster_desertdragon_dragonbreath</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_desertdragon/Monster_desertdragon_dragonbreath_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_desertdragon/Monster_desertdragon_dragonbreath_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_desertdragon/Monster_desertdragon_dragonbreath_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>5.999999</At>
+      <End>7.666667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_desertdragon_callhound_dragon_Clip1</Fx>
+      <Bone>Bone61_desertdragon</Bone>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.533333361</At>
+      <End>16.5</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_desertdragon_jumpattack_dragon_01</Fx>
+      <Follow>false</Follow>
+      <StickToGround>true</StickToGround>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>16.5</Not_Move_End>
+    <CanCancelAt>16.5</CanCancelAt>
+  </Logical>
+  <Time>16.5</Time>
+</XSkillData>

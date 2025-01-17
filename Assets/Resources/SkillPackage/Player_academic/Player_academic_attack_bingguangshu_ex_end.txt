@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_academic_attack_bingguangshu_ex_end</Name>
+  <ClipName>Animation/Player_academic/Player_academic_zhongbangya</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.666667</At>
+      <Range>2.5</Range>
+      <Scope>360</Scope>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>1.5</Runningtime>
+        <Velocity>8</Velocity>
+        <Radius>1</Radius>
+        <Prefab>Prefabs/Bullets/So_attack_b1</Prefab>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <End_Fx>Effects/High_Resources/Prefabs/Soceress/Player_sorceress_attack_bingzhupenshe_Clip04</End_Fx>
+        <EndFx_LifeTime>1</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.2</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_bing</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>2.10000014</Time>
+  <Cast_Range_Upper>5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

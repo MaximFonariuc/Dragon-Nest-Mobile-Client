@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1703449061387430}
+  m_IsPrefabParent: 1
+--- !u!1 &1703449061387430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4801859726173940}
+  - component: {fileID: 114080983877911794}
+  m_Layer: 0
+  m_Name: as_nasaru_b02_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4801859726173940
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703449061387430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114080983877911794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703449061387430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100000, guid: 9a74d5790c8e17f47971397939936c4a, type: 3}
+  srcName: 01
+  replaceName: 02
+  srcDir: Equipments/nasaru_b01
+  targetDir: Equipments/nasaru_b02
+  ReplaceMeshList:
+  - srcMeshName: as_nasaru_b01_body
+    replaceEquipName: as_body
+    replaceTex: {fileID: 2800000, guid: 776496b4d4214d94bbbd5286c6f1957b, type: 3}
+    isShareTex: 0
+  - srcMeshName: as_nasaru_b01_boots
+    replaceEquipName: as_boots
+    replaceTex: {fileID: 2800000, guid: 1189e0398456ed94f9f9403e40e727b6, type: 3}
+    isShareTex: 0
+  - srcMeshName: as_nasaru_b01_crook
+    replaceEquipName: as_second
+    replaceTex: {fileID: 2800000, guid: 7fe0a7b308816674aaa5d1cacf18599f, type: 3}
+    isShareTex: 0
+  - srcMeshName: as_nasaru_b01_glove
+    replaceEquipName: as_glove
+    replaceTex: {fileID: 2800000, guid: ba7f33142978ca94ab4f14b1fee7eb1b, type: 3}
+    isShareTex: 0
+  - srcMeshName: as_nasaru_b01_helmet
+    replaceEquipName: as_helmet
+    replaceTex: {fileID: 2800000, guid: f745574582e91c84e9173f25db64fa21, type: 3}
+    isShareTex: 0
+  - srcMeshName: as_nasaru_b01_leg
+    replaceEquipName: as_leg
+    replaceTex: {fileID: 2800000, guid: 764b129caa1b6424a803acbd63b0a772, type: 3}
+    isShareTex: 0
+  - srcMeshName: as_nasaru_b01_scimitar_weapon
+    replaceEquipName: as_weapon
+    replaceTex: {fileID: 2800000, guid: e431ed16a98a70d41b37ddc64251727f, type: 3}
+    isShareTex: 0

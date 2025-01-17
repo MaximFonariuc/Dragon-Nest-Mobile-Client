@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack_miwuzhiwu_end</Name>
+  <ClipName>Animation/Player_kali/Player_kali_miwuzhiwu_end</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.06666667</At>
+      <Range>1.5</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_kali/Player_kali_miwuzhiwu_end_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_kali/Player_kali_miwuzhiwu_end_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_kali/Player_kali_miwuzhiwu_end_h_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.8</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>-1</Offset>
+      <Height>1.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>1.33333337</End>
+      <Fx>Effects/High_Resources/Prefabs/Kali/Player_kali_attack_miwuzhiwu_Clip03</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <Time>1.33333337</Time>
+</XSkillData>

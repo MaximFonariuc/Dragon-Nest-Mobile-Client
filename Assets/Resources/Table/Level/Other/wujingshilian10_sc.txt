@@ -1,0 +1,95 @@
+
+func:pvp_1
+notice 小心！隐藏的入侵者出现！ 5
+
+func:start_speak
+notice “很久没有外人来到这里，你们的死期到了！” 4
+
+func:whitespeak
+notice “下面让我的[ff0000]副官-巴鲁巴[-]会会你！” 6
+
+func:whitedead
+notice “真是废物！你们可以挑战我下一个[ff0000]副官了[-]！” 6
+
+func:blackdead
+notice “享受你们的最后时间，出来[ff0000]副官-巴图[-]！” 6
+
+func:reddead
+notice “可以！你们有资格挑战我了，我在船上等你们！” 4
+
+func:Transferwall
+opendoor TransferWall on
+
+
+func:boss_start
+notice 勇士们，[ff0000]传送阵[-]开启了，去教他做人！ 4
+
+func:boss_1
+notice [ff0000]副官-巴鲁巴[-]出来，给我继续战斗！ 6
+
+func:boss_2
+notice [ff0000]副官-巴金[-]出来，给我继续战斗！ 6
+
+func:boss_3
+notice [ff0000]副官-巴图[-]出来，给我继续战斗！ 6
+
+func:notice4
+opendoor Blockwall
+
+func:showcutscene
+showcutscene CutScene/3_8_Start 158.6708 3.379676 98.72454 180
+
+func:callxiaodi
+notice 犀牛人船长召唤了援军！
+
+func:turnchapter
+notice 你们还有点实力！看来我要拿出真本事了！ 4
+
+func:turnchapter_1
+notice 小心！犀牛人船长的实力增强了。！ 6
+
+func:addbuff
+addbuff 151018 50034 1
+
+func:killspawn
+killspawn 12
+
+func:warningwhite
+npcpopspeek 2 3003 当心！白色蜥蜴人副官会给己方加[ff0000]攻速[-]！ 7
+
+func:warningwblack
+npcpopspeek 2 3003 当心！黑色蜥蜴人副官会给敌方[ff0000]减速[-]！ 7
+
+func:warningwred
+npcpopspeek 2 3003 当心！红色蜥蜴人副官会给己方加[ff0000]攻击[-]！ 7
+
+func:blacklizardman
+bubble 151224 老大说了，杀的多就分的多！ 6
+
+func:whitelizardman
+bubble 151223 老大说了，入侵者都要杀掉！ 6
+
+func:redlizardman
+bubble 151225 老大说了，要我烧焦你们！ 6
+
+func:BoxColliderDN_1
+opendoor BoxColliderDN_1
+
+func:BoxColliderDN_2
+opendoor BoxColliderDN_2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

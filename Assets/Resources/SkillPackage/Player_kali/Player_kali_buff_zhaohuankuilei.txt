@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_buff_zhaohuankuilei</Name>
+  <ClipName>Animation/Player_kali/Player_kali_zhaohuankuilei</ClipName>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_kali/Player_kali_zhaohuankuilei_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_kali/Player_kali_zhaohuankuilei_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <Fx>Effects/High_Resources/Prefabs/Kali/Player_kali_buff_zhaohuankuilei_Clip01</Fx>
+      <Bone>Bip01_kali/Bip01 Spine_kali/Bip01 Spine1_kali/Bip01 Spine2_kali/Bip01 Neck_kali/Bip01 R Clavicle_kali/Bip01 R UpperArm_kali/Bip01 R Forearm_kali/Bip01 R Hand_kali</Bone>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <Fx>Effects/High_Resources/Prefabs/Kali/Player_kali_buff_zhaohuankuilei_Clip01</Fx>
+      <Bone>Bip01_kali/Bip01 Spine_kali/Bip01 Spine1_kali/Bip01 Spine2_kali/Bip01 Neck_kali/Bip01 L Clavicle_kali/Bip01 L UpperArm_kali/Bip01 L Forearm_kali/Bip01 L Hand_kali</Bone>
+    </XFxData>
+    <XFxData>
+      <Index>2</Index>
+      <Type>FirerBased</Type>
+      <At>1.16666675</At>
+      <End>2.266667</End>
+      <Fx>Effects/High_Resources/Prefabs/Kali/Player_kali_buff_zhaohuankuilei_Clip02</Fx>
+      <Follow>false</Follow>
+      <Destroy_Delay>1</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_kali/Player_kali_buff_zhaohuankuilei</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>0.15</Time>
+      <FovAmp>3</FovAmp>
+      <Frequency>60</Frequency>
+      <Coordinate>Camera</Coordinate>
+      <AmplitudeX>0.05</AmplitudeX>
+      <AmplitudeY>0.05</AmplitudeY>
+      <AmplitudeZ>0.05</AmplitudeZ>
+      <At>1.1</At>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Mob>
+    <XMobUnitData>
+      <At>1.16666675</At>
+      <TemplateID>270</TemplateID>
+      <Offset_At_Z>1</Offset_At_Z>
+    </XMobUnitData>
+  </Mob>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.4333334</Not_Move_End>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>2.26666641</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>1.4333334</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CameraPostEffect>
+    <At>1.1</At>
+    <End>1.26666677</End>
+    <Effect>RadialBlur</Effect>
+  </CameraPostEffect>
+  <CoolDown>10</CoolDown>
+  <Time>2.266667</Time>
+  <Cast_Range_Upper>5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,159 @@
+﻿start tutorial
+
+--------------------------------------------------------------------
+--step 隐藏技能
+--scond inlevel 100
+--hideskills 2 3
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+--step 隐藏闪避
+--scond nostackui
+--scond inlevel 100
+--hideskills 1
+--------------------------------------------------------------------
+
+step 隐藏技能
+scond nostackui
+scond inlevel 100
+hideskills 1
+
+step 隐藏技能
+scond nostackui
+scond inlevel 100
+hideskills 2 3
+
+step 隐藏技能
+scond nostackui
+scond inlevel 100
+hideskills 4 5 6
+
+step 隐藏技能
+scond nostackui
+scond inlevel 100
+hideskills 7 8
+
+step 隐藏技能
+scond nostackui
+scond inlevel 100
+hideskills 9
+
+step 握资
+scond nostackui
+scond inlevel 100
+scond cutsceneover
+--scond battleNPCtalkend
+showprefab UI/Common/TutorialDevicePic PlayFinished
+internaldelay 0.5
+pause
+
+step 第一个buttom
+scond inlevel 100
+buttomtext 冒险家，滑动摇杆尝试走到蓝色光圈内吧
+audio Audio/VO/guide/guide36
+movetutorial
+econd time 3
+
+step 屏幕buttom文字
+scond inlevel 100
+scond exstring settutorial3
+buttomtext 做的好，再来一次，走到下一个蓝色光圈内吧
+audio Audio/VO/guide/guide37
+movetutorial
+econd time 3
+
+--step 3D滑动视角教学
+--scond inlevel 100
+--skip SelectSight2.5D
+--showprefab UI/Common/TutorialSlidePic Time 3.5
+--internaldelay 0.1
+
+--step 移动教学
+--scond inlevel 100
+--scond cutsceneover
+--scond battleNPCtalkend
+--empty
+--ailin [301b0a]滑动屏幕左端的摇杆，就可以出发了。[-] -300
+
+step 普攻教学
+scond inlevel 100
+scond exstring settutorial1
+showskills 0
+
+step 屏幕buttom提示普攻
+scond inlevel 100
+buttomtext 冒险家，小心魔物，点击普攻键对魔物进行打击
+audio Audio/VO/guide/guide38
+noforceclick BattleDlg _canvas/SkillFrame/Skill0/Bg 1
+econd time 3
+
+step 技能教学
+scond inlevel 100
+scond exstring settutorial2
+showskills 1
+
+step 技能教学
+scond inlevel 100
+showskills 2 3
+
+step 技能教学
+scond inlevel 100
+showskills 4 5 6
+
+step 技能教学
+scond inlevel 100
+showskills 9
+
+step 技能教学
+scond inlevel 100
+scond exstring settutorial4
+buttomtext 又一群魔物出现了，试试新技能的威力吧
+audio Audio/VO/guide/guide39
+noforceclick BattleDlg _canvas/SkillFrame/Skill2/Bg 1
+econd time 3
+
+step 提示
+scond inlevel 100
+scond exstring settutorial5
+buttomtext 前方传来了呼救声，快去看看发生了什么！
+movetutorial
+econd time 3
+
+step 玩家出来提示
+scond inlevel 100
+scond exstring settutorial6
+buttomtext 冒险家，我们帮你一起对付它
+audio Audio/VO/guide/guide41
+movetutorial
+econd time 3
+
+--step 普攻教学
+--scond inlevel 100
+--scond hastarget
+--ailin [301b0a]当红色锁定框出现时，就可以用[7100ff]普攻[-]击打怪物啦。[-] -200 [301b0a]技能上的[7100ff]绿色光晕[-]是可以击打到怪物的标志哦。[-]
+--noforceclick BattleDlg _canvas/SkillFrame/Skill0 1
+--audio Audio/xinshouyingdao/demo3new
+--pause
+
+--------------------------------------------------------------------
+--step 技能教学
+--scond enemyonground
+--showskills 2 3
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+--step 技能教学
+--ailin [301b0a]普通攻击无法击打[7100ff]倒地[-]的怪物，用[7100ff]技能[-]试试看[-] -200
+--forceclick BattleDlg _canvas/SkillFrame/Skill3 1
+--audio Audio/xinshouyingdao/demo4new
+--pause
+--------------------------------------------------------------------
+
+--step 转职技能提示 
+--scond inlevel 100
+--scond bossexist
+--scond exstring ultraskill
+--noforceclick BattleDlg _canvas/SkillFrame/Skill9 1
+--econd time 3
+
+end tutorial

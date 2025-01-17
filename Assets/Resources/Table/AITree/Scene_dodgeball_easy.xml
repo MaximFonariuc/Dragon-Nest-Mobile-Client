@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_dodgeball_easy>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" I_monsternum1="0" I_monsternum2="0" I_totalnum="0" F_random="0" B_IsInitialized1="0" B_IsInitialized2="0" B_key="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="clearplayerbuff" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <RemoveBuff MonsterId="-1" BuffId="90016" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="addbuff" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="290006" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="11" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="290005" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="11" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="quanping" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="190000" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="11" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+        <CallScript FuncName="npcpopspeak1" DelayTime="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callbubble3" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="bubble_3" DelayTime="0" />
+        <CallScript FuncName="callbubble3" DelayTime="20" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callbubble4" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="bubble_4" DelayTime="0" />
+        <CallScript FuncName="callbubble4" DelayTime="20" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callbubble2" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="bubble_2" DelayTime="0" />
+        <CallScript FuncName="callbubble2" DelayTime="20" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callbubble1" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="bubble_1" DelayTime="0" />
+        <CallScript FuncName="callbubble1" DelayTime="15" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_dodgeball_easy>

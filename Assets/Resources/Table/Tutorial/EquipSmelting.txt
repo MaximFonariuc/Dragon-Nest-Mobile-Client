@@ -1,0 +1,68 @@
+﻿start tutorial
+
+step 点击装备页面
+scond nostackui
+scond inlevel 1
+scond MainUI
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysCItem 1
+text 打开装备页面 -200 0
+internaldelay 0.1
+
+step 点tab页
+scond inlevel 1
+forceclick ItemDlg Bg/Tabs/XSys_Item_Equip/Bg 1
+text 切换到装备页面 -200 0
+internaldelay 0.1
+
+step 选择新装备
+scond inlevel 1
+forceclick ItemDlg Bg/ItemPanel/Panel/WrapContent/{1}/Icon 1
+text 点击新获得的装备 -200 0
+internaldelay 0.2
+
+step 点击穿戴
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button1 1
+text 装备新获得的装备 -200 0
+
+step 绑定你妈的
+skip ModalDlg
+forceclick GreyModalDlg Bg/OK
+text 绑定道具 -200 0
+internaldelay 1
+
+step 选择可洗练的装备
+scond inlevel 1
+forceclick ItemDlg Bg/ItemPanel/Panel/WrapContent/{1}/Icon 1
+text 替换下的装备可以用来洗练 -200 0
+internaldelay 0.5
+
+step 选择洗练按钮
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/compare/FuncFrame/Button1 1
+text 点击进入洗练界面 200 0
+
+step 进入洗练后进行功能介绍
+scond inlevel 1
+--genericclick 319 263
+forceclick ItemDlg Bg/ItemPanel/SmeltingPanel/SmeltingReplaceFrame/Main/Left/AttrList/{4} 1
+text 选择已穿戴装备的洗练位置 200 0
+
+--step 可能获得的属性
+--scond inlevel 1
+--forceclick ItemDlg Bg/ItemPanel/SmeltingPanel/SmeltingReplaceFrame/Main/Right/AttrList/{1} 1
+--text 这些属性都有可能获得 -300 0
+
+step 点击洗练按钮
+scond inlevel 1
+forceclick ItemDlg Bg/ItemPanel/SmeltingPanel/SmeltingReplaceFrame/Main/BtnSmelting 1
+text 点击这里开始洗练 -200 0
+econd Smelting
+
+step 洗练结果确定
+scond inlevel 1
+forceclick ItemDlg Bg/ItemPanel/SmeltingPanel/SmeltingReplaceFrame/Result/OK 1
+text 点击确认结果 200 0
+internaldelay 1.2
+
+end tutorial

@@ -1,0 +1,52 @@
+﻿
+func:Door
+opendoor Door on
+
+func:Blockwall
+opendoor Blockwall
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 109.66 8 99.4 180 21018
+
+func:TransferWall
+opendoor TransferWall on 53.72|17.95|142.33|2 148.23|15.147|50.12|40
+
+func:TransferWall_part2
+opendoor TransferWall_part2 on
+
+func:showdirection1
+showdirection direction1
+
+func:showdirection2
+showdirection direction2
+
+func:showdirection3
+showdirection direction3
+
+func:call
+aicommand -1 call 21018
+
+func:addbuff
+addbuff 21018 50092 1
+
+func:remove
+removebuff 21018 50092 1
+
+func:warning
+npcpopspeek 2 3003 [ff0000]黑暗水晶[-]给了普鲁托黑暗力量，当[ff0000]黑暗水晶[-]在场时[ff0000]无法攻击[-]普鲁托，打破它！ 10
+
+func:numble
+notice [ffdc00]20秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]19秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]18秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]17秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]16秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]15秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]14秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]13秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]12秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]11秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]10秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]9秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]8秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]7秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]6秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]5秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]4秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]3秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]3秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]2秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|[ffdc00]1秒后即将出现黑暗水晶，破坏黑暗水晶才能攻击普鲁托。|黑暗水晶出现了！。
+
+func:start
+notice 勇士们，消灭普鲁托，净化该地区！ 6
+
+func:expression
+bubble 21018 “我...复仇...痛苦...破坏” 6
+
+func:turnexpression
+bubble 21018 啊.啊...我的身体内充满混乱..！ 6
+
+func:jump
+bubble 21018 破坏...复仇...去死吧！ 6
+

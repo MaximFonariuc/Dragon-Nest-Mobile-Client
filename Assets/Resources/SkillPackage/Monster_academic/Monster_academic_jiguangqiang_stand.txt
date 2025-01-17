@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_academic_jiguangqiang_stand</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>3.00000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Player_academic_jiguangqiang</Fx>
+      <ScaleX>0.2</ScaleX>
+      <ScaleY>0.2</ScaleY>
+      <ScaleZ>0.5</ScaleZ>
+      <OffsetY>0.5</OffsetY>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_academic/Monster_academic_jiguangqiang</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_academic_jiguangqiang_stand_loop</Name>
+      <End>3.1</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.00000024</Not_Move_End>
+    <Rotate_End>3.00000024</Rotate_End>
+    <Rotate_Speed>1.5</Rotate_Speed>
+    <CanCancelAt>3.00000024</CanCancelAt>
+    <Association>true</Association>
+    <Association_Skill>Monster_academic_jiguangqiang</Association_Skill>
+  </Logical>
+  <Time>3.1</Time>
+</XSkillData>

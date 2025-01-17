@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_photo5_activity>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" I_num="0" F_randomnum="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="fetchdoodad" Shared_ResultName="num" />
+        <IntComparison type="2" Shared_Int1Name="num" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AIDoodad Shared_DoodadIdName="typeid" Shared_DoodadIdmValue="0" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="eventpos" Shared_DoodadPosmValue="0:0:0" RandomPos="0" DelayTime="10" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callbubble" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="bubble_1" DelayTime="0" />
+        <CallScript FuncName="bubble_2" DelayTime="0" />
+        <CallScript FuncName="bubble_3" DelayTime="0" />
+        <CallScript FuncName="bubble_4" DelayTime="0" />
+        <CallScript FuncName="bubble_5" DelayTime="0" />
+        <CallScript FuncName="bubble_6" DelayTime="0" />
+        <CallScript FuncName="callbubble" DelayTime="40" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_photo5_activity>

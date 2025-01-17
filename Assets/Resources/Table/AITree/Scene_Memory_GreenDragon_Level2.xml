@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_Memory_GreenDragon_Level2>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" F_floatarg="0" F_random="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="floatarg" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="trap" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="5" inclusive="0" Shared_StoredResultName="random" />
+        <Selector>
+          <Sequence>
+            <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="140123" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="9" DelayTime="0.1" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="49.37:16:54.82" Pos2="49.37:16:54.82" Pos3="49.37:16:54.82" Pos4="49.37:16:54.82" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="2" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="140123" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="9" DelayTime="0.1" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="41.55:16:46.5" Pos2="41.55:16:46.5" Pos3="41.55:16:46.5" Pos4="41.55:16:46.5" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="3" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="140123" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="9" DelayTime="0.1" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="42.68:16:37.2" Pos2="42.68:16:37.2" Pos3="42.68:16:37.2" Pos4="42.68:16:37.2" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="4" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="140123" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="9" DelayTime="0.1" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="53.92:16:38.98" Pos2="53.92:16:38.98" Pos3="53.92:16:38.98" Pos4="53.92:16:38.98" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="5" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="floatarg" Shared_AnglemValue="0" MonsterId="140123" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="10" LifeTime="9" DelayTime="0.1" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="60:16:49.57" Pos2="60:16:49.57" Pos3="60:16:49.57" Pos4="60:16:49.57" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+        </Selector>
+        <CallScript FuncName="notice" DelayTime="0" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_Memory_GreenDragon_Level2>

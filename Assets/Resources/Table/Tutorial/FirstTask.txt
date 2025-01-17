@@ -1,0 +1,48 @@
+﻿start tutorial
+
+step 开始cutscene
+scond nostackui
+scond inlevel 1
+cutscene CutScene/Maincity_cutscene
+
+--step 是否跳过引导
+--scond inlevel 1
+--showprefab UI/GameSystem/TutorialSkip SelectSkipTutorial
+--econd SelectSkipTutorial
+
+step 点任务页签
+skip InTaskTab
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TabList/Task 1.4
+
+step 找莉莉接任务
+scond cutsceneover
+scond inlevel 1
+function tasktop 1111
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+--text 去看下哭泣的莉莉 210 0
+econd TalkingNpc
+
+step 对话1
+scond TalkingNpc
+noforceclick DramaDlg _canvas/TalkTextBg/TaskText 0 0 510
+
+step 对话2
+scond TalkingNpc
+noforceclick DramaDlg _canvas/TalkTextBg/TaskText 0 0 510
+
+step 点击任务点
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+
+--step 找阿尔杰塔交任务
+--scond finishtask 1
+--noforceclick HallDlg _canvas/SecondMenu/Icon 1.4
+--econd TalkingNpc
+
+--step 找阿尔杰塔接任务2
+--scond accepttask 2
+--noforceclick HallDlg _canvas/SecondMenu/Icon 1.4
+--econd TalkingNpc
+
+end tutorial

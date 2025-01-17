@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Arena_Arena_Player>
+  <EntryTask T_target="" F_heartrate="0.1" T_navtarget="" B_is_oppo_casting_skill="0" B_is_hurt_oppo="0" F_target_distance="0" B_is_fixed_in_cd="0" F_normal_attack_prob="0" F_enter_fight_range="0" F_fight_together_dis="0" B_is_wander="0" F_max_hp="0" F_current_hp="0" F_max_super_armor="0" F_current_super_armor="0" I_type="0" F_target_rotation="0" F_attack_range="0" F_min_keep_range="0" B_is_casting_skill="0" B_is_fighting="0" B_is_qte_state="0" T_nulltransform="" V_movedest="0:0:0" V_movedir="0:0:0" F_movespeed="0">
+    <Sequence>
+      <Selector>
+        <ValueTarget Shared_TargetName="target" />
+        <Sequence>
+          <ResetTargets />
+          <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="100" FilterImmortal="0" />
+          <DoSelectNearest />
+        </Sequence>
+      </Selector>
+      <Selector>
+        <Sequence>
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" />
+          <DoSelectSkillRandom />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="4" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="min_keep_range" float2Value="0" />
+          <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="attack_range" float2Value="0" />
+          <PhysicalAttack Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="4" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="attack_range" float2Value="0" />
+          <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="navtarget" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="0" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="1" AdjustDir="1" SetDestType="1" />
+          <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="0" />
+        </Sequence>
+      </Selector>
+    </Sequence>
+  </EntryTask>
+</Arena_Arena_Player>

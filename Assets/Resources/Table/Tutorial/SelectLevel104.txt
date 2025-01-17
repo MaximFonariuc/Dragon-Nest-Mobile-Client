@@ -1,0 +1,35 @@
+﻿start tutorial
+
+step 任务4进入战斗
+scond nostackui
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+econd WorldMapShow
+--text 点这里前往关卡 -200 0
+
+step 领取章节星奖励
+skip Chapter1Star8Box
+forceclick DungeonSelect Bg/StarBar/{3} 1
+text 有奖励可以领取 200 0
+internaldelay 0.5
+
+step 点击领取
+skip Chapter1Star8Box
+scond inlevel 1
+forceclick DungeonSelect Bg/BoxFrame/Fetch 1
+text 奖励很诱人呢 -200 0
+internaldelay 0.2
+
+--step 选章
+--forceclick WorldMap Bg/Panel/Maps/Map1 2
+--text 请选择第一章 250 0
+
+step 选关卡
+forceclick DungeonSelect Bg/PlayTween/LevelFramePanel/chapter1/Levels/104/SprBtn 1
+internaldelay 0.5
+text 按地图前往墓穴神殿 -200 0
+
+step 进入
+forceclick DungeonSelect Bg/DetailFrame/Bg/GoBattle 1
+text 前往关卡寻找萝丝 -240 0
+
+end tutorial

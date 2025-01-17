@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Broken_tushuguan_attack_nest_combined</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>15</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Broken_tushuguan_attack_01</Fx>
+      <ScaleX>0.61</ScaleX>
+      <ScaleY>0.5</ScaleY>
+      <ScaleZ>0.55</ScaleZ>
+      <OffsetX>-0.2</OffsetX>
+      <OffsetZ>0.3</OffsetZ>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <End>15</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_pbt_btc_03</Fx>
+      <ScaleX>0.4</ScaleX>
+      <ScaleY>0.4</ScaleY>
+      <ScaleZ>0.4</ScaleZ>
+      <OffsetY>0.4</OffsetY>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Broken_tushuguan_attack_nest</Name>
+      <End>15</End>
+    </XCombinedData>
+  </Combined>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>15</Not_Move_End>
+    <CanCancelAt>15</CanCancelAt>
+    <Exstring>wudi</Exstring>
+  </Logical>
+  <Time>15</Time>
+  <Cast_Range_Upper>40</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

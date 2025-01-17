@@ -1,0 +1,59 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 龙玉
+scond nostackui
+scond inlevel 1
+scond MainUI
+directsys 122
+econd SysOpened
+
+step 打开角色界面
+scond hasbody headgear=1
+scond item 1000401=1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+internaldelay 0.5
+
+step 打开龙玉界面
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Item_Jade/Bg 1
+internaldelay 0.5
+
+step 点击头盔
+scond inlevel 1
+forceclick ItemNewDlg Bg/LeftPanel/JadeFrame/JadeEquipFrame/EquipFrame/item0/Icon 1
+internaldelay 0.5
+
+step 点击右侧龙玉位置
+scond inlevel 1
+forceclick ItemNewDlg Bg/LeftPanel/JadeFrame/JadeEquipFrame/EquipedPanel/item0 1   
+internaldelay 0.5
+
+step 点击所选龙玉
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/JadeListPanel/BagPanel/WrapContent/jade1000401 1
+internaldelay 0.5
+
+--step 点击头盔
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/LeftPanel/EquipFrame/item0/Icon 1
+--internaldelay 0.5
+
+--step 点击龙玉
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/RightPanel/Items/Panel/WrapContent/jade1000401/Icon 1
+--internaldelay 0.5
+--text 点击龙玉 -200 0
+
+--step 点击装备
+--scond inlevel 1
+--forceclick JadeToolTipDlg Bg/Bg/main/FuncFrame/Button1 1
+--internaldelay 0.5
+--text 点击装备 -200 0
+
+end tutorial

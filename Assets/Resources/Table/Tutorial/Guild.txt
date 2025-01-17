@@ -1,0 +1,24 @@
+﻿start tutorial
+
+step 开放公会系统
+scond MainUI
+scond nostackui
+scond inlevel 1
+directsys 17
+econd SysOpened
+
+step 打开公会界面
+scond inlevel 1
+ailin [301b0a]勇士，加入[7100ff]公会[-]的时刻到了！聚齐好友，一起闯荡大陆吧。[-] -200
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysCGuild 1 1 0 25
+audio Audio/VO/guide/guide10
+internaldelay 0.8
+--text 打开公会界面 -200 0
+
+--step 快速加入
+--scond inlevel 1
+--noforceclick GuildListDlg Bg/QuickJoin 1
+--internaldelay 0.1
+--text 加入一个心仪的公会吧 -230 0
+
+end tutorial

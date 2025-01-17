@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_ogre_ignacio_hollycross_nest_end</Name>
+  <ClipName>Animation/Monster_ogre/Monster_ogre_heaviestattack_end</ClipName>
+  <Result>
+    <XResultData>
+      <Range>30</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_ogre/Monster_ogre_heaviestattack_end_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_ogre/Monster_ogre_heaviestattack_end_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.7332</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>4</Offset>
+      <Height>2</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_fire_01</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>2.766667</Time>
+  <Cast_Range_Upper>30</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,40 @@
+﻿start tutorial
+
+step 开放装备制作
+--scond nostackui
+scond inlevel 1
+directsys 45
+--econd SysOpened
+
+--step 打开角色界面
+--scond item 99906=1
+--scond inlevel 1
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem
+--internaldelay 0.5
+
+--step 点击待分解装备
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/RightPanel/Items/Panel/WrapContent/equip99906/Icon
+--internaldelay 0.5
+
+--step 点击分解1
+--scond inlevel 1
+--forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button5
+--internaldelay 0.5
+
+--step 点击分解2
+--scond inlevel 1
+--forceclick RecycleDlg Bg/LeftPanel/ItemOperateFrame/Frame/DoBtn
+--internaldelay 0.5
+
+--step 点击返回1
+--scond inlevel 1
+--forceclick RecycleDlg Bg/Close
+--internaldelay 0.5
+
+--step 点击返回2
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/Close
+--internaldelay 0.5
+
+end tutorial

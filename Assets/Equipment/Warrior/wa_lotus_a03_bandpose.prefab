@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1944181560155252}
+  m_IsPrefabParent: 1
+--- !u!1 &1944181560155252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4825021694919214}
+  - component: {fileID: 114573697363558610}
+  m_Layer: 0
+  m_Name: wa_lotus_a03_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4825021694919214
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944181560155252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114573697363558610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944181560155252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100062, guid: a3c5546d12e43d34b949185731d53d43, type: 3}
+  srcName: 01
+  replaceName: 03
+  srcDir: Equipments/lotus_a01
+  targetDir: Equipments/lotus_a03
+  ReplaceMeshList:
+  - srcMeshName: wa_lotus_a01_body
+    replaceEquipName: wa_body
+    replaceTex: {fileID: 2800000, guid: 95ceeff23281cf54bad4e4b052350853, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_lotus_a01_boots
+    replaceEquipName: wa_boots
+    replaceTex: {fileID: 2800000, guid: 305ff98a2149fd94487bd1eaabaa55cf, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_lotus_a01_gauntlet
+    replaceEquipName: wa_second
+    replaceTex: {fileID: 2800000, guid: 6b4d30d976f08604fb2332fe9ad0f870, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_lotus_a01_glove
+    replaceEquipName: wa_glove
+    replaceTex: {fileID: 2800000, guid: db4ca37198fe43a4da4102731a354bfc, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_lotus_a01_helmet
+    replaceEquipName: wa_helmet
+    replaceTex: {fileID: 2800000, guid: 7b0472cce728a484ba289d78aa2545ed, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_lotus_a01_leg
+    replaceEquipName: wa_leg
+    replaceTex: {fileID: 2800000, guid: 944196d1a40468e4cac47df3673b848b, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_lotus_a01_sword_weapon
+    replaceEquipName: wa_weapon
+    replaceTex: {fileID: 2800000, guid: b23657618a996e84f9c44313fcc66807, type: 3}
+    isShareTex: 0

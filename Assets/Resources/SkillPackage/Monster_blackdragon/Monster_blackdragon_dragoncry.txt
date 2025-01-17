@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_blackdragon_dragoncry</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>2.06666684</At>
+      <End>5.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_blackdragon_dragoncry_04</Fx>
+      <Bone>Bip01_black_dragon/Bip01 Pelvis_black_dragon/Bip01 Spine_black_dragon/Bip01 Spine1_black_dragon/Bip01 Neck_black_dragon/Bip01 Neck1_black_dragon/Bip01 Head_black_dragon/Jaw_Bone01_black_dragon</Bone>
+      <ScaleX>3</ScaleX>
+      <ScaleZ>3</ScaleZ>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_blackdragon/Monster_blackdragon_dragoncry</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>1.8</Time>
+      <Frequency>60</Frequency>
+      <Coordinate>World</Coordinate>
+      <AmplitudeX>0.1</AmplitudeX>
+      <AmplitudeY>0.1</AmplitudeY>
+      <AmplitudeZ>0.1</AmplitudeZ>
+      <At>2.10000014</At>
+      <Combined>true</Combined>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_blackdragon_dragoncry_start</Name>
+      <End>2</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_blackdragon_dragoncry_loop</Name>
+      <End>1</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_blackdragon_dragoncry_end</Name>
+      <End>2.00000024</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>12.5</Not_Move_End>
+    <CanCancelAt>12.5</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>5</Time>
+  <Cast_Range_Upper>30</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

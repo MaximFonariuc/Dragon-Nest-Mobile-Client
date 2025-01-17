@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_warrior_attack_sanlianzhan_ex_loop</Name>
+  <ClipName>Animation/Player_warrior/Player_warrior_attack_tripleslash_2ex</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <At>0.333333343</At>
+      <Range>2.5</Range>
+      <Scope>120</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_warrior/Player_warrior_attack_tripleslash_2ex_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_warrior/Player_warrior_attack_tripleslash_2ex_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>0</CoolDown>
+  <Time>1.66666675</Time>
+</XSkillData>

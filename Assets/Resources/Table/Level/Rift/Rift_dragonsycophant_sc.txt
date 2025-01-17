@@ -1,0 +1,123 @@
+﻿
+func:cutscene
+showcutscene CutScene/dragonsycophant_start
+
+func:transferWall
+opendoor TransferWall on 165.47|0|147.36|30 53.91333|3.92|168.9914|-130
+
+func:transferWall1
+opendoor TransferWall1 on 180.72|0|83.74|30 53.91333|3.92|168.9914|-130
+
+func:transferWall2
+opendoor TransferWall2 on 62.93736|6.299205|99.04097|30 53.91333|3.92|168.9914|-130
+
+func:tongyongcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy
+
+func:warning
+notice [ffdc00]3秒以后触发特殊机制|[ffdc00]2秒以后触发特殊机制|[ffdc00]1秒以后触发特殊机制|特殊机制已触发 2
+
+func:open
+aicommand -1 open 87007
+
+func:opendoor
+opendoor TransferWall 
+
+func:opendoor1
+opendoor TransferWall1
+
+func:opendoor2
+opendoor TransferWall2
+
+func:aicommand
+aicommand -1 poisonbang 87533
+
+func:aicommand1
+aicommand -1 poisonprotect 87534
+
+func:aicommand2
+aicommand -1 trap 87528
+
+func:aicommand3
+aicommand -1 poisonbig 87524
+
+func:aicommand4
+aicommand -1 protectarea 87526
+
+func:aicommand5
+aicommand -1 generatebuff 87524
+
+func:aicommand6
+aicommand -1 callhound40 87535
+
+func:notice
+notice 通往下一关的传送门打开了
+
+func:notice1
+notice 可恶！弱小的人类！我要撕碎你们！
+
+func:notice2
+notice 破坏！毁灭！让一切崩塌吧！
+
+func:notice3
+notice 大主教巢穴
+
+func:notice4
+notice 半石人毒菌释放了毒菌雨！
+
+func:notice5
+notice 还想逃？看我冰封你们，再接个震地一击！
+
+func:notice6
+notice 让时间停止流逝吧！
+
+func:notice7
+notice 给老夫滚开！肮脏的人类！
+
+func:notice8
+notice 人类！快到场景中央接受大主教的审判吧！
+
+func:poisonbangnotice
+notice [ffdc00]9秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]8秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]7秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]6秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]5秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]4秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]3秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]2秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]1秒后，大主教将释放毒爆，请攻击浅井机关激活保护阵|[ffdc00]大主教释放全屏毒爆
+
+func:poisonprotectnotice
+notice 保护阵已激活，请迅速移动至保护阵内
+
+func:poisonbignotice
+notice [ffdc00]8秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]7秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]6秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]5秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]4秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]3秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]2秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]1秒后，半石人将释放毒震，请激活藏匿在毒蘑菇中的保护阵|[ffdc00]半石人将释放全屏毒震
+
+func:worldattacknotice
+notice [ffdc00]5秒后，惩戒者释放毒雾，请躲到地面符文激活的区域内|[ffdc00]4秒后，惩戒者释放毒雾，请躲到地面符文激活的区域内|[ffdc00]3秒后，惩戒者释放毒雾，请躲到地面符文激活的区域内|[ffdc00]2秒后，惩戒者释放毒雾，请躲到符文激活的区域内|[ffdc00]1秒后，惩戒者释放毒雾，请躲到符文激活的区域内|[ffdc00]惩戒者释放全屏毒雾
+
+func:addbuff
+addbuff 40460 21288 1
+
+func:opendoor100
+opendoor Blockwall4
+
+func:opendoor101
+opendoor Blockwall3
+
+func:TransferWall_dragonsycophant
+opendoor TransferWall_dragonsycophant on 63.2|7.49|125.3|2 0|0|0|0
+
+func:aicommand100
+aicommand -1 star 0
+
+func:aicommand101
+aicommand -1 boss 0
+
+func:aicommand102
+aicommand -1 boss1 0
+
+func:aicommand103
+aicommand -1 boss2 0
+
+func:notice100
+notice 前方出现了一个传送门，随机进入一个BOSS场景 5
+
+func:notice101
+notice 5秒后传送回传送屋|5|4|3|2|1
+
+info:Blockwall4 58.18736|5.389205|171.881|50.64402 on 50 30.3892 0.1
+info:Blockwall3 65.64|7.67|69.39|0 on 50 32.67 0.1

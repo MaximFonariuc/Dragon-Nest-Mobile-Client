@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack_aiyunnifengbao_loop</Name>
+  <ClipName>Animation/Player_kali/Player_kali_aiyunnifengbao_loop</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.0333333351</At>
+      <Range>2.5</Range>
+      <Scope>360</Scope>
+      <Offset_Z>2</Offset_Z>
+      <Loop>true</Loop>
+      <Cycle>0.333333343</Cycle>
+      <Loop_Count>12</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <End>4</End>
+      <Offset>3</Offset>
+      <Height>1</Height>
+      <Rotation_Speed>4</Rotation_Speed>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_kali/Player_kali_aiyunnifengbao_loop_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_kali/Player_kali_aiyunnifengbao_loop_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_kali/Player_kali_aiyunnifengbao_loop_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.8</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>-0.2</Offset>
+      <Height>1.2</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>4</Time>
+  <Cast_Range_Upper>3</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_segyesu_rightpunch04_nest</Name>
+  <ClipName>Animation/Monster_segyesu/Monster_segyesu_rightpunch04</ClipName>
+  <Result>
+    <XResultData>
+      <At>2.266667</At>
+      <Range>4</Range>
+      <Scope>360</Scope>
+      <Offset_X>15.5</Offset_X>
+      <Offset_Z>-5.5</Offset_Z>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.3</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>2.16666675</At>
+      <End>5.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_segyesu_rightpunch04_nest_Clip01</Fx>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>1.33333349</At>
+      <End>5.00000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_segyesu_rightpunch04_nest_Clip02</Fx>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_segyesu/Monster_segyesu_rightpunch04_nest</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>5</Not_Move_End>
+    <CanCancelAt>5</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>5.00000048</Time>
+  <Cast_Range_Upper>4</Cast_Range_Upper>
+  <Cast_Offset_X>15.5</Cast_Offset_X>
+  <Cast_Offset_Z>-5.5</Cast_Offset_Z>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

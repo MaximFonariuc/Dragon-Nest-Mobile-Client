@@ -1,0 +1,105 @@
+
+func:notice1
+notice [ffdc00]已经做好伪装，需要在时间内潜入敌方，寻找亡灵的源头 10
+
+func:notice2
+notice [ffdc00]走过的路上，风消失了，继续前进 10
+
+func:notice3
+notice [ffdc00]这个神殿内充满了亡灵的气息！使用技能可以侦测隐形！ 10
+
+func:notice4
+notice [ffdc00]前方发现黑暗水晶，快去打碎它，阻止它召唤亡灵大军！ 10
+
+func:notice5
+notice [ffdc00]时间紧迫！解除伪装，迅速打碎黑暗水晶！ 10
+
+func:notice6
+notice [ffdc00]即将迎来最终的挑战！BOSS降临！ 10
+
+func:talk1
+talkr 110061 [ffebad]伟大的魔王，赐予我上古的力量……
+talkl [player] [ffebad]能和我说说魔王的事情吗？ 
+talkr 110061 [ffebad]伟大的魔王，赐予我上古的力量……
+talkl [player] [ffebad]看来这些亡灵只有一点残余的记忆，没有自己的智慧。再深入里面看看吧。
+stoptalk
+
+func:talk2
+talkr 110075 [ffebad]我闻到活物的味道，卑微的生物，指引我降临的坐标，我会赐予你上古的伟大力量。
+talkl [player] [ffebad]你是谁？
+talkr 110075 [ffebad]我是古代人最秘密的造物，他们掌控不了我，就把我封印在异时空，等我重新降临，就会让他们付出代价！卑微的生物，快给我坐标，毁灭这个世界的人类之后，我会赐予你一片宽广的土地。
+talkl [player] [ffebad]我是不会让你毁灭世界的，狂妄自大的家伙，等着被我们消灭吧！
+stoptalk
+
+func:killwave0
+killwave 0
+
+func:killwave2
+killwave 2
+
+func:killwave3
+killwave 3
+
+func:killwave4
+killwave 4
+
+func:killwave5
+killwave 5
+
+func:killwave6
+killwave 6
+
+func:killwave7
+killwave 7
+
+func:killwave10
+killwave 10
+
+func:killwave11
+killwave 11
+
+func:killwave12
+killwave 12
+
+func:killwave13
+killwave 13
+
+func:killwave14
+killwave 14
+
+func:killwave15
+killwave 15
+
+func:killwave16
+killwave 16
+
+func:BlockWall1
+opendoor BlockWall1
+
+func:BlockWall2
+opendoor BlockWall2
+
+func:addbuff1
+addbuff 110050 70384 1
+
+func:addbuff2
+addbuff 110050 70382 1
+
+func:addbuff3
+addbuff 110050 70386 1
+
+func:removebuff
+removebuff 110050 70382
+
+func:hidebillboard1
+hidebillboard 49900 36000
+
+func:direction
+showdirection direction
+
+
+
+
+
+info:BlockWall1 80.81687|7.526052|57.83108|340 on 20 17.52605 0.1
+info:BlockWall2 54.64687|10.23605|122.2211|338 on 20 20.23605 0.1

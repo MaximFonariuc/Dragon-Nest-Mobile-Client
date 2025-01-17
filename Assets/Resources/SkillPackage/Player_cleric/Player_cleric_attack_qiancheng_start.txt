@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_attack_qiancheng_start</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_attack_heal</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.333333343</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.8</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <Height>0.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.33333337</Not_Move_End>
+    <CanCancelAt>1.33333337</CanCancelAt>
+  </Logical>
+  <CoolDown>1.333333</CoolDown>
+  <Time>1.33333337</Time>
+</XSkillData>

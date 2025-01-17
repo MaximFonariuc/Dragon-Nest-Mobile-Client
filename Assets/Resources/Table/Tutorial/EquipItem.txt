@@ -1,0 +1,91 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 飞图标
+scond inlevel 1
+directsys 120
+econd SysOpened
+
+step 打开角色界面
+scond nostackui
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+internaldelay 0.5
+text 这里可以进行装备替换 -200 0
+
+--step 打开装备页签
+--scond item 101145=1
+--scond inlevel 1
+--forceclick ItemNewDlg/Bg/Tabs/XSys_Item_Equip/Bg 1
+--internaldelay 0.1
+--text 打开装备界面 -200 0
+
+step 点击武器1
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/Items/Panel/WrapContent/{1}/Icon 1
+--internaldelay 0.3
+text 请选择一件装备 -200 0
+
+step 点击装备1
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button1 1
+text 装备上试试吧 200 0
+econd UseItem
+
+--step 点击绑定装备1
+--scond inlevel 1
+--forceclick GreyModalDlg Bg/OK 1
+--internaldelay 0.3
+--econd UseItem
+
+--step 点击武器2
+--scond inlevel 1
+--forceclick ItemDlg Bg/ItemPanel/Panel/WrapContent/{1}/Icon 1
+--internaldelay 0.3
+--text 请再选择一件装备 -200 0
+
+--step 点击装备2
+--scond inlevel 1
+--forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button1 1
+--text 装备上试试吧 200 0
+--econd UseItem
+
+--step 点击绑定装备2
+--scond inlevel 1
+--forceclick GreyModalDlg Bg/OK 1
+--internaldelay 0.3
+--econd UseItem
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]装备的选择和替换在这里进行哦，换上强大的装备去打到怪物吧~[-] -200
+internaldelay 0.3
+
+step 关闭装备界面
+scond inlevel 1
+forceclick ItemNewDlg Bg/Close
+internaldelay 0.2
+text 返回主城 210 0
+
+--step 点击任务点
+--scond inlevel 1
+--scond accepttask 7
+--noforceclick HallDlg _canvas/MainMenuFrame/MainMenu/Icon/Icon 1.4
+--text 继续任务 -190 0
+--econd TalkingNpc
+
+--step 关闭装备界面
+--scond level 1
+--forceclick ItemDlg Bg/Close 1
+--text 关闭装备界面 -200 0
+
+step 点击任务点
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+
+end tutorial

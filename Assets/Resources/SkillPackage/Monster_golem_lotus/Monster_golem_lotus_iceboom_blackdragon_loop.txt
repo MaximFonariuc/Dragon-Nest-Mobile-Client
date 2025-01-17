@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_golem_lotus_iceboom_blackdragon_loop</Name>
+  <ClipName>Animation/Monster_golem_lotus/Monster_golem_lotus_laughattack_loop</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.6666667</At>
+      <Range>2.5</Range>
+      <Scope>360</Scope>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <WithCollision>false</WithCollision>
+        <Runningtime>0.5</Runningtime>
+        <Prefab>Prefabs/Bullets/empty</Prefab>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <EndFx_LifeTime>2</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <At_Y>-3</At_Y>
+      </LongAttackData>
+      <Warning>true</Warning>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>0.1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_bing</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Warning>
+    <XWarningData>
+      <Type>Warning_Multiple</Type>
+      <At>0.166666672</At>
+      <FxDuration>1.5</FxDuration>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_golem_lotus_iceboom_blackdragon_03</Fx>
+      <MaxRandomTarget>2</MaxRandomTarget>
+      <RandomWarningPos>true</RandomWarningPos>
+      <PosRandomRange>2</PosRandomRange>
+      <PosRandomCount>1</PosRandomCount>
+    </XWarningData>
+  </Warning>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2</Not_Move_End>
+    <CanCancelAt>2</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>2</Time>
+</XSkillData>

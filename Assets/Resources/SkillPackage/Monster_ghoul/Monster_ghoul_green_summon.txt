@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_ghoul_green_summon</Name>
+  <ClipName>Animation/Monster_ghoul/Monster_ghoul_summon</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.6366667</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/ghoul_cs</Fx>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>1.77</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/ghoul_cs</Fx>
+    </XFxData>
+    <XFxData>
+      <Index>2</Index>
+      <Type>FirerBased</Type>
+      <At>2.90000081</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/ghoul_cs</Fx>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_ghoul/Monster_ghoul_green_summon</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Full_Endure</StrickenMask>
+    <Not_Move_End>4.5</Not_Move_End>
+    <CanCancelAt>4.5</CanCancelAt>
+    <AttackOnHitDown>false</AttackOnHitDown>
+  </Logical>
+  <CoolDown>3600</CoolDown>
+  <Time>4.5</Time>
+</XSkillData>

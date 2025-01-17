@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_skeleton_casting</Name>
+  <ClipName>Animation/Monster_skeleton/Monster_skeleton_casting</ClipName>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>3.00000024</End>
+      <Fx>Effects/High_Resources/Prefabs/NPC/Monster_skeleton_casting_Clip01</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>1.83333337</At>
+      <End>3.00000024</End>
+      <Fx>Effects/High_Resources/Prefabs/NPC/Monster_skeleton_casting_Clip02</Fx>
+      <Follow>false</Follow>
+      <Destroy_Delay>0.25</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_skeleton/Monster_skeleton_casting</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.00000024</Not_Move_End>
+    <CanCancelAt>3.00000024</CanCancelAt>
+    <Exstring>expression</Exstring>
+  </Logical>
+  <Time>3.00000024</Time>
+  <Cast_Range_Upper>50</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

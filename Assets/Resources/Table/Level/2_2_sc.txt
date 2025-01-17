@@ -1,0 +1,52 @@
+﻿
+func:part1blockwall
+opendoor part1blockwall
+
+func:part2blockwall
+opendoor part2blockwall
+
+func:TransferWall
+opendoor TransferWall on
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 147.33 15.88 113.9 100 51112
+
+
+func:showdirection
+
+
+showdirection direction
+
+func:showdirection1
+showdirection direction1
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:killwave2
+killwave 2
+
+func:Ty_task_hasq
+opendoor Ty_task_hasq
+
+func:waring
+notice [ff0000]捡起精灵竖琴[-]，结束关卡。 40
+
+func:taketask
+notice 得到了[ff0000]精灵竖琴[-]，继续击杀守护怪物通关。 10
+
+
+func:talk
+talkr 30 [ffebad]人类？是人类？人类人类人类人类人类！哈哈人类！ Audio/VO/lines/lines85
+talkl [player] [ffebad]呃，你好，我能体会到你很高兴，但我是来…… Audio/VO/Warrior/warrior15|Audio/VO/Archer/archer15|Audio/VO/Sorceress/sorceress15|Audio/VO/Cleric/cleric15|Audio/VO/Academic/academic15|Audio/VO/Assassin/assassin15|Audio/VO/kali/kali15
+talkr 30 [ffebad]人类！人类的鲜血是最好的保养品！把你的血给我！ Audio/VO/lines/lines86
+talkl [player] [ffebad]不好意思，这可是非卖品！ Audio/VO/Warrior/warrior27|Audio/VO/Archer/archer27|Audio/VO/Sorceress/sorceress27|Audio/VO/Cleric/cleric27|Audio/VO/Academic/academic27|Audio/VO/Assassin/assassin27|Audio/VO/kali/kali27
+stoptalk
+
+
+
+info:part1blockwall 88.02|14.91|139.65|90.00001 on 10 19.91 0.1
+info:part2blockwall 102.8265|15.69846|155.2863|0 on 10 20.69846 0.1

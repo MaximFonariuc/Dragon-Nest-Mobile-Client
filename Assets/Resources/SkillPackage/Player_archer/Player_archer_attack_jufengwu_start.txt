@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_archer_attack_jufengwu_start</Name>
+  <ClipName>Animation/Player_archer/Player_archer_attack_hurricanedance_start</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>0.4666667</At>
+      <Low_Range>2</Low_Range>
+      <Range>3</Range>
+      <Scope>2</Scope>
+      <Offset_Z>1</Offset_Z>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_archer/Player_archer_attack_hurricanedance_start_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_archer/Player_archer_attack_hurricanedance_start_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_archer/Player_archer_attack_hurricanedance_start_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.001</Offset>
+      <Height>1</Height>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.16666675</Not_Move_End>
+    <CanCancelAt>1.16666675</CanCancelAt>
+  </Logical>
+  <CoolDown>1.166667</CoolDown>
+  <Time>1.16666675</Time>
+</XSkillData>

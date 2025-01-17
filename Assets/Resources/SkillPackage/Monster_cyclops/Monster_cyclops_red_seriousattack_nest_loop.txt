@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_cyclops_red_seriousattack_nest_loop</Name>
+  <TypeToken>0</TypeToken>
+  <ClipName>Animation/Monster_cyclops/Monster_cyclops_electricworld_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <Mobs_Inclusived>true</Mobs_Inclusived>
+      <At>1</At>
+      <Range>1</Range>
+      <Scope>360</Scope>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>0.1</Runningtime>
+        <Prefab>Prefabs/Bullets/empty</Prefab>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+      </LongAttackData>
+      <Warning>true</Warning>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.2</Offset>
+      <Height>1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Warning>
+    <XWarningData>
+      <Type>Warning_All</Type>
+      <FxDuration>2</FxDuration>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_lizardman_freezingfield_seadragon_01</Fx>
+      <Mobs_Inclusived>true</Mobs_Inclusived>
+      <PosRandomRange>0</PosRandomRange>
+    </XWarningData>
+  </Warning>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.5</Time>
+</XSkillData>

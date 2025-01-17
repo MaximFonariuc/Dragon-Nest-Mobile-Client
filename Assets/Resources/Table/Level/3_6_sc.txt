@@ -1,0 +1,47 @@
+﻿
+func:killwave
+killwave 3
+
+func:killwave1
+killwave 4
+
+func:door
+opendoor TransferWall on
+
+func:cutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 27.46 10 146 0 52509
+
+func:showdirection
+showdirection direction
+
+
+func:showdirection1
+showdirection direction1
+
+func:opendoor
+opendoor Blockwall
+
+func:opendoor1
+opendoor Blockwall1
+
+func:opendoor2
+opendoor Blockwall2
+
+func:opendoor3
+opendoor Blockwall3
+
+func:opendoor4
+opendoor Blockwall4
+
+func:talk
+talkr 49 [ffebad]没有任何牢笼可以锁住黑暗的力量，没有什么奇迹能够阻挡人类的覆亡！ Audio/VO/lines/lines165
+talkr 49 [ffebad]卑微的人类终将为他们的愚行付出代价，我们的大军将踏平……嗯，什么人！？ Audio/VO/lines/lines166
+talkl [player] [ffebad]不好，被发现了。 Audio/VO/Warrior/warrior29|Audio/VO/Archer/archer29|Audio/VO/Sorceress/sorceress29|Audio/VO/Cleric/cleric29|Audio/VO/Academic/academic29|Audio/VO/Assassin/assassin29|Audio/VO/kali/kali29
+talkr 49 [ffebad]哈哈哈哈我赞赏你的勇气，但我看你要怎样逃出这里！ Audio/VO/lines/lines167
+stoptalk
+
+info:Blockwall 26.62067|9.252781|48.24213|0 on 10 34.25278 0.1
+info:Blockwall1 31.54067|8.554781|29.50813|90.00001 on 10 33.55478 0.1
+info:Blockwall2 26.64067|9.47778|109.2881|0 on 10 34.47778 0.1
+info:Blockwall3 27.92067|10.16478|121.0781|0 on 10 35.16478 0.1
+info:Blockwall4 26.64067|14.95478|89.50813|0 on 10 39.95478 0.1

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_archer_jx_lianxupaoji_end</Name>
+  <ClipName>Animation/Player_archer/Player_archer_jx_lianxupaoji</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.433333367</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <WithCollision>false</WithCollision>
+        <Runningtime>0.5</Runningtime>
+        <Prefab>Prefabs/Bullets/Player_archer_jx_lianxupaoji_Clip01_bullet</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <TriggerAtEnd_Cycle>0.100000009</TriggerAtEnd_Cycle>
+        <TriggerAtEnd_Count>3</TriggerAtEnd_Count>
+        <End_Fx>Effects/High_Resources/Prefabs/Archer/Player_archer_jx_lianxupaoji_Clip02</End_Fx>
+        <EndFx_LifeTime>2</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <At_Z>8</At_Z>
+        <StaticCollider>false</StaticCollider>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_archer/Player_archer_jx_lianxupaoji_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_archer/Player_archer_jx_lianxupaoji_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1</Time_Present_Straight>
+      <Time_Hard_Straight>3</Time_Hard_Straight>
+      <Offset>0.01</Offset>
+      <Height>0.1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.60000014</Time>
+</XSkillData>

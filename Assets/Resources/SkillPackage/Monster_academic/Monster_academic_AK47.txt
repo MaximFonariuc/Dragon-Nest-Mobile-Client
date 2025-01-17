@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_academic_AK47</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.166666672</At>
+      <End>0.5</End>
+      <Fx>Effects/High_Resources/Prefabs/Academic/Player_academic_attack_feijian_Clip03</Fx>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <End>0.5</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Player_academic_jiguangqiang</Fx>
+      <ScaleX>0.05</ScaleX>
+      <ScaleY>0.05</ScaleY>
+      <ScaleZ>5</ScaleZ>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_academic/Monster_academic_AK47</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_academic_AK47_end</Name>
+      <End>0.5</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.5</Not_Move_End>
+    <Rotate_End>0.5</Rotate_End>
+    <Rotate_Speed>1.5</Rotate_Speed>
+    <CanCancelAt>0.5</CanCancelAt>
+  </Logical>
+  <Time>0.5</Time>
+</XSkillData>

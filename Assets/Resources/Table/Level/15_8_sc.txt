@@ -1,0 +1,58 @@
+﻿
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 19401
+
+func:tips1
+notice 击败魔法师卡拉翰！ 4
+
+func:karahanspeak1
+notice “虽然对你们愚蠢的行为不太认同...” 4
+
+func:karahanspeak2
+notice “但是勇气可嘉，臣服在我的美丽之下吧！哈哈...” 4
+
+func:turnchapterice
+notice [ff0000]“感受这刺骨的寒意吧！惊叹于我的强大吧！”[-] 7
+
+func:turnchapterfire
+notice [ff0000]“跳动的火焰精灵，听从我的指挥！”[-] 7
+
+func:expression
+bubble 19401 今天我心情不错，陪你们这群虫子玩玩！ 6
+
+func:expression1
+bubble 19401 这冰火两重天的滋味不好受把？嗯，英雄？ 6
+
+func:expression2
+bubble 19401 呵呵！挣扎并没有什么意义。 6
+
+func:expression3
+bubble 19401 全系魔法师的美丽见识到了？滋味如何啊？哈哈... 6
+
+func:iceboom
+notice “冻死你们！[ff0000]寒冰领域[-]哈哈哈哈哈...” 7
+
+func:fireboom
+notice “[ff0000]火焰领域[-]会送你们上西天，永别了！” 7
+
+func:partyice
+bubble 19401 “死在我美丽的魔法之下，是你的荣幸！” 6
+
+func:fireparty
+bubble 19401 “见识到了什么是火焰的力量吗？哈哈哈...” 6
+
+func:dead
+notice “这可真是个意外...咳咳...” 6
+
+func:tipsice
+npcpopspeek 2 3003 快！进入[ff0000]冰系免疫区域[-]，否则会被BOSS[ff0000]秒杀[-]！ 7
+
+func:tipsfire
+npcpopspeek 2 3003 快！进入[ff0000]火系免疫区域[-]，否则会被BOSS[ff0000]秒杀[-]！ 7
+
+func:callicewudi
+aicommand -1 icewudi 19401
+
+func:callredwudi
+aicommand -1 redwudi 19401

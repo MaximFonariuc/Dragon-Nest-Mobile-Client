@@ -1,0 +1,59 @@
+﻿start tutorial
+
+step 打开角色界面
+scond nostackui
+scond inlevel 1
+scond MainUI
+scond hasbody mainweapon
+scond item 1=10000
+scond item 93=4
+ailin [301b0a]现在可以进行装备的[7100ff]强化[-]啦，艾琳希望您能强化出厉害的装备哦。[-] -220
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+audio Audio/VO/guide/guide29
+--text 点击角色界面 190 0
+
+step 点击装备系统
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Item_Equip/Bg 1
+internaldelay 0.5
+
+--step 打开强化页面
+--scond inlevel 1
+--forceclick ItemDlg Bg/Tabs/XSys_Item_Enhance/Bg 1
+--internaldelay 0.3
+--text 切换到进阶分页 -200 0
+
+step 选择装备
+scond inlevel 1
+forceclick ItemNewDlg Bg/LeftPanel/EquipFrame/item5/Icon 1
+internaldelay 0.5
+--text 选择一件装备 -200 0
+
+step 点击强化
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button2 1
+--text 强化1次试试 -200 0
+internaldelay 0.3
+
+step 点击强化按钮
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/EnhanceFrame/Bg/Enhance/Bottom/EnhanceBtn 1
+text 强化1次试试 -200 0
+audio Audio/VO/guide/guide30
+internaldelay 0.3
+econd EnhanceItem
+
+--step 点击强化按钮
+--scond inlevel 1
+--forceclick ItemDlg Bg/EnhancePanel/BtnEnhance 1
+--internaldelay 0.3
+--text 再强化1次试试 -200 0
+--econd EnhanceItem
+
+--step 关闭装备界面
+--scond level 1
+--forceclick ItemDlg Bg/Close 1
+--internaldelay 2.5
+--text 关闭装备界面 -200 0
+
+end tutorial

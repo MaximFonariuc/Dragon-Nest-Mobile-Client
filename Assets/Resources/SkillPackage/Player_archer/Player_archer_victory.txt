@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_archer_victory</Name>
+  <ClipName>Animation/Player_archer/Player_archer_victory</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_archer/Player_archer_victory_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_archer/Player_archer_victory_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_archer/Player_archer_victory</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.1</Not_Move_End>
+    <CanCancelAt>2.1</CanCancelAt>
+  </Logical>
+  <CoolDown>2.1</CoolDown>
+  <Time>2.1</Time>
+</XSkillData>

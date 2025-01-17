@@ -1,0 +1,49 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 打开角色界面
+scond nostackui
+scond inlevel 1
+directsys 94
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+internaldelay 0.5
+
+step 点击装备ui
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Item_Equip/Bg 1
+internaldelay 0.5
+
+step 点击头衔
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/EquipListPanel/ShowTitle 1
+internaldelay 0.5
+
+--step 头衔
+--scond nostackui
+--scond inlevel 1
+--directsys 94
+--econd SysOpened
+
+--step 点击切换
+--scond inlevel 1
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1 1 0 0
+--internaldelay 0.5
+
+--step 打开头衔界面
+--scond inlevel 1
+--function refreshtitle
+--skip PPTLess 0 1000
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH0/SysE_Title 1 1 0 0
+--internaldelay 0.5
+
+step 点击晋升
+scond inlevel 1
+skip PPTLess 0 1000
+forceclick TitleDlg Bg/Promote
+internaldelay 0.5
+
+end tutorial

@@ -1,0 +1,128 @@
+
+func:openeffect1
+opendoor Cj_tx_01 on 
+
+func:openeffect2
+opendoor Cj_tx_02 on 
+
+func:openeffect3
+opendoor Cj_tx_03 on 
+
+func:openeffect4
+opendoor Cj_tx_04 on
+
+func:openeffect5
+opendoor Cj_tx_05 on  
+
+func:wave1
+notice 小虫子，你们居然敢来这里！ 5
+
+func:wave1_1
+notice 这里就是你们的死亡之地，杀了他们！ 5
+
+func:wave1_2
+notice 你中了埋伏，小心[ff0000]钢铁狂狗[-]的突袭！ 5
+
+func:killspawn30
+killspawn 30
+
+func:wave2
+notice 你们还有点实力，然而这只是开始！虫子！ 5
+
+func:wave2_1
+notice 吼！继续！给我上！ 5
+
+func:wave2_2
+notice 小心！更强大的[ff0000]钢铁哥布林军团[-]来袭！ 5
+
+func:killspawn31
+killspawn 31
+
+func:wave3
+notice 不错，可惜更强的挑战还在后面！ 5
+
+func:wave3_1
+notice 快点杀死他们！蠢货！ 5
+
+func:wave3_2
+notice 小心！[ff0000]铁甲兽人军团[-]来袭！ 5
+
+func:killspawn32
+killspawn 32
+
+func:wave4
+notice 我小看了你们！不过我很快就会解决你们！ 5
+
+func:wave4_1
+notice 给我轰死他们！快！ 5
+
+func:wave4_2
+notice 小心！[ff0000]地精炮兵[-]来袭！ 5
+
+func:killspawn33
+killspawn 33
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 41.19 3.98 37.27 180
+
+fun:opendoor
+opendoor Door on
+
+func:boosnotice
+notice 一群蠢货！还要我亲自出马！ 5
+
+func:houndnotice
+bubble 150614 汪！汪！汪！汪！汪！..... 6
+
+func:gbulinnotice
+bubble 150615 快来人啊！有敌人！ 6
+
+func:orcnotice
+bubble 150613 吼！我要撞死你！ 6
+
+func:broonotice
+bubble 150612 嘿嘿嘿，你们很有勇气！ 6
+
+func:trollnotice
+bubble 150608 尝尝我的厉害！入侵者！ 6
+
+func:turnchapter
+notice 小心！火焰食人魔的能力增强了！ 5
+
+func:turnchapter_1
+notice 虫子！你惹怒我了！ 5
+
+func:twochapter
+notice 小心！火焰食人魔召唤出了炮兵军团援助！ 4
+
+func:twochapter_1
+notice 只有[ff0000]消灭[-]炮兵军团才能[ff0000]继续击杀BOSS[-]！ 7
+
+func:twochapter_2
+bubble 150407 这个滋味怎么样？虫子！ 5
+
+func:addbuff
+addbuff 150407 50002 1
+
+func:removebuff
+removebuff 150407 50002
+
+func:removenotice
+notice 火焰食人魔的[ff0000]无敌[-]效果消失了！ 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+info:Door 41.10567|4.990479|42.43322|0 on 20 14.99048 0.1

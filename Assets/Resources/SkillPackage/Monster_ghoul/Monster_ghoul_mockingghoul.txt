@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_ghoul_mockingghoul</Name>
+  <ClipName>Animation/Monster_ghoul/Monster_ghoul_mockingghoul</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>3.00000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_ghoul_mockingghoul_Clip01</Fx>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>1.1</At>
+      <End>3.00000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_ghoul_mockingghoul_Clip02</Fx>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_ghoul/Monster_ghoul_mockingghoul</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanCancelAt>3.00000024</CanCancelAt>
+    <Exstring>callxiaobing</Exstring>
+  </Logical>
+  <CoolDown>3</CoolDown>
+  <Time>3.00000024</Time>
+</XSkillData>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_MOBA_Unit_SpecialForce>
+  <EntryTask T_target="" F_heartrate="1" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0" F_LeftProb="0" F_RightProb="0" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_ExpProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="2" F_HeartRateMaxFloat="2" I_StringCompareResult="0" F_ratioidle="0" F_ratioleft="0" F_ratioright="0" F_ratioskill="0" F_ratiodistance="0" F_ratioexp="0" F_master_distance="0" F_enter_fight_range="0">
+    <Selector>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <SetFloat Shared_ValueName="" value="1" Shared_StoredResultName="heartrate" />
+          <FloatOperator type="0" Shared_Float1Name="min_keep_range" float1Value="0" Shared_Float2Name="attack_range" float2Value="0" Shared_StoredResultName="AverageAttackRange" />
+          <FloatOperator type="3" Shared_Float1Name="AverageAttackRange" float1Value="0" Shared_Float2Name="" float2Value="2" Shared_StoredResultName="AverageAttackRange" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+        </Sequence>
+      </ReturnFailure>
+      <Sequence>
+        <Selector>
+          <Sequence>
+            <DetectEnimyInSight />
+            <TargetByHatredList Shared_DistanceName="" Shared_DistancemValue="0" FilterImmortal="0" />
+            <DoSelectNearest />
+            <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="enter_fight_range" float2Value="0" />
+          </Sequence>
+          <Sequence>
+            <ReturnFailure>
+              <ResetHartedList />
+            </ReturnFailure>
+          </Sequence>
+        </Selector>
+        <Sequence>
+          <Sequence>
+            <SetFloat Shared_ValueName="ratioidle" value="0" Shared_StoredResultName="StandProb" />
+            <SetFloat Shared_ValueName="ratioleft" value="0" Shared_StoredResultName="LeftProb" />
+            <SetFloat Shared_ValueName="ratioright" value="0" Shared_StoredResultName="RightProb" />
+            <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="SkillProb" />
+            <SetFloat Shared_ValueName="ratiodistance" value="0" Shared_StoredResultName="KeepDistanceProb" />
+            <SetFloat Shared_ValueName="ratioexp" value="0" Shared_StoredResultName="ExpProb" />
+            <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="ForwardProb" />
+            <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="BackProb" />
+            <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="AttackProb" />
+          </Sequence>
+          <Selector>
+            <ConditionalEvaluator ConditionalTask="FloatComparison" type="5" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="attack_range" float2Value="0">
+              <FloatOperator type="3" Shared_Float1Name="normal_attack_prob" float1Value="0" Shared_Float2Name="" float2Value="1" Shared_StoredResultName="ForwardProb" />
+            </ConditionalEvaluator>
+            <ConditionalEvaluator ConditionalTask="FloatComparison" type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="min_keep_range" float2Value="0">
+              <FloatOperator type="3" Shared_Float1Name="normal_attack_prob" float1Value="0" Shared_Float2Name="" float2Value="1" Shared_StoredResultName="BackProb" />
+            </ConditionalEvaluator>
+            <SetFloat Shared_ValueName="normal_attack_prob" value="0" Shared_StoredResultName="AttackProb" />
+          </Selector>
+          <ReturnSuccess>
+            <Sequence>
+              <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="1" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+              <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="ForwardProb" />
+              <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="BackProb" />
+              <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="KeepDistanceProb" />
+              <Selector>
+                <ConditionalEvaluator ConditionalTask="IntComparison" type="2" Shared_Int1Name="type" int1Value="0" Shared_Int2Name="" int2Value="1">
+                  <FloatOperator type="2" Shared_Float1Name="ratioskill" float1Value="0" Shared_Float2Name="" float2Value="100" Shared_StoredResultName="SkillProb" />
+                </ConditionalEvaluator>
+                <ConditionalEvaluator ConditionalTask="IntComparison" type="2" Shared_Int1Name="type" int1Value="0" Shared_Int2Name="" int2Value="2">
+                  <FloatOperator type="2" Shared_Float1Name="ratioskill" float1Value="0" Shared_Float2Name="" float2Value="2" Shared_StoredResultName="SkillProb" />
+                </ConditionalEvaluator>
+                <ConditionalEvaluator ConditionalTask="IntComparison" type="2" Shared_Int1Name="type" int1Value="0" Shared_Int2Name="" int2Value="6">
+                  <FloatOperator type="2" Shared_Float1Name="ratioskill" float1Value="0" Shared_Float2Name="" float2Value="4" Shared_StoredResultName="SkillProb" />
+                </ConditionalEvaluator>
+              </Selector>
+            </Sequence>
+          </ReturnSuccess>
+          <Sequence>
+            <SetFloat Shared_ValueName="" value="0" Shared_StoredResultName="TotalProb" />
+            <FloatOperator type="0" Shared_Float1Name="TotalProb" float1Value="0" Shared_Float2Name="ForwardProb" float2Value="0" Shared_StoredResultName="TotalProb" />
+            <FloatOperator type="0" Shared_Float1Name="TotalProb" float1Value="0" Shared_Float2Name="AttackProb" float2Value="0" Shared_StoredResultName="TotalProb" />
+            <FloatOperator type="0" Shared_Float1Name="TotalProb" float1Value="0" Shared_Float2Name="SkillProb" float2Value="0" Shared_StoredResultName="TotalProb" />
+          </Sequence>
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="TotalProb" maxValue="0" inclusive="0" Shared_StoredResultName="CurrentProb" />
+          <Selector>
+            <Sequence>
+              <FloatOperator type="1" Shared_Float1Name="TotalProb" float1Value="0" Shared_Float2Name="ForwardProb" float2Value="0" Shared_StoredResultName="TotalProb" />
+              <FloatComparison type="5" Shared_Float1Name="CurrentProb" float1Value="0" Shared_Float2Name="TotalProb" float2Value="0" />
+              <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="" Shared_BornPosName="bornpos" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="1" AdjustAngle="0" Shared_AdjustLengthName="AverageAttackRange" Shared_AdjustLengthmValue="0" AdjustDir="1" SetDestType="1" />
+              <FloatOperator type="2" Shared_Float1Name="movespeed" float1Value="0" Shared_Float2Name="" float2Value="1" Shared_StoredResultName="movespeed" />
+              <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="0" />
+              <FloatOperator type="2" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" Shared_StoredResultName="heartrate" />
+            </Sequence>
+            <Sequence>
+              <FloatOperator type="1" Shared_Float1Name="TotalProb" float1Value="0" Shared_Float2Name="AttackProb" float2Value="0" Shared_StoredResultName="TotalProb" />
+              <FloatComparison type="5" Shared_Float1Name="CurrentProb" float1Value="0" Shared_Float2Name="TotalProb" float2Value="0" />
+              <PhysicalAttack Shared_TargetName="target" />
+              <FloatOperator type="2" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.5" Shared_StoredResultName="heartrate" />
+            </Sequence>
+            <Sequence>
+              <FloatOperator type="1" Shared_Float1Name="TotalProb" float1Value="0" Shared_Float2Name="SkillProb" float2Value="0" Shared_StoredResultName="TotalProb" />
+              <FloatComparison type="5" Shared_Float1Name="CurrentProb" float1Value="0" Shared_Float2Name="TotalProb" float2Value="0" />
+              <DoSelectSkillInOrder />
+              <DoCastSkill Shared_TargetName="target" />
+              <FloatOperator type="2" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" Shared_StoredResultName="heartrate" />
+            </Sequence>
+          </Selector>
+        </Sequence>
+      </Sequence>
+      <Sequence>
+        <Inverter>
+          <IsFighting />
+        </Inverter>
+        <Navigation Shared_MoveDirName="" Shared_MoveDirmValue="1" PatrolPointRadius="2.5" IsGoForward="1" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Monster_MOBA_Unit_SpecialForce>

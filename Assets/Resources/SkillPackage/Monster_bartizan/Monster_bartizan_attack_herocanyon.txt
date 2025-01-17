@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_bartizan_attack_herocanyon</Name>
+  <ClipName>Animation/Monster_bartizan/Monster_bartizan_idle</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <Attack_Only_Target>true</Attack_Only_Target>
+      <At>0.0333333351</At>
+      <Range>0.3</Range>
+      <Scope>360</Scope>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Follow>true</Follow>
+        <Runningtime>15</Runningtime>
+        <Velocity>7</Velocity>
+        <Radius>0.3</Radius>
+        <Prefab>Prefabs/Bullets/Monster_broo_white_opposer_attack_Clip01</Prefab>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <FlyWithTerrain>false</FlyWithTerrain>
+        <AimTargetCenter>false</AimTargetCenter>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.5</Not_Move_End>
+    <Rotate_Speed>1</Rotate_Speed>
+    <CanCancelAt>0.5</CanCancelAt>
+  </Logical>
+  <CoolDown>0.5</CoolDown>
+  <Time>0.5</Time>
+  <Cast_Range_Upper>6.5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

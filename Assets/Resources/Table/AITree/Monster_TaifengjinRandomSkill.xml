@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_TaifengjinRandomSkill>
+  <EntryTask T_target="" F_heartrate="0.2" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="1" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="4" F_HeartRateMaxFloat="4" I_Compress="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="ExString" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="timeover" Shared_ResultName="Compress" />
+        <IntComparison type="2" Shared_Int1Name="Compress" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="50" FilterImmortal="0" Angle="0" Delta="0" TargetType="0" />
+        <DoSelectNearest />
+        <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="3" inclusive="0" Shared_StoredResultName="random" />
+        <Selector>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+            <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_orc_airlaser" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+            <CallScript FuncName="skill1" DelayTime="0" />
+            <DoSelectSkillInOrder />
+            <DoCastSkill Shared_TargetName="target" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="2" />
+            <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_orc_airball" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+            <CallScript FuncName="skill2" DelayTime="0" />
+            <DoSelectSkillInOrder />
+            <DoCastSkill Shared_TargetName="target" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="3" />
+            <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_orc_earthquake" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+            <CallScript FuncName="skill3" DelayTime="0" />
+            <DoSelectSkillInOrder />
+            <DoCastSkill Shared_TargetName="target" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+      <Sequence>
+        <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="" Shared_BornPosName="" Shared_BornPosmValue="76:19.99:82" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="6" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="0" AdjustDir="3" SetDestType="2" />
+        <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Monster_TaifengjinRandomSkill>

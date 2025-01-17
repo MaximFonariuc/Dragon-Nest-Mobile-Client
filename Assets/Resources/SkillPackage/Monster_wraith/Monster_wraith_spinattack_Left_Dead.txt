@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_wraith_spinattack_Left_Dead</Name>
+  <ClipName>Animation/Monster_wraith/Monster_wraith_spinattack</ClipName>
+  <Result>
+    <XResultData>
+      <At>1.21</At>
+      <Low_Range>2</Low_Range>
+      <Range>8</Range>
+      <Scope>60</Scope>
+      <Offset_Z>8</Offset_Z>
+      <Loop>true</Loop>
+      <Group>true</Group>
+      <Cycle>0.0333333351</Cycle>
+      <Loop_Count>2</Loop_Count>
+      <Deviation_Angle>-180</Deviation_Angle>
+      <Angle_Step>60</Angle_Step>
+      <Time_Step>0.166666672</Time_Step>
+      <Group_Count>7</Group_Count>
+      <Clockwise>true</Clockwise>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_wraith/Monster_wraith_spinattack_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_wraith/Monster_wraith_spinattack_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.03</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.16666675</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/wraith_red_spinattack</Fx>
+      <Bone>Bip01_wraith/Bip01 Pelvis_wraith/Bip01 Spine_wraith/Bip01 Neck_wraith/Bip01 R Clavicle_wraith/Bip01 R UpperArm_wraith/Bip01 R Forearm_wraith/Bip01 R Hand_wraith/Boxbone01_wraith</Bone>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_wraith/Monster_wraith_spinattack_nest</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.50000024</Not_Move_End>
+    <CanCancelAt>3.50000024</CanCancelAt>
+  </Logical>
+  <Time>3.50000024</Time>
+  <Cast_Range_Upper>8</Cast_Range_Upper>
+  <Cast_Scope>160</Cast_Scope>
+</XSkillData>

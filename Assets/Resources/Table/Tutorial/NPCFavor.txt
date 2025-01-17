@@ -1,0 +1,33 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState2
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 开放圣物系统
+scond MainUI
+scond nostackui
+scond inlevel 1
+directsys 703
+econd SysOpened
+
+step 打开圣物
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH0/SysE_NPCFavor
+internaldelay 0.8
+
+step 打开圣物界面
+scond inlevel 1
+empty
+ailin [301b0a]赠送Ta们喜欢的礼物可以获得幸运值，用以升级圣物提升属性加成哦，更有神秘交换礼物等你来拿！[-] -220
+internaldelay 0.8
+
+step 查看说明
+scond inlevel 1
+forceclick NpcBlessingDlg Help
+text 可以点击这里进行查看说明 200
+internaldelay 0.8
+
+
+end tutorial

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_sea_drake_bite</Name>
+  <ClipName>Animation/Monster_sea_drake/Monster_sea_drake_bite</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.9666667</At>
+      <Range>30</Range>
+      <Scope>30</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_sea_drake/Monster_sea_drake_bite_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_sea_drake/Monster_sea_drake_bite_side</Curve_Side>
+      <Curve_Up>Curve/Monster_sea_drake/Monster_sea_drake_bite_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>1</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.00000012</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/dragon/sea_bite</Fx>
+      <Bone>Bip001_sea_drake/Bip001 Pelvis_sea_drake/Bip001 Spine_sea_drake/Bip001 Spine1_sea_drake/Bip001 Spine2_sea_drake/Bip001 Spine3_sea_drake/Bip001 Neck_sea_drake/Bip001 Neck1_sea_drake/Bip001 Head_sea_drake/Bone001_sea_drake</Bone>
+      <Follow>false</Follow>
+      <Destroy_Delay>1</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_sea_drake/Monster_sea_drake_bite</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.03333354</Not_Move_End>
+    <CanCancelAt>2.03333354</CanCancelAt>
+  </Logical>
+  <CoolDown>5</CoolDown>
+  <Time>2.03333354</Time>
+  <Cast_Range_Upper>50</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,85 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:killwave1
+killwave 19
+
+func:killwave2
+killwave 20
+
+func:notice1
+opendoor 2_6Blockwall
+
+func:notice2
+closedoor 2_6Blockwall1
+
+func:showcutscene
+showcutscene CutScene/2_6_start 124.8803 20.79976 101.5172 0
+
+
+func:notice4
+notice 前进，消灭黑山魔物
+
+func:notice5
+notice 什么人，胆敢闯入这里！
+
+func:notice6
+opendoor TransferWall on
+
+func:notice8
+showdirection direction
+
+func:notice9
+showdirection direction1
+
+
+func:notice10
+notice 卫兵，杀了他们！
+
+func:killwave3
+killwave 0
+
+func:notice11
+notice 你以为这就是全部吗？！
+
+func:killwave4
+killwave 1
+
+func:killwave5
+killwave 2
+
+func:notice12
+notice 食人魔勇士，消灭他们！
+
+func:buff
+notice 小心！库斯塔西进入了狂暴状态！ 5
+
+func:speak
+notice 库斯塔西召唤了援军！ 6
+
+
+
+
+
+
+func:talk
+talkl [player] [ffebad]怪物撤退了？这些魔物并没有全力在战斗，好像是在拖延时间……？ Audio/VO/Warrior/warrior16|Audio/VO/Archer/archer16|Audio/VO/Sorceress/sorceress16|Audio/VO/Cleric/cleric16|Audio/VO/Academic/academic16|Audio/VO/Assassin/assassin16|Audio/VO/kali/kali16
+talkl [player] [ffebad]糟糕，难道这里并不是他们的据点！魔物们逃跑的方向好像是……大君主练兵场！得先回王城通知大家！ Audio/VO/Warrior/warrior29|Audio/VO/Archer/archer29|Audio/VO/Sorceress/sorceress29|Audio/VO/Cleric/cleric29|Audio/VO/Academic/academic29|Audio/VO/Assassin/assassin29|Audio/VO/kali/kali29
+stoptalk
+
+func:operation25
+clientrecord 207before
+
+func:operation26
+clientrecord 207after
+
+func:waring
+notice 小心！铁甲小精灵召唤了援军！ 5
+
+
+
+info:2_6Blockwall 123.8748|21.36685|33.97756|0 off 26.08786

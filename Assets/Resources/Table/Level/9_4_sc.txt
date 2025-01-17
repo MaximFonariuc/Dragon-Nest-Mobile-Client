@@ -1,0 +1,48 @@
+﻿
+func:Door
+opendoor Door on
+
+func:Transferwall
+opendoor TransferWall on
+
+func:part1
+notice 怪物出现后将周围整个包围起来 6
+
+func:part2
+notice 上！杀了这些入侵者！ 6
+
+func:part3
+notice 为贤者争取逃跑的时间！ 6
+
+func:part4
+notice 是时候来一波决战了！ 6
+
+func:Blockwall
+opendoor Blockwall
+
+func:Blockwall1
+opendoor Blockwall1
+
+func:DN_lv3_hd_stone01
+opendoor DN_lv3_hd_stone01
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 58310
+
+func:wall
+opendoor wall
+opendoor wall1
+
+opendoor wall2
+
+func:talk
+talkr 18 [ffebad]咳咳咳，我们，我们的合力魔法击中了卡拉翰，没，没想到，他却成功的变成了绿龙
+talkr 18 [ffebad]不过，我们也没让他好过，他应该没办法再变成可怕的巨龙了。咳咳咳，拜托你，一切都该了断了。
+talkl [player] [ffebad]放心吧，这次，我一定会消灭卡拉翰的！
+stoptalk
+
+
+
+info:wall 56.9|-5.9|46.6|320 on 50 19.1 0.09999999
+info:wall1 104.76|0.9499998|37.8|274.7385 on 50 25.95 0.1
+info:wall2 123.2|4.3|58.7|350 on 41.9994 29.3 0.09999999

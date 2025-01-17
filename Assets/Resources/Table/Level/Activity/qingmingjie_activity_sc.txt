@@ -1,0 +1,120 @@
+﻿
+func:showui
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:killwave22
+killwave 22
+
+func:OpenBlockwall
+opendoor Blockwall
+
+func:OpenBlockwall1
+opendoor Blockwall1
+
+func:OpenBlockwall2
+opendoor Blockwall2
+
+func:CutsceneStage1
+showcutscene CutScene/2_8_stage1
+
+func:CutsceneStage2
+showcutscene CutScene/2_8_stage2
+
+func:notice6
+notice 消灭了拦路的魔物，继续前进吧
+
+func:notice7
+notice 先锋已被击溃，继续追击
+
+func:notice8
+notice 消灭了魔物大军，去阻止贝思柯德吧
+
+func:direction
+showdirection direction
+
+func:direction1
+showdirection direction1
+
+func:direction2
+showdirection direction2
+
+func:direction3
+showdirection direction3
+
+func:killwave
+killwave 21
+
+func:closedoor
+opendoor Door on
+
+func:showcutscene
+showcutscene CutScene/2_8_start 92.724 16 151.289 -90
+
+func:OpenBlockwall3
+opendoor Blockwall3
+
+func:OpenBlockwall4
+opendoor Blockwall4
+
+func:OpenBlockwall6
+opendoor Blockwall6
+
+func:OpenBlockwall5
+opendoor Blockwall5
+
+func:talk
+talkl [player] [ffebad]嗯？前面的路好像不止一条，该往哪边走呢？ Audio/VO/Warrior/warrior12|Audio/VO/Archer/archer12|Audio/VO/Sorceress/sorceress12|Audio/VO/Cleric/cleric12|Audio/VO/Academic/academic12
+talkr 32 [ffebad]黑山附近的地形我比较熟悉…如果没记错的话，应该是往右边走！ Audio/VO/lines/lines224
+talkl [player] [ffebad]好的！ Audio/VO/Warrior/warrior26|Audio/VO/Archer/archer26|Audio/VO/Sorceress/sorceress26|Audio/VO/Cleric/cleric26|Audio/VO/Academic/academic26
+stoptalk
+
+func:talk1
+talkl [player] [ffebad]杰兰特……这边…好像是条死路哎…你到底是记错了…还是根本不认路啊… Audio/VO/Warrior/warrior24|Audio/VO/Archer/archer24|Audio/VO/Sorceress/sorceress24|Audio/VO/Cleric/cleric24|Audio/VO/Academic/academic24
+talkr 32 [ffebad]唔……大概是记忆发生了偏差，那么我们赶紧去另外一条路吧！ Audio/VO/lines/lines225
+talkl [player] [ffebad]果然……杰兰特……根本就是个路痴吧… Audio/VO/Warrior/warrior22|Audio/VO/Archer/archer22|Audio/VO/Sorceress/sorceress22|Audio/VO/Cleric/cleric22|Audio/VO/Academic/academic22
+stoptalk
+
+func:CrossroadsPromptRight
+notice 右边路口的阻挡消失了！ 6
+
+func:CrossroadsPromptLeft
+notice 左边路口的阻挡，好像已经消失了，请往左边路口走！ 6
+
+func:killwave27
+killwave 27
+
+func:killwave25
+killwave 25
+
+func:killwave26
+killwave 26
+
+func:Prompt
+notice 小心黑山士兵的偷袭！ 4
+
+func:Prompt1
+notice 消灭了偷袭的黑山士兵，继续前进！
+
+func:operation27
+clientrecord 208before
+
+func:operation28
+clientrecord 208after
+
+
+
+
+
+info:Blockwall 153.3135|10.64725|43.0607|0 on 20 20.64725 0.1
+info:Blockwall1 152.0347|11.77245|86.42735|350 on 42.44872 32.99682 0.2122437
+info:Blockwall2 100.1343|16.75745|150.881|270 on 28.48889 31.0019 0.1424446
+info:Door 97.22873|18.81894|150.843|270 off 28.4889 33.06339 0.1424446
+info:Blockwall3 149.3439|10.45429|112.7672|330 on 14.24445 24.69874 0.1424446
+info:Blockwall4 136.8639|10.46429|103.9772|320 on 14.24445 24.70874 0.1424446
+info:Blockwall6 126.2939|11.39429|121.5872|330 on 14.24445 25.63874 0.1424446
+info:Blockwall5 144.8539|10.55429|121.7372|330 on 14.24445 24.79874 0.1424446

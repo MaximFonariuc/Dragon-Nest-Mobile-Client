@@ -1,0 +1,36 @@
+﻿start tutorial
+
+--step 点击日常玩法
+--scond nostackui
+--scond inlevel 1
+--scond MainUI
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+--internaldelay 0.2
+--text 点击这里进入日常玩法 -200 0
+
+step 点击PVP活动
+scond inlevel 1
+scond nostackui
+scond MainUI
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysEPVP 1 1 0 0
+internaldelay 0.2
+
+step 进入OW
+scond inlevel 1
+forceclick MobaActivityDlg Bg/PVPActivityFrame/Panel/item1 
+internaldelay 0.2
+text 点击这里进入英雄战场 200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]4人对抗团队竞技，抢夺他人据点玩法哦[-] -200
+internaldelay 0.3
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]每次死亡都可更换英雄，胜场还可获得大量奖励，用于兑换新英雄[-] -200
+internaldelay 0.3
+
+end tutorial

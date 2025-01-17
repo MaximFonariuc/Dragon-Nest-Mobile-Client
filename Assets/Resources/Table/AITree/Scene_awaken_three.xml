@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_awaken_three>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" B_IsInitialized="0" I_eventskillid="0" F_random="0" B_SubTreeBool1="0" B_SubTreeBool2="0" I_monsternum1="0" I_monsternum2="0" I_monsternum3="0" I_monsternum4="0" I_totalnum="0" B_switch="0">
+    <Selector>
+      <Sequence>
+        <IntComparison type="0" Shared_Int1Name="totalnum" int1Value="0" Shared_Int2Name="" int2Value="2" />
+        <GetEntityCount Way="0" Shared_StoreCountName="typeid" Shared_StoreCountmValue="0" />
+        <IntComparison type="3" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="totalnum" int2Value="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90050" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="1" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90051" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="2" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90052" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="3" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90053" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="4" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90054" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="5" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90055" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="6" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="90056" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="2" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="7" />
+        <SetInt Shared_ValueName="typeid" value="0" Shared_StoredResultName="totalnum" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_awaken_three>

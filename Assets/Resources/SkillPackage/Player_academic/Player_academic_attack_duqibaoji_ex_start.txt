@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_academic_attack_duqibaoji_ex_start</Name>
+  <ClipName>Animation/Player_academic/Player_academic_duqibaoji</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.700000048</At>
+      <Range>4</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_academic/Player_academic_duqibaoji_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_academic/Player_academic_duqibaoji_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_du</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.666666746</At>
+      <End>2.50000024</End>
+      <Fx>Effects/High_Resources/Prefabs/Academic/Player_academic_attack_duqibaoji_Clip01</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>2.16666675</End>
+      <Fx>Effects/High_Resources/Prefabs/Academic/Player_academic_attack_duqibaoji_Clip03</Fx>
+      <Bone>Bip01_academic/Bip01 Spine_academic/Bip01 Spine1_academic/Bip01 Neck_academic/Bip01 R Clavicle_academic/Bip01 R UpperArm_academic/Bip01 R Forearm_academic/Bip01 R Hand_academic/Bip01 R Finger1_academic</Bone>
+    </XFxData>
+  </Fx>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>2.50000024</Time>
+  <Cast_Range_Upper>4</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

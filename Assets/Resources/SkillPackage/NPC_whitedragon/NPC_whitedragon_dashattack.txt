@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>NPC_whitedragon_dashattack</Name>
+  <ClipName>Animation/NPC_whitedragon/NPC_whitedragon_dashattack</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>4</Runningtime>
+        <Velocity>2</Velocity>
+        <Radius>0.5</Radius>
+        <Prefab>Prefabs/Bullets/So_attack_b14_03</Prefab>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/NPC_whitedragon/NPC_whitedragon_dashattack_forward</Curve_Forward>
+      <Curve_Side>Curve/NPC_whitedragon/NPC_whitedragon_dashattack_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/NPC_whitedragon/NPC_whitedragon_dashattack_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>1</End>
+      <Fx>Effects/High_Resources/Prefabs/NPC/NPC_whitedragon_dashattack_Clip01</Fx>
+      <Destroy_Delay>1</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1</Not_Move_End>
+    <CanCancelAt>1</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1</Time>
+</XSkillData>

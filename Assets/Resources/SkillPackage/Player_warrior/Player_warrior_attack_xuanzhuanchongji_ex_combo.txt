@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_warrior_attack_xuanzhuanchongji_ex_combo</Name>
+  <ClipName>Animation/Player_warrior/Player_warrior_circleswingex_combo</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>0.433333337</At>
+      <Range>3</Range>
+      <Scope>2</Scope>
+      <Offset_Z>1</Offset_Z>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_warrior/Player_warrior_circleswingex_combo_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_warrior/Player_warrior_circleswingex_combo_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_warrior/Player_warrior_attack_circleswing_ex_combo_h_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.8</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>1.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>0</CoolDown>
+  <Time>1.66666675</Time>
+</XSkillData>

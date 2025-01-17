@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_archer_jx_lianxupaoji</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>1.6</End>
+      <Fx>Effects/High_Resources/Prefabs/Archer/Player_archer_jx_lianxupaoji_Clip01</Fx>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <End>2.766667</End>
+      <Fx>Effects/High_Resources/Prefabs/Archer/Player_archer_jx_lianxupaoji_Clip03</Fx>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>2</Index>
+      <Type>FirerBased</Type>
+      <End>1.70000029</End>
+      <Fx>Effects/High_Resources/Prefabs/Archer/Player_archer_jx_lianxupaoji_Clip04</Fx>
+      <Bone>Bip01 L Finger0_archer</Bone>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_archer/Player_archer_jx_lianxupaoji</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Player_archer_jx_lianxupaoji_start</Name>
+      <End>1.16666675</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Player_archer_jx_lianxupaoji_end</Name>
+      <End>1.60000014</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.60000014</Not_Move_End>
+    <Rotate_End>1.16666675</Rotate_End>
+    <Rotate_Speed>2</Rotate_Speed>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>2.83299971</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>2.60000014</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>2.833</Time>
+  <Cast_Range_Upper>10</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

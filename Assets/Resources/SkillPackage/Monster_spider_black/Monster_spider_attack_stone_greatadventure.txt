@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_attack_stone_greatadventure</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.53333354</At>
+      <End>3.00000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_spider_attack_stone_01</Fx>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.200000018</At>
+      <End>1.66666687</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_yj_yuan</Fx>
+      <ScaleX>4</ScaleX>
+      <ScaleZ>4</ScaleZ>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_spider_idle_jiguan</Name>
+      <End>1.2</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_spider_attack_stone</Name>
+      <End>1.8</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.99999952</Not_Move_End>
+    <CanCancelAt>2.99999952</CanCancelAt>
+  </Logical>
+  <Time>3</Time>
+  <Cast_Range_Upper>40</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

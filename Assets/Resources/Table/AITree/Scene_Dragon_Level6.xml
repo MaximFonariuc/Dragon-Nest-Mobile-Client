@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_Dragon_Level6>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="standbreath" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="43001" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0.5" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="43035" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="10" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="59.5:15.05:68.63" Pos2="59.5:15.05:68.63" Pos3="59.5:15.05:68.63" Pos4="59.5:15.05:68.63" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice1" DelayTime="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="icebind" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="21345" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="0" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="eventskillid" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="skillhurt" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <XHashFunc Input="Monster_sea_dragon_secondphase_icebind_nest" Shared_ResultName="HashRes" Shared_ResultmValue="0" />
+        <IntComparison type="2" Shared_Int1Name="eventskillid" int1Value="0" Shared_Int2Name="HashRes" int2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="43038" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="4" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice6" DelayTime="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="iceeyes" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="21324" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="0" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+        <CallScript FuncName="notice5" DelayTime="0" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_Dragon_Level6>

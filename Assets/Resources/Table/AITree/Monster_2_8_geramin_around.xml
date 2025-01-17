@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_2_8_geramin_around>
+  <EntryTask T_target="" F_heartrate="0.5" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="5" F_HeartRateMaxFloat="5" I_StringCompareResult="0" I_number="0" B_TrueIsInitialized="0">
+    <Selector>
+      <IsCastingSkill />
+      <Sequence>
+        <DetectEnimyInSight />
+        <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="50" FilterImmortal="0" />
+        <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+        <DoSelectSkillRandom />
+        <DoCastSkill Shared_TargetName="target" />
+      </Sequence>
+      <Navigation />
+    </Selector>
+  </EntryTask>
+</Monster_2_8_geramin_around>

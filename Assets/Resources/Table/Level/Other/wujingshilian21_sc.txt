@@ -1,0 +1,37 @@
+﻿
+
+func:killstorm
+aicommand -1 killstorm 153701
+
+func:killstormstart
+notice 黑暗水晶给我力量，让我用流沙淹没他们！
+
+func:warnning
+npcpopspeek 2 3003 快！勇士们[ff0000]打破周围的8个水晶[-]，来[ff0000]阻止[-]骷髅女王施放[ff0000]秒杀技能[-]！ 7
+
+func:killstormend
+notice 成功打破水晶，骷髅女王的[ff0000]大招[-]被[ff0000]打断了[-]！ 7
+
+func:numble
+notice [ffdc00]13秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]12秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]11秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]10秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]9秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]8秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]7秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]6秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]5秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]4秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]3秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]2秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]1秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]骷髅女王开始施放秒杀技能！
+
+func:removebuff
+removebuff 153701 50087
+
+func:expression
+notice 小心！骷髅女王的[ff0000]攻击力[-]和[ff0000]能力[-]增强了！ 6
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow
+
+func:start
+notice 消灭黄金骷髅女王！ 6
+
+func:expression_start
+bubble 153701 已经很久没有活人来了，哈哈.... 6
+
+func:door
+opendoor Door on
+
+
+info:Door 51.82687|14.41605|129.3611|337 on 20 24.41605 0.1

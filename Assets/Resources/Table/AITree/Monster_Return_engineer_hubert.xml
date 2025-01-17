@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_Return_engineer_hubert>
+  <EntryTask T_target="" F_heartrate="1" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0" F_LeftProb="0" F_RightProb="0" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_ExpProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="5" F_HeartRateMaxFloat="5" I_StringCompareResult="0" F_ratioidle="0" F_ratioleft="0" F_ratioright="0" F_ratioskill="0" F_ratiodistance="0" F_ratioexp="0">
+    <Selector>
+      <ReturnFailure>
+        <Sequence>
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="3" inclusive="0" Shared_StoredResultName="random" />
+          <Selector>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+              <CallScript FuncName="engineer_hubert_talk1" DelayTime="0" />
+            </Sequence>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="2" />
+              <CallScript FuncName="engineer_hubert_talk2" DelayTime="0" />
+            </Sequence>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="3" />
+              <CallScript FuncName="engineer_hubert_talk3" DelayTime="0" />
+            </Sequence>
+          </Selector>
+        </Sequence>
+      </ReturnFailure>
+      <RandomFloat Shared_MinName="" minValue="1" Shared_MaxName="" maxValue="1.5" inclusive="0" Shared_StoredResultName="heartrate" />
+    </Selector>
+  </EntryTask>
+</Monster_Return_engineer_hubert>

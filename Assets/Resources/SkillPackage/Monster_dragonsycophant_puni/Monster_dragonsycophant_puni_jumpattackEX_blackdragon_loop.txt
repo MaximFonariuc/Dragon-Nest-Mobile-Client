@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_dragonsycophant_puni_jumpattackEX_blackdragon_loop</Name>
+  <ClipName>Animation/Monster_dragonsycophant_puni/Monster_dragonsycophant_puni_followattack_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.8333334</At>
+      <Range>6</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_dragonsycophant_puni/Monster_dragonsycophant_puni_followattack_loop_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_dragonsycophant_puni/Monster_dragonsycophant_puni_followattack_loop_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_dragonsycophant_puni/Monster_dragonsycophant_puni_followattack_loop_up</Curve_Up>
+      <AimTarget>true</AimTarget>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5532</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <Height>1.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.2</Not_Move_End>
+    <CanCancelAt>1.2</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.2</Time>
+</XSkillData>

@@ -1,0 +1,72 @@
+﻿start tutorial
+
+--step 显示获得精灵界面
+--scond item 3210=1
+--scond item 600=10
+--scond inlevel 1
+--function showsprite 3210
+--empty
+
+--step 点击
+--scond inlevel 1
+--forceclick SpriteShowDlg Bg/Close 1
+--internaldelay 0.1
+
+--step 点击完成
+--scond inlevel 1
+--forceclick SpriteSystemDlg Bg/SpriteLotteryHandler/Bg/ResultFrame/OkButton 1
+--internaldelay 0.1
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 飞图标
+scond nostackui
+scond inlevel 1
+scond MainUI
+directsys 930
+econd SysOpened
+
+step 打开精灵界面
+--scond item 3210=1
+scond item 600=10
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysCSprite 1
+internaldelay 0.5
+
+step 点击上阵界面
+scond inlevel 1
+forceclick SpriteSystemDlg Bg/Tabs/XSys_SpriteSystem_Fight/Bg 1
+internaldelay 0.1
+
+step 点击精灵
+scond inlevel 1
+forceclick SpriteSystemDlg Bg/SpriteFightFrame/SelectHandlerParent/SpriteSelectHandler/ScrollView/WrapContent/item0
+internaldelay 0.1
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]上阵的精灵设置为队长就可以使用队长技能了，喂养还可以进行精灵等级升级！[-] -200
+audio Audio/VO/guide/guide25
+internaldelay 0.3
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]冒险家，艾琳不在的时候可以点击这里查看说明哦~[-] -200
+internaldelay 0.3
+
+step 点击？
+scond inlevel 1
+forceclick SpriteSystemDlg Bg/Help
+text 点击这里查看精灵说明 200 0
+internaldelay 0.1
+
+step 点任务
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+
+end tutorial

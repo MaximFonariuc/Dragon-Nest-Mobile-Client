@@ -1,0 +1,175 @@
+﻿start tutorial
+
+step 开放搞基谷系统
+scond inlevel 1
+newsys 91
+econd SysOpened
+
+step 进入搞基谷
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysEGayValley 1
+internaldelay 0.5
+
+--------------------------------------------------------------------------
+
+step 引导点击管家按钮
+scond inlevel 7
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysEGayValleyManager 1
+ailin [301b0a]点击管家，就可以呼唤我来帮忙啦。[-] -372
+pause
+
+step 引导点击T台按钮，寻路至模特处
+scond inlevel 7
+forceclick GayValleyManagerDlg Bg/ManagerFrame/Panel/XSys_GayValley_Fashion/Icon 1
+ailin [301b0a]领主大人，你的领地有很多有意思的地方，让我们先去时装区域看看吧。[-] -100
+internaldelay 0.3
+pause
+
+--待修改
+step 引导点击模特，跳出装扮UI
+scond inlevel 7
+scond delay 3
+clickentity gaymodel
+--ailin [301b0a]给他们一些时装试试吧，他们一定会成为很棒的模特的。[-] -200
+pause
+
+--tpl(Clone)最好要改名,目前先用{1}代替
+step 引导点击装扮UI，打开装扮页面
+scond inlevel 7
+forceclick GayModelMenuDlg Bg/Menu/{1}/button 1
+
+step 引导穿上时装1
+scond inlevel 7
+forceclick GayModelEquipDlg Bg/FashionPanel/SelectPart/Part5 1
+ailin [301b0a]给他们一些时装试试吧，他们一定会成为很棒的模特的。[-] -60
+internaldelay 0.3
+
+step 引导穿上时装2
+scond inlevel 7
+forceclick GayModelEquipDlg Bg/FashionPanel/Panel/item10095/Bg 1
+internaldelay 0.3
+
+step 引导变一个动作
+scond inlevel 7
+forceclick GayModelEquipDlg Bg/LeftPanel/GayRelate/Pose 1
+ailin [301b0a]热情的展示会让模特更加迷人哦。[-] -100
+internaldelay 0.3
+
+step 引导登台1
+scond inlevel 7
+forceclick GayModelEquipDlg Bg/LeftPanel/GayRelate/Appear 1
+internaldelay 0.3
+
+step 引导金钱
+scond inlevel 7
+notewindow GayModelEquipDlg Bg/LeftPanel/GayRelate/Earn/P 3|2
+ailin [301b0a]模特可是会有收入哦。[-] -400
+internaldelay 0.3
+
+--step 引导起名
+--scond inlevel 7
+--notewindow GayModelEquipDlg Bg/NameFrame/Bg/PlayerName 5|2
+--ailin [301b0a]这里可以为你的模特起个棒棒的艺名哦，说不定他将来会是和夏萝莉一样的大明星呢。[-] -400
+--internaldelay 0.3
+
+step 引导登台2
+scond inlevel 7
+forceclick GayModelEquipDlg Bg/NameFrame/Bg/OK 1
+ailin [301b0a]我都迫不及待了呢，快点登台吧。[-] -450
+internaldelay 0.3
+
+------------------------------------------------------------------------------
+
+step 引导点击管家UI
+scond inlevel 7
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysEGayValleyManager 1
+ailin [301b0a]告诉你哦，模特们可是会有收入的呢，一会儿一定要过来收获看看呀。[-] -368
+internaldelay 0.3
+
+step 引导点击钓鱼
+scond inlevel 7
+forceclick GayValleyManagerDlg Bg/ManagerFrame/Panel/XSys_GayValley_Fishing/Icon 1
+ailin [301b0a]领主大人，冒险之余也要放松一下，钓鱼是很好的休闲方式哦。[-] -368
+internaldelay 0.3
+pause
+
+step 钓鱼区域点亮
+scond inlevel 7
+scond delay 9
+forceclick GayValleyFishingDlg Bg/NotFishingFrame/BtnStartFishing 1
+ailin [301b0a]当鱼群出现，钓鱼台就会点亮，走上钓鱼台就可以钓鱼了哦。我们快过去吧。[-] -400
+internaldelay 0.3
+
+step 隐藏自动钓鱼按钮
+scond inlevel 7
+showbutton AutoFishingButton 0
+
+step 隐藏取消按钮
+scond inlevel 7
+showbutton StopFishingButton 0
+
+step 引导点击特效鱼
+scond inlevel 7
+noforceclick GayValleyFishingDlg Bg/InFishingFrame/Fish/BtnDo 1
+ailin [301b0a]看，那只鱼被拉住浮上来了，快收杆吧。[-] -200
+--internaldelay 0.5
+
+step 引导再次点击特效鱼
+scond inlevel 7
+noforceclick GayValleyFishingDlg Bg/InFishingFrame/Fish/BtnDo 1
+ailin [301b0a]又有一条大鱼上钩了呢，快收杆吧。[-] -200
+--internaldelay 0.5
+
+--step 显示自动钓鱼按钮
+--scond inlevel 7
+--showbutton AutoFishingButton 1
+
+step 显示隐藏按钮
+scond inlevel 7
+showbutton StopFishingButton 1
+
+--step 引导点击自动钓鱼
+--scond inlevel 7
+--forceclick GayValleyFishingDlg Bg/InFishingFrame/BtnSwitchAuto 1
+--ailin [301b0a]如果太累了，还可以自动钓鱼哦。[-] -200
+--internaldelay 1.5
+--pause
+
+step 引导取消
+scond inlevel 7
+forceclick GayValleyFishingDlg Bg/InFishingFrame/BtnStopFishing 1
+internaldelay 0.3
+
+step 点击角色
+scond inlevel 7
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAChar 1
+internaldelay 0.3
+
+step 点击道具
+scond inlevel 7
+forceclick HallDlg _canvas/SysListFrame/CharSysList/SysGrid/SysBBag 1
+internaldelay 0.3
+
+step 提示吃鱼
+scond inlevel 7
+notewindow BagDlg Bg/ItemPanel/Panel 1|1|1000
+ailin [301b0a]钓到的物品可以在这里查看哦。[-] -450 [301b0a]使用它们可是会得到随机奖励哦。[-]
+internaldelay 0.3
+
+step 退出道具界面
+scond inlevel 7
+noforceclick BagDlg Bg/Close 1
+internaldelay 0.3
+
+step 引导回城1
+scond inlevel 7
+notewindow BagDlg Bg/ItemPanel/Panel 1|1|1000
+ailin [301b0a]领主大人，您的领地还有许多尚未发觉的秘密等着您来探索哦，快四处逛一逛吧。[-] -200
+internaldelay 0.3
+
+--step 引导回城2
+--scond inlevel 7
+--noforceclick HallDlg _canvas/SecondMenuFrame/BtnExitGuild 1
+--internaldelay 0.3
+
+end tutorial

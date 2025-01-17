@@ -1,0 +1,32 @@
+start tutorial
+
+step 开放日常玩法
+scond nostackui
+scond inlevel 1
+scond MainUI
+directsys 57
+econd SysOpened
+
+step 点击日常玩法
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+internaldelay 0.2
+text 点击这里进入日常玩法 -200 0
+
+end tutorial
+
+step 进入竞技场
+scond inlevel 1
+scond activityopen
+scroll Activity 0
+forceclick ActivityHandler Bg/ActivityPanel/Warp/Tpl/Icon 1
+internaldelay 0.2
+text 这里就是竞技场的入口 200 0 
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]这里是战力比拼的战场，提升战力可获取大量奖励，20级还将开启公平模式天梯赛呢[-] -200
+internaldelay 0.3
+
+end tutorial

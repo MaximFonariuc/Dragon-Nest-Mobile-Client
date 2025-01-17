@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_huoshan_hellish_star2>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" I_monsternum1="0" I_monsternum2="0" I_totalnum="0" F_random="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="rongyan" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="150" MonsterId="41001" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="39.49:4.444799:62.59" Pos2="39.49:4.444799:62.59" Pos3="39.49:4.444799:62.59" Pos4="39.49:4.444799:62.59" FinalPos="39.49:4.444799:62.59" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-90" MonsterId="41002" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="54.72:4.444799:50.24" Pos2="54.72:4.444799:50.24" Pos3="54.72:4.444799:50.24" Pos4="54.72:4.444799:50.24" FinalPos="54.72:4.444799:50.24" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice6" DelayTime="45" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="rongyan1" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="50" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="rongyan1" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="35" MonsterId="41002" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="36.17:4.444799:43.28" Pos2="36.17:4.444799:43.28" Pos3="36.17:4.444799:43.28" Pos4="36.17:4.444799:43.28" FinalPos="36.17:4.444799:43.28" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice6" DelayTime="45" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="rongyan2" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="50" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="rongyan2" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="150" MonsterId="41002" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="39.49:4.444799:62.59" Pos2="39.49:4.444799:62.59" Pos3="39.49:4.444799:62.59" Pos4="39.49:4.444799:62.59" FinalPos="39.49:4.444799:62.59" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice6" DelayTime="45" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="rongyan3" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="50" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="rongyan3" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-90" MonsterId="41002" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="3" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="54.72:4.444799:50.24" Pos2="54.72:4.444799:50.24" Pos3="54.72:4.444799:50.24" Pos4="54.72:4.444799:50.24" FinalPos="54.72:4.444799:50.24" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallScript FuncName="notice6" DelayTime="45" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="rongyan1" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="50" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="shubaoshi" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="notice4" DelayTime="0" />
+        <Selector>
+          <Sequence>
+            <IntComparison type="4" Shared_Int1Name="monsternum" int1Value="0" Shared_Int2Name="" int2Value="6" />
+            <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="70655" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="10" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+            <CallScript FuncName="addbuff1" DelayTime="8" />
+            <CallScript FuncName="npcpopspeak3" DelayTime="8" />
+          </Sequence>
+          <Sequence>
+            <IntComparison type="4" Shared_Int1Name="monsternum" int1Value="0" Shared_Int2Name="" int2Value="4" />
+            <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="70654" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="10" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+            <CallScript FuncName="addbuff1" DelayTime="8" />
+            <CallScript FuncName="npcpopspeak2" DelayTime="8" />
+          </Sequence>
+          <Sequence>
+            <IntComparison type="1" Shared_Int1Name="monsternum" int1Value="0" Shared_Int2Name="" int2Value="3" />
+            <CallScript FuncName="npcpopspeak1" DelayTime="8" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Dead" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="41000" />
+        <IntOperator type="0" Shared_Int1Name="monsternum" int1Value="0" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="monsternum" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="fireeye" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="0" Shared_BuffIdName="" Shared_BuffIdmValue="70666" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="1" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="11" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="chongfeng" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="90" MonsterId="41008" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="63.98:3.966865:102.5353" Pos2="63.98:3.966865:102.5353" Pos3="63.98:3.966865:102.5353" Pos4="63.98:3.966865:102.5353" FinalPos="63.98:3.966865:102.5353" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="summon" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <CallScript FuncName="addbuff2" DelayTime="0" />
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="summon" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="30" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Dead" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="230011" />
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_huoshan_hellish_star2>

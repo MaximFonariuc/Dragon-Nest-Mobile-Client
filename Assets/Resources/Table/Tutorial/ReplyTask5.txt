@@ -1,0 +1,24 @@
+start tutorial
+
+step 第5场战斗出来
+scond nostackui
+scond taskscenefinished 8
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+--text 快把消息告诉职业导师 -200 0
+econd TalkingNpc
+
+step 点击任务点
+scond inlevel 1
+scond accepttask 9
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+--text 继续任务 -200 0
+econd TalkingNpc
+
+step 点击任务点
+scond inlevel 1
+scond finishtask 9
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+--text 继续任务 -200 0
+econd TalkingNpc
+
+end tutorial

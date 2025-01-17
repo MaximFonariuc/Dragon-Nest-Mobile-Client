@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_lamia_gray_defence_dragon</Name>
+  <ClipName>Animation/Monster_lamia/Monster_lamia_gray_defence</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_lamia/Monster_lamia_gray_defence_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_lamia/Monster_lamia_gray_defence_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>0.6666667</End>
+      <Fx>Effects/FX_Particle/Roles/Archer/Ar_attack_b13</Fx>
+    </XFxData>
+  </Fx>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.667</Not_Move_End>
+    <CanCancelAt>0.667</CanCancelAt>
+  </Logical>
+  <Time>0.667</Time>
+</XSkillData>

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1086114994951250}
+  m_IsPrefabParent: 1
+--- !u!1 &1086114994951250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4313926169697770}
+  - component: {fileID: 114922358911582866}
+  m_Layer: 0
+  m_Name: so_blood_c03_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4313926169697770
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086114994951250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114922358911582866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086114994951250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100096, guid: c16952a69d4f33f4fb0934f2cdf40f82, type: 3}
+  srcName: 01
+  replaceName: 03
+  srcDir: Equipments/blood_c01
+  targetDir: Equipments/blood_c03
+  ReplaceMeshList:
+  - srcMeshName: so_blood_c01_body
+    replaceEquipName: so_body
+    replaceTex: {fileID: 2800000, guid: 42fcf5d543bd89f4b83808f29782d357, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_blood_c01_book
+    replaceEquipName: so_second
+    replaceTex: {fileID: 2800000, guid: e92c2dc4840608e4d8e58681d3c325c1, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_blood_c01_boots
+    replaceEquipName: so_boots
+    replaceTex: {fileID: 2800000, guid: 7c99aa50856c54f4e916ed869203e541, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_blood_c01_glove
+    replaceEquipName: so_glove
+    replaceTex: {fileID: 2800000, guid: 3f829c8f8deb85b4bbfa557cd5576a0c, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_blood_c01_leg
+    replaceEquipName: so_leg
+    replaceTex: {fileID: 2800000, guid: 5f0be62a3277e4c44b7e4119460b2df7, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_blood_c01_steff_weapon
+    replaceEquipName: so_weapon
+    replaceTex: {fileID: 2800000, guid: 7096a5fa390730746bf604b17836a81c, type: 3}
+    isShareTex: 0

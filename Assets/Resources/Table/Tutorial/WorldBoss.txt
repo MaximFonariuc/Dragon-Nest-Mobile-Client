@@ -1,0 +1,22 @@
+﻿start tutorial
+
+--step 打开活动系统
+--scond inlevel 1
+--ailin [301b0a]勇士，[7100ff]世界boss[-]开放！集结朋友们去挑战吧。[-] -200
+--forceclick HallDlg _canvas/MainMenu/Panel2/SysAActivity 1.5
+--text 点击进入副本 -210 0
+
+--step 打开活动面板
+--scond inlevel 1
+--forceclick HallDlg _canvas/MainMenu/Panel2/SysGridV1/SysAActivity 1
+--internaldelay 0.3
+--text 打开活动面板 -200 0
+
+step 打开世界Boss
+scond inlevel 1
+--forceclick ActivityDlg Bg/Tabs/XSys_Activity_WorldBoss/Bg 1
+--internaldelay 0.3
+--text 打开世界Boss 200 0
+directsys 524
+
+end tutorial

@@ -1,0 +1,51 @@
+
+func:notice4
+opendoor Blockwall
+
+func:notice3
+opendoor Blockwall1
+
+func:notice9
+showdirection direction
+
+func:notice10
+showdirection direction1
+
+func:notice11
+showdirection direction2
+
+func:showcutscene
+showcutscene CutScene/3_2_start 102.056 0.866 149.57 60
+
+
+func:notice1
+opendoor 3_2cutscene
+
+
+func:warning
+npcpopspeek 2 3003 当心布洛怪释放强大的光环！ 7
+
+func:speak
+notice 铁甲蜥蜴招唤援军了 5
+
+func:attackspeak
+bubble 17102 嘶～小蜥蜥们快出来～ 5
+
+func:bosscall
+notice “消灭食人花可以解除Boss无敌！” 15
+
+func:entanglenotice
+notice “Boss被控制住了，快去攻击！” 5
+
+func:closedoor
+opendoor Door on
+
+
+func:addwudibuff
+addbuff 160003 50083 1
+
+func:addentanglebuff
+addbuff 160003 50083 2
+
+
+info:Door 94.70713|2.875231|147.6573|70.00004 on 30.0729 17.91168 0.1503645

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<GreatAdventure_drive_normal>
+  <EntryTask F_heartrate="0.3" B_IsPlayerBuffed="0" B_IsEnemyBuffed="0" F_random="0" I_compareres="0" I_typeid="0" V_eventpos="0:0:0" I_number="2">
+    <Selector>
+      <Sequence>
+        <BoolComparison Shared_Bool1Name="IsPlayerBuffed" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="45250" CopyMonsterId="0" MaxMonsterNum="2" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="137.1:25:29.3" Pos2="142.7:25:25.1" Pos3="127.6:25:23" Pos4="129.7:25:17" FinalPos="129.7:25:17" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="45250" CopyMonsterId="0" MaxMonsterNum="2" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="133.4:25:25.1" Pos2="135.3:25:21" Pos3="133.4:25:12.6" Pos4="131.5:25:27" FinalPos="131.5:25:27" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsPlayerBuffed" />
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Dead" Shared_ResultName="compareres" />
+        <IntComparison type="2" Shared_Int1Name="compareres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <CallScript FuncName="notice1" DelayTime="0" />
+        <Sequence>
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="45250" />
+          <IntOperator type="1" Shared_Int1Name="number" int1Value="2" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="number" />
+          <IntComparison type="2" Shared_Int1Name="number" int1Value="2" Shared_Int2Name="" int2Value="0" />
+          <KillMonster MonsterId="45033" />
+        </Sequence>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</GreatAdventure_drive_normal>

@@ -1,0 +1,41 @@
+﻿
+func:callxiaoniu
+notice 哞..！什么人？敢闯牛头人神殿？！！ 6
+
+func:dead
+notice 不怕死的就在向前走，我的兄弟们会帮我报仇的。 3
+
+func:chargespeak
+notice 地面开始震动，小心！牛头冲锋！ 5 
+
+func:part1
+notice 第一波：牛家六兄弟 5
+
+func:part2
+notice 第二波：守卫的驱逐 5
+
+func:part3
+notice 第三波：挑战翁德诺 5
+
+func:closedoor
+opendoor Door on
+
+func:killwave9
+killwave 9
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 51606
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+info:Door 126.39|16.25|150.86|0 off 10 21.25 0.1
+
+func:talk
+talkr 35 [ffebad]前面的迷雾很危险，我的老师就是在这里失踪的。我不希望你冒这样大的险。 Audio/VO/lines/lines123
+talkl [player] [ffebad]您内心里也希望我能找到当年的蛛丝马迹的，不是么？ Audio/VO/Warrior/warrior12|Audio/VO/Archer/archer12|Audio/VO/Sorceress/sorceress12|Audio/VO/Cleric/cleric12|Audio/VO/Academic/academic12|Audio/VO/Assassin/assassin12|Audio/VO/kali/kali12
+talkr 35 [ffebad]呵，被你看穿了啊，身为牧师或许不应该有这样的私心吧。愿女神保佑你，孩子。 Audio/VO/lines/lines124
+stoptalk

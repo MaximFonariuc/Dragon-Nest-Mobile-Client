@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_spiderblack_Left_4_Dead>
+  <EntryTask T_target="" F_heartrate="0.7" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_ExpProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="5" F_HeartRateMaxFloat="5" F_ratioidle="0" F_ratioleft="0" F_ratioright="0" F_ratioskill="0" F_ratiodistance="0" F_ratioexp="0" I_num="0" I_num1="0">
+    <Sequence>
+      <ConditionPlayerNum PlayerBaseProf="0" PlayerDetailProf="0" Way="1" Center="52.63:10.41:53.56" Radius="3" Shared_NumName="num1" Shared_NummValue="0" />
+      <IntComparison type="4" Shared_Int1Name="num1" int1Value="0" Shared_Int2Name="" int2Value="1" />
+      <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="100" FilterImmortal="0" Angle="0" Delta="0" TargetType="0" />
+      <DoSelectNearest />
+      <PhysicalAttack Shared_TargetName="target" />
+    </Sequence>
+  </EntryTask>
+</Monster_spiderblack_Left_4_Dead>

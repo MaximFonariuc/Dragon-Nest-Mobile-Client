@@ -1,0 +1,161 @@
+﻿
+func:start
+notice [403831]这里是黑龙地牢，来自东方的万碎爷铁匠柯林被关在了这里，快去救救他！ 6
+
+func:enemy_start
+notice 大量魔物守护着恶魔水晶，清除掉水晶身边的怪物，无敌将会消失 5
+
+func:aicommand
+aicommand -1 start_spawnwall 0
+
+func:Blockwall_partone
+opendoor Blockwall_partone on
+		
+func:Blockwall_partone_end
+opendoor Blockwall_partone_end
+
+func:Blockwall_parttwo
+opendoor Blockwall_parttwo
+
+func:Blockwall_parttwo_1
+opendoor Blockwall_parttwo_1 on
+
+func:Blockwall_zhalan1_on
+opendoor Blockwall_zhalan1 on
+
+func:Blockwall_zhalan1
+opendoor Blockwall_zhalan1
+
+func:Blockwall_zhalan2
+opendoor Blockwall_zhalan2
+
+func:Blockwall_zhalan3
+opendoor Blockwall_partone
+
+func:Blockwall_zhalan2_on
+opendoor Blockwall_zhalan2 on
+
+func:transferWall
+opendoor TransferWall on 76.73|1.252|136.65|2 0|0|0|0
+
+func:removebuff140308
+removebuff 140308 21514 1
+
+func:removebuff140329
+removebuff 140329 21514 1
+
+func:removebuff140330
+removebuff 140330 21514 1
+
+func:removebuff140343
+removebuff 140343 21514 1
+
+func:removebuff140344
+removebuff 140344 21514 1
+
+func:kill
+killwave 3
+killwave 6
+killwave 7
+killwave 8
+killwave 0
+killwave 1
+killwave 2
+killwave 39
+killwave 5
+
+func:kill_diyibo
+killwave 14
+killwave 16
+killwave 18
+killwave 15
+killwave 17
+killwave 19
+killwave 13
+
+func:kill_dierbo
+killwave 33
+
+func:kill_jiesuan
+killwave 4
+
+func:kill_disanbo
+killwave 34
+killwave 36
+killwave 37
+
+func:kill_disibo
+killwave 27
+killwave 30
+killwave 29
+
+func:kill_diwubo
+killwave 32
+killwave 28
+killwave 26
+
+
+func:jiguan_warning_broken
+notice 水晶周围已没有魔物，一个水晶的无敌解除了！ 6
+
+func:jiguan_warning_start
+notice 4|3|2|1|下一波魔物出现了！
+
+func:jiguan_warning_BOSS
+notice 所有的结界已经打破，守护BOSS即将出现，小心应对！ 6
+
+func:jiguan_warning_end
+notice 通往下个区域的通道已经打开，请小心躲避通道中的陷阱机关！ 6
+
+func:warning_blackbroo
+notice 黑暗邪恶法师出现了，它的力量会让玩家的生命遭受侵蚀。 6
+
+func:warning_whitebroo
+notice 堕落的光明巫师出现了，它正在治愈周围的魔物。 6
+
+func:npcpopspeek
+npcpopspeek 1 43307 [403831]勇士，你们终于来了，自从神圣天堂被黑龙攻陷后，我就被关在了这里！ 8
+
+func:npcpopspeek1
+npcpopspeek 1 43307 [403831]这里被黑龙的魔力封印，想要破除封印就必须破坏所有噩梦水晶。 8
+
+func:npcpopspeek2
+npcpopspeek 1 43307 [403831]干得漂亮！你知道吗，每当看到你们手中挥舞的武器，我就打心底高兴，呵呵！ 8
+
+func:npcpopspeek3
+npcpopspeek 1 43307 [403831]很快就能出去了，出去后被忘了告诉别人，这世界上最好的铁匠，就是我！ 8
+
+func:npcpopspeek4
+npcpopspeek 1 43307 [403831]快摧毁最后一枚水晶，出去之后我会告诉你们怎么进入神圣天堂，加油勇士。 8
+
+func:transferWall2
+opendoor TransferWall on 55.91|1.24|16.8|2 55.89|0.05|20.53972|0
+
+func:opendoor_transfer
+opendoor TransferWall
+
+func:transferWall3
+opendoor TransferWall on 76.683|1.24|106.95|2 76.83|0.05|110.19|0
+
+func:transferWall4
+opendoor TransferWall on 55.89|1.24|46.56|2 55.95|0.05|49.95|0
+
+func:opendoor_kill
+opendoor kill
+
+func:tongyongcutscene
+showcutscene CutScene/cutscene_generalshow 55.84378 0.05 23.49588 0 43330
+
+
+
+
+
+
+
+
+
+info:Blockwall_partone 55.90945|1.18191|20.25248|0 off 50 26.18191 0.1
+info:Blockwall_partone_end 55.86944|1.18191|48.75248|0 on 50 26.18191 0.1
+info:Blockwall_parttwo 76.62644|1.18191|107.1665|0 on 50 26.18191 0.1
+info:Blockwall_parttwo_1 76.62644|1.18191|109.6605|0 off 50 26.18191 0.1
+

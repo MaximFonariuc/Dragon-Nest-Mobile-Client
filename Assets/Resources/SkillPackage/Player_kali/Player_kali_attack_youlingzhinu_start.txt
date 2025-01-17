@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack_youlingzhinu_start</Name>
+  <ClipName>Animation/Player_kali/Player_kali_youlingzhinu_start</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.266666681</At>
+      <Loop>true</Loop>
+      <Cycle>0.333333343</Cycle>
+      <Loop_Count>4</Loop_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>0.3</Runningtime>
+        <Velocity>20</Velocity>
+        <Radius>0.7</Radius>
+        <Prefab>Prefabs/Bullets/empty</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <At_Z>-1</At_Z>
+        <StaticCollider>false</StaticCollider>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Velocity>3</Velocity>
+      <Using_Curve>true</Using_Curve>
+      <Control_Towards>true</Control_Towards>
+      <Curve_Forward>Curve/Player_kali/Player_kali_youlingzhinu_start_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_kali/Player_kali_youlingzhinu_start_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_kali/Player_kali_youlingzhinu_start_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.133</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.01</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <Time>1.867</Time>
+</XSkillData>

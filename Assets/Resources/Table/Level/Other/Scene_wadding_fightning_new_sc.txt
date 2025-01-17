@@ -1,0 +1,82 @@
+﻿
+
+func:zhanquan_01_1
+opendoor zhanquan_01_1 on
+
+func:zhanquan_01_2
+opendoor zhanquan_01_2 on
+
+func:zhanquan_02_1
+opendoor zhanquan_02_1 on
+
+func:zhanquan_02_2
+opendoor zhanquan_02_2 on
+
+func:zhanquan_03_1
+opendoor zhanquan_03_1 on
+
+func:zhanquan_03_2
+opendoor zhanquan_03_2 on
+
+func:01_1
+opendoor zhanquan_01_1
+
+func:01_2
+opendoor zhanquan_01_2
+
+func:02_1
+opendoor zhanquan_02_1
+
+func:02_2
+opendoor zhanquan_02_2
+
+func:03_1
+opendoor zhanquan_03_1
+
+func:03_2
+opendoor zhanquan_03_2
+
+func:aicommand
+aicommand -1 zhanquan 0
+
+func:aicommand_01_1
+aicommand -1 zhanquan_01_1 0
+
+func:aicommand_01_2
+aicommand -1 zhanquan_01_2 0
+
+func:aicommand_02_1
+aicommand -1 zhanquan_02_1 0
+
+func:aicommand_02_2
+aicommand -1 zhanquan_02_2 0
+
+func:aicommand_03_1
+aicommand -1 zhanquan_03_1 0
+
+func:aicommand_03_2
+aicommand -1 zhanquan_03_2 0
+
+func:zhanquan_warning
+notice [ffdc00]10秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]9秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]8秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]7秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]6秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]5秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]4秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]2秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]1秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！|[ffdc00]10秒[-]钟之后，感情历练兽秒杀你们，分别站提示圈阻止它！
+
+func:zhanquan_end
+notice 成功的打断了雷兽的大招！ 6
+
+func:bianshen
+aicommand -1 bianshen 0
+
+func:kunbang_warning
+notice 感情历练兽将你的伴侣捆住，快！变身成杰兰特帮助你的伴侣脱困！ 11
+
+func:bianshen_remove
+aicommand -1 remove 0
+
+func:kunbang
+aicommand -1 kunbang 0
+
+func:block
+opendoor blockwall
+
+
+info:blockwall 76.04414|29.40174|158.7637|0 on 50 54.40174 0.1

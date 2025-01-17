@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_professork_electiric_loop</Name>
+  <ClipName>Animation/Monster_professork/Monster_professork_electiric_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.0333333351</At>
+      <Range>1</Range>
+      <Scope>360</Scope>
+      <Cycle>0.333333343</Cycle>
+      <Loop_Count>2</Loop_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>0.1</Runningtime>
+        <Prefab>Prefabs/Bullets/empty</Prefab>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+      </LongAttackData>
+      <Warning>true</Warning>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Warning>
+    <XWarningData>
+      <Type>Warning_All</Type>
+      <FxDuration>2</FxDuration>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_professork_electiric_nest_02</Fx>
+      <Mobs_Inclusived>true</Mobs_Inclusived>
+      <PosRandomRange>0</PosRandomRange>
+    </XWarningData>
+  </Warning>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <Time>1</Time>
+</XSkillData>

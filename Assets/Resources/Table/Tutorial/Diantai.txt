@@ -1,0 +1,22 @@
+﻿start tutorial
+
+step 艾琳出来bb
+scond nostackui
+scond inlevel 1
+scond MainUI
+skip RadioNoCanOpen
+--empty
+--ailin [301b0a]龙之谷电台开启了，快来收听吧！[-] -200
+forceclick RadioDlg Btn 1
+text 点击这里开启电台 -200 0
+internaldelay 0.2
+
+step 点击任务点
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+
+step 点击任务点
+scond inlevel 1
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+
+end tutorial

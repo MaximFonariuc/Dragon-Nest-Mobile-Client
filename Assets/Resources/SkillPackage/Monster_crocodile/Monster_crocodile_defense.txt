@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_crocodile_defense</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.866666734</At>
+      <End>10.6666679</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_crocodile_defense_Clip01</Fx>
+      <ScaleX>1.5</ScaleX>
+      <ScaleZ>1.5</ScaleZ>
+      <OffsetY>0.5</OffsetY>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>10.000001</At>
+      <End>19.5000019</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_crocodile_defense_Clip01</Fx>
+      <ScaleX>1.5</ScaleX>
+      <ScaleZ>1.5</ScaleZ>
+      <OffsetY>0.5</OffsetY>
+      <Destroy_Delay>0.2</Destroy_Delay>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_crocodile_defense_start</Name>
+      <End>1.50000012</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_crocodile_defense_loop</Name>
+      <End>18</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>19.5</Not_Move_End>
+    <CanCancelAt>19.5</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>19.5</Time>
+  <Cast_Range_Upper>100</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

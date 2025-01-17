@@ -1,0 +1,69 @@
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice
+notice [ffdc00]击碎黑暗水晶，挑战最终BOSS 20
+
+func:notice1
+notice [ffdc00]10秒后，水晶碎裂，BOSS登场|[ffdc00]9秒后，水晶碎裂，BOSS登场|[ffdc00]8秒后，水晶碎裂，BOSS登场|[ffdc00]7秒后，水晶碎裂，BOSS登场|[ffdc00]6秒后，水晶碎裂，BOSS登场|[ffdc00]5秒后，水晶碎裂，BOSS登场|[ffdc00]4秒后，水晶碎裂，BOSS登场|[ffdc00]3秒后，水晶碎裂，BOSS登场|[ffdc00]2秒后，水晶碎裂，BOSS登场|[ffdc00]1秒后，水晶碎裂，BOSS登场|[ffdc00]0秒后，水晶碎裂，BOSS登场
+
+func:shenyuan
+aicommand -1 shenyuan 81869
+
+func:addbuff1
+addbuff 81869 80214 1
+
+func:removebuff1
+removebuff 81869 80213
+
+func:BlockWall1
+opendoor BlockWall1
+
+func:BlockWall2
+opendoor BlockWall2
+
+func:BlockWall3
+opendoor BlockWall3
+
+func:TransferWall
+opendoor TransferWall on
+
+func:closedoor
+opendoor Door on
+
+func:addbuff
+addbuff 81869 50082 1
+
+func:removebuff
+removebuff 81869 50082
+
+func:direction6
+showdirection direction6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

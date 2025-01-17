@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_academic_attack_hanbingchuoci_ex_end</Name>
+  <ClipName>Animation/Player_academic/Player_academic_hanbingchuoci_combo</ClipName>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>0.7333335</At>
+      <Range>2.5</Range>
+      <Scope>4</Scope>
+      <Offset_Z>1</Offset_Z>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_academic/Player_academic_hanbingchuoci_combo_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_academic/Player_academic_hanbingchuoci_combo_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_academic/Player_academic_hanbingchuoci_combo_h_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>2</Offset>
+      <Height>1</Height>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>2</Time>
+  <Cast_Range_Upper>2</Cast_Range_Upper>
+</XSkillData>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack</Name>
+  <TypeToken>0</TypeToken>
+  <ClipName>Animation/Player_kali/Player_kali_attack_A0</ClipName>
+  <SkillPosition>3</SkillPosition>
+  <MultipleAttackSupported>true</MultipleAttackSupported>
+  <BackTowardsDecline>0.5</BackTowardsDecline>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.200000018</At>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>0.5</Runningtime>
+        <Velocity>12</Velocity>
+        <Radius>0.2</Radius>
+        <Prefab>Prefabs/Bullets/So_attack_a1</Prefab>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <FlyWithTerrain>false</FlyWithTerrain>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <End>0.6666667</End>
+      <Offset>1.75</Offset>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>10</CanReplacedby>
+    <Not_Move_End>0.6666667</Not_Move_End>
+    <CanCancelAt>0.49999997</CanCancelAt>
+  </Logical>
+  <CoolDown>0.3</CoolDown>
+  <Time>0.6666667</Time>
+  <Cast_Range_Upper>5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+  <CameraTurnBack>2.5</CameraTurnBack>
+</XSkillData>

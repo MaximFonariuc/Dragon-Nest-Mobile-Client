@@ -1,0 +1,29 @@
+﻿start tutorial
+
+--step 点击日常玩法
+--scond nostackui
+--scond inlevel 1
+--scond MainUI
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+--internaldelay 0.2
+--text 点击这里进入日常玩法 -200 0
+
+step 点击PVP活动页签
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysEPVP 1 1 0 0
+internaldelay 1
+
+step 进入天梯赛
+scond inlevel 1
+forceclick MobaActivityDlg Bg/PVPActivityFrame/Panel/item0 
+internaldelay 0.2
+text 点击这里进入1:1天梯赛 200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]擅长PK的操作大神，快来开启1:1天梯赛吧~实时手动操作，真人PK哦[-] -200
+audio Audio/VO/guide/guide14
+internaldelay 0.3
+
+end tutorial

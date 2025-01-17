@@ -1,0 +1,23 @@
+﻿start tutorial
+
+step 抽奖
+scond nostackui
+directsys 31
+--newsys 31
+--econd SysOpened
+
+step 十连抽
+scond inlevel 1
+scond MainUI
+ailin [301b0a]告诉你个秘密哦，可以通过龙蛋快速获取[7100ff]时装[-]哦，来看一下吧。[-] -200
+forceclick HallDlg _canvas/SecondMenuFrame/SecondMenu/SysGridH2/SysCDraw 1
+internaldelay 0.3
+
+
+step 免费抽取
+scond inlevel 1
+forceclick Lottery Bg/SpecialLottery/Bg/Free/LotteryFree 1
+internaldelay 0.5
+text 免费抽取龙蛋奖励 -200 0
+
+end tutorial

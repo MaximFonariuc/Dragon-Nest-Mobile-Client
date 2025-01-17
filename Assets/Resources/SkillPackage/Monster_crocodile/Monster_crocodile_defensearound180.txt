@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_crocodile_defensearound180</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.50000012</At>
+      <End>18.1666</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_crocodile_defense_Clip02</Fx>
+      <ScaleX>1.5</ScaleX>
+      <ScaleZ>1.5</ScaleZ>
+      <OffsetY>0.5</OffsetY>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_crocodile_defense_start</Name>
+      <End>1.50000012</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_crocodile_defense_looparound180</Name>
+      <End>16.6666</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>19.5</Not_Move_End>
+    <CanCancelAt>19.5</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>18.167</Time>
+  <Cast_Range_Upper>100</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

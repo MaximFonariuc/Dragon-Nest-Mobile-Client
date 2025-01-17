@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_attack_tiantangshenpan_start</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_attack_heavens_judgment_start</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>1.33333337</At>
+      <Range>5.2</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_cleric/Player_cleric_attack_heavens_judgment_start_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_cleric/Player_cleric_attack_heavens_judgment_start_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_cleric/Player_cleric_attack_heavens_judgment_start_up</Curve_Up>
+      <StandOnAtEnd>false</StandOnAtEnd>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.01</Offset>
+      <Height>0.2</Height>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/lw_throwing_hit</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.50000012</Not_Move_End>
+    <CanCancelAt>1.50000012</CanCancelAt>
+  </Logical>
+  <CoolDown>1.5</CoolDown>
+  <Time>1.50000012</Time>
+</XSkillData>

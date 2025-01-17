@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1881172679551042}
+  m_IsPrefabParent: 1
+--- !u!1 &1881172679551042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4268689711908406}
+  - component: {fileID: 114968383352326074}
+  m_Layer: 0
+  m_Name: cl_lotus_a04_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4268689711908406
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881172679551042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114968383352326074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881172679551042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100094, guid: 4800d012d562f364ab51f161fb6ec0b5, type: 3}
+  srcName: 01
+  replaceName: 04
+  srcDir: Equipments/lotus_a01
+  targetDir: Equipments/lotus_a04
+  ReplaceMeshList:
+  - srcMeshName: cl_lotus_a01_body
+    replaceEquipName: cl_body
+    replaceTex: {fileID: 2800000, guid: 7d02652ac0dc7ba48a44c1a40c97a7de, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_lotus_a01_boots
+    replaceEquipName: cl_boots
+    replaceTex: {fileID: 2800000, guid: 582054318022880468102a02670e0752, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_lotus_a01_glove
+    replaceEquipName: cl_glove
+    replaceTex: {fileID: 2800000, guid: eeeaaec0fc063c440977678a938019ef, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_lotus_a01_helmet
+    replaceEquipName: cl_helmet
+    replaceTex: {fileID: 2800000, guid: 1a83861269ad98c47b67f6f0a1219d64, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_lotus_a01_leg
+    replaceEquipName: cl_leg
+    replaceTex: {fileID: 2800000, guid: 7122550e69b35414ca6b0106dea2bbdf, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_lotus_a01_shield
+    replaceEquipName: cl_second
+    replaceTex: {fileID: 2800000, guid: e0b59fe3121bae2419089c90e792f8c2, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_lotus_a01_mace_weapon
+    replaceEquipName: cl_weapon
+    replaceTex: {fileID: 2800000, guid: f1d52d81a2bf026408335cfe9d8346d6, type: 3}
+    isShareTex: 0

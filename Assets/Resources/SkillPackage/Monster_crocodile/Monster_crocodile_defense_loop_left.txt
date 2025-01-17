@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_crocodile_defense_loop_left</Name>
+  <ClipName>Animation/Monster_crocodile/Monster_crocodile_defense_loop</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>0.100000009</At>
+      <Range>7</Range>
+      <Scope>5</Scope>
+      <Offset_Z>-4</Offset_Z>
+      <Loop>true</Loop>
+      <Cycle>0.3</Cycle>
+      <Loop_Count>60</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <At>5</At>
+      <End>18</End>
+      <Rotation_Speed>-60</Rotation_Speed>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>18</Not_Move_End>
+    <CanCancelAt>18</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>18</Time>
+  <Cast_Range_Upper>100</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,41 @@
+start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 开放外显
+scond nostackui
+scond inlevel 1
+directsys 120
+econd SysOpened
+
+step 打开角色界面
+scond item 16375=1
+scond inlevel 1
+forceclick HallDlg canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem
+internaldelay 0.5
+text 打开制作界面 -200 0
+
+step 点击某武器
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/Items/Panel/WrapContent/equip216375/Icon
+internaldelay 0.5
+
+step 点击装备按钮
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button1
+internaldelay 0.5
+
+step 点击外显按钮
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/EquipListPanel/ShowWearing
+internaldelay 0.5
+
+step 打钩外显
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/WearingPanel/Panel/Weapon_equip
+internaldelay 0.5
+
+end tutorial

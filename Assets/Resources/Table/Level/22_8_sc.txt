@@ -1,0 +1,57 @@
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:killwave1
+killwave 1
+
+func:killwave2
+killwave 2
+
+func:BlockWall1
+opendoor BlockWall1
+
+func:BlockWall2
+opendoor BlockWall2
+
+func:BlockWall3
+opendoor BlockWall3
+
+func:TransferWall
+opendoor TransferWall on 90|6.58|118.77|2 96.92|7.04936|131.3823|60
+
+func:addbuff
+addbuff 25403 50082 1
+
+func:removebuff
+removebuff 25403 50082
+
+func:notice
+notice 先击杀小怪后，宝箱无敌会消失 8
+
+func:notice1
+notice 宝箱无敌已经消失 8
+
+func:notice2
+notice 被封印的雷兽被放出小心 8
+
+func:cutscene
+showcutscene CutScene/cutscene_generalshow 106.97 7.049634 137.19 60 25400
+
+
+
+
+
+
+
+
+
+
+
+
+info:BlockWall1 95.65327|6.24786|78.73277|330 on 20 16.24786 0.1
+info:BlockWall2 90.58055|5.582951|119.1068|28 on 20 15.58295 0.1
+info:BlockWall3 94.53055|8.092953|129.0868|28 on 20 18.09295 0.1

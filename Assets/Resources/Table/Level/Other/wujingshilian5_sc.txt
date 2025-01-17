@@ -1,0 +1,124 @@
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:killspawn1
+killspawn 22
+
+func:notice1
+opendoor Blockwall
+
+func:notice2
+opendoor Blockwall1
+
+func:notice3
+opendoor Blockwall2
+
+func:notice9
+showcutscene CutScene/2_8_start 93.75 16.022 150.26 -90
+
+func:notice4
+showcutscene CutScene/Nest_1_1_Start
+
+func:start
+bubble 150711 战斗！入侵者！你别想通过！ 7
+
+func:part1_s
+bubble 150714 备战！备战！闯入者...！ 7
+
+func:part1_1
+notice 小心！部队集结了...！ 5
+
+func:notice6
+notice 消灭了拦路的魔物，继续前进吧
+
+func:part2_s
+bubble 150705 入侵者！我要撞死你...！ 7
+
+func:notice7
+notice 先锋已被击溃，继续追击
+
+func:part3_s
+npcpopspeek 2 150703 守卫！推进！～布洛怪！释放你的光环！ 7
+
+func:notice8
+notice 魔物大军消灭了，快去阻止贝思柯德吧！ 7
+
+func:boss_1
+bubble 150509 你们这群垃圾真是不知死活！ 6
+
+func:boss_2
+bubble 150509 见识一下我真正的力量吧！ 6
+
+func:boss_3
+bubble 150509 先是杰兰特...还有你...！ 6
+
+func:boss_4
+bubble 150509 你真的再次激怒我了...！ 6
+
+func:boss_5
+notice 啧...！ 5
+
+func:notice13
+showdirection direction
+
+func:notice10
+showdirection direction1
+
+func:notice11
+showdirection direction2
+
+func:notice12
+showdirection direction3
+
+func:notice14
+opendoor 2_8cutscene
+
+func:closedoor
+opendoor Door on
+
+func:aicommand
+aicommand -1 summonfake 150509
+
+func:aicommand4
+aicommand -1 call4 150509
+
+func:addbuff
+addbuff 150509 20002 1
+
+func:tips
+notice 贝思柯德召唤了[ff0000]黑暗幻影[-],并且[ff0000]技能[-]增强了！
+
+func:tips1
+notice 贝思柯德召唤了更多[ff0000]黑暗幻影[-],并且[ff0000]技能[-]增强了！
+
+func:aurawarning
+npcpopspeek 2 3003 小心！要尽快清除掉光环！ 7
+
+func:darktouch
+bubble 150509 你的力量不值一提！ 6
+
+func:stompnslash
+bubble 150509 尝尝这个吧！ 6
+
+
+func:opengate
+opendoor gate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+info:Door 99.80389|16.89429|150.8472|270 on 28.4889 31.13873 0.1424446

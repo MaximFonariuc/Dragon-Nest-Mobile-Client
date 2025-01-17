@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_attack_jiguangposui_ex_loop</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_idle</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <At>0.100000009</At>
+      <Range>2</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <End>0.2</End>
+      <Offset>0.25</Offset>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.001</Offset>
+      <Height>1</Height>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>1.2</End>
+      <Fx>Effects/High_Resources/Prefabs/Soceress/Player_sorceress_attack_jiguangposui_Clip03</Fx>
+      <Destroy_Delay>1</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>0</CoolDown>
+  <Time>1.2</Time>
+</XSkillData>

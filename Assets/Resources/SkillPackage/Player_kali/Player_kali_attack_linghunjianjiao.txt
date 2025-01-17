@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack_linghunjianjiao</Name>
+  <TypeToken>3</TypeToken>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_kali/Player_kali_attack_linghunjianjiao</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>1.2</Time>
+      <FovAmp>1</FovAmp>
+      <Frequency>15</Frequency>
+      <Coordinate>Camera</Coordinate>
+      <AmplitudeX>0.05</AmplitudeX>
+      <AmplitudeY>0.05</AmplitudeY>
+      <AmplitudeZ>0.05</AmplitudeZ>
+      <At>1.16666675</At>
+      <Combined>true</Combined>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Combined>
+    <XCombinedData>
+      <Name>Player_kali_attack_linghunjianjiao_start</Name>
+      <End>1.06666672</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Player_kali_attack_linghunjianjiao_loop</Name>
+      <End>0.8333334</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Player_kali_attack_linghunjianjiao_end</Name>
+      <End>1.13333344</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.06666684</Not_Move_End>
+    <Rotate_Server_Sync>true</Rotate_Server_Sync>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>3.033</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>2.06666684</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CameraPostEffect>
+    <At>1.86666679</At>
+    <End>2.00000024</End>
+    <Effect>RadialBlur</Effect>
+  </CameraPostEffect>
+  <CoolDown>10</CoolDown>
+  <Time>3.033</Time>
+  <Cast_Range_Upper>5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

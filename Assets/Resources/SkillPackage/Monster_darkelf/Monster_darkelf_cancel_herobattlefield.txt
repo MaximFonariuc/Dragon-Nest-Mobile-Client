@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_darkelf_cancel_herobattlefield</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_darkelf/Monster_darkelf_cancel_herobattlefield</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_darkelf_cancel_herobattlefield_start</Name>
+      <End>0.867</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_darkelf_surge_herobattelfield_end</Name>
+      <End>1.23333335</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.06666672</Not_Move_End>
+    <Rotate_End>1.06666672</Rotate_End>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>2.1</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>1.06666672</CanCancelAt>
+  </Logical>
+  <Time>2.1</Time>
+</XSkillData>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_hound_normal_expression</Name>
+  <ClipName>Animation/Monster_hound/Monster_hound_expression</ClipName>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_hound/Monster_hound_expression_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_hound/Monster_hound_expression_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.8600001</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/xiaogou_sn</Fx>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_hound/Monster_hound_normal_expression</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.86666679</Not_Move_End>
+    <CanCancelAt>2.86666679</CanCancelAt>
+  </Logical>
+  <CoolDown>8</CoolDown>
+  <Time>2.86666679</Time>
+  <Cast_Range_Upper>4</Cast_Range_Upper>
+  <Cast_Scope>180</Cast_Scope>
+</XSkillData>

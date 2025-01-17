@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_unstable_eyewave</Name>
+  <ClipName>Animation/Monster_unstable/Monster_unstable_eyewave</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>1.7</At>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Follow>true</Follow>
+        <Runningtime>6</Runningtime>
+        <Velocity>4</Velocity>
+        <Radius>1</Radius>
+        <Prefab>Prefabs/Bullets/Monster_unstable_eyewave_01</Prefab>
+        <End_Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_unstable_eyewave_02</End_Fx>
+        <EndFx_LifeTime>3</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <At_Y>-0.2</At_Y>
+        <At_Z>0.5</At_Z>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>2</Time_Present_Straight>
+      <Time_Hard_Straight>2</Time_Hard_Straight>
+      <State>Hit_Freezed</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_unstable_eyewave_03</Fx>
+      <CurveUsing>true</CurveUsing>
+      <FreezeDuration>3</FreezeDuration>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.60000014</Not_Move_End>
+    <CanCancelAt>2.60000014</CanCancelAt>
+  </Logical>
+  <Time>2.60000014</Time>
+  <Cast_Range_Upper>10</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

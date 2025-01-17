@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_golem_lotus_icestorm_blackdragon_attack</Name>
+  <ClipName>Animation/Monster_golem_lotus/Monster_golem_lotus_attractattack</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <At>1.33333361</At>
+      <Range>6</Range>
+      <Scope>360</Scope>
+      <Offset_Z>3</Offset_Z>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>0.1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.43333352</At>
+      <End>3.66666675</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_golem_lotus_icestorm_blackdragon_01</Fx>
+      <OffsetZ>3</OffsetZ>
+      <Follow>false</Follow>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>1.00000012</At>
+      <End>2.03133321</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_yj_yuan</Fx>
+      <ScaleX>12</ScaleX>
+      <ScaleZ>12</ScaleZ>
+      <OffsetZ>3</OffsetZ>
+      <Follow>false</Follow>
+      <StickToGround>true</StickToGround>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.66666675</Not_Move_End>
+    <CanCancelAt>3.66666675</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>3.66666675</Time>
+  <Cast_Range_Upper>7</Cast_Range_Upper>
+  <Cast_Offset_Z>3</Cast_Offset_Z>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

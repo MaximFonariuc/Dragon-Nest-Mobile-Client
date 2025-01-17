@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_runaway>
+  <EntryTask T_target="" F_heartrate="0.1" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="1" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="4" F_HeartRateMaxFloat="4">
+    <Selector>
+      <ReturnFailure>
+        <Sequence>
+          <DetectEnimyInSight />
+          <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="10" FilterImmortal="0" />
+          <DoSelectNearest />
+        </Sequence>
+      </ReturnFailure>
+      <Sequence>
+        <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="" float2Value="2" />
+        <Selector>
+          <MoveStratage Shared_TargetName="target" StratageIndex="0" Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" />
+        </Selector>
+        <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+        <FloatOperator type="2" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" Shared_StoredResultName="heartrate" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Monster_runaway>

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1321064645431012}
+  m_IsPrefabParent: 1
+--- !u!1 &1321064645431012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4112142497269296}
+  - component: {fileID: 114911181038446586}
+  m_Layer: 0
+  m_Name: ac_ydd_d03_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4112142497269296
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321064645431012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114911181038446586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1321064645431012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100000, guid: 624b99b6b0c8bd648b623ddf05ced83c, type: 3}
+  srcName: 01
+  replaceName: 03
+  srcDir: Equipments/ydd_d01
+  targetDir: Equipments/ydd_d03
+  ReplaceMeshList:
+  - srcMeshName: ac_ydd_d01_body
+    replaceEquipName: ac_body
+    replaceTex: {fileID: 2800000, guid: 4dbf6cfdbb5ccd641af43b442a85cdc2, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_ydd_d01_boots
+    replaceEquipName: ac_boots
+    replaceTex: {fileID: 2800000, guid: 796b00942ae636a419b97b1a2603f9bb, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_ydd_d01_cannon_weapon
+    replaceEquipName: ac_weapon
+    replaceTex: {fileID: 2800000, guid: ce85f322a870e2240942d9ce5363c1ef, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_ydd_d01_gauntlet
+    replaceEquipName: ac_second
+    replaceTex: {fileID: 2800000, guid: 79c85d14d87222240b7439d127f171c2, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_ydd_d01_glove
+    replaceEquipName: ac_glove
+    replaceTex: {fileID: 2800000, guid: d93334006c7d9c4429bc61b56864d38d, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_ydd_d01_helmet
+    replaceEquipName: ac_helmet
+    replaceTex: {fileID: 2800000, guid: b25018d17e7dcdf4ea1511b31c6c95db, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_ydd_d01_leg
+    replaceEquipName: ac_leg
+    replaceTex: {fileID: 2800000, guid: 95e9f2fbcfcb90d47abf4ba31a53c390, type: 3}
+    isShareTex: 0

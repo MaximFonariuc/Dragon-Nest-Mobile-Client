@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_archer_jump_back</Name>
+  <ClipName>Animation/Player_archer/Player_archer_jump</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_archer/Player_archer_jump_far_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_archer/Player_archer_jump_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_archer/Player_archer_jump_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_archer/Player_archer_jump_back</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+    <Not_Move_End>0.6666667</Not_Move_End>
+  </Logical>
+  <CoolDown>0.6666667</CoolDown>
+  <Time>0.6666667</Time>
+</XSkillData>

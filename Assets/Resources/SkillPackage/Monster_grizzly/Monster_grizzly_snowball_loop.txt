@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_grizzly_snowball_loop</Name>
+  <ClipName>Animation/Monster_grizzly/Monster_grizzly_snowball_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.433333367</At>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>4</Runningtime>
+        <Velocity>30</Velocity>
+        <Radius>1.5</Radius>
+        <Prefab>Prefabs/Bullets/Monster_grizzly_snowball_nest_02</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <At_Y>-2.5</At_Y>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>0.3</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>0.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <Time>2</Time>
+  <Cast_Range_Upper>30</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

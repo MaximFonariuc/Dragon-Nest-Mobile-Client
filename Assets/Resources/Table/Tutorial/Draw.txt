@@ -1,0 +1,26 @@
+﻿start tutorial
+
+step 抽奖
+directsys 31
+econd SysOpened
+
+--step 十连抽
+--scond inlevel 1
+--ailin 勇士！你可以通过龙蛋快速获取时装，来看一下吧。
+--noforceclick HallDlg _canvas/SecondMenu/SysGridH2/SysBDraw 1
+--internaldelay 0.2
+
+
+--step 免费抽取
+--scond inlevel 1
+--noforceclick Lottery Bg/SpecialLottery/Bg 1
+--internaldelay 0.2
+--text 免费抽取龙蛋奖励 -200 0
+
+
+--step 进入抽取
+--noforceclick Lottery Bg/LotteryChoose/LotteryFree 1
+--internaldelay 0.2 
+--text 点击这里进行抽取 -200 0
+
+end tutorial

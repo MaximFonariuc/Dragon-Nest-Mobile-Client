@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_2_10_around>
+  <EntryTask T_target="" F_heartrate="0.5" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="5" F_HeartRateMaxFloat="5" I_StringCompareResult="0" I_number="0" B_TrueIsInitialized="0">
+    <Selector>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="TrueIsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <RandomFloat Shared_MinName="" minValue="1" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+          <FloatOperator type="3" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="HeartRateMaxFloat" float2Value="5" Shared_StoredResultName="random" />
+          <FloatOperator type="0" Shared_Float1Name="" float1Value="0" Shared_Float2Name="random" float2Value="0" Shared_StoredResultName="heartrate" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="TrueIsInitialized" />
+          <IntOperator type="1" Shared_Int1Name="HeartRateMax" int1Value="5" Shared_Int2Name="" int2Value="0" Shared_StoredResultName="HeartRateCount" />
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <DetectEnimyInSight />
+          <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="8" FilterImmortal="0" />
+          <DoSelectNearest />
+          <PhysicalAttack Shared_TargetName="target" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+        </Sequence>
+      </ReturnFailure>
+      <IsCastingSkill />
+      <Sequence>
+        <IntOperator type="0" Shared_Int1Name="HeartRateCount" int1Value="0" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="HeartRateCount" />
+        <Selector>
+          <IntComparison type="1" Shared_Int1Name="HeartRateCount" int1Value="0" Shared_Int2Name="HeartRateMax" int2Value="5" />
+          <ReturnFailure>
+            <IntOperator type="1" Shared_Int1Name="HeartRateCount" int1Value="0" Shared_Int2Name="HeartRateMax" int2Value="5" Shared_StoredResultName="HeartRateCount" />
+          </ReturnFailure>
+        </Selector>
+      </Sequence>
+      <Navigation />
+    </Selector>
+  </EntryTask>
+</Monster_2_10_around>

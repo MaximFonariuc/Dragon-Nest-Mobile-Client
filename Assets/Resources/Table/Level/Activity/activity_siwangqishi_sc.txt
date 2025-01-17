@@ -1,0 +1,59 @@
+﻿
+func:noticepart1
+notice 通道已开启 5
+
+func:start
+notice 这...一开始就送个大宝箱吗？ 5
+
+func:part1_1
+notice 发现闯入者！魔方启动！ 5
+
+func:noticepart2
+notice 清除通道上的阻碍吧！ 5
+
+func:pvp_1
+notice 小心！隐藏的入侵者出现！ 5
+
+func:part3_1
+notice 闯入者！警告不准再前进！ 5
+
+func:buffwarning
+npcpopspeek 2 3003 当心布洛怪释放强大的光环！ 7
+
+func:noticepart3
+notice 传送门已开启！ 5
+
+func:boss_1
+notice 死亡骑士召唤了死灵亚虎，死灵亚虎可存活20秒 5
+
+func:boss_2
+notice 这不是你能来的地方！ 5
+
+func:boss_3
+notice 这是最后的警告！ 5
+
+func:boss_4
+notice 能伤到我...真让人意外呀！ 5
+
+func:noticeboss
+notice 小心！美洲虎！ 5
+
+func:notice1
+showcutscene CutScene/BossEmpty
+
+func:Blockwall
+opendoor Blockwall
+
+func:Blockwall1
+opendoor Blockwall1
+
+func:TransferWall
+opendoor TransferWall on 165.44|2.63|105.39|2 161.44|0.02|151.96|0
+
+func:aicommand
+aicommand -1 fenshen 49301
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 161.33 0.02 159 0 49301
+
+info:Blockwall 165.7354|3.388729|45.57571|0 on 20
+info:Blockwall1 165.2454|3.298729|75.98572|0 on 20

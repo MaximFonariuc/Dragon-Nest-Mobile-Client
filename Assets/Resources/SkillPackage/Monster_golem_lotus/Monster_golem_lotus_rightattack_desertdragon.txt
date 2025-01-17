@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_golem_lotus_rightattack_desertdragon</Name>
+  <ClipName>Animation/Monster_golem_lotus/Monster_golem_lotus_rightattack</ClipName>
+  <Result>
+    <XResultData>
+      <At>1.26666677</At>
+      <Range>12</Range>
+      <Scope>180</Scope>
+      <Group>true</Group>
+      <Deviation_Angle>-45</Deviation_Angle>
+      <Angle_Step>1</Angle_Step>
+      <Group_Count>1</Group_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.7</Time_Present_Straight>
+      <Time_Hard_Straight>0.3</Time_Hard_Straight>
+      <Offset>4</Offset>
+      <State>Hit_Roll</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.333334</At>
+      <End>4.20000029</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_golem_lotus_rightattack_nest_02</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_golem_lotus/Monster_golem_lotus_rightattack_nest</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>4.20000029</Not_Move_End>
+    <CanCancelAt>4.20000029</CanCancelAt>
+  </Logical>
+  <Time>4.20000029</Time>
+  <Cast_Range_Upper>20</Cast_Range_Upper>
+  <Cast_Scope>180</Cast_Scope>
+  <Cast_Scope_Shift>90</Cast_Scope_Shift>
+</XSkillData>

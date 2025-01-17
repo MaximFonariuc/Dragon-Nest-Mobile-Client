@@ -1,0 +1,30 @@
+﻿start tutorial
+
+step 护甲条说明
+scond inlevel 101
+scond bossexist
+notewindow BattleDlg _canvas/EnemyInfoFrame/item0/Bg/SuperArmor/Foreground 3|1|-10
+ailin [301b0a]冒险家，注意BOSS血条下面黄色的[7100ff]超级盔甲条[-]。[-] -200 [301b0a]超级盔甲条存在时，你将无法打断BOSS的任何技能。[-]
+audio Audio/VO/guide/guide3
+pause
+
+step boss被破甲后说明攻击提升
+scond inlevel 101
+scond bossexist
+scond superarmor0
+notewindow BattleDlg _canvas/EnemyInfoFrame/item0/Bg/SuperArmor/Foreground 3|1|-10
+ailin [301b0a]哇！冒险家，BOSS进入了[7100ff]破甲眩晕状态[-]，这时受到大量伤害，赶紧攻击它吧。[-] -200 
+audio Audio/VO/guide/guide4
+pause
+
+step 恢复大招教学
+scond inlevel 101
+--scond castskill Monster_goblin_recovery_skill_one
+scond castskill Monster_orc_assaultstrik
+internaldelay 0.4
+notewindow BattleDlg _canvas/EnemyInfoFrame/item0/Bg/SuperArmor/Foreground 3|1|-10
+ailin [301b0a]BOSS的超级盔甲恢复满后会立即释放[7100ff]必杀技[-]，这个时候可要注意躲避哦。[-] -200
+audio Audio/VO/guide/guide5
+pause
+
+end tutorial

@@ -1,0 +1,53 @@
+func:enemynotice
+notice 选手即将出场了|3！|2！|1！|开始！
+
+func:eventnotice
+notice 即将产生战场随机事件 3
+
+func:eventnotice_1
+notice 3！|2！|1！
+
+func:bossaddbuff
+notice 小心！Boss的[ff0000]攻击力[-]和[ff0000]技能[-]增强了 7
+
+func:bossfurious
+notice 小心！Boss[ff0000]狂暴了[-]了！！！ 7
+
+func:continueUI
+killallspawn
+continue_UI
+
+func:lightning
+npcpopspeek 2 3003 你不幸被[ff0000]闪电[-]劈中了！ 5
+
+func:wind
+npcpopspeek 2 3003 战场上刮来一阵[ff0000]飓风[-]！ 7
+
+func:poison
+npcpopspeek 2 3003 战场上出现了[ff0000]4个毒阵[-]！ 7
+
+func:ice
+npcpopspeek 2 3003 战场上出现了[ff0000]追踪冰弹[-]！ 7
+
+func:fire
+npcpopspeek 2 3003 你将遭到[ff0000]火球[-]的连续打击！ 5
+
+func:heal
+npcpopspeek 2 3003 战场中央出现了[ff0000]加血阵[-]！ 7
+
+func:blockpart1
+opendoor blockpart1
+
+func:blockpart2
+opendoor blockpart2
+
+func:blockpart3
+opendoor blockpart3
+
+func:blockpart4
+opendoor blockpart4
+
+info:blockpart1 107.3476|11.55891|92.5781|300 on 4.9 21.55891 0.1
+info:blockpart2 110.0976|11.55891|89.2581|325 on 4.5 21.55891 0.1
+info:blockpart3 110.2476|11.55891|92.5481|50.00001 on 5.4 21.55891 0.1
+info:blockpart4 107.2176|11.55891|89.1881|50.00001 on 3.4 21.55891 0.1

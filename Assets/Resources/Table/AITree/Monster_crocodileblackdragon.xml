@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_crocodileblackdragon>
+  <EntryTask T_target="" T_master="" F_heartrate="0.5" T_navtarget="" F_movespeed="1" V_movedir="0:0:0" V_movedest="0:0:0" F_target_distance="0" F_master_distance="0" F_normal_attack_prob="0" F_enter_fight_range="0" F_fight_together_dis="0" B_is_wander="0" I_type="0" F_target_rotation="0" F_attack_range="0" F_min_keep_range="0" B_is_casting_skill="0" B_is_fighting="0" B_is_qte_state="0" I_compres="0" B_SubTreeBool1="0" F_random="0">
+    <Sequence>
+      <BoolComparison Shared_Bool1Name="SubTreeBool1" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+      <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="5" inclusive="0" Shared_StoredResultName="random" />
+      <Selector>
+        <Sequence>
+          <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_crocodile_defensearound" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="2" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_crocodile_defensearound180" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="3" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_crocodile_defensearound360" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="0" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="4" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_crocodile_defensearound720" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="5" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_crocodile_defensearound900" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+      </Selector>
+      <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool1" />
+    </Sequence>
+  </EntryTask>
+</Monster_crocodileblackdragon>

@@ -1,0 +1,24 @@
+﻿start tutorial
+
+
+
+step 任务2进入战斗
+scond nostackui
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+econd WorldMapShow
+--text 点这里前往关卡 210 0
+
+--step 选章
+--forceclick WorldMap Bg/Panel/Maps/Map1 2
+--text 请选择第一章 250 0
+
+step 选关卡
+forceclick DungeonSelect Bg/PlayTween/LevelFramePanel/chapter1/Levels/101/SprBtn 1
+internaldelay 0.5
+text 最近有魔物在这里出没 210 0
+
+step 进入
+forceclick DungeonSelect Bg/DetailFrame/Bg/GoBattle 1
+text 前往关卡开始冒险 -240 0
+
+end tutorial

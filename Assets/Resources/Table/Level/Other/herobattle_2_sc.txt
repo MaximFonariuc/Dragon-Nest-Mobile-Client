@@ -1,0 +1,59 @@
+﻿
+func:start
+notice [ffdc00]10秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]9秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]8秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]7秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]6秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]5秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]4秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]3秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]2秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|[ffdc00]1秒[-]钟之后双方开始进攻,请在左侧选择想要使用的英雄！|开始进攻，去抢占据点吧！
+
+
+func:opendoor_red1
+opendoor Blockwall_red_1
+
+func:opendoor_red2
+opendoor Blockwall_red_2
+
+func:opendoor_blue1
+opendoor Blockwall_blue_1
+
+func:opendoor_blue2
+opendoor Blockwall_blue_2
+
+func:aicommand
+aicommand -1 doodstart
+
+func:opendoor_center
+opendoor Blockwall_Center
+
+func:opendoor_center_1
+opendoor Blockwall_Center_1
+
+func:opendoor_center_2
+opendoor Blockwall_Center_2
+
+func:opendoor_center_3
+opendoor Blockwall_Center_3
+
+func:opendoor_center_on
+opendoor Blockwall_Center on
+
+func:opendoor_center_on1
+opendoor Blockwall_Center_1 on
+
+func:opendoor_center_on2
+opendoor Blockwall_Center_2 on
+
+func:opendoor_center_on3
+opendoor Blockwall_Center_3 on
+
+func:warning_opendoor
+notice [ffdc00]5秒[-]钟之后中间电路将关闭，会将道路隔断！|[ffdc00]4秒[-]钟之后中间电路将关闭，会将道路隔断！|[ffdc00]3秒[-]钟之后中间电路将关闭，会将道路隔断！|[ffdc00]3秒[-]钟之后中间电路将关闭，会将道路隔断！|[ffdc00]2秒[-]钟之后中间电路将关闭，会将道路隔断！|[ffdc00]1秒[-]钟之后中间电路将关闭，会将道路隔断！|中间电路关闭，道路已经隔断！
+
+
+
+
+
+
+
+info:Blockwall_red_1 37.6757|4.91|76.46385|90 on 30 9.91 0.1
+info:Blockwall_blue_1 109.9157|5.299999|76.18385|90 on 30 10.3 0.1
+info:Blockwall_Center 67.4257|5.299999|75.06386|90 off 12 10.3 0.1
+info:Blockwall_Center_1 74.9957|5.299999|67.25385|0 off 12.00001 10.3 0.1
+info:Blockwall_Center_2 74.9957|5.299999|82.75385|0 off 12 10.3 0.1
+info:Blockwall_Center_3 82.83571|5.299999|75.06386|90 off 12 10.3 0.1

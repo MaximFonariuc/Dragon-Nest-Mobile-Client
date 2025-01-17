@@ -1,0 +1,20 @@
+﻿start tutorial
+
+step 开放阵营系统
+scond inlevel 1
+directsys 26
+econd SysOpened
+
+--step 进入阵营
+--scond inlevel 1
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysCamp 1
+--internaldelay 0.5
+--text 点击这里进入阵营 -200 0
+
+--step 提示阵营
+--scond inlevel 1
+--notewindow CampSelectDlg Bg/p/T 1|1|1000
+--ailin [301b0a]这里就是可以选择的阵营啦，仔细看看每个阵营的介绍哦，选择最心仪的吧[-] -450
+--internaldelay 0.3
+
+end tutorial

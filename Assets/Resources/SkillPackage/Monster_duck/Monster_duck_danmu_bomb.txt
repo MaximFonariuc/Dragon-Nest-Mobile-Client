@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_duck_danmu_bomb</Name>
+  <ClipName>Animation/Monster_duck/Monster_duck_bomb_end</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.100000009</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.100000009</At>
+      <End>0.5</End>
+      <Fx>Effects/High_Resources/Prefabs/Warrior/Player_warrior_attack_chengjiebo_Clip02</Fx>
+      <Destroy_Delay>1</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.5</Not_Move_End>
+    <CanCancelAt>0.5</CanCancelAt>
+  </Logical>
+  <Time>0.5</Time>
+  <Cast_Range_Upper>1</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

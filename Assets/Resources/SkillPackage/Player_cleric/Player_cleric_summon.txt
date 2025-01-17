@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_summon</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_summon</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_cleric/Player_cleric_summon</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>0.2</Time>
+      <Frequency>15</Frequency>
+      <Coordinate>World</Coordinate>
+      <ShakeX>false</ShakeX>
+      <ShakeZ>false</ShakeZ>
+      <AmplitudeY>0.1</AmplitudeY>
+      <At>0.6666667</At>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.50000012</Not_Move_End>
+    <CanCancelAt>2</CanCancelAt>
+  </Logical>
+  <CameraMotion>
+    <Motion3D>Animation/Main_Camera/Main_Camera_Player_cleric_summon</Motion3D>
+    <Motion3DType>CameraBased</Motion3DType>
+    <Motion2_5D>Animation/Main_Camera/Main_Camera_cleric_summon_45</Motion2_5D>
+    <Motion2_5DType>CameraBased</Motion2_5DType>
+    <Coordinate>World</Coordinate>
+  </CameraMotion>
+  <Time>2</Time>
+</XSkillData>

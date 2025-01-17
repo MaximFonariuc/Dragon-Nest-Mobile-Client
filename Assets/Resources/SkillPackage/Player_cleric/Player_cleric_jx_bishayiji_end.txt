@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_jx_bishayiji_end</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_jx_bishayiji_end</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.333333343</At>
+      <Range>4</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_cleric/Player_cleric_jx_bishayiji_end_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_cleric/Player_cleric_jx_bishayiji_end_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_cleric/Player_cleric_jx_bishayiji_end_up</Curve_Up>
+      <StandOnAtEnd>false</StandOnAtEnd>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>1</Time_Present_Straight>
+      <Time_Hard_Straight>3</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>2</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>0.166</Time>
+      <FovAmp>2</FovAmp>
+      <Frequency>30</Frequency>
+      <Coordinate>Camera</Coordinate>
+      <AmplitudeX>0.05</AmplitudeX>
+      <AmplitudeY>0.05</AmplitudeY>
+      <AmplitudeZ>0.05</AmplitudeZ>
+      <At>0.366666675</At>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CameraPostEffect>
+    <At>0.266666681</At>
+    <End>0.4</End>
+    <Effect>RadialBlur</Effect>
+  </CameraPostEffect>
+  <Time>1.567</Time>
+</XSkillData>

@@ -1,0 +1,18 @@
+start tutorial
+
+step 任务4进入战斗
+scond nostackui
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+econd WorldMapShow
+
+
+step 选关卡
+forceclick DungeonSelect Bg/PlayTween/LevelFramePanel/chapter2/Levels/202/SprBtn 1
+internaldelay 0.5
+--text 快去找找萝丝和提摩西 -210 0
+
+step 进入
+forceclick DungeonSelect Bg/DetailFrame/Bg/GoBattle 1
+--text 前往关卡寻找他们 -240 0
+
+end tutorial

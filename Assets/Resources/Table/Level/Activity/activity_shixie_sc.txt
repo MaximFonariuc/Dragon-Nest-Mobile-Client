@@ -1,0 +1,45 @@
+﻿
+
+func:aicommand
+aicommand -1 callwudi 49102
+
+func:callxiaobing
+aicommand -1 callxiaobing 49102
+
+func:countdown
+notice 5|4|3|2|1|来了！
+
+func:stagewarning
+notice 小心！狮蝎克鲁鲁会释放更强的[ff0000]技能[-]了 7
+
+func:tips
+npcpopspeek 2 3003 快进[ff0000]免疫区[-]！否则会被BOSS[ff0000]秒杀[-]！ 7
+
+func:block
+opendoor Blockwall
+
+
+func:recoverblood
+notice 快！[ff0000]回春布洛怪[-]在引导[ff0000]回血[-]！打断它！ 7
+
+func:Immortal
+notice 快！[ff0000]守卫布洛怪[-]在引导[ff0000]无敌[-]！打断它！ 7
+
+func:liftingattack
+notice 快！[ff0000]狂暴布洛怪[-]在引导[ff0000]加攻[-]！打断它！ 7
+
+func:recovertips
+notice [ff0000]回春布洛怪[-]出现在[ff0000]绿色法阵[-]，并且在引导[ff0000]回血[-]！ 7
+
+func:Immortaltips
+notice [ff0000]守卫布洛怪[-]出现在[ff0000]蓝色法阵[-]！并且在引导[ff0000]无敌[-]！ 7
+
+func:attacktips
+notice [ff0000]狂暴布洛怪[-]出现在[ff0000]黄色法阵[-]！并且在引导[ff0000]加攻[-]！ 7
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 86.85 8.013 158.91 -60 49102
+
+
+
+info:Blockwall 92.85567|7.970478|154.3932|295 on 20

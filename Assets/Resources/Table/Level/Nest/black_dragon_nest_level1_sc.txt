@@ -1,0 +1,164 @@
+﻿
+func:start
+notice 这里是黑龙地牢，小心里面层出不穷的亡灵和机关！ 6
+
+func:enemy_start
+notice 小心！大量亡灵来袭，小心应对，并且打碎三个结界。 5
+
+func:change_beilin
+notice 受到铁匠柯林的祝福，你们其中有人变身成柯林，请善用光环。 6
+
+func:aicommand
+aicommand -1 start_spawnwall 0
+
+func:Blockwall_partone
+opendoor Blockwall_partone on
+		
+func:Blockwall_partone_end
+opendoor Blockwall_partone_end
+
+func:Blockwall_parttwo
+opendoor Blockwall_parttwo
+
+func:Blockwall_parttwo_1
+opendoor Blockwall_parttwo_1 on
+
+func:Blockwall_zhalan1_on
+opendoor Blockwall_zhalan1 on
+
+func:Blockwall_zhalan1
+opendoor Blockwall_zhalan1
+
+func:Blockwall_zhalan2
+opendoor Blockwall_zhalan2
+
+func:Blockwall_zhalan3
+opendoor Blockwall_partone
+
+func:Blockwall_zhalan2_on
+opendoor Blockwall_zhalan2 on
+
+func:transferWall
+opendoor TransferWall on 76.73|1.252|136.65|2 0|0|0|0
+
+func:removebuff43329
+removebuff 43329 21514 1
+
+func:removebuff43330
+removebuff 43330 21514 1
+
+func:removebuff43344
+removebuff 43344 21514 1
+
+func:removebuff43345
+removebuff 43345 21514 1
+
+func:teshuguai
+notice 小心！黑龙座下的特殊怪来袭，灵活运用柯林的技能！ 5
+
+func:kill
+killwave 3
+killwave 4
+killwave 5
+killwave 6
+killwave 7
+killwave 8
+killwave 0
+killwave 1
+killwave 2
+killwave 38
+
+func:kill_diyibo
+killwave 14
+killwave 16
+killwave 18
+killwave 15
+killwave 17
+killwave 19
+killwave 13
+
+func:kill_dierbo
+killwave 10
+killwave 20
+killwave 21
+killwave 24
+killwave 33
+
+func:kill_disanbo
+killwave 34
+killwave 36
+killwave 37
+
+func:kill_disibo
+killwave 27
+killwave 30
+killwave 29
+
+func:kill_diwubo
+killwave 32
+killwave 28
+killwave 26
+
+
+func:jiguan_warning_broken
+notice 结界已经被打破，下一个解决的守护罩即将消失！ 4
+
+func:jiguan_warning_start
+notice 下一波小怪还有4秒出现，守护罩即将消失！|下一波小怪还有3秒出现，守护罩即将消失！|下一波小怪还有2秒出现，守护罩即将消失！|下一波小怪还有1秒出现，守护罩即将消失！|下一波小怪还有出现了，守护罩已经消失消失！
+
+func:fenghuolun
+notice 毁灭之轮出现在通道里面了，被追上的玩家会被秒杀！ 6
+
+func:jiguan_warning_BOSS
+notice 所有的结界已经打破，守护BOSS即将出现，小心应对！ 6
+
+func:jiguan_warning_end
+notice 最后的结界已经被打破，穿过通道去下个区域吧！ 4
+
+func:tongdao
+notice 善用柯林的光环才能通过通道！ 6
+
+func:warning_blackbroo
+notice 黑暗邪恶法师出现了，它的存在会让玩家一直掉血，注意使用加血光环！ 4
+
+func:warning_blackbroo_1
+notice 打死8个追随者，可打破黑暗邪恶法师的无敌护罩！ 6
+
+func:warning_blackbroo_2
+notice 黑暗邪恶法师的护罩已经消失 6
+
+func:warning_whitebroo
+notice 黑龙恢复者出现了，它的存在会给怪物一直加血！ 6
+
+func:transferWall2
+opendoor TransferWall on 55.91|1.24|16.8|2 55.89|0.05|20.53972|0
+
+func:opendoor_transfer
+opendoor TransferWall
+
+func:transferWall3
+opendoor TransferWall on 76.683|1.24|106.95|2 76.83|0.05|110.19|0
+
+func:transferWall4
+opendoor TransferWall on 55.89|1.24|46.56|2 55.95|0.05|49.95|0
+
+func:opendoor_kill
+opendoor kill
+
+func:tongyongcutscene
+showcutscene CutScene/cutscene_generalshow 55.84378 0.05 23.49588 0 43330
+
+
+
+
+
+
+
+
+info:Blockwall_partone 77.00945|1.18191|102.9283|0 on 10 6.18191 1.500001
+info:Blockwall_partone 55.90945|1.18191|20.25248|0 off 50 26.18191 0.1
+info:Blockwall_partone_end 55.86944|1.18191|48.75248|0 on 50 26.18191 0.1
+info:Blockwall_parttwo 76.62644|1.18191|107.1665|0 on 50 26.18191 0.1
+info:Blockwall_parttwo_1 76.62644|1.18191|109.6605|0 off 50 26.18191 0.1
+info:Blockwall_zhalan1 55.81944|1.18191|68.44249|0 on 10 6.18191 1.5
+info:Blockwall_zhalan2 71.94944|1.18191|78.97249|90 on 10 6.18191 1.5

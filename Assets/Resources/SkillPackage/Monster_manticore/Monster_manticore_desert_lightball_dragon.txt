@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_manticore_desert_lightball_dragon</Name>
+  <ClipName>Animation/Monster_manticore/Monster_manticore_gravityup</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_manticore/Monster_manticore_rora_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_manticore/Monster_manticore_rora_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>2.48333359</At>
+      <End>8.366667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_manticore_desert_lightball_dragon_04</Fx>
+      <Follow>false</Follow>
+      <StickToGround>true</StickToGround>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_manticore/Monster_manticore_desert_lightball_dragon</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>8.366667</Not_Move_End>
+    <CanCancelAt>8.366667</CanCancelAt>
+    <Exstring>calllightball</Exstring>
+  </Logical>
+  <Time>8.366667</Time>
+  <Cast_Range_Upper>10</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

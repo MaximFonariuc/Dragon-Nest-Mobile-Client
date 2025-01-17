@@ -1,0 +1,24 @@
+﻿
+func:transferWall
+opendoor TransferWall1 on 54.38|16.8058|60.29|2 0|0|0|0
+
+func:transferWall_close
+opendoor TransferWall1
+
+func:aicommand
+aicommand -1 trap 87801
+
+func:notice
+notice [ffdc00]4秒后，石人释放毒雾，请躲到喷涌水柱的符文内|[ffdc00]3秒后，石人释放毒雾，请躲到喷涌水柱的符文内|[ffdc00]2秒后，石人释放毒雾，请躲到喷涌水柱的符文内|[ffdc00]1秒后，石人释放毒雾，请躲到喷涌水柱的符文内|[ffdc00]石人莫尔干塔释放毒雾
+
+func:notice1
+notice [ffdc00]...我似乎听到了人类的声音 6
+
+func:warning
+notice [ffdc00]3秒以后触发特殊机制|[ffdc00]2秒以后触发特殊机制|[ffdc00]1秒以后触发特殊机制|特殊机制已触发 2
+
+func:open
+aicommand -1 open 87007
+
+func:notice2
+notice [ffdc00]石人摩尔干即将释放剧毒之力，请小心应对！ 6

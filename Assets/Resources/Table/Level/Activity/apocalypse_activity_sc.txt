@@ -1,0 +1,54 @@
+﻿
+func:apocalypsecutscene
+showcutscene CutScene/apocalypse_cutsence
+
+func:transferWall
+opendoor TransferWall on 178.32|0.6|72.96|2 162.76|0|114.5|90
+
+func:transferWall2
+opendoor TransferWall2 on 184.36|0.17|119.97|2 58.32|13.51|143.99|-155.1357
+
+func:transferWall1
+opendoorex TransferWall1 on 50.89|14.21|120.07|2 64|0.45|32.9|-43.35181 apocalypsecutscene
+
+func:tongyongcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy
+
+func:opendoor
+opendoor Blockwall2 on
+
+func:opendoor1
+opendoor TransferWall2
+
+func:addbuff1
+addbuff 100102 10002 1
+
+func:notice
+notice 通往下一关的传送门被激活了
+
+func:notice1
+notice 食尸鬼被骷髅王召唤至魔法阵，骷髅王变为无敌状态
+
+func:notice2
+notice 骷髅王已解除无敌状态
+
+func:notice3
+notice 灯光已出现，30秒后可继续开启场景中央的开关
+
+func:notice4
+notice 全屏闪电！快躲到雷兽身边
+
+func:notice5
+notice [ffdc00]愚蠢的人类！！！
+
+func:notice6
+notice [ffdc00]你们激怒了这个世界上最强大的统治者，准备接受审判吧！
+
+func:notice7
+notice 灯的开关已出现在场景中央 6
+
+func:killspawn
+killspawn 13
+
+func:aicommand
+aicommand -1 fenshen 100103

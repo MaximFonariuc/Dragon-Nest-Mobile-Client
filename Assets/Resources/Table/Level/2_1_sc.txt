@@ -1,0 +1,82 @@
+﻿
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:killwave10
+killwave 10
+
+func:killwave17
+killwave 17
+
+func:Blockwallwave10
+opendoor Blockwallwave10
+
+func:Blockwallwave13
+opendoor Blockwallwave13
+
+func:Blockwallwave17
+opendoor Blockwallwave17
+
+func:Blockwallwave1
+opendoor Blockwallwave1
+
+func:DN_zhalan01
+opendoor DN_zhalan01
+
+func:DN_zhalan02
+opendoor DN_zhalan02
+
+func:addbuff
+addbuff 51014 50082 1
+
+func:removebuff
+removebuff 51014 50082
+
+func:closedoor
+opendoor Door on
+
+func:TransferWall
+opendoor TransferWall on
+
+func:addbuffspeak
+notice 打破水晶赢得关卡胜利！ 4
+
+func:addbuffspeak1
+notice 水晶是无敌的！要先杀死其他所有怪物！ 40
+
+func:broodead
+notice 随着布洛法师的死亡，水晶的[ff0000]保护罩消失[-]了。快击碎水晶！ 40
+
+func:talk
+talkr 26 [ffebad]咦？是、是谁！？来人啊有敌……呜呜 Audio/VO/lines/lines79
+talkl [player] [ffebad]给我安静点！老实交代，怎么进入叹息峡谷！？ Audio/VO/Warrior/warrior14|Audio/VO/Archer/archer14|Audio/VO/Sorceress/sorceress14|Audio/VO/Cleric/cleric14|Audio/VO/Academic/academic3|Audio/VO/Assassin/assassin3|Audio/VO/kali/kali3
+talkr 26 [ffebad]啊啊啊！来人啊有敌…… Audio/VO/lines/lines80
+talkl [player] [ffebad]……唉，你这样的话我就不客气了哦！ Audio/VO/Warrior/warrior6|Audio/VO/Archer/archer6|Audio/VO/Sorceress/sorceress6|Audio/VO/Cleric/cleric6|Audio/VO/Academic/academic6|Audio/VO/Assassin/assassin6|Audio/VO/kali/kali6
+talkr 26 [ffebad]哇！啊！哦！别打脚板！别拧我的耳朵！别挠肚子！哈哈哈哈~ Audio/VO/lines/lines81
+talkr 26 [ffebad]我真的不知道啊哈哈哈哈！我只是可怜的布洛怪啊哈哈！你去找黑暗精灵，她们知道怎么进入峡谷！ Audio/VO/lines/lines82
+stoptalk
+
+func:talk1
+talkr 12 [ffebad]冒险家，这些小喽啰的口风应该不会很紧，狠狠地教训他们一顿，真话就吐出来了！ Audio/VO/lines/lines77
+talkr 12 [ffebad]如果还是没有结果，就潜入这里去问问藏在深处的魔物，我相信你有自己的一套！你不会让我失望的，对吧？！ Audio/VO/lines/lines78
+talkl [player] [ffebad]……所以你到底为什么这么兴奋啊！ Audio/VO/Warrior/warrior6|Audio/VO/Archer/archer6|Audio/VO/Sorceress/sorceress6|Audio/VO/Cleric/cleric6|Audio/VO/Academic/academic6|Audio/VO/Assassin/assassin6|Audio/VO/kali/kali6
+stoptalk
+
+func:showdirection
+showdirection direction
+
+func:tips
+notice 当心毒蛇陷阱，他总会喷出一些奇怪的东西 10
+
+
+info:Blockwallwave10 26.94067|8.664781|36.29813|0 on 10 13.66478 0.1
+info:Blockwallwave13 26.94067|11.27478|66.82813|0 on 10 16.27478 0.1
+info:Blockwallwave17 26.94|8.66|47.23|0 on 10 13.66 0.1
+info:Blockwallwave1 30.53067|8.664781|29.80813|90.00001 on 10 13.66478 0.1
+info:DN_zhalan01 109.38|6.53|100.7|90.00001 on
+info:DN_zhalan02 135.21|6.42|100.25|90.00001 on 10 11.42 0.1
+info:Door 122.03|6.12|87.35|0 off 10 11.12 0.1

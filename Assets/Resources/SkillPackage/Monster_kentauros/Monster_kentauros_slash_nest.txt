@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_kentauros_slash_nest</Name>
+  <ClipName>Animation/Monster_kentauros/Monster_kentauros_slash</ClipName>
+  <Result>
+    <XResultData>
+      <Attack_Only_Target>true</Attack_Only_Target>
+      <At>1.9000001</At>
+      <Range>10</Range>
+      <Scope>30</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_kentauros/Monster_kentauros_slash_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_kentauros/Monster_kentauros_slash_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.3</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.9000001</At>
+      <End>3.00000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_kentauros_slash_nest_Clip01</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_kentauros/Monster_kentauros_slash_nest</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.00000024</Not_Move_End>
+    <CanCancelAt>3.00000024</CanCancelAt>
+  </Logical>
+  <Time>3.00000024</Time>
+  <Cast_Range_Upper>10</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

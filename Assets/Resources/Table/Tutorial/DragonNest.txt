@@ -1,0 +1,31 @@
+﻿start tutorial
+
+step 点击日常玩法
+scond nostackui
+scond inlevel 1
+scond MainUI
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+internaldelay 0.2
+text 点击这里进入日常玩法 -200 0
+
+step 点击日常活动
+scond inlevel 1
+forceclick DailyActivityDlg Bg/Tabs/XSys_Activity/Bg 1
+internaldelay 0.2
+
+step 打开龙穴界面
+scond inlevel 1
+scond activityopen
+scroll Activity 526
+forceclick DailyActivityDlg Bg/ActivityHandler/Bg/ActivityPanel/Item526/JoinBtn 1
+internaldelay 0.2
+text 龙穴系统在这里 -200 0
+
+step 引导
+scond inlevel 1
+notewindow DragonNestDlg Bg/Close 15|15|2000
+ailin [301b0a]最顶级的挑战，最强大的巨龙，最强悍的装备奖励，只等最强大的勇士前来[-] -200
+audio Audio/VO/guide/guide18
+internaldelay 0.3
+
+end tutorial

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_juediqiusheng_yanmudan</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.333333343</At>
+      <Range>2</Range>
+      <Scope>360</Scope>
+      <Cycle>0.333333343</Cycle>
+      <Loop_Count>45</Loop_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>0.75</Runningtime>
+        <Velocity>6</Velocity>
+        <Radius>0.4</Radius>
+        <Prefab>Prefabs/Bullets/Player_academic_attack_xuanyunshouliudan_Clip03</Prefab>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <End_Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_spider_attack_cloud_racing_01</End_Fx>
+        <EndFx_LifeTime>6.5</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <StaticCollider>false</StaticCollider>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.99999952</Not_Move_End>
+    <CanCancelAt>2.99999952</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>3.5</Time>
+  <Cast_Range_Upper>100</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

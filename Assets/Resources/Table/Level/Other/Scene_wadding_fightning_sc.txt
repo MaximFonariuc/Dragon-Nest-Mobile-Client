@@ -1,0 +1,51 @@
+﻿
+func:start
+notice 你们两冒险误入上古炎兽巢穴，请抵挡怪物攻击 6
+
+func:start_1
+notice 你们的本身能力被封印住了，需要用有限的能力抵挡怪物 6
+
+func:start_2
+notice 上古炎兽巢穴充满邪恶力量，将你们之中一个人束缚住不能移动 6
+
+func:start_3
+notice 请能移动的冒险家，尽量用走位帮你被束缚住的爱人抵挡伤害 7
+
+func:start_fight
+notice [ffdc00]5秒[-]钟之后怪物开始进攻，请做好准备！|[ffdc00]4秒[-]钟之后怪物开始进攻，请做好准备！|[ffdc00]3秒[-]钟之后怪物开始进攻，请做好准备！|[ffdc00]2秒[-]钟之后怪物开始进攻，请做好准备！|[ffdc00]1秒[-]钟之后怪物开始进攻，请做好准备！|怪物开始进攻，小心！
+
+func:aicommand
+aicommand -1 return 81968
+
+func:elite
+notice 炎兽帮凶到即将来了，注意击杀！ 6
+
+func:onelast
+notice 第一波进攻已经结束，怪物在酝酿第二波进攻！ 5
+
+func:start_fight_nest
+notice [ffdc00]5秒[-]钟之后怪物开始第二波进攻，请做好准备！|[ffdc00]4秒[-]钟之后怪物开始第二波进攻，请做好准备！|[ffdc00]3秒[-]钟之后怪物开始第二波进攻，请做好准备！|[ffdc00]2秒[-]钟之后怪物开始第二波进攻，请做好准备！|[ffdc00]1秒[-]钟之后怪物开始第二波进攻，请做好准备！|怪物开始第二波进攻，小心！
+
+func:aicommand1
+aicommand -1 return1 0
+
+func:aicommand2
+aicommand -1 return2 81971
+
+func:towlast
+notice 第二波进攻已经结束，怪物在酝酿最后一波进攻！ 5
+
+func:start_fight_last
+notice [ffdc00]5秒[-]钟之后怪物开始第三波进攻，请做好准备！|[ffdc00]4秒[-]钟之后怪物开始第三波进攻，请做好准备！|[ffdc00]3秒[-]钟之后怪物开始第三波进攻，请做好准备！|[ffdc00]2秒[-]钟之后怪物开始第三波进攻，请做好准备！|[ffdc00]1秒[-]钟之后怪物开始第三波进攻，请做好准备！|怪物开始第三波进攻，小心！
+
+func:dood
+notice 本次进攻已经结束,场景中刷出了巨大的肉，快！帮爱人加血！ 6
+
+func:BOSS
+notice 小心上古炎兽来到战场，请注意打断其技能！ 6
+
+func:block
+opendoor blockwall
+
+
+info:blockwall 76.04414|29.40174|158.7637|0 on 50 54.40174 0.1

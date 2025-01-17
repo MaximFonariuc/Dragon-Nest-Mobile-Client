@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_poisonspore_nestex</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <At>1.16666675</At>
+      <Range>2</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.3</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.166666672</At>
+      <End>3.50000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_halfgolem_green_poisonspore_nest_01</Fx>
+      <ScaleX>2.1</ScaleX>
+      <ScaleZ>2.1</ScaleZ>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.50000024</Not_Move_End>
+    <CanCancelAt>3.50000024</CanCancelAt>
+  </Logical>
+  <Time>2</Time>
+  <Cast_Range_Upper>60</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

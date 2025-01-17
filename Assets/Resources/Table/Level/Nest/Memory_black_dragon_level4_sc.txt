@@ -1,0 +1,73 @@
+﻿
+func:transferWall
+opendoor TransferWall on 73.18|9.6|50.25|2 0|0|0|0
+
+func:aicommand
+aicommand -1 darkzone 140302
+
+func:aicommand1
+aicommand -1 gameover 140302
+
+func:aicommand2
+aicommand -1 slowzone 140302
+
+func:opendoorcome
+opendoor Blockwall on 24.29|9.79|49.96|30 73.25|9.79|49.69|-90
+
+func:opendoorback
+opendoor Blockwall on 73.25|9.79|49.69|30 21.29|9.79|49.96|90
+
+func:trasferend
+opendoor Blockwall on 24.29|9.79|49.96|30 65.29|9.79|49.8|90
+
+func:closedoorcome
+opendoor Blockwall
+
+func:closedoorback
+opendoor Blockwall
+
+func:block
+opendoor Blockwall1
+opendoor Blockwall
+
+func:notice
+notice [ffdc00]居然有人类敢到这里来，那就尝尝吾新研究的酷刑吧，哈哈！ 6
+
+func:notice1
+notice [ffdc00]汇聚吧，极刑下亡者的怨念，成为吾刺穿人类心脏的利刃之刑吧，哈哈！ 6
+
+func:notice2
+notice [ffdc00]还不招供吗，那尝尝吾的旋风绞绞刑吧，哈哈！ 6
+
+func:notice3
+notice [ffdc00]无知的囚徒，准备接受正义撞击的拷问吧，哈哈！ 6
+
+func:notice4
+notice [ffdc00]黑暗领域被吾召唤于此，开始行刑！ 6
+
+func:noticecome
+notice [ffdc00]3秒后，勇士将被传送至主题公园|[ffdc00]2秒后，勇士将被传送至主题公园|[ffdc00]1秒后，勇士将被传送至主题公园|[ffdc00]传送开始|[ffdc00]传送开始|[ffdc00]击杀公园内的绿色巨人将为远古激光装置充能4% 4
+
+func:noticeback
+notice [ffdc00]3秒后，勇士将被传送回梅鲁卡身边|[ffdc00]2秒后，勇士将被传回梅鲁卡身边|[ffdc00]1秒后，勇士将被传回梅鲁卡身边|[ffdc00]开始传送 4
+
+func:noticeaddten
+notice [ffdc00]黑暗巨人已被击杀，远古激光装置再获得50%充能 4
+
+func:noticesubfive
+notice [ffdc00]骷髅巨人已被误杀，远古激光装置再获得20%已获得充能 4
+
+func:noticebad
+notice [ffdc00]充能未达到装置启动的最低要求，远古激光装置无法启动 6
+
+func:noticenormal
+notice [ffdc00]远古激光装置充能至60%，普通型神圣射线即将释放 6
+
+func:noticegood
+notice [ffdc00]远古激光装置充能至80%，穿透型神圣射线即将释放 6
+
+func:noticegreat
+notice [ffdc00]远古激光装置充能至100%，神圣型神圣射线即将释放 6
+
+info:Blockwall1 38.22944|6.52191|49.17248|90 on 50 31.52191 0.1
+info:Blockwall1 57.05944|6.52191|49.17248|90 on 50.00002 31.52191 0.1

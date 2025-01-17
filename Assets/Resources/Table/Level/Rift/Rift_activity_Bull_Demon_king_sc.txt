@@ -1,0 +1,68 @@
+﻿
+func:opendoor
+opendoor Blockwall
+
+func:opendoor1
+opendoor Blockwall1
+
+func:opendoor2
+opendoor Blockwall2
+
+func:opendoor3
+opendoor Blockwall3
+
+func:duquan
+aicommand -1 duquan 87811
+
+func:dance
+aicommand -1 dance 87810
+
+func:warning
+notice [ffdc00]3秒以后触发特殊机制|[ffdc00]2秒以后触发特殊机制|[ffdc00]1秒以后触发特殊机制|特殊机制已触发 2
+
+func:npcpopspeek3
+npcpopspeek 1 3006 [403831]当心旁边的小牛们，每一个小牛都有一个独特的技能，你可以优先击杀他们 4
+
+func:zaren
+notice 轰！轰！轰！让你们看看爆炸的艺术！ 5
+
+func:penhuo
+notice 既然你闯入了这里，那就在火焰的灼烧中忏悔吧！ 5
+
+func:du
+notice 毒孢子的特点，就是具有极强的传染性！ 5
+
+func:niumowang
+notice 牛魔王:你们的敌人是我！不要去打他们！ 5
+
+func:fengniu
+notice 风牛:死亡如风，击败了我并不是你们胜利的终点！ 5
+
+func:huoniu
+notice 火牛：燃烧至生命的最后一刻，牛头人也不会停止斗争！ 5
+
+func:duniu
+notice 毒牛：虽然我解除了太多恶毒的东西，可我依然希望世界和平！ 5
+
+func:tiaowu
+notice 跟上我的节奏homie，一起摇摆！ 5
+
+notice:kuangbao
+notice 你们永远也战胜不了我！ 5
+
+func:addbuff
+addbuff 87810 6729 1
+
+func:open
+aicommand -1 open 87007
+
+func:opendoor_transfer
+opendoor TransferWall2
+
+func:TransferWall
+opendoor TransferWall2 on 112.3175|5.050611|32.83169|2 0|0|0|0
+
+info:Blockwall 103.2155|3.53593|39.19014|127.0573 on 14.3271 16.40205 0.1
+info:Blockwall1 123.6955|3.53593|27.46014|118.1718 on 14.3271 16.40205 0.1
+info:Blockwall2 123.0055|3.74593|38.92014|51.43428 on 14.3271 16.61205 0.1
+info:Blockwall3 101.6755|3.59593|26.95013|62.18932 on 14.32709 16.46206 0.1

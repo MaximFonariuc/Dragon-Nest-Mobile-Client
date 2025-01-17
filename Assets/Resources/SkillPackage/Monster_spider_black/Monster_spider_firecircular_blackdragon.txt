@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_firecircular_blackdragon</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.0333333351</At>
+      <Range>2.5</Range>
+      <Scope>360</Scope>
+      <Loop>true</Loop>
+      <Cycle>0.5</Cycle>
+      <Loop_Count>20</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.01</Offset>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_fire_01</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.0333333351</At>
+      <End>3.1395</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_ogre_firecircular_blackdragon_small</Fx>
+      <Follow>false</Follow>
+      <Destroy_Delay>7.5</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/FX/Monster_spider_laser_nest</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.50000024</Not_Move_End>
+    <CanCancelAt>3.50000024</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>10</Time>
+  <Cast_Range_Upper>60</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

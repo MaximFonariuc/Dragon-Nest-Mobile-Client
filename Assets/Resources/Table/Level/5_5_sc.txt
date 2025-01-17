@@ -1,0 +1,60 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice1
+opendoor TransferWall on
+
+func:Blockwall1
+opendoor Blockwall1
+
+func:notice7
+notice 小心！前方就是黑山营地
+
+func:notice8
+notice 下一个营地的大门打开了，小心敌人的埋伏
+
+func:tips3
+notice 消灭了黑山士兵，继续前进吧 5
+
+func:direction
+showdirection direction
+
+func:direction2
+showdirection direction2
+
+func:direction3
+showdirection direction3
+
+func:notice3
+notice 你的到来惊动了守卫的士兵
+
+func:TransferWall1
+opendoor TransferWall1 on
+
+func:tips2
+notice 宝箱守卫怪出现了！ 5
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 141.2801 5.06 150.5499 45 54407
+
+func:closedoor
+opendoor Door on
+
+func:operation19
+clientrecord 204before
+
+func:operation20
+clientrecord 204after
+
+
+func:brokendoor
+opendoor brokendoor
+
+
+info:Blockwall1 105.3396|11.70897|101.0885|38 on 20 21.70897 0.1
+info:Door 133.6257|7.050478|143.0632|37.99997 off 20 17.05048 0.1
+info:brokendoor 123.4757|11.03048|127.0332|30 on 20 21.03048 0.1

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_blacksmith_attack</Name>
+  <ClipName>Animation/Monster_blacksmith/Monster_blacksmith_attack</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.6333334</At>
+      <Range>3.5</Range>
+      <Scope>200</Scope>
+      <Group>true</Group>
+      <Deviation_Angle>-30</Deviation_Angle>
+      <Angle_Step>200</Angle_Step>
+      <Time_Step>0.0333333351</Time_Step>
+      <Group_Count>1</Group_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>1.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.5666667</At>
+      <End>1.33333337</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_blacksmith_attack_01</Fx>
+      <ScaleX>1.5</ScaleX>
+      <ScaleZ>1.5</ScaleZ>
+      <Follow>false</Follow>
+      <Destroy_Delay>2</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.33333337</Not_Move_End>
+    <CanCancelAt>1.33333337</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.33333337</Time>
+  <Cast_Range_Upper>3.5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,49 @@
+﻿start tutorial
+
+
+step 飞图标
+scond inlevel 1
+directsys 886
+econd SysOpened
+
+step 打开日常活动
+scond nostackui
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1
+internaldelay 0.5
+
+
+--step 点击日常任务的ui
+--scond inlevel 1
+--forceclick DailyActivityDlg Bg/ActivityHandler/Bg/ActivityPanel/Item886/Icon 1
+--internaldelay 0.3
+
+step 点击日常活动
+scond inlevel 1
+forceclick DailyActivityDlg Bg/Tabs/XSys_Activity/Bg 1
+internaldelay 0.2
+
+step 点击参加
+scond inlevel 1
+forceclick DailyActivityDlg Bg/ActivityHandler/Bg/ActivityPanel/Item886/JoinBtn 1
+internaldelay 0.3
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]日常任务的评分越高，奖励越丰厚，经验也更多哟[-] -200
+internaldelay 0.3
+
+step 刷新
+scond inlevel 1
+forceclick GuildDailyTask Refresh 1
+internaldelay 0.3
+
+
+step 刷新
+scond inlevel 1
+forceclick DailyTaskInviteDlg Bg/Panel/WrapContent/item0/BtnInvite 1
+internaldelay 0.3
+
+end tutorial
+

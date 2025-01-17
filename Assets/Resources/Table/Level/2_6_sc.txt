@@ -1,0 +1,86 @@
+﻿
+
+func:Wave1blockwall
+opendoor Wave1blockwall
+
+func:Wave8blockwall
+opendoor Wave8blockwall
+
+func:Wave12blockwall
+opendoor Wave12blockwall
+
+func:Wave13blockwall
+opendoor Wave13blockwall
+
+func:Wave14blockwall
+opendoor Wave14blockwall
+
+func:Wave24blockwall
+opendoor Wave24blockwall
+
+func:Wave25blockwall
+opendoor Wave25blockwall on
+
+func:TransferWall
+opendoor TransferWall on
+
+func:killwave1
+killwave 1
+
+func:killwave12
+killwave 12
+
+func:killwave13
+killwave 13
+
+func:killwave14
+killwave 14
+
+func:killwave24
+killwave 24
+
+func:talk
+talkl [player] [ffebad]黑骑士！我看到你了，别跑！放下萝丝！
+talkr 36 [ffebad]嗯？哪来的小虫子？滚开！
+talkl [player] [ffebad]啊！可恶，好强大的力量……
+stoptalk
+
+func:closedoor
+opendoor Door on
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 126.39 15.34 152.65 51508
+
+func:direction
+showdirection direction
+
+func:direction1
+showdirection direction1
+
+func:box_collider_1
+opendoor box_collider_1 on
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:velskud
+opendoor velskud
+
+func:tips
+notice 破坏水晶机关，当心守护怪 5
+
+
+
+
+info:Wave1blockwall 75.15652|21.64846|42.45634|0 on 10 26.64846 0.1
+info:Wave8blockwall 54.95652|22.28846|67.86635|90.00001 on 10 27.28846 0.1
+info:Wave12blockwall 66.36652|22.08846|65.92635|90.00001 on 10 27.08846 0.1
+info:Wave13blockwall 86.34652|22.24846|67.46635|90.00001 on 10 27.24846 0.1
+info:Wave14blockwall 75.55652|23.03846|77.69635|0 on 10 28.03846 0.1
+info:Wave24blockwall 126.2665|20.08846|141.9964|0 on 10 25.08846 0.1
+info:Wave25blockwall 126.2665|20.08846|141.9964|0 off 10 25.08846 0.1
+info:box_collider_1 126.3282|19.35827|143.1052|0 off 14.18215 22.63773 2.359538
+info:velskud 126.2665|20.08846|172.4563|0 on 10 25.08846 0.1

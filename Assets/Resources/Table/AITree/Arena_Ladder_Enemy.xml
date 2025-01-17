@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Arena_Ladder_Enemy>
+  <EntryTask F_heartrate="1" T_target="" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="1" I_skillid="0" F_target_distance="0" F_random="0" F_attack_range="0" F_min_keep_range="0">
+    <Selector>
+      <Sequence>
+        <Selector>
+          <IsQTEState QTEState="1" />
+          <IsQTEState QTEState="2" />
+          <IsQTEState QTEState="3" />
+          <IsQTEState QTEState="4" />
+          <IsQTEState QTEState="6" />
+        </Selector>
+        <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+        <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.3" />
+        <TryCastQTE />
+      </Sequence>
+      <Sequence>
+        <Inverter>
+          <ValueTarget Shared_TargetName="target" />
+        </Inverter>
+        <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="200" FilterImmortal="0" />
+        <DoSelectNearest />
+      </Sequence>
+      <Selector>
+        <Sequence>
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillRandom />
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.15" />
+          <DoCastSkill Shared_TargetName="target" />
+          <SetFloat Shared_ValueName="heartrate" value="1" Shared_StoredResultName="" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="4" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="min_keep_range" float2Value="0" />
+          <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="attack_range" float2Value="0" />
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.3" />
+          <PhysicalAttack Shared_TargetName="target" />
+          <SetFloat Shared_ValueName="heartrate" value="1" Shared_StoredResultName="" />
+        </Sequence>
+        <ReturnFailure>
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+        </ReturnFailure>
+        <Sequence>
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.4" />
+          <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="target" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="0" AdjustAngle="60" Shared_AdjustLengthName="target_distance" Shared_AdjustLengthmValue="0" AdjustDir="1" SetDestType="1" />
+          <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          <SetFloat Shared_ValueName="heartrate" value="1" Shared_StoredResultName="" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.8" />
+          <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="target" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="0" AdjustAngle="-60" Shared_AdjustLengthName="target_distance" Shared_AdjustLengthmValue="0" AdjustDir="1" SetDestType="1" />
+          <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          <SetFloat Shared_ValueName="heartrate" value="1" Shared_StoredResultName="" />
+        </Sequence>
+        <Sequence>
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+          <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="target" Shared_BornPosName="" Shared_BornPosmValue="38:0:38" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="6" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="0" AdjustDir="2" SetDestType="2" />
+          <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          <SetFloat Shared_ValueName="heartrate" value="1" Shared_StoredResultName="" />
+        </Sequence>
+      </Selector>
+    </Selector>
+  </EntryTask>
+</Arena_Ladder_Enemy>

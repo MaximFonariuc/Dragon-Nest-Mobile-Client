@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_attack_shenshengduanyan_ex_end</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_shenshengduanyanEX</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.3</At>
+      <Cycle>0.166666672</Cycle>
+      <Loop_Count>3</Loop_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>3</Runningtime>
+        <Velocity>3</Velocity>
+        <Radius>3</Radius>
+        <Prefab>Prefabs/Bullets/Player_cleric_attack_shenshengduanyan_ex_Clip01</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio>Audio/Player_cleric/Player_cleric_attack_shenshengduanyan_ex_fx</Audio>
+        <Audio_Channel>Motion</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+        <Refine_Cycle>0.1</Refine_Cycle>
+        <Refine_Count>4</Refine_Count>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>1.2</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>0</CoolDown>
+  <Time>1.2</Time>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

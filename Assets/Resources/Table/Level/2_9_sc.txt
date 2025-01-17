@@ -1,0 +1,65 @@
+﻿
+func:killwave
+killwave 0
+
+func:notice
+notice [ffdc00]兽人洒满出现在场景中央
+
+func:notice1
+notice [ffdc00]第一波|[ffdc00]3秒|[ffdc00]2秒|[ffdc00]1秒|[ffdc00]开始！消灭所有怪物
+
+func:notice2
+notice [ffdc00]第二波|[ffdc00]3秒|[ffdc00]2秒|[ffdc00]1秒|[ffdc00]开始！消灭所有怪物
+
+func:notice3
+notice [ffdc00]第三波|[ffdc00]3秒|[ffdc00]2秒|[ffdc00]1秒|[ffdc00]开始！消灭所有怪物
+
+func:notice4
+notice [ffdc00]一大群黑色巨人出现
+
+func:notice11
+notice [ffdc00](1/3)波怪物 600
+
+func:notice12
+notice [ffdc00](2/3)波怪物 600
+
+func:notice13
+notice [ffdc00](3/3)波怪物 600
+
+func:TransferWall
+opendoor TransferWall on
+
+func:TransferWall_part1
+opendoor TransferWall_part1 on
+
+func:showdirection
+showdirection direction
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 159.07 7.5 132.48 0 51809
+
+func:Ty_task_scdz
+opendoor Ty_task_scdz
+
+func:killwave2
+killwave 2
+
+func:waring
+notice [ff0000]捡起顺从吊坠[-]，结束关卡。 12
+
+func:taketask
+notice 得到了[ff0000]顺从吊坠[-]，继续击杀守护怪物通关。 10
+
+
+func:talk
+talkl [player] [ffebad]这只食尸鬼身后，闪现着白色的光！ Audio/VO/Warrior/warrior5|Audio/VO/Archer/archer5|Audio/VO/Sorceress/sorceress5|Audio/VO/Cleric/cleric5|Audio/VO/Academic/academic5|Audio/VO/Assassin/assassin5|Audio/VO/kali/kali5
+talkr 46 [ffebad]吼……守护……嘶……净化…… Audio/VO/lines/lines139
+stoptalk
+
+

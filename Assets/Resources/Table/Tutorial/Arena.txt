@@ -1,0 +1,28 @@
+﻿start tutorial
+
+step 开放技能系统
+scond nostackui
+scond inlevel 1
+newsys 53
+econd SysOpened
+
+step 打开竞技场面板
+scond inlevel 1
+ailin [301b0a]勇士，通过[7100ff]竞技场[-]可以向大陆传播你的骁勇！[-] -200
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysBArena 1
+internaldelay 0.2
+text 这里就是竞技场的入口 -200 0
+
+step 进入竞技场
+scond inlevel 1
+forceclick ArenaListDlg Bg/Panel/{1}/Bg 1.5
+internaldelay 0.2
+text 点击这里进入竞技场 200 0
+
+--step 关闭竞技场面板
+--scond inlevel 1
+--forceclick ArenaDlg Bg/Close 1
+--internaldelay 0.3
+--text 关闭竞技场界面 -200 0
+
+end tutorial

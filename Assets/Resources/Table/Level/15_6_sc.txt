@@ -1,0 +1,44 @@
+﻿
+func:Door
+opendoor Door on
+
+func:blockpart1
+opendoor blockpart1
+
+func:blockpart2
+opendoor blockpart2
+
+func:blockpart3
+opendoor blockpart3
+
+func:blockpart4
+opendoor blockpart4
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 31.37 2.903 18.87 0 19318
+
+func:TransferWall
+opendoor TransferWall on 122.49|5.32|56.89|3 108.23|5.078|50.54|-100
+
+func:TransferWall_part2
+opendoor TransferWall_part2 on 91.68|5|55.72|3 31.37|2.903|18.87|0
+
+func:showdirection1
+showdirection direction1
+
+func:showdirection2
+showdirection direction2
+
+func:aicommand
+aicommand -1 Recover 19318
+
+func:warning1
+npcpopspeek 2 3003 场上出现小暗影！小心被他定身！ 6
+
+func:warning2
+notice 小心！自爆小暗影重生了！ 6
+
+info:blockpart1 108.8728|5.045202|81.64783|99.99999 on 20 15.0452 0.1
+info:blockpart2 122.1728|5.045202|56.09782|30 on 20 15.0452 0.1
+info:blockpart3 111.3128|5.045202|50.48782|90.00003 on 20 15.0452 0.1
+info:blockpart4 91.42282|5.055202|56.19783|320 on 20 15.0552 0.1

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_minotauros_king_dance_blackdragon_start</Name>
+  <ClipName>Animation/Monster_minotauros/Monster_minotauros_red_dance_start</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>3.30000019</At>
+      <Range>2</Range>
+      <Scope>360</Scope>
+      <Token>2</Token>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <WithCollision>false</WithCollision>
+        <Runningtime>1</Runningtime>
+        <Prefab>Prefabs/Bullets/Monster_ogre_meteoriteattack_dragon_Clip02</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <TriggerAtEnd>true</TriggerAtEnd>
+        <End_Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_ogre_meteoriteattack_dragon_Clip01</End_Fx>
+        <EndFx_LifeTime>2</EndFx_LifeTime>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <AimTargetCenter>false</AimTargetCenter>
+      </LongAttackData>
+      <Warning>true</Warning>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.3</Offset>
+      <Height>1.5</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_fire_01</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Warning>
+    <XWarningData>
+      <Type>Warning_Multiple</Type>
+      <At>3.23333359</At>
+      <FxDuration>1.5</FxDuration>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_yj_yuan</Fx>
+      <Scale>4</Scale>
+      <MaxRandomTarget>3</MaxRandomTarget>
+      <PosRandomRange>0</PosRandomRange>
+    </XWarningData>
+  </Warning>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+    <Not_Move_End>3.86666679</Not_Move_End>
+    <CanCancelAt>3.86666679</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CoolDown>3.866667</CoolDown>
+  <Time>3.86666679</Time>
+</XSkillData>

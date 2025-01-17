@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_MOBA_Base_Blue>
+  <EntryTask T_target="" F_heartrate="1" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0" F_LeftProb="0" F_RightProb="0" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_ExpProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="5" F_HeartRateMaxFloat="5" I_StringCompareResult="0" F_ratioidle="0" F_ratioleft="0" F_ratioright="0" F_ratioskill="0" F_ratiodistance="0" F_ratioexp="0" B_SubTreeBool1="1" B_SubTreeBool2="1" B_SubTreeBool3="1" F_enter_fight_range="0" I_monsternum1="0">
+    <Selector>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <SetFloat Shared_ValueName="" value="1" Shared_StoredResultName="heartrate" />
+          <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="start" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="20" />
+          <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="spawnunit" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="60" />
+          <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="seniorstart" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="111" />
+          <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="spawnsenior" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="231" />
+          <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="loopaddlevel" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="61" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="ExString" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="eventstr" />
+          <Selector>
+            <Sequence>
+              <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="heroatkhero" Shared_ResultName="StringCompareResult" />
+              <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+              <DoSelectByUID Shared_UIDName="eventstr" />
+              <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="enter_fight_range" float2Value="0" />
+              <SetEnmity OperateType="3" Shared_OperateValueName="" Shared_OperateValuemValue="999999" />
+              <NotifyTarget />
+            </Sequence>
+            <Sequence>
+              <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="start" Shared_ResultName="StringCompareResult" />
+              <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool1" />
+            </Sequence>
+            <Sequence>
+              <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="spawnunit" Shared_ResultName="StringCompareResult" />
+              <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+              <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="spawnunit" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="30" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool1" />
+            </Sequence>
+            <Sequence>
+              <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="seniorstart" Shared_ResultName="StringCompareResult" />
+              <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool3" />
+            </Sequence>
+            <Sequence>
+              <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="spawnsenior" Shared_ResultName="StringCompareResult" />
+              <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+              <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="spawnsenior" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="120" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool3" />
+            </Sequence>
+            <Sequence>
+              <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="loopaddlevel" Shared_ResultName="StringCompareResult" />
+              <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+              <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="35009" MsgStr="loopaddlevel" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="60" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool2" />
+            </Sequence>
+          </Selector>
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool2" bool1Value="1" Shared_Bool2Name="" bool2Value="0" />
+          <AddGroupLevel Shared_FightGroupName="" Shared_FightGroupmValue="-1" Level="1" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool2" />
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool3" bool1Value="1" Shared_Bool2Name="" bool2Value="0" />
+          <GetMonsterID Type="5" Shared_StoreIDName="monsternum1" Shared_StoreIDmValue="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="0" Shared_MonsterId2Name="monsternum1" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="225" DelayTime="0" Shared_PosName="" Shared_PosmValue="103.74:0.48:41" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool3" />
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool1" bool1Value="1" Shared_Bool2Name="" bool2Value="0" />
+          <GetMonsterID Type="1" Shared_StoreIDName="monsternum1" Shared_StoreIDmValue="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="0" Shared_MonsterId2Name="monsternum1" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="225" DelayTime="0" Shared_PosName="" Shared_PosmValue="103.74:0.48:41" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          <GetMonsterID Type="2" Shared_StoreIDName="monsternum1" Shared_StoreIDmValue="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="0" Shared_MonsterId2Name="monsternum1" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="225" DelayTime="2" Shared_PosName="" Shared_PosmValue="103.74:0.48:41" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          <GetMonsterID Type="3" Shared_StoreIDName="monsternum1" Shared_StoreIDmValue="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="0" Shared_MonsterId2Name="monsternum1" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="225" DelayTime="0" Shared_PosName="" Shared_PosmValue="103.74:0.48:38" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          <GetMonsterID Type="4" Shared_StoreIDName="monsternum1" Shared_StoreIDmValue="0" />
+          <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="0" Shared_MonsterId2Name="monsternum1" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="0" LifeTime="225" DelayTime="2" Shared_PosName="" Shared_PosmValue="103.74:0.48:38" BornType="0" Pos1="0:0:0" Pos2="0:0:0" Pos3="0:0:0" Pos4="0:0:0" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool1" />
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <GetUID Shared_StoreIDName="eventstr" />
+          <DoSelectByUID Shared_UIDName="eventstr" />
+          <Selector>
+            <Sequence>
+              <DetectEnemyInRange RangeType="0" Radius="8" Angle="360" Length="0" Width="0" OffsetLength="0" MonsterType="112" FightGroupType="0" />
+              <RemoveBuff MonsterId="-2" BuffId="65102" />
+            </Sequence>
+            <AddBuff Shared_MonsterIdName="" Shared_MonsterIdmValue="-2" Shared_BuffIdName="" Shared_BuffIdmValue="65102" Shared_BuffId2Name="" Shared_BuffId2mValue="0" Shared_AddBuffTargetName="" Shared_AddBuffTargetmValue="0" Shared_AddBuffWayName="" Shared_AddBuffWaymValue="0" Shared_PlayerProfIdName="" Shared_PlayerProfIdmValue="0" />
+          </Selector>
+          <DoSelectByUID Shared_UIDName="" Shared_UIDmValue="0" />
+        </Sequence>
+      </ReturnFailure>
+      <ReturnFailure>
+        <Sequence>
+          <TargetByHatredList Shared_DistanceName="" Shared_DistancemValue="0" FilterImmortal="0" />
+          <DoSelectNearest />
+          <FloatComparison type="5" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="enter_fight_range" float2Value="0" />
+          <SetEnmity OperateType="3" Shared_OperateValueName="" Shared_OperateValuemValue="0" />
+          <ResetHartedList />
+          <DetectEnimyInSight />
+          <NotifyTarget />
+        </Sequence>
+      </ReturnFailure>
+      <Sequence>
+        <DetectEnimyInSight />
+        <TargetByHatredList Shared_DistanceName="" Shared_DistancemValue="0" FilterImmortal="0" />
+        <DoSelectNearest />
+        <FloatComparison type="1" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="enter_fight_range" float2Value="0" />
+        <NotifyTarget />
+        <PhysicalAttack Shared_TargetName="target" />
+      </Sequence>
+      <NotifyTarget />
+    </Selector>
+  </EntryTask>
+</Monster_MOBA_Base_Blue>

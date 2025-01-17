@@ -1,0 +1,97 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 开放装备制作
+scond nostackui
+scond inlevel 1
+directsys 45
+econd SysOpened
+
+step 打开制作界面
+scond hasbody mainweapon
+scond item 1=13000
+scond item 79=5
+scond item 93=4
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysDEquipCreate
+internaldelay 0.5
+--text 打开制作界面 -200 0
+
+step 点击制作
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EquipSetFrame/ItemList/WrapContent/0/Create
+internaldelay 0.5
+
+step 点击确认
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EquipSetCreateConfirmFrame/OK
+internaldelay 0.5
+
+step 点击
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EquipSetCreateFrame/Do
+internaldelay 6
+
+step 点击返回
+scond inlevel 1
+forceclick EquipCreateDlg Bg/Close
+internaldelay 0.5
+
+step 打开角色界面
+scond item 16375=1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem
+audio Audio/VO/guide/guide28
+internaldelay 0.5
+--text 打开制作界面 -200 0
+
+step 点击某武器
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/Items/Panel/WrapContent/equip?profession?16375/Icon
+--internaldelay 0.5
+
+step 点击装备按钮
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button1
+--internaldelay 0.5
+
+--step 点击外显按钮
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/RightPanel/EquipListPanel/ShowWearing
+--internaldelay 0.5
+
+--step 打钩外显
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/RightPanel/WearingPanel/Panel/Weapon_equip
+--internaldelay 0.5
+
+--step 点击返回
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/Close
+--internaldelay 0.5
+
+step 选择装备
+scond inlevel 1
+forceclick ItemNewDlg Bg/LeftPanel/EquipFrame/item5/Icon 1
+--internaldelay 0.5
+--text 选择一件装备 -200 0
+
+step 点击强化
+scond inlevel 1
+forceclick EquipToolTipDlg Bg/Bg/main/FuncFrame/Button2 1
+--text 强化1次试试 -200 0
+--internaldelay 0.3
+
+step 点击强化按钮
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/EnhanceFrame/Bg/Enhance/Bottom/EnhanceBtn 1
+text 强化1次试试 -200 0
+audio Audio/VO/guide/guide30
+internaldelay 0.3
+econd EnhanceItem
+
+end tutorial

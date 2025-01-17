@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_warrior_charge_pvp</Name>
+  <ClipName>Animation/Player_warrior/Player_warrior_charge</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Charge>
+    <XChargeData>
+      <End>60</End>
+      <Offset>252</Offset>
+      <Curve_Forward>Curve/Player_warrior/Player_warrior_charge_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_warrior/Player_warrior_charge_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.100000009</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_zhanshi/zhanshi_attack_b14_01</Fx>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.100000009</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_zhanshi/zhanshi_attack_b14</Fx>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_warrior/Player_warrior_charge</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script>
+    <Update_Name>checkInput</Update_Name>
+  </Script>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.50000012</Not_Move_End>
+    <CanCancelAt>1.50000012</CanCancelAt>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>60</Time>
+</XSkillData>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_Manticore_Trap>
+  <EntryTask T_target="" F_heartrate="1" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_StringCompareResult="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="ExString" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="end" Shared_ResultName="StringCompareResult" />
+        <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <StopCastingSkill />
+      </Sequence>
+      <Sequence>
+        <Inverter>
+          <IsFighting />
+        </Inverter>
+        <DetectEnimyInSight />
+      </Sequence>
+      <Sequence>
+        <TargetByHatredList Shared_DistanceName="" Shared_DistancemValue="0" FilterImmortal="0" />
+        <DoSelectNearest />
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="ExString" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="trap" Shared_ResultName="StringCompareResult" />
+          <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <Log />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="1" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillRandom />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Monster_Manticore_Trap>

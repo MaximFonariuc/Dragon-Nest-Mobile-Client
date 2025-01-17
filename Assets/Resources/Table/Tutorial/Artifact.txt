@@ -1,0 +1,63 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 开放龙器系统
+skip ProfessionNo1Turn 1
+scond nostackui
+scond inlevel 1
+directsys 370
+econd SysOpened
+
+
+step 打开角色界面
+scond nostackui
+scond inlevel 1
+scond item 455=1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+internaldelay 0.5
+
+step 点击背包页签
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Bag_Item/Bg 1
+internaldelay 0.3
+
+step 点击礼包页签
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/BagListPanel/TabsFrame/item2/Bg 1
+internaldelay 0.5
+
+step 点击龙器礼包
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/BagListPanel/Items/Panel/WrapContent/item455/Icon
+internaldelay 0.2
+
+step 点击打开
+scond inlevel 1
+forceclick ItemToolTipDlg Bg/Bg/main/FuncFrame/Button1
+econd UseItem
+--internaldelay 0.2
+
+step 点击龙器页签
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Artifact/Bg 1
+internaldelay 0.3
+
+step 点击某龙器
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/ArtifactListPanel/Panel/WrapContent/artifact5900?profession1turn?/Icon
+--internaldelay 0.2
+--econd UseItem
+
+
+step 点击装备龙器
+scond inlevel 1
+forceclick ArtifactToolTipDlg Bg/Bg/main/FuncFrame/Button1
+econd UseItem
+--internaldelay 0.2
+
+
+end tutorial

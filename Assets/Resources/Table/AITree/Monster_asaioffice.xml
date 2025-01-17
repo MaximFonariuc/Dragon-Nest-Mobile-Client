@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_asaioffice>
+  <EntryTask T_target="" T_master="" F_heartrate="0.3" T_navtarget="" F_movespeed="1" V_movedir="0:0:0" V_movedest="0:0:0" F_target_distance="0" F_master_distance="0" F_normal_attack_prob="0" F_enter_fight_range="0" F_fight_together_dis="0" B_is_wander="0" I_type="0" F_target_rotation="0" F_attack_range="0" F_min_keep_range="0" B_is_casting_skill="0" B_is_fighting="0" B_is_qte_state="0" I_compres="0" B_SubTreeBool1="0">
+    <Sequence>
+      <ResetTargets />
+      <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="50" FilterImmortal="0" />
+      <DoSelectNearest />
+      <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="1" UseCoolDown="1" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Broken_asaioffice_rise_nest" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+      <DoSelectSkillInOrder />
+      <DoCastSkill Shared_TargetName="target" />
+    </Sequence>
+  </EntryTask>
+</Monster_asaioffice>

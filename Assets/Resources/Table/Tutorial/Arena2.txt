@@ -1,0 +1,23 @@
+start tutorial
+
+step 打开竞技场面板
+scond nostackui
+scond inlevel 1
+--ailin [301b0a]勇士，通过[7100ff]竞技场[-]可以向大陆传播你的骁勇！[-] -200
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysBArena 1
+internaldelay 0.2
+text 这里就是1:1天梯赛的入口 -200 0
+
+step 进入竞技场
+scond inlevel 1
+forceclick ArenaListDlg Bg/Panel/item4 1.5
+internaldelay 0.2
+text 点击这里进入1:1天梯赛 200 0
+
+--step 关闭竞技场面板
+--scond inlevel 1
+--forceclick ArenaDlg Bg/Close 1
+--internaldelay 0.3
+--text 关闭竞技场界面 -200 0
+
+end tutorial

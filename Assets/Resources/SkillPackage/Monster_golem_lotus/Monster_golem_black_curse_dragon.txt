@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_golem_black_curse_dragon</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>9.183333</At>
+      <End>12.833334</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_golem_black_curse_dragon_01</Fx>
+      <OffsetZ>5</OffsetZ>
+      <Follow>false</Follow>
+      <StickToGround>true</StickToGround>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_golem_black_curse_first</Name>
+      <End>5.166667</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_golem_black_curse_end</Name>
+      <End>7.666667</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>9.667</Not_Move_End>
+    <CanCancelAt>9.667</CanCancelAt>
+  </Logical>
+  <Time>12.833</Time>
+</XSkillData>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_sorceress_buff_mofadaoqu</Name>
+  <ClipName>Animation/Player_sorceress/Player_sorceress_attack_stealmagic</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_sorceress/Player_sorceress_attack_stealmagic_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_sorceress/Player_sorceress_attack_stealmagic_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.366666675</At>
+      <End>1.66666675</End>
+      <Fx>Effects/High_Resources/Prefabs/Soceress/Player_sorceress_buff_mofadaoqu_Clip01</Fx>
+      <Follow>false</Follow>
+      <Destroy_Delay>0.5</Destroy_Delay>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_sorceress/Player_sorceress_buff_mofadaoqu</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.36666667</Not_Move_End>
+    <Rotate_Speed>1</Rotate_Speed>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>1.66666675</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>1.36666667</CanCancelAt>
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>1.66666675</Time>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

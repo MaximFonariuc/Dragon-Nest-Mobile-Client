@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_assassin_buff_heianhuashen</Name>
+  <ClipName>Animation/Player_assassin/Player_assassin_tianhundian</ClipName>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>1.33333337</End>
+      <Fx>Effects/High_Resources/Prefabs/Assassin/Player_assassin_buff_heianhuashen_Clip02</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_assassin/Player_assassin_buff_heianhuashen</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <CameraEffect>
+    <XCameraEffectData>
+      <Time>0.3</Time>
+      <Frequency>30</Frequency>
+      <Coordinate>World</Coordinate>
+      <AmplitudeX>0.01</AmplitudeX>
+      <AmplitudeY>0.015</AmplitudeY>
+      <At>0.333333343</At>
+    </XCameraEffectData>
+  </CameraEffect>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.733333349</Not_Move_End>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>1.33333337</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>0.733333349</CanCancelAt>
+  </Logical>
+  <CameraPostEffect>
+    <End>0.333333343</End>
+    <Effect>RadialBlur</Effect>
+  </CameraPostEffect>
+  <CoolDown>10</CoolDown>
+  <Time>1.33333337</Time>
+  <CameraTurnBack>1.5</CameraTurnBack>
+</XSkillData>

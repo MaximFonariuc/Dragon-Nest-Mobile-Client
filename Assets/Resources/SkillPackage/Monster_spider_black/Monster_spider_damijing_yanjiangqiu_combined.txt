@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_damijing_yanjiangqiu_combined</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.166666672</At>
+      <End>6.83333349</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Ty_damijing_yanjiangqiu</Fx>
+      <OffsetY>1</OffsetY>
+      <Follow>false</Follow>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>6.83333349</At>
+      <End>8.099999</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_damijing_yanjiangqiu_Clip01</Fx>
+      <ScaleX>2</ScaleX>
+      <ScaleZ>2</ScaleZ>
+      <Follow>false</Follow>
+      <Destroy_Delay>2</Destroy_Delay>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_spider_damijing_yanjiangqiu</Name>
+      <End>4.6</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_spider_damijing_yanjiangqiu_end</Name>
+      <End>3.5</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>8.1</Not_Move_End>
+    <CanCancelAt>8.1</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>8.1</Time>
+  <Cast_Range_Upper>40</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_wraith_attack_Left_Dead</Name>
+  <ClipName>Animation/Monster_wraith/Monster_wraith_attack</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.95</At>
+      <Range>3.5</Range>
+      <Scope>180</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_wraith/Monster_wraith_attack_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_wraith/Monster_wraith_attack_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>1</Height>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.900000036</At>
+      <End>-1</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/wraith_red_attack</Fx>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_wraith/Monster_wraith_attack</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.83333337</Not_Move_End>
+    <CanCancelAt>1.83333337</CanCancelAt>
+  </Logical>
+  <Time>1.83333337</Time>
+  <Cast_Range_Upper>3.5</Cast_Range_Upper>
+  <Cast_Scope>180</Cast_Scope>
+</XSkillData>

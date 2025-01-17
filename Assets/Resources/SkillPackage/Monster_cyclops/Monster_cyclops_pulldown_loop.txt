@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_cyclops_pulldown_loop</Name>
+  <ClipName>Animation/Monster_cyclops/Monster_cyclops_pulldown_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>1.1</At>
+      <Range>2.5</Range>
+      <Scope>2.5</Scope>
+      <Offset_Z>1</Offset_Z>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <End>1.16666675</End>
+      <Offset>10</Offset>
+      <AimTarget>true</AimTarget>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.16666675</Not_Move_End>
+    <CanCancelAt>1.16666675</CanCancelAt>
+  </Logical>
+  <CoolDown>0</CoolDown>
+  <Time>1.16666675</Time>
+</XSkillData>

@@ -1,0 +1,33 @@
+﻿start tutorial
+
+--step 按左键
+--scond inlevel 201
+--scond bossshow
+--notewindow BattleQTEDlg Bg/Bind/Bg 8.5|5|0
+--ailin [301b0a]哎呀，被藤蔓缠绕住了！快点，交替点击按键可以挣脱束缚。[-] -200 
+--buttomtext 交替点击左右按键挣脱缠绕。
+--pause
+
+step 按左键
+scond nostackui
+scond inlevel 201
+forceclick BattleQTEDlg Bg/Bind/Left/Light/Bg 1.5
+--text 点击左侧按键 200 0
+ailin [301b0a]哎呀，被藤蔓缠绕住了！快点，交替点击按键可以挣脱束缚。[-] 0 
+pause
+
+step 按右键
+scond inlevel 201
+forceclick BattleQTEDlg Bg/Bind/Right/Light/Bg 1.5
+--text 点击右侧按键 -200 0
+--ailin [301b0a]点击[7100ff]右侧按键[-]。[-] -200 
+pause
+
+step 按左键
+scond inlevel 201
+forceclick BattleQTEDlg Bg/Bind/Left/Light/Bg 1.5
+--text 点击左侧按键 200 0
+pause
+
+
+end tutorial

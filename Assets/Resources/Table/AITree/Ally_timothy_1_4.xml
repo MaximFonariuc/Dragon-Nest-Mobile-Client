@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Ally_timothy_1_4>
+  <EntryTask T_target="" T_master="" F_heartrate="0.5" T_navtarget="" F_movespeed="1" V_movedir="0:0:0" V_movedest="0:0:0" F_target_distance="0" F_master_distance="0" F_normal_attack_prob="0" F_enter_fight_range="0" F_fight_together_dis="0" B_is_wander="0" I_type="0" F_target_rotation="0" F_attack_range="0" F_min_keep_range="0" B_is_casting_skill="0" B_is_fighting="0" B_is_qte_state="0" I_compres="0" F_random="0" B_IsInitialized="0" B_SubTreeBool1="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="ExString" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="speak" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="50423" MsgStr="speak" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="10" />
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool1" />
+      </Sequence>
+      <Sequence>
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <SendAIEvent MsgTo="3" MsgType="1" EntityTypeId="50423" MsgStr="speak" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="10" />
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+      </Sequence>
+      <ReturnFailure>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool1" bool1Value="0" Shared_Bool2Name="" bool2Value="1" />
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+          <Selector>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.2" />
+              <CallScript FuncName="generalbubble_1" DelayTime="0" />
+            </Sequence>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.4" />
+              <CallScript FuncName="generalbubble_2" DelayTime="0" />
+            </Sequence>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.6" />
+              <CallScript FuncName="generalbubble_3" DelayTime="0" />
+            </Sequence>
+          </Selector>
+          <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool1" />
+        </Sequence>
+      </ReturnFailure>
+      <Sequence>
+        <FloatComparison type="5" Shared_Float1Name="master_distance" float1Value="0" Shared_Float2Name="" float2Value="3" />
+        <Selector>
+          <Sequence>
+            <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="master" Shared_NavName="" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="1" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="2" AdjustDir="2" SetDestType="1" />
+            <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          </Sequence>
+          <NavToTarget Shared_TargetName="master" Shared_NavTargetName="master" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          <Sequence>
+            <FindNavPath />
+            <NavToTarget Shared_TargetName="target" Shared_NavTargetName="navtarget" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Ally_timothy_1_4>

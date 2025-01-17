@@ -1,0 +1,48 @@
+﻿
+func:transferWall
+opendoor TransferWall on 61.80944|1.28191|53.21249|2 0|0|0|0
+
+func:aicommand
+aicommand -1 poisonworld 43207
+
+func:aicommand1
+aicommand -1 closearea 43207
+
+func:aicommand2
+aicommand 43207 randomskill
+
+func:aicommand3
+aicommand 43207 resetskill
+
+func:notice
+notice [ffdc00]9秒后，阿卜杜拉释放毒雾|[ffdc00]8秒后，阿卜杜拉释放毒雾|[ffdc00]7秒后，阿卜杜拉释放毒雾|[ffdc00]6秒后，阿卜杜拉释放毒雾|[ffdc00]5秒后，阿卜杜拉释放毒雾|[ffdc00]4秒后，阿卜杜拉释放毒雾|[ffdc00]3秒后，阿卜杜拉释放毒雾|[ffdc00]2秒后，阿卜杜拉释放毒雾|[ffdc00]1秒后，阿卜杜拉释放毒雾|[ffdc00]阿卜杜拉释放毒雾 6
+
+func:notice1
+notice [ffdc00]8秒后，阿卜杜拉释放沙尘风暴|[ffdc00]7秒后，阿卜杜拉释放沙尘风暴|[ffdc00]6秒后，阿卜杜拉释放沙尘风暴|[ffdc00]5秒后，阿卜杜拉释放沙尘风暴|[ffdc00]4秒后，阿卜杜拉释放沙尘风暴|[ffdc00]3秒后，阿卜杜拉释放沙尘风暴|[ffdc00]2秒后，阿卜杜拉释放沙尘风暴|[ffdc00]1秒后，阿卜杜拉释放沙尘风暴|[ffdc00]阿卜杜拉释放沙尘风暴 6
+
+func:notice2
+notice [ffdc00]欢迎来到阿卜杜拉监狱长的领地，你们将被永远囚禁于此！ 6
+
+func:notice3
+notice [ffdc00]散落吧，沙漠之毒！ 6
+
+func:notice4
+notice [ffdc00]旋转、冲锋、咆哮！ 6
+
+func:notice5
+notice [ffdc00]阿卜杜兰拉吸收了死亡勇士的力量，其攻击、防御得到了提升。 6
+
+func:notice6
+notice [ffdc00]又到了“翻牌”时间，选哪个小鬼好呢！ 6
+
+func:notice7
+notice [ffdc00]似乎那位大人在召唤吾，今天就先陪你们玩到这里了小鬼们！ 6
+
+func:notice8
+notice [ffdc00]请在8分钟内击杀阿卜杜拉，否则阿卜杜拉将会逃跑 6
+
+func:hidebillboard
+hidebillboard 43207 6
+
+func:addbuff
+addbuff 43207 21449 1

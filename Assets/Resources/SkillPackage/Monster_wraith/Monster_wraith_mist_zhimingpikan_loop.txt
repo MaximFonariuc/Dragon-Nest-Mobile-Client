@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_wraith_mist_zhimingpikan_loop</Name>
+  <ClipName>Animation/Monster_wraith/Monster_wraith_attack</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.933333337</At>
+      <LongAttackData>
+        <Type>Plane</Type>
+        <Runningtime>5</Runningtime>
+        <Velocity>5</Velocity>
+        <Radius>2</Radius>
+        <Prefab>Prefabs/Bullets/Monster_wraith_mist_zhimingpikan_nest_Clip02</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.83333337</Time>
+</XSkillData>

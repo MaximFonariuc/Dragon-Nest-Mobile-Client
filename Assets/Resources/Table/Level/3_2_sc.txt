@@ -1,0 +1,62 @@
+﻿
+
+func:killwave15
+killwave 15
+
+func:killwave16
+killwave 16
+
+func:part1blockwall
+opendoor part1blockwall
+
+func:part2blockwall
+opendoor part2blockwall
+
+func:closedoor
+opendoor Door on
+
+func:TransferWall
+opendoor TransferWall on
+
+func:showcutscene
+showcutscene CutScene/3_2_cutscene_end 87.64 7.74 47.93 0 52108
+
+func:direction
+showdirection direction
+
+func:direction1
+showdirection direction1
+
+func:Blockwall
+opendoor Blockwall
+
+func:unfz1
+opendoor unfz1 on
+
+func:Broken_flyingunit
+opendoor Broken_flyingunit on
+
+func:unfz1_close
+opendoor unfz1
+
+func:Broken_flyingunitclose
+opendoor Broken_flyingunit
+
+func:hopgoblin
+notice 随着制造机一阵轰鸣，小精灵出现了！ 6
+
+func:flyingunit
+notice [ff0000]飞艇发动机[-]已经充能成功了，快去拿回来吧。 7
+
+func:talk
+talkr 48 [ffebad]吼，主人抓到了新的实验体！ Audio/VO/lines/lines154
+talkl [player] [ffebad]啊，轻敌了，呃……这里是什么地方？ Audio/VO/Warrior/warrior6|Audio/VO/Archer/archer6|Audio/VO/Sorceress/sorceress6|Audio/VO/Cleric/cleric6|Audio/VO/Academic/academic6|Audio/VO/Assassin/assassin6|Audio/VO/kali/kali6
+talkl [player] [ffebad]被魔物包围的感觉真糟糕……突围吧！ Audio/VO/Warrior/warrior3|Audio/VO/Archer/archer3|Audio/VO/Sorceress/sorceress3|Audio/VO/Cleric/cleric3|Audio/VO/Academic/academic3|Audio/VO/Assassin/assassin3|Audio/VO/kali/kali4
+stoptalk
+
+
+
+info:part1blockwall 37.51|5.55|39.11|0 on 10 10.55 0.1
+info:part2blockwall 37.61159|6.448303|58.73622|0 on 10 11.4483 0.1
+info:Door 87.72|8.81|45.84|0 off 10 13.81 0.1
+info:Blockwall 88.15|12.59|93.53|0 on 50 37.59 0.1

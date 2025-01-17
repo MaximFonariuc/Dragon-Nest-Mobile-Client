@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_dance>
+  <EntryTask T_target="" F_heartrate="0.3" F_random="0" I_compareres="0" I_typeid="0" V_eventpos="0:0:0" B_SubTreeBool1="0" B_SubTreeBool2="0" B_SubTreeBool3="0" B_SubTreeBool4="0" B_SubTreeBool5="0" I_StringCompareResult="0">
+    <Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="ExString" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+        <Selector>
+          <Sequence>
+            <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="1" Shared_ResultName="StringCompareResult" />
+            <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+            <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool1" />
+          </Sequence>
+          <Sequence>
+            <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="2" Shared_ResultName="StringCompareResult" />
+            <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+            <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool2" />
+          </Sequence>
+          <Sequence>
+            <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="3" Shared_ResultName="StringCompareResult" />
+            <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+            <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool3" />
+          </Sequence>
+          <Sequence>
+            <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="4" Shared_ResultName="StringCompareResult" />
+            <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+            <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool4" />
+          </Sequence>
+          <Sequence>
+            <CompareTo Shared_FirstStringName="ExString" Shared_SecondStringName="" secondString="5" Shared_ResultName="StringCompareResult" />
+            <IntComparison type="2" Shared_Int1Name="StringCompareResult" int1Value="0" Shared_Int2Name="" int2Value="0" />
+            <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool5" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+      <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="1" inclusive="0" Shared_StoredResultName="random" />
+      <Selector>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool1" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.2" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_goblin_attack_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool2" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.4" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_goblin_firedash_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool3" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.6" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_goblin_jumpattack_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool4" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="0.8" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_goblin_middleattack_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool5" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="0" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_goblin_nanmu_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+      </Selector>
+    </Sequence>
+  </EntryTask>
+</Monster_dance>

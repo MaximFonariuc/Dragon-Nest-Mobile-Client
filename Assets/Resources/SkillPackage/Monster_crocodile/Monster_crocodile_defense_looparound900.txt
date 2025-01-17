@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_crocodile_defense_looparound900</Name>
+  <ClipName>Animation/Monster_crocodile/Monster_crocodile_defense_looparound</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <Rect_HalfEffect>true</Rect_HalfEffect>
+      <Low_Range>-14</Low_Range>
+      <Range>-14</Range>
+      <Scope>6</Scope>
+      <Loop>true</Loop>
+      <Group>true</Group>
+      <Cycle>0.3</Cycle>
+      <Loop_Count>60</Loop_Count>
+      <Deviation_Angle>-40</Deviation_Angle>
+      <Angle_Step>-37</Angle_Step>
+      <Time_Step>0.333333343</Time_Step>
+      <Group_Count>60</Group_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <End>3.99999976</End>
+      <Offset>16</Offset>
+    </XChargeData>
+    <XChargeData>
+      <Index>1</Index>
+      <At>3.99999976</At>
+      <End>7.99999952</End>
+      <Offset>-16</Offset>
+      <Rotation_Speed>60</Rotation_Speed>
+    </XChargeData>
+    <XChargeData>
+      <Index>2</Index>
+      <At>7.99999952</At>
+      <End>12</End>
+      <Offset>16</Offset>
+    </XChargeData>
+    <XChargeData>
+      <Index>3</Index>
+      <At>12</At>
+      <End>15.999999</End>
+      <Offset>-16</Offset>
+      <Rotation_Speed>60</Rotation_Speed>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>16.6666</Not_Move_End>
+    <CanCancelAt>16.6666</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>16.6666</Time>
+</XSkillData>

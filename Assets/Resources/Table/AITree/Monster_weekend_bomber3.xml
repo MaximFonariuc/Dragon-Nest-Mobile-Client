@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_weekend_bomber3>
+  <EntryTask T_target="" F_heartrate="0" V_movedir="0:0:0" V_movedest="0:0:0" F_movespeed="0" V_bornpos="0:0:0" F_target_distance="0" F_min_keep_range="0" F_attack_range="0" F_random="0" B_IsInitialized="0" F_normal_attack_prob="0" I_type="0" F_StandProb="0.15" F_LeftProb="0.1" F_RightProb="0.1" F_ForwardProb="0" F_BackProb="0" F_AttackProb="0" F_SkillProb="0" F_KeepDistanceProb="0" F_ExpProb="0" F_TotalProb="0" F_CurrentProb="0" F_AverageAttackRange="0" F_KeepDistance="2.5" I_HeartRateCount="0" I_HeartRateMax="5" F_HeartRateMaxFloat="5" F_ratioidle="0" F_ratioleft="0" F_ratioright="0" F_ratioskill="0" F_ratiodistance="0" F_ratioexp="0" I_rotate="2">
+    <Sequence>
+      <ActionRotate RotDegree="0" RotSpeed="500" RotType="1" />
+      <Sequence>
+        <IntOperator type="0" Shared_Int1Name="HeartRateCount" int1Value="0" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="HeartRateCount" />
+        <Selector>
+          <IntComparison type="1" Shared_Int1Name="HeartRateCount" int1Value="0" Shared_Int2Name="rotate" int2Value="2" />
+          <ReturnFailure>
+            <IntOperator type="1" Shared_Int1Name="HeartRateCount" int1Value="0" Shared_Int2Name="rotate" int2Value="2" Shared_StoredResultName="HeartRateCount" />
+          </ReturnFailure>
+        </Selector>
+      </Sequence>
+      <FilterSkill Shared_TargetName="" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="0" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_spider_attack_plantsuperbomb" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+      <DoSelectSkillInOrder />
+      <DoCastSkill Shared_TargetName="" />
+    </Sequence>
+  </EntryTask>
+</Monster_weekend_bomber3>

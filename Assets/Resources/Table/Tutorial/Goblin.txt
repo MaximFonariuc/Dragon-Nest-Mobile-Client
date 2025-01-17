@@ -1,0 +1,37 @@
+﻿start tutorial
+
+--step 开放活动系统
+--scond inlevel 1
+--directsys 52
+--econd SysOpened
+
+step 公会面板
+scond inlevel 1
+ailin [301b0a]公会中的[7100ff]小妖精[-]乐园开放啦！击败小妖精们可获得大量公会荣誉。[-] -200 
+forceclick HallDlg _canvas/MainMenu/Panel2/SysGridV1/SysCGuild 1
+internaldelay 0.3
+--text 打开活动界面 -200 0
+
+step 公会小妖精说明
+scond inlevel 1
+
+
+--step 打开主题公园
+--scond inlevel 1
+--forceclick ActivityDlg Bg/Tabs/XSys_Activity_SmallMonster/Bg 1
+--internaldelay 0.3
+--text 打开主题公园 200 0
+
+--step 打开小妖精
+--scond inlevel 1
+--forceclick ActivityDlg Bg/ParkFrame/Panel/{1} 1
+--internaldelay 0.3
+--text 打开小妖精 -200 0
+
+--step 入场
+--scond inlevel 1
+--forceclick NestDlg Bg/GoBattle 1
+--internaldelay 0.3
+--text 入场 -200 0
+
+end tutorial

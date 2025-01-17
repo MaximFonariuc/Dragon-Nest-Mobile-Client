@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Ally_academic>
+  <EntryTask T_target="" T_master="" F_heartrate="0.1" T_navtarget="" F_movespeed="1" V_movedir="0:0:0" V_movedest="0:0:0" F_target_distance="0" F_master_distance="0" F_normal_attack_prob="0" F_enter_fight_range="0" F_fight_together_dis="0" B_is_wander="0" I_type="0" F_target_rotation="0" F_attack_range="0" F_min_keep_range="0" B_is_casting_skill="0" B_is_fighting="0" B_is_qte_state="0" I_compres="0">
+    <Selector>
+      <Sequence>
+        <Selector>
+          <Inverter>
+            <ValueTarget Shared_TargetName="target" />
+          </Inverter>
+          <Sequence>
+            <ReceiveAIEvent Deprecate="1" MsgType="1" Shared_MsgStrName="aicommand" Shared_TypeIdName="" Shared_TypeIdmValue="0" Shared_PosName="" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+            <CompareTo Shared_FirstStringName="aicommand" Shared_SecondStringName="" secondString="SpawnMonster" Shared_ResultName="compres" />
+            <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          </Sequence>
+          <IsTargetImmortal Shared_TargetName="target" />
+          <FloatComparison type="4" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="" float2Value="10" />
+        </Selector>
+        <ResetTargets />
+        <Selector>
+          <FindTargetByHitLevel FilterImmortal="1" />
+          <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="10" FilterImmortal="1" Angle="0" Delta="0" TargetType="1" />
+        </Selector>
+        <ReturnFailure>
+          <DoSelectNearest />
+        </ReturnFailure>
+      </Sequence>
+      <Sequence>
+        <ValueTarget Shared_TargetName="target" />
+        <Selector>
+          <IsCastingSkill />
+          <Sequence>
+            <FilterSkill Shared_TargetName="target" UseMP="0" UseName="0" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+            <DoSelectSkillInOrder />
+            <DoCastSkill Shared_TargetName="target" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="4" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="min_keep_range" float2Value="0" />
+            <FloatComparison type="0" Shared_Float1Name="target_distance" float1Value="0" Shared_Float2Name="attack_range" float2Value="0" />
+            <PhysicalAttack Shared_TargetName="target" />
+          </Sequence>
+          <Sequence>
+            <ValueDistance Shared_TargetName="target" Shared_MaxDistanceName="" Shared_MaxDistancemValue="500" />
+            <NavToTarget Shared_TargetName="target" Shared_NavTargetName="navtarget" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          </Sequence>
+          <Sequence>
+            <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="target" Shared_NavName="" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="0" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="0" AdjustDir="1" SetDestType="1" />
+            <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+      <Sequence>
+        <CalDistance Shared_ObjectName="master" Shared_DistanceName="master_distance" Shared_DistancemValue="0" Shared_DestPointName="" Shared_DestPointmValue="0:0:0" />
+        <FloatComparison type="5" Shared_Float1Name="master_distance" float1Value="0" Shared_Float2Name="" float2Value="3" />
+        <Selector>
+          <Sequence>
+            <SetDest Shared_FinalDestName="movedest" Shared_FinalDestmValue="0:0:0" Shared_TargetName="master" Shared_NavName="" Shared_BornPosName="" Shared_BornPosmValue="0:0:0" Shared_TickCountName="" Shared_TickCountmValue="0" RandomMax="1" AdjustAngle="0" Shared_AdjustLengthName="" Shared_AdjustLengthmValue="2" AdjustDir="2" SetDestType="1" />
+            <ActionMove Shared_MoveDirName="movedir" Shared_MoveDirmValue="0:0:0" Shared_MoveDestName="movedest" Shared_MoveDestmValue="0:0:0" Shared_MoveSpeedName="movespeed" Shared_MoveSpeedmValue="1" />
+          </Sequence>
+          <NavToTarget Shared_TargetName="master" Shared_NavTargetName="master" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          <Sequence>
+            <FindNavPath />
+            <NavToTarget Shared_TargetName="target" Shared_NavTargetName="navtarget" Shared_NavPosName="" Shared_NavPosmValue="0:0:0" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Ally_academic>

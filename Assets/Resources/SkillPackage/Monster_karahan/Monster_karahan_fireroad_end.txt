@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_karahan_fireroad_end</Name>
+  <ClipName>Animation/Monster_karahan/Monster_karahan_fireroad_end</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.5133334</At>
+      <Range>2</Range>
+      <Scope>360</Scope>
+      <Offset_Z>0.5</Offset_Z>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_karahan/Monster_karahan_fireroad_end_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_karahan/Monster_karahan_fireroad_end_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.7332</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>2.5</Offset>
+      <Height>2</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_fire</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2</Not_Move_End>
+    <CanCancelAt>2</CanCancelAt>
+  </Logical>
+  <Time>2</Time>
+</XSkillData>

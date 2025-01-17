@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_karahan_iceshield_herobattlefiled_move</Name>
+  <ClipName>Animation/Monster_karahan/Monster_karahan_dark_run_herobattlefield</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <End>0.3</End>
+      <Offset>0.3</Offset>
+    </XChargeData>
+  </Charge>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_karahan/Monster_karahan_iceshield</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>0.3</Not_Move_End>
+    <Rotate_End>0.3</Rotate_End>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>0.3</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>0.3</CanCancelAt>
+    <Association_Skill>Monster_karahan_iceshield_herobattlefiled</Association_Skill>
+  </Logical>
+  <Time>0.3</Time>
+</XSkillData>

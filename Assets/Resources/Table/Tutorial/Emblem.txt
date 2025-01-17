@@ -1,0 +1,87 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 纹章
+scond nostackui
+scond inlevel 1
+scond MainUI
+directsys 141
+econd SysOpened
+
+step 打开制作界面
+scond item 1321004=1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysDEquipCreate 1
+internaldelay 0.5
+--text 打开角色界面 -200 0
+
+step 点击纹章制作界面
+scond inlevel 1
+forceclick EquipCreateDlg Bg/Tabs/XSys_EquipCreate_EmblemSet/Bg 1
+internaldelay 0.5
+--text 点击背包界面 -200 0
+
+--step 点击纹章制作
+--scond inlevel 1
+--forceclick ItemNewDlg Bg/LeftPanel/EmblemOperateFrame/Panel/Btn 1
+--internaldelay 0.5
+--text 点击纹章界面 -200 0
+
+step 点击金属板
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EmblemSetFrame/Panel/WrapContent/1321004/Icon 1
+internaldelay 0.5
+--text 点击纹章 -200 0
+
+step 点击制作
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EmblemSetFrame/Create 1
+internaldelay 0.5
+--text 点击制作 -200 0
+
+step 点击确定
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EquipSetCreateConfirmFrame/OK 1
+internaldelay 0.5
+--text 点击确定 -200 0
+
+step 确定
+scond inlevel 1
+forceclick EquipCreateDlg Bg/EquipSetCreateFrame/Do 1
+internaldelay 6
+--text 点击制作 -200 0
+
+step 返回
+scond inlevel 1
+forceclick EquipCreateDlg Bg/Close 1
+internaldelay 0.5
+--text 点击制作 -200 0
+
+step 打开角色界面
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+internaldelay 0.5
+--text 点击制作 -200 0
+
+step 纹章也签
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Char_Emblem/Bg 1
+internaldelay 0.5
+--text 点击制作 -200 0
+
+step 点击纹章
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/Items/Panel/WrapContent/emblem2321004/Icon 1
+--text 点击制作 -200 0
+
+step 点击装备按钮
+scond inlevel 1
+forceclick EmblemToolTipDlg Bg/Bg/main/FuncFrame/Button1 1
+--text 点击制作 -200 0
+econd UseItem
+
+end tutorial

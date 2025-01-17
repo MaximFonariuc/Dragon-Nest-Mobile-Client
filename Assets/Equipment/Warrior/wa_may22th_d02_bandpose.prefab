@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1484304522374682}
+  m_IsPrefabParent: 1
+--- !u!1 &1484304522374682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4864817999310790}
+  - component: {fileID: 114606995628408866}
+  m_Layer: 0
+  m_Name: wa_may22th_d02_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4864817999310790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484304522374682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114606995628408866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484304522374682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100058, guid: 2a66b860ff150e04dab41eea47e9e944, type: 3}
+  srcName: 01
+  replaceName: 02
+  srcDir: Equipments/may22th_d01
+  targetDir: Equipments/may22th_d02
+  ReplaceMeshList:
+  - srcMeshName: wa_may22th_d01_body
+    replaceEquipName: wa_body
+    replaceTex: {fileID: 2800000, guid: 8b943202a33ec714e979b7af4f2d3adf, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_may22th_d01_boots
+    replaceEquipName: wa_boots
+    replaceTex: {fileID: 2800000, guid: 638a3e25f841c6e44a6be8bc399231c2, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_may22th_d01_gauntlet
+    replaceEquipName: wa_second
+    replaceTex: {fileID: 2800000, guid: 984c7c0c8f757ee4899e2ded8d3224c8, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_may22th_d01_glove
+    replaceEquipName: wa_glove
+    replaceTex: {fileID: 2800000, guid: d70fb3c18a7241949a7c41a9094e29b5, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_may22th_d01_helmet
+    replaceEquipName: wa_helmet
+    replaceTex: {fileID: 2800000, guid: 4e770f0fecb5c874d88f49ff21ceadd9, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_may22th_d01_leg
+    replaceEquipName: wa_leg
+    replaceTex: {fileID: 2800000, guid: e33ed333931d90741ace232a38d892d0, type: 3}
+    isShareTex: 0
+  - srcMeshName: wa_may22th_d01_sword_weapon
+    replaceEquipName: wa_weapon
+    replaceTex: {fileID: 2800000, guid: 27b7e59368aedf34f8286a09565489c6, type: 3}
+    isShareTex: 0

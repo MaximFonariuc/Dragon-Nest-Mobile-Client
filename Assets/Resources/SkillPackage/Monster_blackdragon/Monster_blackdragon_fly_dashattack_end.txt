@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_blackdragon_fly_dashattack_end</Name>
+  <ClipName>Animation/Monster_blackdragon/Monster_blackdragon_flydash</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>2.10000014</At>
+      <Range>11</Range>
+      <Scope>360</Scope>
+      <Offset_Z>4</Offset_Z>
+      <Loop>true</Loop>
+      <Group>true</Group>
+      <Cycle>0.100000009</Cycle>
+      <Loop_Count>2</Loop_Count>
+      <Angle_Step>360</Angle_Step>
+      <Time_Step>0.0333333351</Time_Step>
+      <Group_Count>11</Group_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_blackdragon/Monster_blackdragon_flydash_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_blackdragon/Monster_blackdragon_flydash_side</Curve_Side>
+      <StandOnAtEnd>false</StandOnAtEnd>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.7332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>2.5</Offset>
+      <Height>4</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>4</Time>
+</XSkillData>

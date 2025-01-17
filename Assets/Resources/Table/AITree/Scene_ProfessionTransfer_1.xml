@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_ProfessionTransfer_1>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" B_IsInitialized="0" I_eventskillid="0" F_random="0" B_SubTreeBool1="0" B_SubTreeBool2="0" I_monsternum1="0" I_monsternum2="0" I_monsternum3="0" I_monsternum4="0" I_totalnum="0">
+    <Selector>
+      <Sequence>
+        <BoolComparison Shared_Bool1Name="IsInitialized" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+        <Selector>
+          <Sequence>
+            <ConditionPlayerNum PlayerBaseProf="1" PlayerDetailProf="0" Shared_NumName="monsternum1" Shared_NummValue="0" />
+            <IntComparison type="2" Shared_Int1Name="monsternum1" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-90" MonsterId="1510" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="1" Shared_PosName="" Shared_PosmValue="0:0:0" BornType="1" Pos1="33.5:10.01:152.5" Pos2="33.5:10.01:152.5" Pos3="33.5:10.01:152.5" Pos4="33.5:10.01:152.5" FinalPos="33.5:10.01:152.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <ConditionPlayerNum PlayerBaseProf="2" PlayerDetailProf="0" Shared_NumName="monsternum2" Shared_NummValue="0" />
+            <IntComparison type="2" Shared_Int1Name="monsternum2" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-90" MonsterId="1511" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="1" Shared_PosName="" Shared_PosmValue="0:0:0" BornType="1" Pos1="33.5:10.01:152.5" Pos2="33.5:10.01:152.5" Pos3="33.5:10.01:152.5" Pos4="33.5:10.01:152.5" FinalPos="33.5:10.01:152.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <ConditionPlayerNum PlayerBaseProf="3" PlayerDetailProf="0" Shared_NumName="monsternum3" Shared_NummValue="0" />
+            <IntComparison type="2" Shared_Int1Name="monsternum3" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-90" MonsterId="1512" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="1" Shared_PosName="" Shared_PosmValue="0:0:0" BornType="1" Pos1="33.5:10.01:152.5" Pos2="33.5:10.01:152.5" Pos3="33.5:10.01:152.5" Pos4="33.5:10.01:152.5" FinalPos="33.5:10.01:152.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <ConditionPlayerNum PlayerBaseProf="4" PlayerDetailProf="0" Shared_NumName="monsternum4" Shared_NummValue="0" />
+            <IntComparison type="2" Shared_Int1Name="monsternum4" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-90" MonsterId="1513" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="1" Shared_PosName="" Shared_PosmValue="0:0:0" BornType="1" Pos1="33.5:10.01:152.5" Pos2="33.5:10.01:152.5" Pos3="33.5:10.01:152.5" Pos4="33.5:10.01:152.5" FinalPos="33.5:10.01:152.5" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+        </Selector>
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_ProfessionTransfer_1>

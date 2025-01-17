@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_broo_weak_start</Name>
+  <ClipName>Animation/Monster_broo/Monster_broo_weak_start</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_broo/Monster_broo_weak_start_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_broo/Monster_broo_weak_start_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>2.4666667</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_pbt</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_broo/Monster_broo_weak_start</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Full_Endure</StrickenMask>
+    <Not_Move_End>2.4666667</Not_Move_End>
+    <CanCancelAt>2.4666667</CanCancelAt>
+  </Logical>
+  <CoolDown>2.466667</CoolDown>
+  <Time>2.4666667</Time>
+</XSkillData>

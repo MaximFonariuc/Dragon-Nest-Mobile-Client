@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_archer_attack_yingjichangkong_ex_end</Name>
+  <ClipName>Animation/Player_archer/Player_archer_attack_trickkick</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <At>0.7</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_archer/Player_archer_attack_eaglesdescent_ex_end_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_archer/Player_archer_attack_eaglesdescent_ex_end_side</Curve_Side>
+      <Curve_Up>Curve/Player_archer/Player_archer_attack_eaglesdescent_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.8</Time_Present_Straight>
+      <Time_Hard_Straight>3</Time_Hard_Straight>
+      <Offset>0.3</Offset>
+      <Height>1.3</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>-1</CanReplacedby>
+  </Logical>
+  <CoolDown>0</CoolDown>
+  <Time>1.33333337</Time>
+</XSkillData>

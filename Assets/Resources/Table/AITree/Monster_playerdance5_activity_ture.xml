@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_playerdance5_activity_ture>
+  <EntryTask T_target="" F_heartrate="0.1" F_random="0" I_compareres="0" I_typeid="0" V_eventpos="0:0:0" B_SubTreeBool1="0" B_SubTreeBool2="0" B_SubTreeBool3="1" B_SubTreeBool4="1" B_SubTreeBool5="0" I_StringCompareResult="0">
+    <Sequence>
+      <ReturnSuccess>
+        <Sequence>
+          <Inverter>
+            <ValueTarget Shared_TargetName="target" />
+          </Inverter>
+          <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="3" FilterImmortal="0" Angle="0" Delta="0" TargetType="0" />
+          <DoSelectNearest />
+        </Sequence>
+      </ReturnSuccess>
+      <ReturnSuccess>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool1" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="2" inclusive="0" Shared_StoredResultName="random" />
+          <Selector>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="" float1Value="1" Shared_Float2Name="random" float2Value="0" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool4" />
+            </Sequence>
+            <Sequence>
+              <FloatComparison type="1" Shared_Float1Name="" float1Value="2" Shared_Float2Name="random" float2Value="0" />
+              <SetBool Shared_ValueName="" value="0" Shared_StoredResultName="SubTreeBool4" />
+            </Sequence>
+          </Selector>
+          <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="SubTreeBool1" />
+        </Sequence>
+      </ReturnSuccess>
+      <Selector>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool3" bool1Value="1" Shared_Bool2Name="" bool2Value="0" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Player_academic_ganyazi_activity" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool4" bool1Value="1" Shared_Bool2Name="" bool2Value="0" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Player_academic_aiqingbingdu_activity" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+      </Selector>
+    </Sequence>
+  </EntryTask>
+</Monster_playerdance5_activity_ture>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_black_openlight_nest</Name>
+  <TypeToken>3</TypeToken>
+  <NeedTarget>false</NeedTarget>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>30</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/spider_black_openlight_02</Fx>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_spider_black_openlight</Name>
+      <End>30</End>
+    </XCombinedData>
+  </Combined>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>30</Not_Move_End>
+    <CanCancelAt>30</CanCancelAt>
+  </Logical>
+  <CoolDown>35</CoolDown>
+  <Time>30</Time>
+  <Cast_Range_Upper>40</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1669510582099994}
+  m_IsPrefabParent: 1
+--- !u!1 &1669510582099994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4351165282628734}
+  - component: {fileID: 114914536803837584}
+  m_Layer: 0
+  m_Name: so_costume_animal03_a_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4351165282628734
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669510582099994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114914536803837584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669510582099994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100058, guid: 8986433059358b241912dfd207aef199, type: 3}
+  srcName: 01
+  replaceName: 03
+  srcDir: Equipments/costume_animal01_a
+  targetDir: Equipments/costume_animal03_a
+  ReplaceMeshList:
+  - srcMeshName: so_costume_animal01_a_body
+    replaceEquipName: so_body
+    replaceTex: {fileID: 2800000, guid: 401d74d3de0b80645bc2fb01316b6234, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_costume_animal01_a_book
+    replaceEquipName: so_second
+    replaceTex: {fileID: 2800000, guid: ca3f70705c6609a4a818b5b3ca96f174, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_costume_animal01_a_helmet
+    replaceEquipName: so_helmet
+    replaceTex: {fileID: 2800000, guid: 2e54a2cafde49ff4593fba2517afaafe, type: 3}
+    isShareTex: 0
+  - srcMeshName: so_costume_animal01_a_staff_weapon
+    replaceEquipName: so_weapon
+    replaceTex: {fileID: 2800000, guid: 646c13aaf0a9ca64ba493ecdb679cfce, type: 3}
+    isShareTex: 0

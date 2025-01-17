@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_gonghuilingdi>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_countnum1="1" I_countnum2="1" I_countnum3="1" I_countnum4="1">
+    <Selector>
+      <Sequence>
+        <BoolComparison Shared_Bool1Name="" bool1Value="0" Shared_Bool2Name="IsInitialized" bool2Value="0" />
+        <Sequence>
+          <RemoveSceneBuff BuffId="130" />
+          <RemoveSceneBuff BuffId="131" />
+          <RemoveSceneBuff BuffId="132" />
+          <RemoveSceneBuff BuffId="133" />
+        </Sequence>
+        <SetInt Shared_ValueName="" value="1" Shared_StoredResultName="countnum1" />
+        <SetInt Shared_ValueName="" value="1" Shared_StoredResultName="countnum2" />
+        <SetInt Shared_ValueName="" value="1" Shared_StoredResultName="countnum3" />
+        <SetInt Shared_ValueName="" value="1" Shared_StoredResultName="countnum4" />
+        <Sequence>
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="130" MsgStr="doodad" Shared_PosName="" Shared_PosmValue="99:1.23:123.5" DelayTime="20" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="131" MsgStr="doodad" Shared_PosName="" Shared_PosmValue="101.4:0.87:84" DelayTime="20" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="132" MsgStr="doodad" Shared_PosName="" Shared_PosmValue="77:0.1:72.7" DelayTime="20" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="133" MsgStr="doodad" Shared_PosName="" Shared_PosmValue="123.5:1:132" DelayTime="20" />
+          <CallScript FuncName="notice" DelayTime="15" />
+        </Sequence>
+        <SetBool Shared_ValueName="" value="1" Shared_StoredResultName="IsInitialized" />
+      </Sequence>
+      <Selector>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="fetchdoodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="132" />
+          <IntOperator type="0" Shared_Int1Name="countnum3" int1Value="1" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="countnum3" />
+        </Sequence>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="doodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="132" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="132" MsgStr="doodad" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" DelayTime="60" />
+          <CallScript FuncName="notice" DelayTime="55" />
+          <RemoveSceneBuff BuffId="132" />
+          <AIDoodad Shared_DoodadIdName="typeid" Shared_DoodadIdmValue="0" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="" Shared_DoodadPosmValue="77.1:0.1:72.7" RandomPos="0" DelayTime="0" />
+        </Sequence>
+      </Selector>
+      <Selector>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="fetchdoodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="131" />
+          <IntOperator type="0" Shared_Int1Name="countnum1" int1Value="1" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="countnum1" />
+        </Sequence>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="doodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="131" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="131" MsgStr="doodad" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" DelayTime="60" />
+          <CallScript FuncName="notice" DelayTime="55" />
+          <RemoveSceneBuff BuffId="131" />
+          <AIDoodad Shared_DoodadIdName="typeid" Shared_DoodadIdmValue="0" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="" Shared_DoodadPosmValue="99:1.23:123.5" RandomPos="0" DelayTime="0" />
+        </Sequence>
+      </Selector>
+      <Selector>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="fetchdoodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="130" />
+          <IntOperator type="0" Shared_Int1Name="countnum2" int1Value="1" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="countnum2" />
+        </Sequence>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="doodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="130" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="130" MsgStr="doodad" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" DelayTime="60" />
+          <CallScript FuncName="notice" DelayTime="55" />
+          <RemoveSceneBuff BuffId="130" />
+          <AIDoodad Shared_DoodadIdName="typeid" Shared_DoodadIdmValue="0" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="" Shared_DoodadPosmValue="101.4:0.87:84" RandomPos="0" DelayTime="0" />
+        </Sequence>
+      </Selector>
+      <Selector>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="fetchdoodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="133" />
+          <IntOperator type="0" Shared_Int1Name="countnum4" int1Value="1" Shared_Int2Name="" int2Value="1" Shared_StoredResultName="countnum4" />
+        </Sequence>
+        <Sequence>
+          <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="eventskillid" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" />
+          <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="doodad" Shared_ResultName="compres" />
+          <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+          <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="133" />
+          <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="133" MsgStr="doodad" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" DelayTime="60" />
+          <CallScript FuncName="notice" DelayTime="55" />
+          <RemoveSceneBuff BuffId="133" />
+          <AIDoodad Shared_DoodadIdName="typeid" Shared_DoodadIdmValue="0" Shared_WaveIdName="" Shared_WaveIdmValue="0" Shared_DoodadPosName="" Shared_DoodadPosmValue="123.5:1:132" RandomPos="0" DelayTime="0" />
+        </Sequence>
+      </Selector>
+    </Selector>
+  </EntryTask>
+</Scene_gonghuilingdi>

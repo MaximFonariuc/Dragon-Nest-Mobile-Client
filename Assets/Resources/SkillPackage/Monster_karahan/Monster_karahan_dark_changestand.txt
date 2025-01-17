@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_karahan_dark_changestand</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>7.50000048</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_karahan_dark_changestand_01</Fx>
+      <Bone>Bip01 L Finger0_karahan</Bone>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_karahan/Monster_karahan_dark_changestand</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_karahan_dark_changestand_start</Name>
+      <End>1.50000012</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_karahan_dark_changestand_loop</Name>
+      <End>4.5</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_karahan_dark_changestand_end</Name>
+      <End>1.50000012</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>7.5</Not_Move_End>
+    <CanCancelAt>7.5</CanCancelAt>
+  </Logical>
+  <CoolDown>30</CoolDown>
+  <Time>7.5</Time>
+  <Cast_Range_Upper>6</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

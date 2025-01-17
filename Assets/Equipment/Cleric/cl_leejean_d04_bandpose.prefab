@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1640682856232202}
+  m_IsPrefabParent: 1
+--- !u!1 &1640682856232202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4999166942788928}
+  - component: {fileID: 114907760928572406}
+  m_Layer: 0
+  m_Name: cl_leejean_d04_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4999166942788928
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640682856232202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114907760928572406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640682856232202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100094, guid: 17001bf17adab2449936f3c748c579a6, type: 3}
+  srcName: 01
+  replaceName: 04
+  srcDir: Equipments/leejean_d01
+  targetDir: Equipments/leejean_d04
+  ReplaceMeshList:
+  - srcMeshName: cl_leejean_d01_body
+    replaceEquipName: cl_body
+    replaceTex: {fileID: 2800000, guid: c38b0bb7d05973948a1b1b225fc70100, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_leejean_d01_boots
+    replaceEquipName: cl_boots
+    replaceTex: {fileID: 2800000, guid: 86cb2795dc91fa54c9b00df78b80c016, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_leejean_d01_glove
+    replaceEquipName: cl_glove
+    replaceTex: {fileID: 2800000, guid: c726a04b8f2bd474b914352661ab6756, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_leejean_d01_leg
+    replaceEquipName: cl_leg
+    replaceTex: {fileID: 2800000, guid: 51621716e724cd5429d1b47e2389f405, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_leejean_d01_shield
+    replaceEquipName: cl_second
+    replaceTex: {fileID: 2800000, guid: 302dd0f82eb479a419c415b49d921cf5, type: 3}
+    isShareTex: 0
+  - srcMeshName: cl_leejean_d01_mace_weapon
+    replaceEquipName: cl_weapon
+    replaceTex: {fileID: 2800000, guid: 9e572915e9516614a886cb167ec362d4, type: 3}
+    isShareTex: 0

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_DesertDragon_Level1>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" F_random="0" I_num="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="callguys" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="4" inclusive="0" Shared_StoredResultName="random" />
+        <Selector>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="130" MonsterId="43215" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="40" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="49.4:4.2:48.47" Pos2="49.4:4.2:48.47" Pos3="49.4:4.2:48.47" Pos4="49.4:4.2:48.47" FinalPos="49.4:4.2:48.47" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+            <CallScript FuncName="notice4" DelayTime="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="2" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="310" MonsterId="43214" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="40" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="65.8:4.2:34.4" Pos2="65.8:4.2:34.4" Pos3="65.8:4.2:34.4" Pos4="65.8:4.2:34.4" FinalPos="65.8:4.2:34.4" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+            <CallScript FuncName="notice5" DelayTime="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="3" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="-140" MonsterId="43217" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="40" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="62.2:4.2:47.29" Pos2="62.2:4.2:47.29" Pos3="62.2:4.2:47.29" Pos4="62.2:4.2:47.29" FinalPos="62.2:4.2:47.29" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+            <CallScript FuncName="notice3" DelayTime="0" />
+          </Sequence>
+          <Sequence>
+            <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="4" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="40" MonsterId="43216" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="40" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="52:4.2:35.78" Pos2="52:4.2:35.78" Pos3="52:4.2:35.78" Pos4="52:4.2:35.78" FinalPos="52:4.2:35.78" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+            <CallScript FuncName="notice2" DelayTime="0" />
+          </Sequence>
+        </Selector>
+        <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="0" MsgStr="callguys" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="50" />
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_DesertDragon_Level1>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spirit_push_loop</Name>
+  <ClipName>Animation/Monster_spirit/Monster_spirit_push_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>1.30000007</At>
+      <LongAttackData>
+        <Type>Plane</Type>
+        <Runningtime>5</Runningtime>
+        <Velocity>8</Velocity>
+        <Radius>1</Radius>
+        <Prefab>Prefabs/Bullets/Monster_spirit_crossfront_nest_01</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <At_Y>-2</At_Y>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>2</Time>
+</XSkillData>

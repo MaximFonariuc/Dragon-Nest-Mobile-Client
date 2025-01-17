@@ -1,0 +1,149 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:notice1
+opendoor Blockwall
+
+func:notice2
+opendoor Blockwall1
+
+func:start
+notice 好像...有什么正在靠近... 5
+
+func:part_2
+notice 古道上的亡灵...惊醒了！ 5
+
+func:notice3
+notice 可以进入遗弃之村
+
+func:notice4
+notice 小心蜘蛛女王的卵
+
+func:notice6
+notice 遗弃之村的亡灵惊醒了！
+
+func:notice5
+showdirection direction
+
+func:notice7
+showdirection direction1
+
+func:notice8
+showdirection direction2
+
+func:notice9
+notice 打破守护水晶才能继续前进
+
+func:notice10
+notice 守护怪出现了，杀掉守护怪才能打破水晶
+
+func:notice12
+notice 守护水晶的神秘力量消失了！
+
+func:notice13
+notice 小心！来了第二波守护怪！
+
+func:buffwarning
+npcpopspeek 2 3003 当心布洛怪释放强大的光环！ 7
+
+func:notice14
+notice 前方有什么东西出现了
+
+func:addbuff
+addbuff 14629 10002 1
+
+func:removebuff
+removebuff 14629 10002
+
+func:showcutscene
+showcutscene CutScene/2_2_start 100.5371 6.999634 133.4081 60
+
+func:web
+summon 14615 [player] 1
+
+func:closedoor
+opendoor Door on
+
+func:killspawn32
+killspawn 32
+
+func:killspawn31
+killspawn 31
+
+func:killspawn33
+killspawn 33
+
+func:killspawn48
+killspawn 48
+
+func:killspawn49
+killspawn 49
+
+func:killspawn50
+killspawn 50
+
+func:killspawn56
+killspawn 56
+
+func:killspawn60
+killspawn 60
+
+func:killspawn58
+killspawn 58
+
+func:killspawn59
+killspawn 59
+
+func:killspawn55
+killspawn 55
+
+func:killspawn57
+killspawn 57
+
+func:callxiaobingtips
+notice 小心！蜘蛛女王[ff0000]引爆了所有的蜘蛛蛋[-]！并且加强了自己的[ff0000]攻击力[-]！ 5
+
+func:callxiaobingtips1
+notice [ff0000]一大波[-]小蜘蛛出现了！ 5
+
+func:callxiaobingtips2
+notice 一批新的蜘蛛蛋出现了！ 5
+
+func:bossstart
+notice 是人肉的味道.....！ 5
+
+func:bossstart1
+notice “冒险者们你们做了一个错误的决定!” 5
+
+func:aicommand
+aicommand -1 callxiaobing 14606
+
+func:aicommand1
+aicommand -1 kill 14606
+
+func:dutips
+notice 小心！女王释放了[ff0000]剧毒领域[-]，进去会造成大量伤害！ 7
+
+func:xiaoguaitips
+notice 小心！女王召唤了[ff0000]援军[-]，并且[ff0000]能力[-]增强了 7
+
+func:addbuffboss
+addbuff 14606 21258 1
+
+func:recoverskill
+notice 快！有人被捆绑住了，去救他！ 7
+
+func:queenrecover
+bubble 14606 入侵者这招的滋味怎么样？ 7
+
+func:npcpopspeek
+npcpopspeek 2 3003 勇士，被捆绑住的玩家可以点击屏幕上的挣脱按键，来挣脱捆绑。 12
+
+
+info:Blockwall 95.65327|6.24786|78.73277|330 on 20
+info:Blockwall1 90.74711|5.584427|119.4112|28 on 20
+info:Door 95.45461|8.174503|129.1707|40 off 20

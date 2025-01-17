@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1058399310599100}
+  m_IsPrefabParent: 1
+--- !u!1 &1058399310599100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4763360832102804}
+  - component: {fileID: 114770782271467012}
+  m_Layer: 0
+  m_Name: ar_lotus_a03_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4763360832102804
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058399310599100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114770782271467012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058399310599100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100000, guid: 82cb391f8d9c1fa439ccefa14af3bfad, type: 3}
+  srcName: 01
+  replaceName: 03
+  srcDir: Equipments/lotus_a01
+  targetDir: Equipments/lotus_a03
+  ReplaceMeshList:
+  - srcMeshName: ar_lotus_a01_body
+    replaceEquipName: ar_body
+    replaceTex: {fileID: 2800000, guid: 4f5433ab58aaeeb47821db37dfe5c547, type: 3}
+    isShareTex: 0
+  - srcMeshName: ar_lotus_a01_boots
+    replaceEquipName: ar_boots
+    replaceTex: {fileID: 2800000, guid: 990b70a787581954787af5c3196fd7ab, type: 3}
+    isShareTex: 0
+  - srcMeshName: ar_lotus_a01_glove
+    replaceEquipName: ar_glove
+    replaceTex: {fileID: 2800000, guid: 27efa13384b50c14ca367b2c8efec35a, type: 3}
+    isShareTex: 0
+  - srcMeshName: ar_lotus_a01_helmet
+    replaceEquipName: ar_helmet
+    replaceTex: {fileID: 2800000, guid: aa331d6eea97c4549b01c80a4479a9d6, type: 3}
+    isShareTex: 0
+  - srcMeshName: ar_lotus_a01_leg
+    replaceEquipName: ar_leg
+    replaceTex: {fileID: 2800000, guid: d25a1caaa2fc60c418e1f100327fb555, type: 3}
+    isShareTex: 0
+  - srcMeshName: ar_lotus_a01_quiver
+    replaceEquipName: ar_second
+    replaceTex: {fileID: 2800000, guid: d25a1caaa2fc60c418e1f100327fb555, type: 3}
+    isShareTex: 0
+  - srcMeshName: ar_lotus_a01_bigbow_weapon
+    replaceEquipName: ar_weapon
+    replaceTex: {fileID: 2800000, guid: 4aa33dc9bd19c074383c2c3437650504, type: 3}
+    isShareTex: 0

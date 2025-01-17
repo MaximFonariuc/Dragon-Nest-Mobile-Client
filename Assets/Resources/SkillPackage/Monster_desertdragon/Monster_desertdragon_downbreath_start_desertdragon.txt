@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_desertdragon_downbreath_start_desertdragon</Name>
+  <ClipName>Animation/Monster_desertdragon/Monster_desertdragon_downbreath_start_desertdragon</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>6.20000029</At>
+      <Range>40</Range>
+      <Scope>360</Scope>
+      <Offset_Z>-30</Offset_Z>
+      <Loop>true</Loop>
+      <Cycle>0.333333343</Cycle>
+      <Loop_Count>4</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_desertdragon/Monster_desertdragon_downbreath_start_desertdragon_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_desertdragon/Monster_desertdragon_downbreath_start_desertdragon_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_desertdragon/Monster_desertdragon_downbreath_start_desertdragon_up</Curve_Up>
+      <StandOnAtEnd>false</StandOnAtEnd>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>10.666667</Not_Move_End>
+    <CanCancelAt>10.666667</CanCancelAt>
+  </Logical>
+  <Time>10.666667</Time>
+</XSkillData>

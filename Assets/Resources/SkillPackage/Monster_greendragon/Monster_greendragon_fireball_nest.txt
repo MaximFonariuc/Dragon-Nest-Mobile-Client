@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_greendragon_fireball_nest</Name>
+  <ClipName>Animation/Monster_greendragon/Monster_greendragon_flyball</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_greendragon/Monster_greendragon_flyball_forward</Curve_Forward>
+      <Curve_Side>Curve/Monster_greendragon/Monster_greendragon_flyball_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_greendragon/Monster_greendragon_flyball_up</Curve_Up>
+      <StandOnAtEnd>false</StandOnAtEnd>
+    </XChargeData>
+  </Charge>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>6.666667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_greendragon_fireroad_nest_02</Fx>
+      <Bone>Bip01 L Finger2_greendragon</Bone>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.166666687</At>
+      <End>6.666667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_greendragon_fireroad_nest_02</Fx>
+      <Bone>Bip01 R Finger2_greendragon</Bone>
+    </XFxData>
+    <XFxData>
+      <Index>2</Index>
+      <Type>FirerBased</Type>
+      <At>2.716667</At>
+      <End>5.566667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_greendragon_fireball_nest_01</Fx>
+      <Bone>Bip01 R Finger2_greendragon</Bone>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_greendragon/Monster_greendragon_fireball_nest</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>7.50000048</Not_Move_End>
+    <CanCancelAt>7.50000048</CanCancelAt>
+  </Logical>
+  <Time>7.50000048</Time>
+</XSkillData>

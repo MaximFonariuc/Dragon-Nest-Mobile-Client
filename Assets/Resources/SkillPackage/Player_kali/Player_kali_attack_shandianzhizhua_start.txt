@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_kali_attack_shandianzhizhua_start</Name>
+  <ClipName>Animation/Player_kali/Player_kali_shandianzhizhua</ClipName>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.4</At>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>2.2</Runningtime>
+        <Velocity>4</Velocity>
+        <Radius>1.5</Radius>
+        <Prefab>Prefabs/Bullets/Player_kali_attack_shandianzhizhua_Clip01</Prefab>
+        <TriggerOnce>false</TriggerOnce>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <At_Y>-0.8</At_Y>
+        <At_Z>-1</At_Z>
+        <Refine_Cycle>0.3</Refine_Cycle>
+        <Refine_Count>7</Refine_Count>
+        <StaticCollider>false</StaticCollider>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Velocity>3</Velocity>
+      <Using_Curve>true</Using_Curve>
+      <Control_Towards>true</Control_Towards>
+      <Curve_Forward>Curve/Player_kali/Player_kali_shandianzhizhua_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_kali/Player_kali_shandianzhizhua_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Player_kali/Player_kali_shandianzhizhua_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.133</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.5</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+  </Logical>
+  <Time>1.36666679</Time>
+</XSkillData>

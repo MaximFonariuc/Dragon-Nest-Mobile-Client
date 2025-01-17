@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_kali_totem_attack</Name>
+  <ClipName>Animation/Monster_kali/Monster_kali_totem_idle</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <Result>
+    <XResultData>
+      <At>0.13333334</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.133</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.001</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>1.06666672</End>
+      <Fx>Effects/High_Resources/Prefabs/Kali/Monster_kali_totem_attack_Clip01</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_kali/Monster_kali_totem_attack</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.2</Not_Move_End>
+    <CanCancelAt>1.2</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>1.2</Time>
+  <Cast_Range_Upper>50</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

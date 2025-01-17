@@ -1,0 +1,26 @@
+﻿start tutorial
+
+--step 隐藏闪避
+--scond nostackui
+--scond inlevel 102
+--hideskills 1
+
+step 选视角
+scond inlevel 102
+showprefab UI/Battle/CutoverViewDlg SelectSight
+econd SelectView
+
+step 闪避
+scond castskill Monster_goblin_firedash_fast_boss_firstchapter
+showskills 1
+
+step 闪避教学
+scond inlevel 102
+scond castskill Monster_goblin_firedash_fast_boss_firstchapter
+internaldelay 0.5
+ailin [301b0a]注意脚下！这条红色[7100ff]预警带[-]是BOSS冲刺攻击的提醒，侧身[7100ff]躲避[-]一下会比较好哦。[-] -200
+forceclick BattleDlg _canvas/SkillFrame/Skill1/Bg 1 1 0 0
+audio Audio/VO/guide/guide6
+pause
+
+end tutorial

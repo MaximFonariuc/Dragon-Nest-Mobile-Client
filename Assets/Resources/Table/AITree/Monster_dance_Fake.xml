@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Monster_dance_Fake>
+  <EntryTask T_target="" F_heartrate="0.3" F_random="0" I_compareres="0" I_typeid="0" V_eventpos="0:0:0" B_SubTreeBool1="0" B_SubTreeBool2="0" B_SubTreeBool3="0" B_SubTreeBool4="0" B_SubTreeBool5="0" I_StringCompareResult="0">
+    <Sequence>
+      <ReturnSuccess>
+        <Sequence>
+          <Inverter>
+            <ValueTarget Shared_TargetName="target" />
+          </Inverter>
+          <FindTargetByDistance Shared_DistanceName="" Shared_DistancemValue="3" FilterImmortal="0" />
+          <DoSelectNearest />
+        </Sequence>
+      </ReturnSuccess>
+      <RandomFloat Shared_MinName="" minValue="0" Shared_MaxName="" maxValue="2" inclusive="0" Shared_StoredResultName="random" />
+      <Selector>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool4" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="5" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="2" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_hound_elite_expression_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+        <Sequence>
+          <BoolComparison Shared_Bool1Name="SubTreeBool5" bool1Value="0" Shared_Bool2Name="" bool2Value="0" />
+          <FloatComparison type="1" Shared_Float1Name="random" float1Value="0" Shared_Float2Name="" float2Value="1" />
+          <FilterSkill Shared_TargetName="target" UseMP="0" UseName="1" UseHP="0" UseCoolDown="1" UseAttackField="1" UseCombo="0" UseInstall="0" SkillType="0" SkillName="Monster_hound_elite_headbutt_greatadventure" DetectAllPlayInAttackField="0" MaxSkillNum="0" />
+          <DoSelectSkillInOrder />
+          <DoCastSkill Shared_TargetName="target" />
+        </Sequence>
+      </Selector>
+    </Sequence>
+  </EntryTask>
+</Monster_dance_Fake>

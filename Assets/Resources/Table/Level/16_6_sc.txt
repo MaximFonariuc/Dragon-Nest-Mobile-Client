@@ -1,0 +1,58 @@
+﻿
+
+func:Blockwall
+opendoor Blockwall
+
+func:Blockwall1
+opendoor Blockwall1
+
+func:Blockwall2
+opendoor Blockwall2
+
+func:direction1
+showdirection direction1
+
+func:direction2
+showdirection direction2
+
+func:direction3
+showdirection direction3
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 50.35 13.24 134.12 -30 22001
+
+func:Door
+opendoor Door on
+
+func:killstorm
+aicommand -1 killstorm 22001
+
+func:killstormstart
+notice 黑暗水晶给我力量，让我用流沙淹没他们！
+
+func:warnning
+npcpopspeek 2 3003 快！勇士们[ff0000]打破周围的8个水晶[-]，来[ff0000]阻止[-]骷髅女王施放[ff0000]秒杀技能[-]！ 7
+
+func:killstormend
+notice 成功打破水晶，骷髅女王的[ff0000]大招[-]被[ff0000]打断了[-]！ 7
+
+func:numble
+notice [ffdc00]13秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]12秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]11秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]10秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]9秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]8秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]7秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]6秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]5秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]4秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]3秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]2秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]1秒后如果不打破水晶，骷髅女王将施放秒杀技能！|[ffdc00]骷髅女王开始施放秒杀技能！
+
+func:removebuff
+removebuff 22001 50087
+
+func:expression
+notice 小心！骷髅女王的[ff0000]攻击力[-]和[ff0000]能力[-]增强了！ 6
+
+func:start
+notice 去消灭黄金骷髅女王！ 6
+
+func:expression_start
+bubble 22001 已经很久没有活人来了，哈哈.... 6
+
+
+info:Blockwall 80.23687|7.471052|59.23108|340 on 20
+info:Blockwall1 69.68687|7.296052|86.09108|340 on 20
+info:Blockwall2 52.39687|14.66605|127.5711|340 on 20
+info:Door 51.82687|14.41605|129.3611|337 off 20

@@ -1,0 +1,42 @@
+﻿
+
+func:opendoor
+opendoor Door on
+
+func:hummer
+aicommand -1 hummer 23001
+
+func:warnning
+npcpopspeek 2 3003 沙蝎的在引导沙尘风暴全屏大招，勇士们快[ff0000]捡起绝对保护[-]来[ff0000]免疫[-]大招伤害！ 12
+
+func:turnchapter
+notice 小心！沙蝎的[ff0000]能力[-]增强了！ 6
+
+func:addbuff
+addbuff 23001 50091 1
+
+func:start
+notice 消灭沙蝎，净化该地区！ 4
+
+func:start_boss
+notice “吼，你们胆敢闯入我的领地，看我捏碎你们...！！” 6
+
+func:turnchapter_boss
+notice 够了！你们激怒我了，都给我去死吧...！ 4
+
+func:stomp
+bubble 23001 轰炸准备！ 6
+
+func:rush
+bubble 23001 我要碾碎你们！ 6
+
+func:hummer_clearbuff
+aicommand -1 hummer_clearbuff 23001
+
+
+
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow_bigguy 23001
+
+info:Door 30.69687|1.206052|45.13107|20 off 20 11.20605 0.1

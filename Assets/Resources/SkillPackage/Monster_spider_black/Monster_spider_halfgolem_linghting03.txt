@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_halfgolem_linghting03</Name>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.0333333351</At>
+      <Range>3</Range>
+      <Scope>360</Scope>
+      <Group>true</Group>
+      <Angle_Step>360</Angle_Step>
+      <Time_Step>0.0333333351</Time_Step>
+      <Group_Count>15</Group_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1332</Time_Present_Straight>
+      <Time_Hard_Straight>0.3</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/lw_throwing_ts</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>3.50000024</End>
+      <Fx>Effects/High_Resources/Prefabs/Cleric/Player_cleric_attack_tiantangshenpan_Clip02</Fx>
+      <ScaleX>0.5</ScaleX>
+      <ScaleZ>0.5</ScaleZ>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1</Not_Move_End>
+    <CanCancelAt>1</CanCancelAt>
+  </Logical>
+  <Time>0.5</Time>
+  <Cast_Range_Upper>2.2</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

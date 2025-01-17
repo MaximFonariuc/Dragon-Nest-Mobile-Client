@@ -1,0 +1,93 @@
+﻿
+func:start
+notice 你们不该来这里！ 5
+
+func:killspawn4
+killspawn 4
+
+func:killspawn5
+killspawn 5
+
+func:killspawn6
+killspawn 6
+
+func:killspawn7
+killspawn 7
+
+func:killspawn8
+killspawn 99
+
+func:cerberoscutscene
+showcutscene CutScene/Nest_2_5_Start
+
+func:minotauros
+notice 地狱犬巢穴
+
+func:minotaurosdead
+notice 通往下一关的传送门打开了
+
+func:notice3
+notice 通过召唤魔法阵出现了守护巢穴的警备怪物
+
+func:notice4
+notice 通往下一关的传送门打开了
+
+func:notice5
+notice 通过召唤魔法阵出现了守护巢穴的食人魔兄弟
+
+func:notice6
+notice [ffdc00]10秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]9秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]8秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]7秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]6秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]5秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]4秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]3秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]2秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]1秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]召唤魔法阵已召唤其他食人魔
+
+func:notice7
+notice [ffdc00]10秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]9秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]8秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]7秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]6秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]5秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]4秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]3秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]2秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]1秒以后如果无法击杀存活的食人魔，召唤魔法阵将召唤其他食人魔|[ffdc00]召唤魔法阵已召唤其他食人魔
+
+func:notice8
+notice 通往下一关的传送门打开了
+
+func:notice10
+notice [ffdc00]灰色食人魔开始蓄力，9秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，8秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，7秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，6秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，5秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，4秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，3秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，2秒后回血，请立即攻击|[ffdc00]灰色食人魔开始蓄力，1秒后回血，请立即攻击|[ffdc00]灰色食人魔释放群体回血
+
+func:cerberosskill
+notice [ffdc00]无知小儿！在冰与火的折磨中随风而逝吧！
+
+func:cerberosskill1
+notice [ffdc00]孩儿们，出来吧！尽情撕碎这些凡人！
+
+func:cerberos_eskill
+notice ...黑色闪电！快躲到boss身下！
+
+func:addbuff1
+addbuff 221502 21135 1
+
+func:whiteshout
+notice 火焰牛头施放无敌光环！快将他两拉开！ 7
+
+func:addbuff2
+addbuff 221501 21135 1
+
+func:blackshoout
+notice 寒冰牛头施放无敌光环！快将他两拉开！ 7
+
+func:eskill1
+notice 哼！看我的斧子！ 5
+
+func:eskill2
+notice 吼～吃我的奋力一击～！ 5
+
+func:transferWall1
+opendoor TransferWall1 on 30.76|8.25|165.99|2 143.9|2.1|103.43|-180
+
+func:transferWall2
+opendoorex TransferWall2 on 153.84|2.1|84.81|2 169.93|0.03|44.2|-180 cerberoscutscene
+
+func:direction
+showdirection direction
+
+func:direction1
+showdirection direction1
+
+func:addbuff100
+addbuff 221505 6704 1
+
+func:notice100
+notice BOSS狂暴了！ 5

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_pterosaur_red_attack_reddragon</Name>
+  <ClipName>Animation/Monster_pterosaur/Monster_pterosaur_red_attack</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.900000036</At>
+      <Range>5</Range>
+      <Scope>150</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.3332</Time_Present_Straight>
+      <Time_Hard_Straight>0.3332</Time_Hard_Straight>
+      <Offset>2</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.8333334</At>
+      <End>2.16666675</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_pterosaur_red_attack_reddragon_01</Fx>
+      <Follow>false</Follow>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.16666675</Not_Move_End>
+    <CanCancelAt>2.16666675</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>2.16666675</Time>
+  <Cast_Range_Upper>4</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

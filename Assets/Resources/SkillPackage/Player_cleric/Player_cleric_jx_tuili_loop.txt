@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_jx_tuili_loop</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_jx_tuili_loop</ClipName>
+  <Result>
+    <XResultData>
+      <At>0.200000018</At>
+      <Range>1.5</Range>
+      <Scope>360</Scope>
+      <Group>true</Group>
+      <Time_Step>0.100000009</Time_Step>
+      <Group_Count>10</Group_Count>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_cleric/Player_cleric_jx_tuili_loop_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_cleric/Player_cleric_jx_tuili_loop_side</Curve_Side>
+      <AimTarget>true</AimTarget>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.133</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>0.001</Offset>
+      <State>Hit_Free</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Player_cleric/Player_cleric_jx_tuili_loop</Clip>
+      <Channel>Skill</Channel>
+    </XAudioData>
+  </Audio>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.50000012</Not_Move_End>
+    <CanCastAt_QTE>1048576</CanCastAt_QTE>
+    <QTE_Key>11</QTE_Key>
+    <QTEData>
+      <XQTEData>
+        <QTE>20</QTE>
+        <End>1.83333337</End>
+      </XQTEData>
+    </QTEData>
+    <CanCancelAt>1.50000012</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <CoolDown>10</CoolDown>
+  <Time>0.433</Time>
+</XSkillData>

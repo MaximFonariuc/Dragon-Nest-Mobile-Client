@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_mechagorilla_ironman_loop_midlle</Name>
+  <ClipName>Animation/Monster_mechagorilla/Monster_mechagorilla_ironman_loop</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.9333334</At>
+      <Low_Range>10</Low_Range>
+      <Range>15</Range>
+      <Scope>360</Scope>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Monster_mechagorilla/Monster_mechagorilla_ironman_loop_forward 1</Curve_Forward>
+      <Curve_Side>Curve/Monster_mechagorilla/Monster_mechagorilla_ironman_loop_side</Curve_Side>
+      <Using_Up>true</Using_Up>
+      <Curve_Up>Curve/Monster_mechagorilla/Monster_mechagorilla_ironman_loop_up</Curve_Up>
+      <StandOnAtEnd>false</StandOnAtEnd>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.7332</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>1</Offset>
+      <Height>2</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>4</Not_Move_End>
+    <CanCancelAt>4</CanCancelAt>
+  </Logical>
+  <Time>1</Time>
+</XSkillData>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spider_black_attack_venom_nest0400</Name>
+  <TypeToken>0</TypeToken>
+  <ClipName>Animation/Monster_spider/Monster_spider_dead</ClipName>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>1.00000012</At>
+      <Range>5</Range>
+      <Scope>5</Scope>
+      <Offset_X>7.5</Offset_X>
+      <Offset_Z>-2.5</Offset_Z>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <End>3.50000024</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_spirit_portalofwind_nest_01</Fx>
+      <OffsetX>7.5</OffsetX>
+      <OffsetZ>-2.5</OffsetZ>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <End>1.00000012</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_spirit_portalofwind_nest_03</Fx>
+      <OffsetX>7.5</OffsetX>
+      <OffsetZ>-2.5</OffsetZ>
+    </XFxData>
+  </Fx>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.99999952</Not_Move_End>
+    <CanCancelAt>2.99999952</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.5</Time>
+  <Cast_Range_Upper>30</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

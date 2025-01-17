@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_sorceress_attack_qusan_roofing</Name>
+  <ClipName>Animation/Player_sorceress/Player_sorceress_attack_disperse_roofing</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>0.06666667</At>
+      <Range>3.3</Range>
+      <Scope>360</Scope>
+      <Offset_Z>3.1</Offset_Z>
+      <Loop>true</Loop>
+      <Cycle>0.166666672</Cycle>
+      <Loop_Count>10</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_sorceress/Player_sorceress_attack_disperse_roofing_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_sorceress/Player_sorceress_attack_disperse_roofing_side</Curve_Side>
+      <Curve_Up>Curve/Player_sorceress/Player_sorceress_attack_disperse_roofing_up</Curve_Up>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>-0.05</Offset>
+      <Height>0.75</Height>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx_Follow>false</Fx_Follow>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>1.667</Not_Move_End>
+    <CanCancelAt>1.66666675</CanCancelAt>
+  </Logical>
+  <CoolDown>1.667</CoolDown>
+  <Time>1.667</Time>
+</XSkillData>

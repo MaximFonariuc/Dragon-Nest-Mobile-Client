@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_halfgolem_fire_fireroad_loop</Name>
+  <ClipName>Animation/Monster_halfgolem/Monster_halfgolem_fire_fireroad_loop</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <Range>3.5</Range>
+      <Scope>360</Scope>
+      <Offset_Z>-0.5</Offset_Z>
+      <Loop>true</Loop>
+      <Cycle>0.333333343</Cycle>
+      <Loop_Count>20</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <End>6.833335</End>
+      <Offset>28</Offset>
+      <AimTarget>true</AimTarget>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.3</Time_Present_Straight>
+      <Time_Hard_Straight>0.1</Time_Hard_Straight>
+      <Offset>1.4</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/Roles/Soceress/Jz_fire</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Rotate_Speed>30</Rotate_Speed>
+    <CanCancelAt>6.833334</CanCancelAt>
+  </Logical>
+  <CoolDown>6.833335</CoolDown>
+  <Time>6.833335</Time>
+</XSkillData>

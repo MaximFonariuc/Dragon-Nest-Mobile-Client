@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1725811040017470}
+  m_IsPrefabParent: 1
+--- !u!1 &1725811040017470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4938561968600978}
+  - component: {fileID: 114431593427799008}
+  m_Layer: 0
+  m_Name: ac_costume_animal03_a_bandpose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4938561968600978
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725811040017470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114431593427799008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725811040017470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebf6dcc14175374cb1d045f70f03716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fbx: {fileID: 100000, guid: a59b9e821c32c2249b8d53fc2c9a0f92, type: 3}
+  srcName: 01
+  replaceName: 03
+  srcDir: Equipments/costume_animal01_a
+  targetDir: Equipments/costume_animal03_a
+  ReplaceMeshList:
+  - srcMeshName: ac_costume_animal01_a_body
+    replaceEquipName: ac_body
+    replaceTex: {fileID: 2800000, guid: 5441b435d2cd53e43bd1bdfb4de6e053, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_costume_animal01_a_cannon_weapon
+    replaceEquipName: ac_weapon
+    replaceTex: {fileID: 2800000, guid: a874d320f5b4ccf4389fe651934d2864, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_costume_animal01_a_gauntlet
+    replaceEquipName: ac_second
+    replaceTex: {fileID: 2800000, guid: 8fc7b811dd875bd45be819dd618fe091, type: 3}
+    isShareTex: 0
+  - srcMeshName: ac_costume_animal01_a_helmet
+    replaceEquipName: ac_helmet
+    replaceTex: {fileID: 2800000, guid: bfd488ceb99f5b4459a3105d2226e7a1, type: 3}
+    isShareTex: 0

@@ -1,0 +1,86 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 打开技能界面
+scond nostackui
+scond inlevel 1
+scond MainUI
+ailin [301b0a]太棒啦！你已经达到了[7100ff]转职[-]的条件哦，之后请跟我来。[-] -200
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysBSkill 1
+audio Audio/VO/guide/guide7
+internaldelay 0.2
+--text 打开技能界面 -200 0
+
+step 点击一转页签
+scond inlevel 1
+forceclick SkillTree Bg/Tabs/item1 1
+internaldelay 0.3
+--text 点击这里开启转职 -200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]在这里可以查看不同的职业信息，“接受试炼”就可以开启转职之旅了[-] -200
+audio Audio/VO/guide/guide8
+internaldelay 0.3
+
+--step 点击转职
+--scond inlevel 1
+--forceclick SkillTree Bg/SkillTree/ChangeProf1/Button 1
+--internaldelay 0.3
+--text 点击这里开启转职 -200 0
+
+--step 选择职业倾向
+--scond inlevel 1
+--ailin [301b0a]勇士，请仔细查看[7100ff]职业方向[-]。每个转职后的职业都有自己的[7100ff]技能特色[-]。[-] -450
+--forceclick SkillTree Bg/PromoteFrame/ShowFrame/Tab1 1
+--internaldelay 0.2
+--text 打开技能界面 -200 0
+
+step 你猜
+skip HasTaskTab
+scond inlevel 1
+scond dotaskbattle 21
+forceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/TaskSwitchBtn 1.4
+internaldelay 0.7
+
+step 点击1
+scond inlevel 1
+scond dotaskbattle 21
+function tasktop 1
+forceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Panel/WrapContent/item0/BackDrop 1
+internaldelay 0.7
+
+step 你猜
+skip HasTaskTab
+scond inlevel 1
+scond taskscenefinished 1
+forceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/TaskSwitchBtn 1.4
+internaldelay 0.7
+
+step 点击2
+scond inlevel 1
+scond taskscenefinished 1
+function tasktop 1
+forceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Panel/WrapContent/item0/BackDrop 1
+internaldelay 0.7
+
+step 你猜
+skip HasTaskTab
+scond inlevel 1
+scond taskover 1
+forceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/TaskSwitchBtn 1.4
+internaldelay 0.7
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]亲爱的冒险家，现在可以进行转职了，选择自己心仪的职业吧！[-] -200
+audio Audio/VO/guide/guide9
+internaldelay 0.7
+
+end tutorial

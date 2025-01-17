@@ -1,0 +1,99 @@
+
+
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:part1Blockwall
+opendoor part1Blockwall
+
+func:TransferWall
+opendoor TransferWall on
+
+func:opendoor
+opendoor Door on
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 87.24 8.56 139.95 90 50504
+
+func:showdirection
+showdirection direction1
+
+func:showdirection1
+showdirection direction2
+
+func:talk
+talkl [player] [ffebad]可恶，提摩西和萝丝在哪里？
+talkr 26 [ffebad]嘎嘎，守住路口，别让那两个人类跑了。
+talkl [player] [ffebad]糟糕，不能让魔物把路堵住了。
+stoptalk
+
+func:timosespeak
+bubble 5036 萝丝，我终于找到你了！ 6
+
+func:timosespeak_1
+bubble 5036 勇士，请帮帮我们！ 6
+
+func:bosstalk_1
+bubble 50502 刚让那两人溜了！ 4
+
+func:bosstalk_2
+bubble 50502 还好又来猎物了 4
+
+func:addbuff50116
+addbuff 0 50116 1
+
+func:change
+notice 糟糕！布洛怪邪术师临死前[ff0000]诅咒[-]了你，你变成了[ff0000]哥布林[-]！ 4
+
+func:change_1
+notice 哥布林状态下，你的[ff0000]攻击力[-]会降低，[ff0000]打碎蘑菇[-]可暂时恢复人形 30
+
+func:outline_first
+outline 4
+outline 7
+
+func:outline_second
+outline 0
+outline 9
+outline 2
+
+func:addbuff50118
+addbuff 0 50118 1
+
+func:change_end
+notice 随着怪物的死亡，[ff0000]中间[-]出现了[ff0000]恢复法阵[-] 4
+
+func:change_end_1
+notice 快！走进法阵[ff0000]解除诅咒[-] 20
+
+func:cheng_end_2
+notice 诅咒解除了！通过传送阵去救回萝丝吧！ 6
+
+func:reschange
+notice 捡起[ff0000]回春甘泉[-]，它能让你短暂[ff0000]恢复[-]人形 6
+
+func:start
+notice 勇士！杀死布洛怪首领，救回萝丝 7
+
+func:boorspeak
+bubble 50515 想救回萝丝先过我这一关，看我闪电！ 6
+
+func:openchangebuffend
+opendoor changebuffend on
+
+
+func:killwave4
+killwave 4
+
+func:killwave9
+killwave 9
+
+
+
+
+info:part1Blockwall 74.26385|9.092935|64.2306|30 on 10 14.09293 0.1
+info:Door 82.28385|8.892935|139.7806|74.99998 off 50 33.89294 0.1
+info:changebuffend 62.71385|3.635935|90.09059|0 off

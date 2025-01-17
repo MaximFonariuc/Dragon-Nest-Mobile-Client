@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Scene_BlackDragon_Level2>
+  <EntryTask F_heartrate="0.3" I_compres="0" V_eventpos="0:0:0" I_typeid="0" I_monsternum="0" B_killall="0" B_IsInitialized="0" I_eventskillid="0" I_HashRes="0" F_random="0" I_num="0" I_num1="0" I_monsternum1="0" I_monsternum2="0" I_totalnum="0">
+    <Selector>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Dead" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <Sequence>
+          <ConditionMonsterNum Shared_NumName="monsternum1" Shared_NummValue="0" MonsterId="43305" />
+          <ConditionMonsterNum Shared_NumName="monsternum2" Shared_NummValue="0" MonsterId="43306" />
+          <IntOperator type="0" Shared_Int1Name="monsternum1" int1Value="0" Shared_Int2Name="monsternum2" int2Value="0" Shared_StoredResultName="totalnum" />
+        </Sequence>
+        <Selector>
+          <Sequence>
+            <IntComparison type="2" Shared_Int1Name="totalnum" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <Selector>
+              <Sequence>
+                <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="43305" />
+                <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="43305" MsgStr="Recover" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="11.5" />
+              </Sequence>
+              <Sequence>
+                <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="43306" />
+                <SendAIEvent MsgTo="7" MsgType="1" EntityTypeId="43306" MsgStr="Recover" Shared_PosName="" Shared_PosmValue="0:0:0" DelayTime="11.5" />
+              </Sequence>
+            </Selector>
+            <CallScript FuncName="notice1" DelayTime="0" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+      <Sequence>
+        <ReceiveAIEvent Deprecate="0" MsgType="1" Shared_MsgStrName="eventcmd" Shared_TypeIdName="typeid" Shared_TypeIdmValue="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" Shared_SkillTemplateIdName="" Shared_SkillTemplateIdmValue="0" Shared_SkillIdName="" Shared_SkillIdmValue="0" Shared_FloatArgName="" Shared_FloatArgmValue="0" Shared_SenderUIDName="" />
+        <CompareTo Shared_FirstStringName="eventcmd" Shared_SecondStringName="" secondString="Recover" Shared_ResultName="compres" />
+        <IntComparison type="2" Shared_Int1Name="compres" int1Value="0" Shared_Int2Name="" int2Value="0" />
+        <Selector>
+          <Sequence>
+            <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="43306" />
+            <ConditionMonsterNum Shared_NumName="monsternum1" Shared_NummValue="0" MonsterId="43305" />
+            <IntComparison type="2" Shared_Int1Name="monsternum1" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="43306" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="49.57:8.76:30.54" Pos2="49.57:8.76:30.54" Pos3="49.57:8.76:30.54" Pos4="49.57:8.76:30.54" FinalPos="0:0:0" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+          <Sequence>
+            <IntComparison type="2" Shared_Int1Name="typeid" int1Value="0" Shared_Int2Name="" int2Value="43305" />
+            <ConditionMonsterNum Shared_NumName="monsternum1" Shared_NummValue="0" MonsterId="43306" />
+            <IntComparison type="2" Shared_Int1Name="monsternum1" int1Value="0" Shared_Int2Name="" int2Value="1" />
+            <CallMonster Shared_DistName="" Shared_DistmValue="0" Shared_AngleName="" Shared_AnglemValue="0" MonsterId="43305" Shared_MonsterId2Name="" Shared_MonsterId2mValue="0" CopyMonsterId="0" MaxMonsterNum="1" LifeTime="0" DelayTime="0" Shared_PosName="eventpos" Shared_PosmValue="0:0:0" BornType="1" Pos1="49.52:8.8:68.27" Pos2="49.52:8.8:68.27" Pos3="49.52:8.8:68.27" Pos4="49.52:8.8:68.27" FinalPos="49.52:0:68.27" ForcePlace="0" DeltaArg="0" HPPercent="0" />
+          </Sequence>
+        </Selector>
+      </Sequence>
+    </Selector>
+  </EntryTask>
+</Scene_BlackDragon_Level2>

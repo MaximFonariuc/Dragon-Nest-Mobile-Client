@@ -1,0 +1,138 @@
+﻿
+func:protect
+addbuff 0 110 1
+
+func:mayday
+addbuff 0 120 1
+
+func:aicommand1
+aicommand -1 count1 0
+
+func:aicommand2
+aicommand -1 count2 0
+
+func:aicommand3
+aicommand -1 count3 0
+
+func:announcement3
+notice 需要收集1块地图碎片。 3
+
+func:announcement2
+notice 还缺2块地图碎片。 3
+
+func:announcement1
+notice 就剩1块地图碎片了。 3
+
+func:announcement0
+notice 地图碎片收集完成了。 3
+
+func:notice3
+notice 兽人兄弟被惊动了
+
+func:notice4
+notice 消灭布洛羊头首领吧
+
+func:notice9
+notice 地图碎片出现了，快捡起来看看！ 10
+
+func:timosespeak_1
+bubble 5036 勇士，小心一点这个哥布林非常凶悍！ 6
+
+
+func:notice7
+opendoor Blockwall
+
+func:notice8
+opendoor Blockwall1
+
+func:notice5
+showdirection direction1
+
+func:notice6
+showdirection direction2
+
+func:talk
+talkl [player] [ffebad]呃？地上好像有什么东西…… Audio/VO/Warrior/warrior15|Audio/VO/Archer/archer15|Audio/VO/Sorceress/sorceress15|Audio/VO/Cleric/cleric15|Audio/VO/Academic/academic15|Audio/VO/Assassin/assassin15|Audio/VO/kali/kali15
+talkr 38 [ffebad]这个是……地图吗？是魔物们巢穴的地图！？ Audio/VO/lines/lines20
+talkr 38 [ffebad]……我明白了！那些魔物，一定是把萝丝带去地图上标注的地方了！ Audio/VO/lines/lines21
+talkl [player] [ffebad]现在也只能这么想了，只是这只是一小片地图而已，根本看不出具体的位置。 Audio/VO/Warrior/warrior28|Audio/VO/Archer/archer28|Audio/VO/Sorceress/sorceress28|Audio/VO/Cleric/cleric28|Audio/VO/Academic/academic6|Audio/VO/Assassin/assassin6|Audio/VO/kali/kali6
+talkr 38 [ffebad]既然碎片会出现在这里，就说明这附近的魔物都是服从命令在行动，附近一定会有别的地图碎片！ Audio/VO/lines/lines22
+stoptalk
+
+func:talk1
+talkl [player] [ffebad]好像还少了很重要的一部分碎片。 Audio/VO/Warrior/warrior12|Audio/VO/Archer/archer12|Audio/VO/Sorceress/sorceress12|Audio/VO/Cleric/cleric12|Audio/VO/Academic/academic12|Audio/VO/Assassin/assassin12|Audio/VO/kali/kali12
+talkr 38 [ffebad]萝丝……萝丝她现在一定非常害怕！我已经知道大体的位置了！我们兵分两路，你先去森林圣域附近吧！ Audio/VO/lines/lines23
+talkr 38 [ffebad]萝丝她……是我的全部。如果她有什么不测，我、我也……！！冒险家，拜托你了！ Audio/VO/lines/lines24
+stoptalk
+
+func:warning
+notice [ff0000]收集[-]散落在阴影森林的地图碎片。 6
+
+func:warning_take
+notice 收集到了一块碎片。 5
+
+func:bosstalk_1
+bubble 4201 把这家伙赶出去！ 3
+
+func:bosstalk_2
+bubble 4201 哎呀...等...别打脸！ 3
+
+func:boss_recovery
+bubble 4201 帅羊的雷击！ 3
+
+func:orctalk_1
+bubble 4204 别想靠近我家帅大王！ 5
+
+func:closedoor
+opendoor Door on
+
+func:showcutscene
+showcutscene CutScene/cutscene_generalshow 55.18 0 160.86 72 50201 50201
+
+func:operation5
+clientrecord 102before
+
+func:operation6
+clientrecord 102after
+
+
+func:TransferWall
+opendoor TransferWall on
+
+func:timosespeak
+bubble 50216 勇士，我和你一起找线索！ 6
+
+func:Ty_task_dtsp1
+opendoor Ty_task_dtsp1
+
+func:Ty_task_dtsp2
+opendoor Ty_task_dtsp2
+
+func:Ty_task_dtsp3
+opendoor Ty_task_dtsp3
+
+func:suipian
+opendoor Ty_task_dtsp3 on
+
+func:killwave6
+killwave 6
+
+func:killwave7
+killwave 7
+
+func:killwave8
+killwave 8
+
+func:killwave
+killwave 11
+
+func:generalbubble_1
+bubble 50216 萝丝，你在哪里呀？ 5
+
+func:generalbubble_2
+bubble 50216 萝丝现在很危险，我要赶去救她！ 5
+
+func:generalbubble_3
+bubble 50216 魔物虽然很可怕，但是为了救萝丝，我什么都不怕！ 5
+
+info:Door 51.72|0.99|159.26|60 off 10 5.99 0.1

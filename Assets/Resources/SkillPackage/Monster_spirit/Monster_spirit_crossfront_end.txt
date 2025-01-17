@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_spirit_crossfront_end</Name>
+  <ClipName>Animation/Monster_spirit/Monster_spirit_crossfront_end</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <LongAttackEffect>true</LongAttackEffect>
+      <At>0.50000006</At>
+      <Group>true</Group>
+      <Angle_Step>90</Angle_Step>
+      <Group_Count>4</Group_Count>
+      <LongAttackData>
+        <Type>Sphere</Type>
+        <Runningtime>3</Runningtime>
+        <Velocity>6</Velocity>
+        <Radius>1</Radius>
+        <Prefab>Prefabs/Bullets/Monster_spirit_crossfront_nest_01</Prefab>
+        <Audio_Channel>Skill</Audio_Channel>
+        <End_Audio_Channel>Skill</End_Audio_Channel>
+        <At_Y>-2</At_Y>
+      </LongAttackData>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>0.2</Time_Hard_Straight>
+      <Offset>0.1</Offset>
+      <Height>1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+    </XHitData>
+  </Hit>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>1.50000012</Time>
+</XSkillData>

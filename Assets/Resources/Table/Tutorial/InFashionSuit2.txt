@@ -1,0 +1,53 @@
+﻿start tutorial
+
+step 进入关卡入口
+scond nostackui
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+--noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Panel/WrapContent/item1/BackDrop 1.4
+econd WorldMapShow
+--text 点这里进入副本 -200 0
+
+step 选择深渊入口
+forceclick DungeonSelect Bg/Hard 1
+text 再次挑战深渊副本吧 200 0
+internaldelay 0.5
+
+--step 宝箱
+--forceclick DungeonSelect Bg/LevelFramePanel/chapter11/Levels/chest112 1
+--internaldelay 0.5
+
+--step 宝箱
+--forceclick DungeonSelect Bg/BoxFrame/Fetch 1
+--internaldelay 0.5
+
+step 选择深渊所在ICON
+forceclick DungeonSelect Bg/PlayTween/LevelFramePanel/chapter11/Levels/114/SprBtn 1
+text 进入深渊副本 200 0
+internaldelay 0.2
+
+--step 选择经验值位置
+--noforceclick DungeonSelect Bg/DetailFrame/DropFrame/ItemTpl/Icon 1
+--text 深渊可获得2倍经验 200 0
+
+step 进入深渊
+forceclick DungeonSelect Bg/DetailFrame/Bg/GoTeamBattle 1
+text 点击这里进入深渊 -250 0
+
+--step 创建队伍
+--forceclick MyTeamDlg Bg/MyTeamFrame/OutTeamFrame/BtnCreate 1
+--text 建立队伍 -240 0
+--internaldelay 0.2
+
+step  点击匹配
+forceclick TeamDlg Bg/TeamListFrame/Bg/BottomButtonsFrame/BtnMatch 1
+internaldelay 0.2
+text 点击这里快速开始 -240 0
+
+--step 开始战斗
+--scond inlevel 1
+--scond team2
+--forceclick TeamDlg Bg/MyTeamFrame/BtnStart 1
+--text 进入深渊副本 -240 0
+--internaldelay 0.5
+
+end tutorial

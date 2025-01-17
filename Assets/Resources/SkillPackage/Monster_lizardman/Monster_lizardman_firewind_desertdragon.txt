@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_lizardman_firewind_desertdragon</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1.5</At>
+      <End>5.766667</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_lizardman_firewind_01</Fx>
+      <OffsetY>0.2</OffsetY>
+      <OffsetZ>0.8</OffsetZ>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>0.5</At>
+      <End>4.33333349</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_yj_shan</Fx>
+      <ScaleX>18</ScaleX>
+      <ScaleZ>21</ScaleZ>
+      <OffsetZ>-0.7</OffsetZ>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_lizardman/Monster_lizardman_icewind_nest</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_lizardman_icewind_start</Name>
+      <End>1.83333337</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_lizardman_firewind_desertdragon_loop</Name>
+      <End>3</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_lizardman_icewind_end</Name>
+      <End>0.9333334</End>
+      <Override_Presentation>true</Override_Presentation>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>5.767</Not_Move_End>
+    <CanCancelAt>5.767</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+    <Exstring>fire</Exstring>
+  </Logical>
+  <Time>5.767</Time>
+  <Cast_Range_Upper>7</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

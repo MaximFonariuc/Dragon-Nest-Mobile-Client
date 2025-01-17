@@ -1,0 +1,155 @@
+
+func:start
+notice 通过传送阵，让最值得信赖的勇士[ff0000]捡起道具[-]，变身为[ff0000]铁匠柯林[-] 10
+
+func:enemy_start
+notice 只有[ff0000]柯林能拆除水晶[-]，能[ff0000]使用光环[-]援助其他勇士，[ff0000]不要让柯林死亡[-] 10
+
+func:kill43348
+killwave 41
+
+func:longyu
+aicommand -1 longyu 43401
+
+func:stoplongyu
+aicommand -1 stoplongyu 43401
+
+func:BlockWall1
+opendoor BlockWall1 on
+		
+func:Blockwall_partone_end
+opendoor Blockwall_partone_end
+
+func:Blockwall_parttwo
+opendoor Blockwall_parttwo
+
+func:Blockwall_parttwo_1
+opendoor Blockwall_parttwo_1 on
+
+func:Blockwall_zhalan1_on
+opendoor Blockwall_zhalan1 on
+
+func:Blockwall_zhalan1
+opendoor Blockwall_zhalan1
+
+func:Blockwall_zhalan2
+opendoor Blockwall_zhalan2
+
+func:Blockwall_zhalan3
+opendoor Blockwall_partone
+
+func:Blockwall_zhalan2_on
+opendoor Blockwall_zhalan2 on
+
+func:transferWall
+opendoor TransferWall on 76.73|1.252|136.65|2 0|0|0|0
+
+func:removebuff43329
+removebuff 43329 21514 1
+
+func:removebuff43330
+removebuff 43330 21514 1
+
+func:removebuff43344
+removebuff 43344 21514 1
+
+func:removebuff43345
+removebuff 43345 21514 1
+
+func:kill
+killwave 3
+killwave 4
+killwave 5
+killwave 6
+killwave 7
+killwave 8
+killwave 0
+killwave 1
+killwave 2
+killwave 38
+
+func:kill_diyibo
+killwave 14
+killwave 16
+killwave 18
+killwave 15
+killwave 17
+killwave 19
+killwave 13
+
+func:kill_dierbo
+killwave 10
+killwave 20
+killwave 21
+killwave 24
+killwave 33
+
+func:kill_disanbo
+killwave 34
+killwave 36
+killwave 37
+
+func:kill_disibo
+killwave 27
+killwave 30
+killwave 29
+
+func:kill_diwubo
+killwave 32
+killwave 28
+killwave 26
+
+
+func:jiguan_warning_broken
+notice 邪恶水晶已经被打破，魔物无法再从水晶获得魔力，它们将会死亡 6
+
+func:jiguan_warning_start
+notice 4|3|2||1秒|下一波魔物还有出现了，邪恶水晶的守护罩已经消失 4
+
+func:fenghuolun
+notice 烈焰之轮出现在通道里面了，千万不要被它追上 6
+
+func:jiguan_warning_BOSS
+notice 所有的邪恶水晶已经打破，最终BOSS即将出现，小心应对 6
+
+func:jiguan_warning_end
+notice 此区域已经没有邪恶水晶，穿过通道去下个区域吧 6
+
+func:tongdao
+notice 通道刮起了大风，所有勇士的移速变慢了 6
+
+func:warning_blackbroo
+notice 黑暗邪恶法师出现了，它的力量会让玩家的生命遭受侵蚀 6
+
+func:warning_whitebroo
+notice 堕落的光明巫师出现了，它正在治愈周围的魔物 6
+
+func:transferWall2
+opendoor TransferWall on 55.91|1.24|16.8|2 55.89|0.05|20.53972|0
+
+func:opendoor_transfer
+opendoor TransferWall
+
+func:transferWall3
+opendoor TransferWall on 76.683|1.24|106.95|2 76.83|0.05|110.19|0
+
+func:transferWall4
+opendoor TransferWall on 55.89|1.24|46.56|2 55.95|0.05|49.95|0
+
+func:opendoor_kill
+opendoor kill
+
+func:tongyongcutscene
+showcutscene CutScene/cutscene_generalshow 55.84378 0.05 23.49588 0 43330
+
+
+
+
+
+
+
+
+
+
+
+

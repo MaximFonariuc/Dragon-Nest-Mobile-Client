@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_rhinoman_callreinforcements_stage_start</Name>
+  <ClipName>Animation/Monster_rhinoman/Monster_rhinoman_callreinforcements</ClipName>
+  <NeedTarget>false</NeedTarget>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <At>1.48333347</At>
+      <Range>20</Range>
+      <Scope>360</Scope>
+      <Loop>true</Loop>
+      <Cycle>0.166666672</Cycle>
+      <Loop_Count>2</Loop_Count>
+      <Affect_Direction>AttackDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.5332</Time_Present_Straight>
+      <Time_Hard_Straight>1</Time_Hard_Straight>
+      <Offset>4</Offset>
+      <Height>1</Height>
+      <State>Hit_Fly</State>
+      <State_Animation>Hit_Back_Front</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Gw/Jz_play_red_U</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.966666937</At>
+      <End>2.33333349</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_rhinoman_callReinforcements_Clip01</Fx>
+    </XFxData>
+  </Fx>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>2.33333349</Not_Move_End>
+    <CanCancelAt>2.33333349</CanCancelAt>
+  </Logical>
+  <CoolDown>2.333333</CoolDown>
+  <Time>2.33333349</Time>
+</XSkillData>

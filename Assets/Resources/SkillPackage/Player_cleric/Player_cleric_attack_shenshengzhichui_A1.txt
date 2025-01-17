@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Player_cleric_attack_shenshengzhichui_A1</Name>
+  <ClipName>Animation/Player_cleric/Player_cleric_attack_A1</ClipName>
+  <ForCombinedOnly>true</ForCombinedOnly>
+  <Result>
+    <XResultData>
+      <Sector_Type>false</Sector_Type>
+      <At>0.233333349</At>
+      <Range>2</Range>
+      <Scope>2</Scope>
+      <Offset_Z>0.5</Offset_Z>
+      <Affect_Direction>ChargeDir</Affect_Direction>
+    </XResultData>
+  </Result>
+  <Charge>
+    <XChargeData>
+      <Using_Curve>true</Using_Curve>
+      <Curve_Forward>Curve/Player_cleric/Player_cleric_attack_A1_forward</Curve_Forward>
+      <Curve_Side>Curve/Player_cleric/Player_cleric_attack_A1_side</Curve_Side>
+    </XChargeData>
+  </Charge>
+  <Hit>
+    <XHitData>
+      <Time_Present_Straight>0.1333</Time_Present_Straight>
+      <Time_Hard_Straight>0.5</Time_Hard_Straight>
+      <Offset>0.4</Offset>
+      <State>Hit_Back</State>
+      <State_Animation>Hit_Back_Left</State_Animation>
+      <Fx>Effects/FX_Particle/NPC/xiaobing/Jz_putong</Fx>
+      <CurveUsing>true</CurveUsing>
+    </XHitData>
+  </Hit>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>0.166666672</At>
+      <End>0.433333367</End>
+      <Fx>Effects/FX_Particle/Roles/Cleric/Cl_attack_a1</Fx>
+      <Bone>Bip01_Cleric/Bip01 Spine_Cleric/Bip01 Spine1_Cleric/Bip01 Neck_Cleric/Bip01 R Clavicle_Cleric/Bip01 R UpperArm_Cleric/Bip01 R Forearm_Cleric/Bip01 R Hand_Cleric/BoxBone01_Cleric</Bone>
+    </XFxData>
+  </Fx>
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <CanReplacedby>10</CanReplacedby>
+    <Not_Move_End>0.6</Not_Move_End>
+    <Rotate_End>1.23333335</Rotate_End>
+    <CanCancelAt>0.533333361</CanCancelAt>
+  </Logical>
+  <CoolDown>0.5</CoolDown>
+  <Time>1.23333335</Time>
+  <Cast_Range_Upper>1.5</Cast_Range_Upper>
+  <Cast_Scope>360</Cast_Scope>
+  <CameraTurnBack>1.3</CameraTurnBack>
+</XSkillData>

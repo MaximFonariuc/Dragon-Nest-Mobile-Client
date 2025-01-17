@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XSkillData>
+  <Name>Monster_phoenix_attack_dash</Name>
+  <TypeToken>3</TypeToken>
+  <Fx>
+    <XFxData>
+      <Type>FirerBased</Type>
+      <At>1</At>
+      <End>2.1728</End>
+      <Fx>Effects/FX_Particle/Roles/Lzg_Ty/Ty_yj_ju</Fx>
+      <ScaleX>3</ScaleX>
+      <ScaleZ>20</ScaleZ>
+      <OffsetZ>10</OffsetZ>
+      <StickToGround>true</StickToGround>
+      <Combined>true</Combined>
+    </XFxData>
+    <XFxData>
+      <Index>1</Index>
+      <Type>FirerBased</Type>
+      <At>1.49999976</At>
+      <End>3.73333359</End>
+      <Fx>Effects/FX_Particle/NPC/Lzg_Boss/Monster_phoenix_attack_dash_01</Fx>
+      <OffsetY>0.8</OffsetY>
+      <Combined>true</Combined>
+    </XFxData>
+  </Fx>
+  <Audio>
+    <XAudioData>
+      <Clip>Audio/Monster_phoenix/Monster_phoenix_attack_dash</Clip>
+      <Channel>SkillCombine</Channel>
+    </XAudioData>
+  </Audio>
+  <Combined>
+    <XCombinedData>
+      <Name>Monster_phoenix_attack_dash_start</Name>
+      <End>1.83333337</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>1</Index>
+      <Name>Monster_phoenix_attack_dash_loop</Name>
+      <End>0.5</End>
+    </XCombinedData>
+    <XCombinedData>
+      <Index>2</Index>
+      <Name>Monster_phoenix_attack_dash_end</Name>
+      <End>1.4000001</End>
+    </XCombinedData>
+  </Combined>
+  <Script />
+  <Logical>
+    <StrickenMask>Cease</StrickenMask>
+    <Not_Move_End>3.733</Not_Move_End>
+    <CanCancelAt>3.733</CanCancelAt>
+    <Syntonic_CoolDown_Skill />
+  </Logical>
+  <Time>3.733</Time>
+  <Cast_Range_Upper>10</Cast_Range_Upper>
+  <Cast_Range_Lower>3</Cast_Range_Lower>
+  <Cast_Scope>360</Cast_Scope>
+</XSkillData>

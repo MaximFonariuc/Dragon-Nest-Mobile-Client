@@ -1,0 +1,84 @@
+﻿start tutorial
+
+step 切换
+skip MenuBtnInState1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/MenuSwitchBtn 1.4
+
+step 开放坐骑系统
+scond nostackui
+scond inlevel 1
+directsys 15
+econd SysOpened
+
+step 打开角色界面
+scond item 702=1
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem 1
+internaldelay 0.5
+--text 打开技能界面 -200 0
+
+step 打开背包界面
+scond inlevel 1
+forceclick ItemNewDlg Bg/Tabs/XSys_Bag_Item/Bg 1
+internaldelay 0.5
+--text 打开技能界面 -200 0
+
+step 点击礼包页签
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/BagListPanel/TabsFrame/item2/Bg 1
+internaldelay 0.5
+
+step 点击马牌
+scond inlevel 1
+forceclick ItemNewDlg Bg/RightPanel/BagListPanel/Items/Panel/WrapContent/item702/Icon 1
+internaldelay 0.3
+--text 选择一个技能 210 0
+
+step 点击召唤
+scond inlevel 1
+forceclick ItemToolTipDlg Bg/Bg/main/FuncFrame/Button1 1
+--internaldelay 0.8
+--text 选择一个技能 210 0
+
+step 点击激活
+scond inlevel 1
+forceclick PetMainDlg Bg/ContentFrame/LeftUp/Activation 1
+internaldelay 0.5
+--text 选择一个技能 210 0
+
+--step 点击喂养
+--scond inlevel 1
+--forceclick PetMainDlg Bg/ContentFrame/FeedFrame/BtnFeed 1
+--internaldelay 0.3
+--text 选择一个技能 210 0
+
+--step 引导
+--scond inlevel 1
+--empty
+--ailin [301b0a]坐骑可以通过喂养提升等级，如果让坐骑一直饿肚子心情值会降低[-] -300
+--audio Audio/VO/guide/guide20
+--internaldelay 0.3
+
+--step 点击饲料
+--scond inlevel 1
+--forceclick PetMainDlg Bg/ContentFrame/FeedFrame/ItemPanel/Panel/WrapContent/item0/Item/Icon 1
+--internaldelay 0.3
+--text 选择一个技能 210 0
+
+--step 引导
+--scond inlevel 1
+--notewindow  PetMainDlg Bg/ContentFrame/Right/DetailTip/Skill/Skill0 15|15|2000
+--ailin [301b0a]坐骑到固定等级后就可以学习固定技能了，通过学习技能书还可以领悟新技能哟[-] -300
+--audio Audio/VO/guide/guide21
+--internaldelay 0.3
+
+step 点击骑乘
+scond inlevel 1
+forceclick PetMainDlg Bg/ContentFrame/Right/BtnMount 1
+internaldelay 0.3
+--text 你一定迫不及待想骑上它了吧~现在就上路吧！ 210 0
+
+
+
+end tutorial

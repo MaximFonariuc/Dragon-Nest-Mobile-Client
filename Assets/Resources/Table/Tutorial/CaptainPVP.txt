@@ -1,0 +1,29 @@
+﻿start tutorial
+
+--step 点击
+--scond nostackui
+--scond inlevel 1
+--scond MainUI
+--forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+--internaldelay 0.2
+--text 点击这里进入日常玩法 -200 0
+
+step 点击PVP活动页签
+scond inlevel 1
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysEPVP 1 1 0 0
+internaldelay 0.2
+
+step 进入保护队长
+scond inlevel 1
+forceclick MobaActivityDlg Bg/PVPActivityFrame/Panel/item4 
+internaldelay 0.2
+text 这里就是保护队长的入口 -200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]多人竞技，保护你的队长，赢取团队战斗的胜利吧[-] -200
+audio Audio/VO/guide/guide16
+internaldelay 0.3
+
+end tutorial

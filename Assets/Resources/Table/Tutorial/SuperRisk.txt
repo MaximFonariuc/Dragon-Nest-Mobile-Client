@@ -1,0 +1,56 @@
+﻿start tutorial
+
+step 点击日常玩法
+scond nostackui
+scond inlevel 1
+scond MainUI
+forceclick HallDlg _canvas/MainMenuFrame/MainMenu/Panel2/SysGridV1/SysAActivity 1 1 0 25
+internaldelay 1
+text 点击这里进入日常玩法 -200 0
+
+step 点击日常活动
+scond inlevel 1
+forceclick DailyActivityDlg Bg/Tabs/XSys_Activity/Bg 1
+internaldelay 0.2
+
+step 进入大冒险
+scond inlevel 1
+scond activityopen
+scroll Activity 49
+forceclick DailyActivityDlg Bg/ActivityHandler/Bg/ActivityPanel/Item49/JoinBtn 1
+internaldelay 0.2
+text 这里就是大陆探险的入口 200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]通过简单的掷骰子就可以获得大量稀有图鉴，图鉴组合还可以提升属性增加战力哦！[-] -200
+audio Audio/VO/guide/guide22
+internaldelay 0.5
+
+step 进入大冒险
+scond inlevel 1
+--scond activityopen
+forceclick SuperRiskDlg Bg/SelectMap/SelectMapHandler/Bg/RiskMap/SelectMap/Map0 1
+internaldelay 0.5
+--text 这里就是大陆探险的入口 200 0
+
+step 引导
+scond inlevel 1
+empty
+ailin [301b0a]长按骰子进行投掷，适时的松手可以增加点数的概率！[-] -200
+audio Audio/VO/guide/guide23
+internaldelay 0.5
+
+step 点击骰子
+scond inlevel 1
+forceclick SuperRiskDlg Bg/RiskMap/GameHandler/Roll/Rollbutton 1
+internaldelay 0.5
+
+--step 引导
+--scond inlevel 1
+--empty
+--ailin [301b0a]长按骰子进行投掷，适时的松手可以增加点数的概率！[-] -200
+--internaldelay 0.5
+
+end tutorial

@@ -1,0 +1,28 @@
+﻿start tutorial
+
+step 任务2进入战斗
+scond nostackui
+noforceclick HallDlg _canvas/TaskNaviPanel/HallTaskNaviFrame/Main/TaskFrame/Bg 1.4
+econd WorldMapShow
+--text 点这里前往关卡 -200 0
+
+--step 选章
+--forceclick WorldMap Bg/Panel/Maps/Map1 2
+--text 请选择第一章 250 0
+
+step 选关卡
+forceclick DungeonSelect Bg/PlayTween/LevelFramePanel/chapter1/Levels/102/SprBtn 1
+internaldelay 0.5
+text 抢走萝丝的魔物在这出现过 210 0
+
+--step 进入
+--notewindow DungeonSelect Bg/DetailFrame/Bg/First3Star 3.5|2|-10|5
+--ailin [301b0a]首次三星通关可以获得[7100ff]技能点[-]哦。[-] -200 
+--audio Audio/xinshouyingdao/irin-3stargivesskillpoint
+--pause
+
+step 进入
+forceclick DungeonSelect Bg/DetailFrame/Bg/GoBattle 1
+text 前往关卡寻找消息 -240 0
+
+end tutorial
