@@ -1,0 +1,266 @@
+﻿--
+--  LuaCollectWordsFrame.lua
+--  Created by alexpeng on 2016/10/01 08:47:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+require "HotfixCollectWordsDocument.lua"
+
+LuaCollectWordsFrame={}
+local this = LuaCollectWordsFrame
+
+local m_Go
+local m_bIsVisible = false
+
+local m_uiTitle
+local m_uiLeftTime
+local m_uiWrapContent
+local m_uiScrollView
+local m_uiDescription
+local m_itemPool
+
+local m_TexturePath = nil;
+
+--called by MonoBehaviour.Awake
+function LuaCollectWordsFrame.Awake(go)
+	if IsNil(m_Go) then
+		m_Go = go
+
+		m_itemPool = Hotfix.SetupPool(
+			m_Go.transform:Find("Main/Panel").gameObject, 
+			m_Go.transform:Find("Main/Panel/WrapContent/Tpl/ItemList/ItemTpl").gameObject,
+			10)
+
+		m_uiTitle = m_Go.transform:Find("Main/Title"):GetComponent("UITexture")
+		m_uiDescription = m_Go.transform:Find("Main/Description"):GetComponent("UILabel")
+		m_uiLeftTime = m_Go.transform:Find("Main/LeftTime"):GetComponent("UILabel")
+		m_uiScrollView = m_Go.transform:Find("Main/Panel"):GetComponent("UIScrollView")
+		m_uiWrapContent = m_Go.transform:Find("Main/Panel/WrapContent").gameObject
+
+		Hotfix.InitWrapContent(m_uiWrapContent, this.WrapContentItemUpdated)
+
+		HotfixCollectWordsDocument.SetCollectWordsFrame(this)
+	else
+		print("m_Go != nil")
+	end
+end
+
+function LuaCollectWordsFrame.Start()
+
+end
+
+
+function LuaCollectWordsFrame.OnEnable()
+	print("LuaCollectWordsFrame.OnEnable")
+	m_bIsVisible = true
+	this.Refresh()
+	m_uiScrollView:ResetPosition()
+
+	HotfixCollectWordsDocument.UIOpened()
+end
+
+
+function LuaCollectWordsFrame.OnDisable()
+	m_bIsVisible = false
+	print("LuaCollectWordsFrame.OnDisable")
+end
+
+
+function LuaCollectWordsFrame.OnDestroy()
+	this._DestroyTexture()
+	HotfixCollectWordsDocument.SetCollectWordsFrame(nil)
+	m_bIsVisible = false
+end
+
+
+function LuaCollectWordsFrame.OnShow()
+	print("LuaCollectWordsFrame.OnShow")
+end
+
+function LuaCollectWordsFrame.OnHide()
+	print("LuaCollectWordsFrame.OnHide")
+end
+
+function LuaCollectWordsFrame.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaCollectWordsFrame.WrapContentItemUpdated(t, index)
+	local data = HotfixCollectWordsDocument.GetDatas()[index + 1]
+	if data == nil then
+		return
+	end
+
+--	print("Refresh DataList "..index..": "..data._data_id)
+
+	local itemlist = t:Find("ItemList")
+	local childCount = itemlist.childCount
+
+	local wordsCount = #data.words
+
+--	print("before child count = "..childCount.." wordsCount = "..wordsCount)
+
+	if childCount ~= wordsCount then
+		if childCount > wordsCount then
+			for i=childCount,wordsCount + 1, -1 do
+				m_itemPool:ReturnInstance(itemlist:GetChild(i-1).gameObject, true)
+			end
+		else
+			for i=childCount + 1,wordsCount do
+				local newItem = m_itemPool:FetchGameObject()
+				newItem.transform.parent = itemlist
+				newItem.transform.localPosition = Vector3(m_itemPool.TplWidth * (i-1) + m_itemPool.TplPos.x, m_itemPool.TplPos.y, m_itemPool.TplPos.z)
+--				print("new position "..i.." "..tostring(newItem.transform.localPosition))
+			end
+		end
+	end
+--	print("after child count = "..itemlist.childCount)
+	local itemDrawParam = Hotfix.GetSingleMember("XItemDrawerMgr", "Param", true, true, true)
+	for i=1,wordsCount do
+		local word = data.words[i]
+
+		itemDrawParam.MaxItemCount = word.itemMaxCount;
+--		if word.itemCount >= word.itemMaxCount then
+--			itemDrawParam.NumColor = Color.white 
+--		else
+--			itemDrawParam.NumColor = Color.red
+--		end
+		local wordGo = itemlist:GetChild(i-1).gameObject
+ 		Hotfix.DrawItemView(wordGo, word.itemID, word.itemCount, true)
+
+		local wordIcon = wordGo.transform:Find("Icon"):GetComponent("UISprite")
+		wordIcon.uid = word.itemID
+		Hotfix.SetClickCallback(wordIcon.gameObject, this.ShowIconTip)
+
+		local wordNum = wordGo.transform:Find("Num"):GetComponent("UILabel")
+		if word.itemCount >= word.itemMaxCount then
+			wordNum.color = Color.white 
+		else
+			wordNum.color = Color.red
+		end
+	end
+
+	local rewardGo = t:Find("Reward").gameObject
+	Hotfix.DrawItemView(rewardGo, data.reward, data.rewardCount, false)
+	local rewardIcon = rewardGo.transform:Find("Icon"):GetComponent("UISprite")
+	rewardIcon.uid = data.reward
+	Hotfix.SetClickCallback(rewardIcon.gameObject, this.ShowIconTip)
+
+ 	local btnFetch = t:Find("BtnFetch").gameObject
+ 	local fetched = t:Find("Fetched").gameObject
+
+ 	fetched:SetActive(data.maxFetchCount <= data.fetchedCount)
+ 	btnFetch:SetActive(data.maxFetchCount > data.fetchedCount)
+
+	local uiCount = t:Find("Count"):GetComponent("UILabel")
+	uiCount.text = data.fetchedCount..'/'..data.maxFetchCount
+
+ 	if btnFetch.activeSelf then
+ 		local xbtn = btnFetch:GetComponent("XUIButton")
+ 		xbtn:SetEnable(data.enough)
+ 		local can = btnFetch.transform:Find("Can").gameObject
+ 		local cant = btnFetch.transform:Find("Cant").gameObject
+ 		can:SetActive(data.enough)
+ 		cant:SetActive(not data.enough)
+
+ 		local redPoint = btnFetch.transform:Find("RedPoint").gameObject
+ 		
+ 		redPoint:SetActive(data.enough)
+
+		xbtn.ID = index
+		Hotfix.SetClickCallback(btnFetch,this.OnFetchClick)
+
+ 	end
+end
+
+function  LuaCollectWordsFrame.ShowIconTip(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid, go)
+end
+
+function LuaCollectWordsFrame.Refresh()
+	if m_bIsVisible then
+		this.RefreshUI()
+	end
+end
+
+function LuaCollectWordsFrame.RefreshUI()
+	print("LuaCollectWordsFrame.RefreshUI")
+
+	Hotfix.SetWrapContentCount(m_uiWrapContent, #HotfixCollectWordsDocument.GetDatas(), false)
+	m_uiLeftTime.text = Hotfix.GetStringTable("CollectWordsLeftTime", HotfixCollectWordsDocument.GetLeftTime())
+
+	if HotfixCollectWordsDocument.GetCurActData() == nil then
+		print("HotfixCollectWordsDocument.GetCurActData() == nil")
+		return
+	end
+	
+	local des = HotfixCollectWordsDocument.GetCurActData().name
+	m_uiDescription.text = Hotfix.CallSingleMethod("UI.UiUtility", false, false, "ReplaceReturn", des)
+
+	this._DestroyTexture()
+	m_TexturePath = HotfixCollectWordsDocument.GetCurActData().icon;
+
+	Hotfix.SetTexture(m_uiTitle, m_TexturePath, false)
+end
+
+function LuaCollectWordsFrame._DestroyTexture()
+	if m_TexturePath ~= nil then
+		Hotfix.DestoryTexture(m_uiTitle, m_TexturePath)
+		m_TexturePath = nil
+	end
+end
+
+function LuaCollectWordsFrame._RefreshRedPoint()
+--	HotfixOperatingActivityDlg.RefreshRedPoint()
+end
+
+function LuaCollectWordsFrame.OnFetchClick(go)
+	local dataList = HotfixCollectWordsDocument.GetDatas()
+	local xbtn = go:GetComponent("XUIButton")
+	local index = xbtn.ID + 1
+	if index > #dataList or index <= 0 then
+		print("Index "..index.."out of range: "..#dataList)
+		return
+	end
+
+	print("Fetch "..index)
+
+	local wordsData = dataList[index]
+
+	local msg = XSpActivity_pb.GetSpActivityRewardArg()
+	msg.actid = HotfixCollectWordsDocument.GetActID()
+	msg.taskid = wordsData.taskID
+
+	print("send request msg: "..msg.taskid)
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(7905, TestProtol.data, this.OnGetReward, this.OnErr)
+	else
+		print("test proto data is nil")
+	end
+
+end
+
+function LuaCollectWordsFrame.OnGetReward(data,length)
+	local  msg = XSpActivity_pb.GetSpActivityRewardRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		print("errorcode is: "..tostring(msg.errorcode))
+		if msg.errorcode ~= 0 then
+			-- exclude INVALID_REQUEST
+			if msg.errorcode ~= ERR_INVALID_REQUEST then
+				Hotfix.LuaShowSystemTipErrCode(msg.errorcode)
+			end
+		end
+	else
+		print("change name reply msg is nil")
+	end
+end
+
+function LuaCollectWordsFrame.OnErr( ... )
+ 	print("LuaCollectWordsFrame OnErr!")
+end

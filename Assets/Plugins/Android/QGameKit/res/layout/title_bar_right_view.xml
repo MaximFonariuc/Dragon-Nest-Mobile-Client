@@ -1,0 +1,65 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TextView
+        android:id="@+id/ivTitleBtnRightText"
+        style="@style/TitleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/top_button_right_selector"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxWidth="100dp"
+        android:minWidth="52dp"
+        android:singleLine="true"
+        android:visibility="gone" />
+    <!-- 为了让ivTitleBtnRightHintImg能只有左下的1/4贴在ivTitleBtnRightImage(12dp)上且垂直居中，上下各margin:4dp(由于有边界线区域,4dp看起来舒服一些...) -->
+    <ImageView
+        android:id="@+id/ivTitleBtnRightImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/top_button_right_selector"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:includeFontPadding="false"
+        android:scaleType="center"
+        android:maxWidth="100dp"
+        android:minWidth="52dp"
+        android:textColor="@color/skin_bar_btn"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/skin_tips_newmessage"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="@color/skin_notification"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignRight="@id/ivTitleBtnRightImage"
+        android:layout_marginRight="-6dp"
+        android:visibility="gone" />
+    <!-- 为了能让ivTitleBtnRightImage的layout_marginBottom生效，只好设置了一个末尾的view -->
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/ivTitleBtnRightImage"
+        android:background="#00000000"
+        android:visibility="invisible" />
+
+</merge>

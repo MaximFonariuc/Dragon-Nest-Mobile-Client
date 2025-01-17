@@ -1,0 +1,370 @@
+require "LuaJadeEquipDataModel.lua"
+
+---龙玉背包视图类 --hotfix
+JadeBagHandler = {}
+local this = JadeBagHandler
+
+
+local bgHandler = nil
+local thisObj = nil
+local thisTrans = nil
+
+local m_uiScrollView = nil
+local m_WrapContent = nil
+
+local OldBagPanelObj = nil
+
+local JadeShowInBagList ={ }
+local theListCount = 0
+
+local jadeTable = nil
+
+function JadeBagHandler.BeforeHandlerShow(go)
+	-- print(1333)
+end
+
+function JadeBagHandler.AfterHandlerShow(go)
+	print(2333)
+
+	thisObj = go
+
+	this.Init()
+end
+
+function JadeBagHandler.Init()
+	if thisObj == nil then
+		return
+	end
+
+	jadeTable = Hotfix.GetDocumentMember("JadeDocument","jadeTable",true,false)
+
+	-- print "Init 1"
+
+	bgHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_JadeBagHandler", true, true, false)
+		
+	-- powerfullMgr = Hotfix.GetSingleMember("UI.ItemSystemDlg", "RedPointMgr", true, true, false)
+
+	-- print "Init 2"
+	thisTrans = thisObj.transform
+
+	-- print "Init 3"
+	if thisTrans == nil then
+		return
+	end
+
+	OldBagPanelObj = thisTrans:Find("BagPanel").gameObject
+	if not IsNil(OldBagPanelObj) then
+		OldBagPanelObj:SetActive(false)
+	end
+
+	if IsNil(m_uiScrollView) then
+		-- print "Init 5"
+		m_uiScrollView = thisTrans:Find("BgForLua/BagPanel"):GetComponent("UIScrollView")
+
+		-- print "Init 6"
+		m_WrapContent = thisTrans:Find("BgForLua/BagPanel/WrapContent").gameObject
+
+		-- print "Init 7"
+		Hotfix.InitWrapContent(m_WrapContent, this.BagWrapContentUpdated)
+	end
+
+	-- print "Init 8"
+	this.RefreshBagListScrollView()
+end
+
+
+function JadeBagHandler.BagWrapContentUpdated(t, index)
+	
+	if index < 0 or index > theListCount then
+		return
+	end
+
+	-- print("the index: "..tonumber(index))
+
+	local CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()
+	if CurrEquip ~= nil then
+
+		-- print("currEq itemid: "..tostring(CurrEquip.itemID))
+
+		local equipListRowData = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"GetEquipConf",CurrEquip.itemID)
+		if equipListRowData == nil then
+			print "has not eplistRowData"
+			return
+		end
+
+		-- print "do item"
+
+		local item = JadeShowInBagList[index + 1]--selectSlotItemList[index]
+
+		-- print "do slotIndex"
+		local slotIndex =  Hotfix.GetDocumentMember("JadeDocument","selectedSlotIndex",true,true)	
+
+		-- print "do slot"
+		local slot = Hotfix.CallDocumentMethod("JadeDocument",true, "GetSlot", equipListRowData.EquipPos, slotIndex)
+
+		-- print "do drawJade"
+		Hotfix.CallSingleMethod("UI.JadeEquipHandler",true,true,"DrawJadeWithAttr",t.gameObject,slot,item,0)
+
+		-- print "do bg"
+		local bg = t:GetComponent("XUISprite")
+		bg.ID = index
+
+
+		Hotfix.SetClickCallback(t.gameObject, this.BagJadeClick)
+
+		-- print "do transform name"
+
+		t.name = "jade"..tostring(item.itemID)
+
+		local redPointObj = t:Find("RedPoint").gameObject
+
+		-- print "do hasMorePowerful"
+		
+		local hasMorePowerful = Hotfix.CallDocumentMethod("JadeDocument",true, "CanBeMorePowerful", CurrEquip, slotIndex, item)
+		redPointObj:SetActive(hasMorePowerful)
+
+		-- print "do powerful"
+		if hasMorePowerful then
+
+			local redSpr = redPointObj:GetComponent("UISprite")
+			local iconSpr = t:Find("JadeTpl/Icon/Icon"):GetComponent("UISprite")
+			redSpr.depth = iconSpr.depth + 1
+			-- print("red point depth: "..tostring(redSpr.depth))
+		end
+		-- print "end do powerful"
+
+
+		-----策划要求写死
+		local theGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(item.itemID)
+		if theGroupId == 999 then
+			local theLb = t:Find("AttrName"):GetComponent("UILabel")
+			if not IsNil(theLb) then
+				theLb.text = Hotfix.GetGlobalString("JadeAllElementattack")--"全元素攻"
+			end
+		end
+	end
+end
+
+
+function JadeBagHandler.BagJadeClick(go)
+	local bg = go:GetComponent("XUISprite")
+ 	local index = bg.ID
+
+	local item = JadeShowInBagList[index + 1] --selectSlotItemList[index]
+
+	local uid = Hotfix.GetObjectString(item,"uid",true,true)
+ 	print("uid: "..uid)
+
+ 	LuaJadeEquipDataModel.ReqPutOnJade(uid)
+ 	-- this.CloseBtnOnClick(nil)
+
+ 	PublicExtensions.CallPublicMethod(bgHandler,"SetVisible",false)
+end
+
+
+
+function JadeBagHandler.RefreshBagListScrollView( )
+
+	JadeShowInBagList = {}
+
+	local SlotIndex = LuaJadeEquipDataModel.GetSelectSlot()
+	Hotfix.CallDocumentMethod("JadeDocument",true, "SelectSlot", SlotIndex)
+	-- print("theSlotIndex: "..tostring(SlotIndex))
+
+
+	selectSlotItemList = Hotfix.GetDocumentMember("JadeDocument","SelectedSlotItemList",true,false)
+	--Hotfix.CallDocumentMethod("JadeDocument",true, "GetJades")
+	theListCount = selectSlotItemList.Count
+ 	-- print("the list count: "..tostring(theListCount))
+
+
+	local CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()			
+
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local JadeArr = ArrayList()
+	JadeArr:AddRange(CurrEquip.jadeInfo.jades)
+
+
+	-- print "befor for listcount "
+	-- ArrayList = luanet.import_type("System.Collections.ArrayList")	
+	-- local arr = ArrayList()
+	-- arr:AddRange(selectSlotItemList:ToArray())
+	
+	for i = 0,theListCount - 1 do 
+		local temp = selectSlotItemList[i]--arr[i]
+		local HasEquip = false
+
+		local lvHigher = false
+
+		for j = 0, 5 do
+			if JadeArr[j] ~= nil then
+				local jadeGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(JadeArr[j].itemID)
+				local tempGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(temp.itemID)
+				if jadeGroupId == tempGroupId then
+					HasEquip = true
+
+					if jadeTable ~= nil then
+						local jadeArrRowData = PublicExtensions.CallPublicMethod(jadeTable,"GetByJadeID",JadeArr[j].itemID)
+						local jadeTempRowData = PublicExtensions.CallPublicMethod(jadeTable,"GetByJadeID",temp.itemID)
+
+						-- print("jadeArrRowData.JadeLevel: "..tonumber(jadeArrRowData.JadeLevel))
+						-- print("jadeTempRowData.JadeLevel: "..tonumber(jadeTempRowData.JadeLevel))
+
+						if  jadeTempRowData.JadeLevel > jadeArrRowData.JadeLevel then
+							lvHigher = true
+						end
+					end
+
+					break
+				end
+			end
+		end
+
+		if not HasEquip then
+			JadeShowInBagList[#JadeShowInBagList + 1] = temp
+			elseif lvHigher then
+				JadeShowInBagList[#JadeShowInBagList + 1] = temp
+		end
+	end
+
+	-- print("need show list count: "..tostring(#JadeShowInBagList))
+
+	-- print "after for listcount "
+
+	-- Hotfix.SetWrapContentCount(m_WrapContent, theListCount, false)
+	Hotfix.SetWrapContentCount(m_WrapContent, #JadeShowInBagList, false)
+	m_uiScrollView:ResetPosition()
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- function JadeBagHandler.AfterHandlerShow(go)
+-- 	print(2333)
+
+-- 	local WrapTrans = go.transform:Find(WrapTransPath)
+
+-- 	if not IsNil(WrapTrans) then
+-- 		local transChildCount = WrapTrans.childCount
+
+-- 		-- print("thechild count: "..tostring(transChildCount))
+
+-- 		for i = 0, transChildCount - 1 do
+			
+-- 			-- print("index: "..tostring(i))
+
+-- 			local tempTrans = WrapTrans:GetChild(i)
+-- 			if not IsNil(tempTrans) then
+-- 				if tempTrans.gameObject.activeInHierarchy then
+-- 					local JadeName = tempTrans.gameObject.name
+-- 					local JadeNameStrs = Split(JadeName,'e')
+
+-- 					-- print("the count: "..tostring(#JadeNameStrs))
+-- 					-- print("1: "..JadeNameStrs[1])
+-- 					print("2: "..JadeNameStrs[2])
+-- 					local thejadeId = JadeNameStrs[2]
+-- 					local theGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(tonumber(thejadeId))
+-- 					if theGroupId == 999 then
+-- 						local theLb = tempTrans:Find("AttrName"):GetComponent("UILabel")
+-- 						if not IsNil(theLb) then
+-- 							theLb.text = "全元素攻击"
+-- 						end
+-- 					end
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+
+-- end
+
+-- function JadeBagHandler.AfterHandlerShow(go)
+-- 	print(2333)
+
+-- 	if true then
+-- 		return  --龙玉背包界面lua重写，所以就不走hotfix热修，直接lua新预设了啦~
+-- 	end
+
+-- 	bgHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_JadeBagHandler", true, true, false)
+-- 	if bgHandler == nil then
+-- 		print "can not find bgHandler!!!"
+-- 	end
+
+-- 	local m_uiScrollView = go.transform:Find("BagPanel"):GetComponent("UIScrollView")
+
+-- 	local m_WrapContent = go.transform:Find("BagPanel/WrapContent").gameObject
+-- 	-- PrivateExtensions.GetPrivateField(bgHandler,"m_WrapContent")
+-- 	-- if m_WrapContent == nil then
+-- 	-- 	print "can not find m_WrapContent!!!"
+-- 	-- else
+
+-- 		selectSlotItemList = Hotfix.GetDocumentMember("JadeDocument","SelectedSlotItemList",true,false)	
+-- 		theListCount = selectSlotItemList.Count
+-- 		print(" in c# the list count: "..tostring(theListCount))
+
+-- 		Hotfix.InitWrapContent(m_WrapContent, this.OverrideBagWrapContentUpdated)
+-- 		-- m_WrapContent:RegisterItemUpdateEventHandler(this.OverrideBagWrapContentUpdated)
+
+-- 		Hotfix.SetWrapContentCount(m_WrapContent, theListCount, false)
+-- 		m_uiScrollView:ResetPosition()
+-- 	-- end
+-- end
+
+
+-- function JadeBagHandler.OverrideBagWrapContentUpdated(t, index)
+	
+	
+
+-- 	if index < 0 or index > theListCount then
+-- 		return
+-- 	end
+
+-- 	local CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()
+-- 	if CurrEquip ~= nil then
+-- 		local equipListRowData = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"GetEquipConf",CurrEquip.itemID)
+-- 		if equipListRowData == nil then
+-- 			print "has not eplistRowData"
+-- 			return
+-- 		end
+
+-- 		local item = selectSlotItemList[index]
+-- 		local slotIndex =  Hotfix.GetDocumentMember("JadeDocument","selectedSlotIndex",true,true)	
+-- 		local slot = Hotfix.CallDocumentMethod("JadeDocument",true, "GetSlot", equipListRowData.EquipPos, slotIndex)
+
+-- 		Hotfix.CallSingleMethod("JadeEquipHandler",true,true,"DrawJadeWithAttr",t.gameObject,slot,item,0)
+
+
+-- 		print "1"
+
+-- 		local bg = t:GetComponent("XUISprite")
+-- 		bg.ID = index
+
+-- 		Hotfix.SetClickCallback(t.gameObject, this.OverrideBagJadeClick)
+
+-- 		t.name = "jade"..tostring(item.itemID)
+-- 	end
+
+
+-- end
+
+-- function JadeBagHandler.OverrideBagJadeClick(go)
+-- 	local bg = go:GetComponent("XUISprite")
+--  	local index = bg.ID
+
+-- 	local item = selectSlotItemList[index]
+
+-- 	local uid = Hotfix.GetObjectString(item,"uid",true,true)
+--  	print("uid: "..uid)
+-- end

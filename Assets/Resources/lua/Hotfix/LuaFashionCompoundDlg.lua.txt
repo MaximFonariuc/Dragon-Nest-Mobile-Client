@@ -1,0 +1,174 @@
+﻿--
+--  LuaFashionCompoundDlg.lua.lua
+--  Created by huailiang.peng on 2017/09/05 04:37:20
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+
+-- 时装合成界面
+
+require "LuaFashionCompoundData.lua"
+
+LuaFashionCompoundDlg={}
+local this = LuaFashionCompoundDlg
+
+-- ui objects
+local Go
+local m_go_close
+local m_help
+
+
+local m_file = "UI/GameSystem/FashionCompoundDlg"
+local m_avatar = "UI/GameSystem/FashionCompoundAvatarHandler"
+local m_tab = "UI/GameSystem/FashionCompoundTabHandler"
+local m_succ = "UI/GameSystem/FashionCompoundSuccHandler"
+local m_bag = "UI/GameSystem/FashionCompoundBagHandler"
+
+
+LuaFashionCompoundDlg.LuaFashionCompoundAvatarHandler = nil
+LuaFashionCompoundDlg.LuaFashionCompoundTabHandler = nil
+LuaFashionCompoundDlg.LuaFashionCompoundSuccHandler = nil
+LuaFashionCompoundDlg.IsVisible = false
+
+--called by MonoBehaviour.Awake
+function LuaFashionCompoundDlg.Awake(go)
+	--print("LuaFashionCompoundDlg.Awake")
+	Go = go
+	m_go_close = go.transform:Find("Close").gameObject
+	m_help = go.transform:Find("Help").gameObject
+end
+
+function LuaFashionCompoundDlg.Start()
+	--print("LuaFashionCompoundDlg.start")
+	FashionCompoundData.ReculList()
+
+	LuaUIManager.Instance:AttachHandler(m_file,m_avatar)
+	LuaUIManager.Instance:AttachHandler(m_file,m_tab)
+
+
+	Hotfix.SetClickCallback(m_go_close,this.Close)
+	Hotfix.SetClickCallback(m_help, this.OnHelp)
+end
+
+function LuaFashionCompoundDlg.OnHelp( ... )
+	Hotfix.CallSingleMethod("UI.XCommonHelpTipView",true,false,"ShowHelp",162)
+end
+
+function LuaFashionCompoundDlg.OnEnable()
+	this.IsVisible = true
+	--print("LuaFashionCompoundDlg.OnEnable")
+end
+
+function LuaFashionCompoundDlg.OnDisable()
+	this.IsVisible = false
+	--print("LuaFashionCompoundDlg.OnDisable")
+end
+
+function LuaFashionCompoundDlg.OnDestroy()
+	--print("LuaFashionCompoundDlg.OnDestroy")
+	this.LuaFashionCompoundAvatarHandler = nil
+	this.LuaFashionCompoundTabHandler = nil
+	this.LuaFashionCompoundSuccHandler = nil
+	FashionCompoundData.OnDestroy()
+end
+
+function LuaFashionCompoundDlg.OnShow()
+	--print("LuaFashionCompoundDlg.OnShow")
+end
+
+--关闭界面的入口
+function LuaFashionCompoundDlg.Close( ... )
+
+	LuaUIManager.Instance:Destroy(m_file)
+
+	local  fashion = Hotfix.GetSingleMember("UI.ItemSystemDlg","_FashionBagHandler",true,true,false)
+  	if fashion ~= nil then
+   		fashion:StackRefresh()
+  	end
+
+	local  characterInfo = Hotfix.GetSingleMember("UI.ItemSystemDlg","_InfoView",true,true,false)
+  	if characterInfo ~= nil then
+   		characterInfo:StackRefresh()
+	end
+end
+
+
+function LuaFashionCompoundDlg.OpenSuccDlg( ... )
+	-- body
+	--LuaUIManager.Instance:Load(m_succ)
+	--print("<color=red> open succ dlg </color>")
+end
+
+
+function LuaFashionCompoundDlg.OpenBagHandler( ... )
+	LuaUIManager.Instance:AttachHandler(m_file,m_bag)
+end
+
+
+function  LuaFashionCompoundDlg.SetAvarHandler(handler)
+	-- body
+	this.LuaFashionCompoundAvatarHandler = handler
+end
+
+function  LuaFashionCompoundDlg.SetBagHandler( handler )
+	-- body
+	this.LuaFashionCompoundTabHandler = handler
+end
+
+
+function  LuaFashionCompoundDlg.SetSuccHandler( handler )
+	-- body
+	this.LuaFashionCompoundSuccHandler =  handler
+end
+
+function  LuaFashionCompoundDlg.OnCompse( ... )
+	-- body
+	if this.LuaFashionCompoundAvatarHandler ~= nil then
+		this.LuaFashionCompoundAvatarHandler.RefreshUi()
+	end
+
+	this.OpenSuccDlg()
+end
+
+
+function LuaFashionCompoundDlg.RefreshEquip( ... )
+	-- body
+	--FashionCompoundData.ReculCurrEquipState()
+	if this.LuaFashionCompoundTabHandler ~= nil then
+		this.LuaFashionCompoundTabHandler.RefreshLast()
+	end
+end
+
+function LuaFashionCompoundDlg.RefreshBuyResp( ... )
+	-- body
+	print("<color=red> res buy ptc</color>")
+
+	if this.LuaFashionCompoundTabHandler ~= nil then
+		this.LuaFashionCompoundTabHandler.RefreshLast()
+	end
+
+	if this.LuaFashionCompoundAvatarHandler ~= nil then
+		this.LuaFashionCompoundAvatarHandler.ReqItemInfo(FashionCompoundData.itemid)
+	end
+
+	LuaFashionCompoundDlg.RefreshEquip()
+end
+
+
+function LuaFashionCompoundDlg.RefreshDummy()
+	if this.LuaFashionCompoundAvatarHandler ~= nil then
+		this.LuaFashionCompoundAvatarHandler.RefreshDummy()
+	end
+end
+
+
+function LuaFashionCompoundDlg.OnSelect(itemid,suitid)
+	if this.LuaFashionCompoundAvatarHandler ~= nil then
+		this.LuaFashionCompoundAvatarHandler.OnSelect(itemid,suitid)
+	end
+end
+
+
+function  LuaFashionCompoundDlg.OnSelectByBag( ... )
+	LuaFashionCompoundAvatarHandler.RefreshUi()
+end

@@ -1,0 +1,134 @@
+require "HotfixGlobal.lua"
+require "XLoginReward_pb.lua"
+require "LuaLoginRewardDocument.lua"
+
+local texturePath = "atlas/UI/GameSystem/Activity/Tex_active_h2Split"
+
+LuaLoginRewardFrame = {}
+local this = LuaLoginRewardFrame
+
+local m_Go
+local m_ReceiveBtn
+local m_BgTexture
+local m_itemPool
+
+local m_bIsVisible = false
+
+function LuaLoginRewardFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		LuaLoginRewardDocument.SetLuaLoginRewardFrame(this)
+		print("LuaLoginRewardFrame.RefreshRedPoint m_isCanReceive: "..tostring(LuaLoginRewardDocument.GetStatus()))
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Bg/Tex"):GetComponent("UITexture")
+		m_NoReceive = m_Go.transform:Find("Bg/NoReceive").gameObject
+		m_ReceiveBtn = m_Go.transform:Find("Bg/ReceiveBtn").gameObject
+		Hotfix.SetClickCallback(m_ReceiveBtn, this.OnReceiveBtnClick)
+		
+		m_itemPool = Hotfix.SetupPool(
+			m_Go.transform:Find("Bg/ItemList").gameObject, 
+			m_Go.transform:Find("Bg/ItemList/ItemTpl").gameObject,
+			8)
+	end
+end
+
+function  LuaLoginRewardFrame.OnReceiveBtnClick(go)
+	print("LuaLoginRewardFrame.OnReceiveBtnClick")
+	LuaLoginRewardDocument.SendLoginActivityAwardReq()
+end
+
+
+function LuaLoginRewardFrame.Start()
+	print("LuaLoginRewardFrame.Start")
+end
+
+function LuaLoginRewardFrame.OnEnable()
+	print("LuaLoginRewardFrame.OnEnable")
+	m_bIsVisible = true
+	this.RefreshStatus()
+end
+
+
+function LuaLoginRewardFrame.OnDisable()
+	print("LuaLoginRewardFrame.OnDisable")
+	m_bIsVisible = false
+end
+
+
+function LuaLoginRewardFrame.OnDestroy()
+	m_bIsVisible = false
+	LuaLoginRewardDocument.SetLuaLoginRewardFrame(nil)
+end
+
+
+function LuaLoginRewardFrame.OnShow()
+	print("LuaLoginRewardFrame.OnShow")
+	LuaLoginRewardDocument.SendLoginActivity()
+	if not IsNil(m_BgTexture) then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaLoginRewardFrame SetBgTexture")
+		this.RefreshStatus()
+	end
+	--this.RefreshReward()
+end
+
+function LuaLoginRewardFrame.OnHide()
+	print("LuaLoginRewardFrame.OnHide")
+	if not IsNil(m_BgTexture) then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaLoginRewardFrame DestoryTexture")
+	end
+end
+
+function LuaLoginRewardFrame.RefreshRedPoint(isCanReceive)
+	print("LuaLoginRewardFrame.RefreshRedPoint m_isCanReceive: "..tostring(isCanReceive))
+	LuaLoginRewardDocument.SetStatus(isCanReceive)
+	Hotfix.ForceUpdateSysRedPointImmediately(LuaLoginRewardDocument.XSys_LoginReward, LuaLoginRewardDocument.GetStatus())
+	local sys = Hotfix.GetEnumType("XSysDefine","XSys_OperatingActivity")
+	Hotfix.CallSingleMethod("XGameSysMgr", true, false, "RecalculateRedPointState", sys)
+end
+
+function LuaLoginRewardFrame.RefreshStatus()
+	if(m_bIsVisible==false)then
+		return
+	end
+	m_isCanReceive=LuaLoginRewardDocument.GetStatus()
+	print("LuaLoginRewardFrame.RefreshStatus m_isCanReceive: "..tostring(m_isCanReceive))
+	m_NoReceive:SetActive(not m_isCanReceive)
+	m_ReceiveBtn:SetActive(m_isCanReceive)
+end
+
+function LuaLoginRewardFrame.RefreshReward()
+	if(m_bIsVisible==false)then
+		return
+	end
+	print("LuaLoginRewardFrame.RefreshReward")
+	
+	awardsCount=LuaLoginRewardDocument.GetAwardsCount()
+	itemID=LuaLoginRewardDocument.GetItemID()
+	itemCount=LuaLoginRewardDocument.GetItemCount()
+	
+	m_itemPool:FakeReturnAll()
+	for i=1,awardsCount do
+		local item =m_itemPool:FetchGameObject()
+		item.transform.localPosition = Vector3(m_itemPool.TplWidth * (i-1) + m_itemPool.TplPos.x, m_itemPool.TplPos.y, m_itemPool.TplPos.z)
+		
+		local normalItemDrawer=Hotfix.GetSingleMember("XItemDrawerMgr","normalItemDrawer",true,true,false)
+		normalItemDrawer:DrawItem(item,itemID[i],itemCount[i])
+		
+		local sp=item.transform:Find("Icon"):GetComponent("UISprite")
+		sp.uid=itemID[i]
+		Hotfix.SetClickCallback(sp.gameObject, this._OnItemClick)
+	end
+	m_itemPool:ActualReturnAll()
+end
+
+function LuaLoginRewardFrame._OnItemClick(go)
+	--Hotfix.CallSingleMethod("UiUtility", false, false, "ShowTooltipDialog", go:GetComponent("UISprite").uid)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid,go)
+end
+
+
+
+
+
+

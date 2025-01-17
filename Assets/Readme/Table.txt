@@ -1,0 +1,7 @@
+增加table的流程
+1.用cvs工具生成表的数据结构（需要lua读取的也要再导出lua文件）
+2.填入表名（一个数据结构对应多张表的用竖线分割，服务专用表勾上ServerOnly）
+2.点击Table2Byte生成bytes（对应的txt表格记得加上新列）
+3.上传res\XProject\Shell下的Table2Bytes.exe，DataGen.dll，cvs.xml三个文件
+4.策划等在客户端中编辑的表格只需要reimport表格txt文件就可以了
+5.上传txt、bytes文件

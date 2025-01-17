@@ -1,0 +1,261 @@
+﻿--
+--  LuaPartnerDayFrame.lua
+--  Created by alexpeng on 2016/10/01 08:47:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+require "HotfixPartnerDayDocument.lua"
+
+LuaPartnerDayFrame={}
+local this = LuaPartnerDayFrame
+
+local m_Go
+local m_bIsVisible = false
+
+local m_uiTitle
+local m_uiLeftTime
+local m_uiWrapContent
+local m_uiScrollView
+local m_uiDescription
+local m_itemPool
+local m_Tip
+
+local m_TexturePath = nil;
+
+--called by MonoBehaviour.Awake
+function LuaPartnerDayFrame.Awake(go)
+	if IsNil(m_Go) then
+		m_Go = go
+
+		m_itemPool = Hotfix.SetupPool(
+			m_Go.transform:Find("Main/Panel").gameObject, 
+			m_Go.transform:Find("Main/Panel/WrapContent/Tpl/ItemList/ItemTpl").gameObject,
+			10)
+
+		m_uiTitle = m_Go.transform:Find("Main/Title"):GetComponent("UITexture")
+		m_uiDescription = m_Go.transform:Find("Main/Description"):GetComponent("UILabel")
+		m_uiLeftTime = m_Go.transform:Find("Main/LeftTime"):GetComponent("UILabel")
+		m_uiScrollView = m_Go.transform:Find("Main/Panel"):GetComponent("UIScrollView")
+		m_uiWrapContent = m_Go.transform:Find("Main/Panel/WrapContent").gameObject
+		m_Tip = m_Go.transform:Find("Main/Xlabel"):GetComponent("UILabel")
+
+		Hotfix.InitWrapContent(m_uiWrapContent, this.WrapContentItemUpdated)
+
+		local goPartner = m_Go.transform:Find("BtnGo").gameObject
+		Hotfix.SetClickCallback(goPartner,this.OnGotoPartner)
+
+		HotfixPartnerDayDocument.SetFrame(this)
+	else
+		print("m_Go != nil")
+	end
+end
+
+function LuaPartnerDayFrame.Start()
+
+end
+
+
+function LuaPartnerDayFrame.OnEnable()
+	print("LuaPartnerDayFrame.OnEnable")
+	m_bIsVisible = true
+	this.Refresh()
+	m_uiScrollView:ResetPosition()
+
+	HotfixPartnerDayDocument.UIOpened()
+end
+
+
+function LuaPartnerDayFrame.OnDisable()
+	m_bIsVisible = false
+	print("LuaPartnerDayFrame.OnDisable")
+end
+
+
+function LuaPartnerDayFrame.OnDestroy()
+	this._DestroyTexture()
+	HotfixPartnerDayDocument.SetFrame(nil)
+	m_bIsVisible = false
+end
+
+
+function LuaPartnerDayFrame.OnShow()
+	print("LuaPartnerDayFrame.OnShow")
+end
+
+function LuaPartnerDayFrame.OnHide()
+	print("LuaPartnerDayFrame.OnHide")
+end
+
+function LuaPartnerDayFrame.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaPartnerDayFrame.WrapContentItemUpdated(t, index)
+	local data = HotfixPartnerDayDocument.GetDatas()[index + 1]
+	if data == nil then
+		return
+	end
+
+--	print("Refresh DataList "..index..": "..data._data_id)
+
+	local itemlist = t:Find("ItemList")
+	local childCount = itemlist.childCount
+
+	local awardsCount = #data.awards
+
+--	print("before child count = "..childCount.." wordsCount = "..wordsCount)
+
+	if childCount ~= awardsCount then
+		if childCount > awardsCount then
+			for i=childCount,awardsCount + 1, -1 do
+				m_itemPool:ReturnInstance(itemlist:GetChild(i-1).gameObject, true)
+			end
+		else
+			for i=childCount + 1,awardsCount do
+				local newItem = m_itemPool:FetchGameObject()
+				newItem.transform.parent = itemlist
+				newItem.transform.localPosition = Vector3(m_itemPool.TplWidth * (i-1) + m_itemPool.TplPos.x, m_itemPool.TplPos.y, m_itemPool.TplPos.z)
+--				print("new position "..i.." "..tostring(newItem.transform.localPosition))
+			end
+		end
+	end
+--	print("after child count = "..itemlist.childCount)
+
+	--奖励
+	for i=1,awardsCount do
+		local award = data.awards[i]
+		local wordGo = itemlist:GetChild(i-1).gameObject
+ 		Hotfix.DrawItemView(wordGo, award.itemID, award.itemCount, true)
+
+		local wordIcon = wordGo.transform:Find("Icon"):GetComponent("UISprite")
+		wordIcon.uid = award.itemID
+		Hotfix.SetClickCallback(wordIcon.gameObject, this.ShowIconTip)
+	end
+
+	--任务名称
+	local taskName = t:Find("TaskName"):GetComponent("UILabel")
+	taskName.text = data.taskName
+
+	--领奖按钮
+ 	local btnFetch = t:Find("BtnFetch").gameObject
+ 	local fetched = t:Find("Fetched").gameObject
+
+ 	fetched:SetActive(data.state == 2)
+ 	btnFetch:SetActive(data.state ~= 2)
+
+	local uiCount = t:Find("Count"):GetComponent("UILabel")
+	uiCount.text = data.fetchedCount..'/'..data.maxFetchCount
+
+ 	if btnFetch.activeSelf then
+ 		local xbtn = btnFetch:GetComponent("XUIButton")
+ 		xbtn:SetEnable(data.state == 1)
+ 		local can = btnFetch.transform:Find("Can").gameObject
+ 		local cant = btnFetch.transform:Find("Cant").gameObject
+ 		can:SetActive(data.state == 1)
+ 		cant:SetActive(data.state ~= 1)
+
+ 		--可领取红点
+ 		local redPoint = btnFetch.transform:Find("RedPoint").gameObject 		
+ 		redPoint:SetActive(data.state == 1)
+
+		xbtn.ID = index
+		Hotfix.SetClickCallback(btnFetch,this.OnFetchClick)
+ 	end
+end
+
+function  LuaPartnerDayFrame.ShowIconTip(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid, go)
+end
+
+function LuaPartnerDayFrame.Refresh()
+	if m_bIsVisible then
+		this.RefreshUI()
+	end
+end
+
+function LuaPartnerDayFrame.RefreshUI()
+	print("LuaPartnerDayFrame.RefreshUI")
+
+	Hotfix.SetWrapContentCount(m_uiWrapContent, #HotfixPartnerDayDocument.GetDatas(), false)
+	m_uiLeftTime.text = Hotfix.GetStringTable("PartnerDayLeftTime", HotfixPartnerDayDocument.GetLeftTime())
+	m_Tip.text = Hotfix.GetStringTable("PartnerDayRule")
+
+	if HotfixPartnerDayDocument.GetCurActData() == nil then
+		print("HotfixPartnerDayDocument.GetCurActData() == nil")
+		return
+	end
+	
+	local des = HotfixPartnerDayDocument.GetCurActData().name
+	m_uiDescription.text = Hotfix.CallSingleMethod("UI.UiUtility", false, false, "ReplaceReturn", des)
+
+	this._DestroyTexture()
+	m_TexturePath = HotfixPartnerDayDocument.GetCurActData().icon;
+
+	Hotfix.SetTexture(m_uiTitle, m_TexturePath, false)
+end
+
+function LuaPartnerDayFrame._DestroyTexture()
+	if m_TexturePath ~= nil then
+		Hotfix.DestoryTexture(m_uiTitle, m_TexturePath)
+		m_TexturePath = nil
+	end
+end
+
+function LuaPartnerDayFrame._RefreshRedPoint()
+	HotfixOperatingActivityDlg.RefreshRedPoint()
+end
+
+function LuaPartnerDayFrame.OnFetchClick(go)
+	local dataList = HotfixPartnerDayDocument.GetDatas()
+	local xbtn = go:GetComponent("XUIButton")
+	local index = xbtn.ID + 1
+	if index > #dataList or index <= 0 then
+		print("Index "..index.."out of range: "..#dataList)
+		return
+	end
+
+	print("Fetch "..index)
+
+	local taskData = dataList[index]
+
+	local msg = XSpActivity_pb.GetSpActivityRewardArg()
+	msg.actid = HotfixPartnerDayDocument.GetActID()
+	msg.taskid = taskData.taskID
+
+	print("send request msg: "..msg.taskid)
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(7905, TestProtol.data, this.OnGetReward, this.OnErr)
+	else
+		print("test proto data is nil")
+	end
+
+end
+
+function LuaPartnerDayFrame.OnGetReward(data,length)
+	local  msg = XSpActivity_pb.GetSpActivityRewardRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		print("errorcode is: "..tostring(msg.errorcode))
+		if msg.errorcode ~= 0 then
+			-- exclude INVALID_REQUEST
+			if msg.errorcode ~= ERR_INVALID_REQUEST then
+				Hotfix.LuaShowSystemTipErrCode(msg.errorcode)
+			end
+		end
+	else
+		print("change name reply msg is nil")
+	end
+end
+
+function LuaPartnerDayFrame.OnErr( ... )
+ 	print("LuaPartnerDayFrame OnErr!")
+end
+
+function LuaPartnerDayFrame.OnGotoPartner( ... )
+	Hotfix.OpenSys(700)
+end

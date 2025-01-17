@@ -1,0 +1,172 @@
+﻿--
+--  HotfixDocument.lua
+--  Created by huailiang.peng on 2016/10/25 12:18:23
+--
+require "HotfixCollectWordsDocument.lua"
+require "HotfixPartnerDayDocument.lua"
+require "HotfixPandoraDocument.lua"
+require "Lua520DayDocument.lua"
+require "LuaActivityDocument.lua"
+require "LuaTimedActivitiesDoc.lua"
+require("Lua520FestivityDoc.lua")
+require "LuaShadowCatDocument.lua"
+
+HotfixDocument = {}
+local this = HotfixDocument
+
+--local sceneID = 0
+
+function HotfixDocument.EnterScene()
+	--print("EnterScene")
+	LuaGC()
+	HotfixCollectWordsDocument.EnterScene()
+	HotfixPartnerDayDocument.EnterScene()
+
+	HotfixPandoraDocument.EnterScene()
+	Lua520DayDocument.EnterScene()
+	LuaActivityDocument.EnterScene()
+	LuaTimedActivitiesDoc.EnterScene()
+
+	Lua520FestivityDoc.EnterScene()
+
+	Hotfix.CallSingleMethod("XUICacheMgr", true, false, "RemoveCachedUI", Hotfix.GetEnumType("XSysDefine","855"))
+
+	--this.CloseUIMerge()
+	--this.ModifySettingEnum()
+	-- 服务器可以热更StageRank了，418先注掉
+	-- if sceneID == 50007 or sceneID == 50008 or sceneID == 50009 or sceneID == 50010 then
+	-- 	Hotfix.CallSingleMethod("XUICacheMgr", true, false, "RemoveCachedUI", Hotfix.GetEnumType("XSysDefine","345"))
+	-- end
+	-- sceneID = Hotfix.GetSingleMember("XScene", "SceneID", true, false, false)
+
+	--local loadAsyncTask = luanet.import_type("XUtliPoolLib.LoadAsyncTask")
+	--loadAsyncTask.MaxAsyncLoadCount = 80
+	--local resoucemgr = luanet.import_type("XUtliPoolLib.XResourceLoaderMgr")
+	--resoucemgr.singleton.maxLoadThresholdTime = 5;
+
+	local resourcemgr = luanet.import_type("XUtliPoolLib.XResourceLoaderMgr")
+	local currSceneid = Hotfix.GetSingleMember("XScene", "SceneID", true, false, false)
+	if currSceneid == 1 then
+		local resourcemgr = luanet.import_type("XUtliPoolLib.XResourceLoaderMgr")
+		resourcemgr.singleton:CreateFromPrefab("Prefabs/Effects/scene/Collider_stair",false,false)
+	end
+
+end
+
+
+function HotfixDocument.EnterSceneFinally()
+	--print("EnterSceneFinally")
+	HotfixCollectWordsDocument.EnterSceneFinally()
+	HotfixPartnerDayDocument.EnterSceneFinally()
+	LuaTimedActivitiesDoc.EnterSceneFinally()
+
+	HotfixPandoraDocument.EnterSceneFinally()
+
+	local ils = Hotfix.GetDocumentMember("SpectateDocument", "IsLoadingSpectateScene", true, true);
+	local debug = luanet.import_type("XUtliPoolLib.XDebug")
+	debug.singleton:AddLog("run lua fix IsLoadingSpectateScene")
+	debug.singleton:AddLog("value:"..tostring(ils))
+
+	if currSceneid == 1 then
+		Hotfix.CallDocumentMethod("SpriteSystemDocument", true, "QueryBuyEggCD")
+	end
+
+	local black_up = GameObject.Find("UIRoot(Clone)/fade_panel/black_up");
+	if not IsNil(black_up) then
+		black_up.transform.localPosition = Vector3(0,373,0)
+	end
+	local black_down = GameObject.Find("UIRoot(Clone)/fade_panel/black_down");
+	if not IsNil(black_down) then
+		black_down.transform.localPosition = Vector3(0,-373,0)
+	end
+end
+
+
+function HotfixDocument.Attach()
+	print("Attach")
+	HotfixCollectWordsDocument.Attach()
+	HotfixPartnerDayDocument.Attach()
+	LuaTimedActivitiesDoc.Attach()
+	HotfixPandoraDocument.Attach()	
+	--local resoucemgr = luanet.import_type("XUtliPoolLib.XResourceLoaderMgr")
+	--resoucemgr.ReleaseCount = 2000
+	--local gamePoint = GameObject.Find("XGamePoint");
+	--local abMgr = gamePoint:GetComponent("AssetBundleManager");
+	--abMgr.MaxBundleCount = 1000
+end
+
+
+function HotfixDocument.Detach()
+	--print("Detach")
+	HotfixCollectWordsDocument.Detach()
+	HotfixPartnerDayDocument.Detach()	
+	LuaTimedActivitiesDoc.Detach()
+	HotfixPandoraDocument.Detach()
+
+    Lua520FestivityDoc.Detach()
+	LuaShadowCatDocument.Detach()
+end
+
+
+function HotfixDocument.Reconnect()
+	print("Reconnect")
+	HotfixCollectWordsDocument.Reconnect()
+	HotfixPartnerDayDocument.Reconnect()
+	LuaTimedActivitiesDoc.Reconnect()
+
+	HotfixPandoraDocument.Reconnect()	
+end
+
+
+function HotfixDocument.Pause(pause)
+	print("pause=>"..tostring(pause))
+end
+
+function HotfixDocument.FadeShow(show)
+	print("FadeShow=> "..tostring(show))
+end
+
+function HotfixDocument.PandoraCallback(json)
+	print("HotfixDocument PandoraCallback=> "..tostring(json))
+	HotfixPandoraDocument.PandoraCallback(json)	
+end
+
+function HotfixDocument.CloseUIMerge( ... )
+	local SystemInfo = luanet.import_type("UnityEngine.SystemInfo")
+	local system = SystemInfo.operatingSystem
+	--print("system: "..system)
+	local v1 = string.find(system,"iPhone OS 8")
+	local v2 = string.find(system,"iPhone OS 7")
+
+	--print("v1: "..tostring(v1))
+	if   v1 ~= nil or v2 ~= nil then
+		local go = GameObject.Find("UIRoot(Clone)")
+		if not IsNil(go) then
+			local xuitool = go:GetComponent("XUITool")
+			xuitool:SetUIOptOption(false,false,false)
+		end
+	end
+end
+
+
+function HotfixDocument.ModifySettingEnum( ... )
+	-- body
+	local plat = Application.platform
+	if  tostring(plat) == "IPhonePlayer" then
+		local singletons = Hotfix.GetSingleMember("XGame","_singletons",false,true,false)
+		--print("cnt: "..tostring(singletons.Count))
+		if singletons ~= nil and singletons.Count > 5 then
+			local global = singletons[5]
+			--print("global..."..tostring(global~=nil))
+			if global ~= nil then
+			  PublicExtensions.SetPublicField(global,"SettingEnum",8021)
+			end
+		end
+	end
+end
+
+function HotfixDocument.PayCallback( result, paramID )
+	-- body
+	print("PayCallback "..result..","..paramID)
+
+end

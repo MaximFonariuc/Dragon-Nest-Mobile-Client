@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.tmgp.dragonnest"
+    android:installLocation="auto"
+    android:versionCode="60"
+    android:versionName="1.10.10" >
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.RESTART_PACKAGES" />
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  
+	<!-- 登录上报时需要带设备名称，通过蓝牙模块来获取设备名称 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-permission android:name="android.permission.READ_LOGS" />
+
+	<!-- 信鸽推送需要的其他权限 -->
+	<uses-permission android:name="android.permission.BROADCAST_STICKY" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+
+	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+	<!-- Apollo需要的权限 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+	<uses-permission android:name="android.permission.BATTERY_STATS" />
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:name="com.tencent.qgame.livesdk.LiveApplication"
+    	android:allowBackup="false"
+		android:debuggable="false"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+
+        <activity
+            android:name="com.act.hot1.tencent.GameActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorLandscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="unityplayer.UnityActivity"
+                android:value="true" />
+            <meta-data
+                android:name="unityplayer.ForwardNativeEventsToDalvik"
+                android:value="false" />
+        </activity>
+
+
+        <!-- webview配置 -->
+        <activity android:name="com.onevcat.uniwebview.AndroidPlugin"
+                  android:label="@string/app_name"
+                  android:hardwareAccelerated="true"
+                  android:windowSoftInputMode="adjustResize"
+                  android:launchMode="singleTop"
+                  android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
+            <meta-data android:name="android.app.lib_name" android:value="unity" />
+            <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+        </activity>
+
+		<!-- 公告配置 START -->
+		<!-- MSDK弹出公告相关配置 -->
+		<activity
+			android:name="com.tencent.msdk.notice.AlertMsgActivity"
+			android:configChanges="orientation|screenSize|keyboardHidden"
+			android:screenOrientation="sensorLandscape"
+			android:theme="@style/NoticeAlertTheme" />
+
+		<!-- MSDK滚动公告相关配置 -->
+		<service android:name="com.tencent.msdk.notice.RollFloatService" />
+		<!-- 公告配置 END -->
+
+        <!-- TODO MSDK QQ接入配置 START -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1105309683" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- TODO MSDK QQ接入配置 END -->
+
+        <!-- TODO MSDK 微信接入配置 START -->
+        <activity
+            android:name="com.tencent.tmgp.dragonnest.wxapi.WXEntryActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="WXEntryActivity"
+            android:launchMode="singleTop"
+            android:taskAffinity="com.tencent.tmgp.dragonnest.diff" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxfdab5af74990787a" />
+            </intent-filter>
+        </activity>
+        <!-- TODO MSDK 微信接入配置 END -->
+
+        <!-- TODO MSDK 微信扫码登录配置 START -->
+        <activity
+            android:name="com.tencent.msdk.weixin.qrcode.WXQrCodeActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="WXQrCodeActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.tencent.tmgp.dragonnest.diff"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- TODO MSDK 微信扫码登录配置 END -->
+
+        <!-- TODO MSDK 公告 配置 START -->
+        <activity
+            android:name="com.tencent.msdk.notice.AlertMsgActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/NoticeAlertTheme" >
+        </activity>
+
+        <service
+			android:name="com.tencent.msdk.notice.RollFloatService" >
+        </service>
+        <!-- TODO MSDK 公告 配置 END -->
+
+		<!-- TODO 浏览器相关 START -->
+		<activity
+		    android:name="com.tencent.msdk.webview.JumpShareActivity"
+		    android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+		</activity>
+
+		<activity
+		    android:name="com.tencent.msdk.webview.WebViewActivity"
+		    android:process=":msdk_inner_webview"
+		    android:hardwareAccelerated="true"
+		    android:configChanges="orientation|screenSize|keyboardHidden|navigation|fontScale|locale"
+		    android:screenOrientation="unspecified"
+		    android:theme="@android:style/Theme.NoTitleBar"
+		    android:windowSoftInputMode="stateHidden|adjustResize" >
+
+		    <meta-data android:name="titlebar_hideable" android:value="true" />
+		    <meta-data android:name="toolbar_portrait_hideable" android:value="true" />
+		    <meta-data android:name="toolbar_landscape_hideable" android:value="true" />
+		</activity>
+		<!-- TODO 浏览器相关 END -->
+
+		<!-- TODO 应用宝省流量更新 START -->
+        <service
+            android:name="com.tencent.tmdownloader.TMAssistantDownloadService"
+            android:exported="false"
+            android:process=":TMAssistantDownloadSDKService" >
+        </service>
+        <!-- TODO 应用宝省流量更新 END -->
+
+		<!-- 信鸽推送配置 START -->
+        <!-- 【必须】 信鸽通知栏 -->
+        <activity
+            android:name="com.tencent.android.tpush.XGPushActivity"
+			android:theme="@android:style/Theme.NoDisplay"
+            android:exported="true" >
+            <intent-filter>
+			    <!-- 若使用AndroidStudio，请设置android:name="android.intent.action" -->
+                <action android:name="" />
+            </intent-filter>
+        </activity>
+
+		<!-- 【必须】 信鸽receiver广播接收器 -->
+        <receiver
+            android:name="com.tencent.android.tpush.XGPushReceiver"
+            android:process=":xg_service_v2" >
+            <intent-filter android:priority="0x7fffffff" >
+                <!-- 【必须】 信鸽SDK的内部广播 -->
+                <action android:name="com.tencent.android.tpush.action.SDK" />
+                <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
+            </intent-filter>
+            <intent-filter android:priority="0x7fffffff" >
+                <!-- 【必须】 系统广播：开屏和网络切换 -->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+	    </receiver>
+
+        <!-- 【必须】 信鸽service -->
+        <service
+            android:name="com.tencent.android.tpush.service.XGPushService"
+            android:exported="true"
+            android:persistent="true"
+            android:process=":xg_service_v2" />
+
+        <!-- 【必须】 通知service，此选项有助于提高抵达率 -->
+        <service
+            android:name="com.tencent.android.tpush.rpc.XGRemoteService"
+            android:exported="true" >
+            <intent-filter>
+               <!-- 【必须】 请修改为当前APP包名.PUSH_ACTION -->
+               <action android:name="com.tencent.tmgp.dragonnest.PUSH_ACTION" />
+           </intent-filter>
+		   
+        </service>
+		<!-- 信鸽推送配置 END -->
+		
+		
+        <!-- 实名制认证配置 START -->
+        <activity
+      		android:name="com.tencent.msdk.NameAuthActivity"
+      		android:configChanges="orientation|screenSize|keyboardHidden"
+     		android:screenOrientation="sensor"
+			android:launchMode="singleTop"
+     		android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!-- 实名制认证配置 END -->
+
+		<!-- MSDKDns配置 START -->
+        <!-- 添加应用自身的灯塔appkey，如0I3002SDUA14CRW8 -->
+		<meta-data
+		    android:name="APPKEY_DENGTA"
+		    android:value="1105309683" />
+
+
+		<!-- DNS接收网络切换广播 -->
+		<receiver
+		    android:name="com.tencent.msdk.dns.HttpDnsCache$ConnectivityChangeReceiver"
+		    android:label="NetworkConnection" >
+		    <intent-filter>
+		        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+		    </intent-filter>
+		</receiver>
+		<!-- MSDKDns配置 END -->
+
+		<!-- 米大师支付配置 START -->
+		<activity
+            android:name="com.tencent.midas.proxyactivity.APMidasPayProxyActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+			android:screenOrientation="sensorLandscape"
+			android:process=":midasPay"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+		<activity
+            android:name="com.tencent.midas.wx.APMidasWXPayActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+			android:process=":midasPay"
+            android:exported="true" />
+
+		<activity
+			android:name="com.tencent.midas.jsbridge.APWebJSBridgeActivity"
+	   		android:theme="@android:style/Theme.Translucent.NoTitleBar"
+	   		android:windowSoftInputMode="stateAlwaysHidden" />
+
+		<!-- QQ钱包配置 -->
+		<activity
+            android:name="com.tencent.midas.qq.APMidasQQWalletActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden"
+			android:process=":midasPay"
+            android:exported="true" >
+            <intent-filter>
+               <action android:name="android.intent.action.VIEW" />
+               <category android:name="android.intent.category.BROWSABLE" />
+               <category android:name="android.intent.category.DEFAULT" />
+			   <!-- 注意，此处参数不要修改 -->
+               <data android:scheme="qwallet100703379" />
+            </intent-filter>
+        </activity>
+		<!-- 米大师支付配置 END -->
+		
+		<!--小鸟手柄Service-->
+		<service android:name="com.xj.gamesir.sdk.bluetooth.GamesirService" />
+		<service android:name="com.xj.gamesir.sdk.floatwindow.FloatWindowService" />
+		<service android:name="com.xj.gamesir.sdk.bluetooth.ble.BluetoothBLeService" />
+	    <!--小鸟手柄Service End-->
+    </application>
+
+    <uses-feature
+		android:glEsVersion="0x00020000" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch.distinct"
+        android:required="false" />
+
+</manifest>

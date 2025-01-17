@@ -1,0 +1,87 @@
+--
+--  LuaProfessionChangeDlg.lua
+--  Created by alexpeng on 2017/03/31 16:47:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+require "XTeam_pb.lua"
+
+LevelRewardGerenalHandler = {}
+local this = LevelRewardGerenalHandler
+local timetoken = 0
+
+function LevelRewardGerenalHandler.AfterHandlerShow(go)
+
+	print("3333")
+
+	local scene = Hotfix.GetSingleMember("XScene", "SceneType", true, false, false)
+	local str = tostring(scene)
+	if str == "SCENE_GUILD_WILD_HUNT" then
+
+		local bLeader = Hotfix.GetDocumentMember("TeamDocument", "bIsLeader", true, false);
+		if bLeader == true then
+
+
+			local trans = go.transform:Find("Bg/Restart")
+			if not IsNil(trans) then
+
+				trans.localPosition = Vector3(-228, -378, 0)
+				timetoken = Hotfix.LuaLoop(10800,0,this.OnTimer)
+				Hotfix.SetClickCallback(trans.gameObject, this.QueryRestart)
+
+			end
+
+		end
+
+	end
+
+	return false
+end
+
+function LevelRewardGerenalHandler.OnDestroy()
+
+	print("Destroy timetoken")
+	Hotfix.RemoveTimer(timetoken)
+
+end
+
+function LevelRewardGerenalHandler.OnTimer()
+
+	print("timetoken trigger")
+	this.QueryRestart()
+
+end
+
+function LevelRewardGerenalHandler.QueryRestart()
+
+	print("send rpc")
+	local msg = XTeam_pb.TeamOPArg()
+	msg.request = XTeam_pb.TEAM_BATTLE_CONTINUE
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(30954, TestProtol.data, this.ResCompose, this.ResComposeErr)
+	end
+
+	Hotfix.RemoveTimer(timetoken)
+
+end
+
+function LevelRewardGerenalHandler.ResCompose(data,length)
+	local  msg = XTeam_pb.TeamOPRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		print("errorcode is: "..tostring(msg.result))
+		if msg.result ~= 0 then
+			-- exclude INVALID_REQUEST
+			if msg.result ~= ERR_INVALID_REQUEST then
+				Hotfix.LuaShowSystemTipErrCode(msg.result)
+			end
+		end
+	else
+		print("restart reply msg is nil")
+	end
+end
+
+function LevelRewardGerenalHandler.ResComposeErr()
+	-- body
+end

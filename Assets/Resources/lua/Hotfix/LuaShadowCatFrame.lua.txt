@@ -1,0 +1,140 @@
+require "HotfixGlobal.lua"
+require "XShadowCat_pb.lua"
+require "LuaShadowCatDocument.lua"
+require "LuaShadowCatRewardTable.lua"
+require("LuaItemIconListData")
+
+--local texturePath = "atlas/UI/GameSystem/Activity/Tex_active_h2Split"
+
+LuaShadowCatFrame = {}
+local this = LuaShadowCatFrame
+
+local m_Go
+local m_GoChargeBtn
+local m_HelpBtn
+local m_ShadowCatPool
+local m_TimeLabel
+local m_Progress
+local m_chests = {}
+local m_ChestsOpened = {false,false,false,false,false,false, false}	-- 0关闭 1打开
+
+local m_bIsVisible = false
+local m_ShadowCatTable
+
+function LuaShadowCatFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		m_ChestsOpened = {false,false,false,false,false,false, false}
+		LuaShadowCatDocument.SetLuaShadowCatFrame(this)		
+		m_ShadowCatTable = ReadShadowCatRewardTable("Table/ShadowCatReward")
+		m_Go = go
+	end
+end
+
+function  LuaShadowCatFrame.GoChargeBtnClick(go)
+	Hotfix.OpenSys(652)
+end
+
+function LuaShadowCatFrame.OnChestBtnClick(go)
+	local index = go:GetComponent("XUISprite").ID
+	local chestStates = LuaShadowCatDocument.GetChestStates()
+	if m_ChestsOpened[index] == false then
+		if chestStates[index] == 1 then
+			m_ChestsOpened[index] = true
+		end
+		local redPoint = go.transform:Find("RedPoint").gameObject
+		local chestClose = go.transform:Find("Chest").gameObject
+		local chestOpen = go.transform:Find("Chest_0").gameObject
+		local fx = go.transform:Find("ChestFX").gameObject
+		redPoint:SetActive(chestStates[index] == 1)
+		fx:SetActive(chestStates[index] == 1)
+
+		chestClose:SetActive(chestStates[index] ~= 2 and (not m_ChestsOpened[index]))
+		chestOpen:SetActive(chestStates[index] == 2 or m_ChestsOpened[index])
+
+	end
+	LuaShadowCatDocument.ReqShadowCatOperation(this,2,index - 1)
+
+	local items = m_ShadowCatTable[index].Reward
+	LuaItemIconListData.SetDataTable(items)
+	LuaItemIconListData.SetTargetPos(go.transform.position)
+	LuaUIManager.Instance:Load("UI/GameSystem/ItemIconListDlgForLua")
+end
+
+function LuaShadowCatFrame.Start()
+end
+
+function LuaShadowCatFrame.OnEnable()
+	m_bIsVisible = true
+end
+
+
+function LuaShadowCatFrame.OnDisable()
+	m_bIsVisible = false
+end
+
+
+function LuaShadowCatFrame.OnDestroy()
+	m_bIsVisible = false
+	LuaUIManager.Instance:Destroy("UI/GameSystem/ItemIconListDlgForLua")
+	LuaShadowCatDocument.SetLuaShadowCatFrame(nil)
+end
+
+
+function LuaShadowCatFrame.OnShow()
+	LuaShadowCatDocument.ReqShadowCatOperation(this,0,0)
+end
+
+function LuaShadowCatFrame.OnHide()
+end
+
+function LuaShadowCatFrame.Refresh()
+	if not IsNil(m_Go) then
+		m_GoChargeBtn = m_Go.transform:Find("Bg/BtnGo").gameObject
+		m_HelpBtn = m_Go.transform:Find("Bg/Help").gameObject
+		m_Progress = m_Go.transform:Find("UpView/Progress"):GetComponent("UISlider")
+		
+		Hotfix.SetClickCallback(m_GoChargeBtn, this.GoChargeBtnClick)
+		Hotfix.SetClickCallback(m_HelpBtn, this.OnShowHelp)
+		local chestCount = #m_ShadowCatTable
+		local chestStates = LuaShadowCatDocument.GetChestStates()
+		LuaShadowCatDocument.RefreshRedPoint(false)
+		for i = 1, 7, 1 do
+			local chest = m_Go.transform:Find("UpView/Progress/Chests/Chest"..i-1)
+			local sp = chest:GetComponent("XUISprite")
+			sp.ID = i;
+			Hotfix.SetClickCallback(sp.gameObject, this.OnChestBtnClick)
+			if chestStates[i] == 1 then
+				LuaShadowCatDocument.RefreshRedPoint(true)
+			end
+			if chestStates[i] == 2 then
+				m_ChestsOpened[i] = true
+			end
+			if(chestStates[i] ~= 0) then
+				m_Progress.value = i / 7
+			end
+
+			local redPoint = chest:Find("RedPoint").gameObject
+			local chestClose = chest:Find("Chest").gameObject
+			local chestOpen = chest:Find("Chest_0").gameObject
+			local fx = chest:Find("ChestFX").gameObject
+			fx:SetActive(chestStates[i] == 1)
+			redPoint:SetActive(chestStates[i] == 1)
+
+			chestClose:SetActive(not m_ChestsOpened[i] and chestStates[i] ~= 1)
+			chestOpen:SetActive(m_ChestsOpened[i])
+		end
+		local timeString = Hotfix.GetStringTable("ShadowCatTime")
+		m_TimeLabel = m_Go.transform:Find("Bg/Time"):GetComponent("UILabel")
+		m_TimeLabel.text = timeString
+	end
+end
+
+function LuaShadowCatFrame.OnShowHelp()
+	local DoOkClickEvent = DelegateFactory.UILib_ButtonClickEventHandler(this.OnHelpEvent)
+	Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowModalDialogWithTitle","",Hotfix.GetStringTable("ShadowCatHelp"), "OK",DoOkClickEvent,50)
+end
+
+function LuaShadowCatFrame.OnHelpEvent(xuiBtn)
+	Hotfix.CallSingleMethod("UI.ModalDlg",true,false,"SetVisible",false, true)
+	return true
+end

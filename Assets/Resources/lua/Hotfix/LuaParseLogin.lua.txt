@@ -1,0 +1,44 @@
+--
+--  LuaParseLogin.lua
+--  Created by alexpeng on 2016/04/19 11:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+LuaParseLogin = {}
+local this = LuaParseLogin
+	
+function LuaParseLogin.decoder()  
+	local msg = login_pb.LoginRequest()
+	local length = #TestProtol.data
+    msg:ParseFromString(TestProtol.data,length)
+    print('id:'..msg.id..' name:'..msg.name..' email:'..msg.email)
+end
+
+function LuaParseLogin.encoder()                           
+    local msg = login_pb.LoginRequest()
+    msg.id = 100
+    msg.name = 'HUAILIANGPENG'
+    msg.email = 'alexpecom'
+    local pb_data = msg:SerializeToString()  
+	print("create=> ",msg.id,"-",msg.name,"-",msg.email,"-",pb_data,"-")
+    TestProtol.data = pb_data
+end
+
+function LuaParseLogin.decode()
+	print("----------- decode ----------------")  
+	Hotfix.LuaTableBuffer("Table/test_lua",this.parse)
+end
+
+function LuaParseLogin.parse(buff)
+	Hotfix.LuaDoFile("c_table_testlua_pb.lua")
+	local msg = c_table_testlua_pb.TEST_LUA_kk_ARRAY()
+	local length = #buff
+	msg:ParseFromString(buff,length)
+	print("msg.infos count=" .. table.maxn(msg.rows))  
+    print("---------------------------")  
+	for i=1,table.maxn(msg.rows) do  
+		print(msg.rows[i])  
+	end  
+end
+
+

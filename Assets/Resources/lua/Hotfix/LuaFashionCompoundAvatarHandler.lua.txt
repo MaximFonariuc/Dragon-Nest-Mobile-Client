@@ -1,0 +1,391 @@
+﻿--
+--  LuaFashionCompoundAvatarHandler.lua
+--  Created by huailiang.peng on 2017/09/05 15:20:23
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+-- UI相关
+require "LuaFashionCompoundData.lua"
+require "LuaFashionCompoundDlg.lua"
+require "XFashionCompund_pb.lua"
+
+-- 时装合成左侧 avatar 和 合成
+LuaFashionCompoundAvatarHandler={}
+local this = LuaFashionCompoundAvatarHandler
+
+local m_bIsVisible = false
+
+-- 句柄
+local m_bg
+local m_snap
+local m_dummy
+local m_compose1
+local m_compose2
+local m_compose   -- icon
+local m_compose_icon1
+local m_compose_icon2 
+local m_compose_icon 
+local m_compose1_tag
+local m_compose2_tag
+
+local m_btn_compose  --按钮
+local m_txt_rate
+
+local dummypool=0
+
+--fx
+local m_fx_path = "Effects/FX_Particle/UIfx/UI_hc_Clip01"
+local m_s_path = "Effects/FX_Particle/Roles/Lzg_Ty/ssz_jinxiu_nan"
+local SuccEffect
+local S_Effect
+local XFxMgr = nil
+
+--local fxpath = "Effects/FX_Particle/Roles/Lzg_Ty/ssz_jinxiu_nan"
+
+--called by MonoBehaviour.Awake
+function LuaFashionCompoundAvatarHandler.Awake(go)
+	m_bg = go.transform:Find("Bg").gameObject
+	m_snap = go.transform:Find("CharacterFrame/Snapshot")
+	m_dummy = go.transform:Find("CharacterFrame/Snapshot"):GetComponent("UIDummy")
+	local snapBg= go.transform:Find("CharacterFrame/Bg").gameObject
+	m_compose1 = go.transform:Find("Bg/ComposeFrame/ComposeItem1").gameObject
+	m_compose2 = go.transform:Find("Bg/ComposeFrame/ComposeItem2").gameObject
+	m_compose = go.transform:Find("Bg/ComposeFrame/ComposeItem").gameObject
+	m_btn_compose = go.transform:Find("Bg/ComposeFrame/DoCompose").gameObject
+	m_txt_rate = go.transform:Find("Bg/BtnView/T/t"):GetComponent("UILabel")
+
+	
+	m_compose_icon1 = m_compose1.transform:Find("Icon").gameObject
+	m_compose_icon2 = m_compose2.transform:Find("Icon").gameObject
+	m_compose_icon  = m_compose.transform:Find("Icon").gameObject
+	m_compose1_tag = m_compose1.transform:Find("pp").gameObject
+	m_compose2_tag = m_compose2.transform:Find("pp").gameObject
+
+	Hotfix.SetClickCallback(m_btn_compose, this.OnComposeBtnClick)
+	Hotfix.SetDragCallback(snapBg, this.OnDrag)
+end
+
+
+function LuaFashionCompoundAvatarHandler.Start() end
+
+function LuaFashionCompoundAvatarHandler.OnEnable()
+	m_bIsVisible = true
+end
+
+function LuaFashionCompoundAvatarHandler.OnDisable()
+	m_bIsVisible = false
+end
+
+function LuaFashionCompoundAvatarHandler.OnDestroy()
+	this.ReturnDummy()
+	m_bIsVisible = false
+
+	this.RemvFx(true)
+
+end
+
+function LuaFashionCompoundAvatarHandler.OnShow()
+	this.AddSFx()
+	LuaFashionCompoundDlg.SetAvarHandler(this)
+	this.RefreshUi()
+end
+
+function LuaFashionCompoundAvatarHandler.OnHide()
+	this.ReturnDummy()
+end
+
+function LuaFashionCompoundAvatarHandler.IsVisible()
+	return m_bIsVisible
+end
+
+
+function LuaFashionCompoundAvatarHandler.OnDrag( go,x,y )
+	m_snap.transform:Rotate(Vector3.up, -x * 0.5)
+end
+
+function LuaFashionCompoundAvatarHandler.SetSelect( isSelect )
+	-- body
+	m_bg:SetActive(isSelect)
+end
+
+
+function LuaFashionCompoundAvatarHandler.RefreshUi( ... )
+	if not m_bIsVisible then return end
+	
+	local is_select = FashionCompoundData.itemid ~= 0
+	this.SetSelect(is_select)
+
+	if is_select then
+		-- to-do 
+		m_compose_icon1.transform:GetComponent("UISprite").sid = tostring(FashionCompoundData.compose_id1)
+		m_compose_icon2.transform:GetComponent("UISprite").sid = tostring(FashionCompoundData.compose_id2)
+		m_compose_icon.transform:GetComponent("UISprite").sid = tostring(FashionCompoundData.itemid)
+		Hotfix.SetClickCallback(m_compose_icon1,this.OnCompose1Click)
+		Hotfix.SetClickCallback(m_compose_icon2, this.OnCompose2Click)
+		Hotfix.SetClickCallback(m_compose_icon, this.ShowItemTip)
+		Hotfix.SetClickCallback(m_compose1_tag,this.OnCompose1Click)
+		Hotfix.SetClickCallback(m_compose2_tag,this.OnCompose2Click)
+
+		--print("avatar refresh compose_id1: "..tostring(FashionCompoundData.compose_id1))
+ 		Hotfix.DrawItemView(m_compose1, FashionCompoundData.compose_id1, 1, true)
+		Hotfix.DrawItemView(m_compose2, FashionCompoundData.compose_id2, 1, true)
+		Hotfix.DrawItemView(m_compose, FashionCompoundData.itemid, 1, true)
+
+		this.RefreshDummy()
+		this.RefreshShop()
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.RefreshRate( ... )
+	if not IsNil(m_txt_rate) then
+		local color = Hotfix.GetGlobalString("FashionSynthesisRateColor")
+		if  FashionCompoundData.add_rate <= 0 then
+			m_txt_rate.text = "成功率"..tostring(FashionCompoundData.success_rate).."%"
+		else
+			m_txt_rate.text = "成功率"..tostring(FashionCompoundData.success_rate).."%+["..color.."]"..tostring(FashionCompoundData.add_rate).."%[-]"
+		end
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.RefreshShop( ... )
+	local color = Hotfix.GetGlobalString("FashionSynthesisSelectColor")
+	m_compose1_tag:SetActive(FashionCompoundData.compose_id1 == 0)
+	m_compose2_tag:SetActive(FashionCompoundData.compose_id2 == 0)
+	if FashionCompoundData.compose_id1 == 0 then
+		local  lbl = m_compose1.transform:Find("Name"):GetComponent("UILabel")
+		lbl.gameObject:SetActive(true)
+		lbl.text = "[c]["..color.."]选择时装[-]"
+	end
+	if FashionCompoundData.compose_id2 == 0 then
+		local lbl2 = m_compose2.transform:Find("Name"):GetComponent("UILabel")
+		lbl2.gameObject:SetActive(true)
+		lbl2.text = "[c]["..color.."]选择时装[-]"
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.RefreshDummy( ... )
+	-- body
+	dummypool=Hotfix.CallSingleMethod("X3DAvatarMgr",true,false,"AllocDummyPool","FahionCompound",1)
+	
+	local XPlayerData = Hotfix.GetSingleMember("XAttributeMgr", "XPlayerData", true, false, false)
+	local prof =XPlayerData.BasicTypeID
+	
+	local fashions = FashionCompoundData.SuitRow.FashionID
+	local xdummy = Hotfix.GetSingleMember("X3DAvatarMgr","mainPlayerDummy",false,true,false)
+	local xoutlook = Hotfix.GetSingleMember("X3DAvatarMgr","outlookDataCache",false,true,false)
+	if xdummy ~=nil and xoutlook ~= nil then
+		Hotfix.EnableMainDummy(true, m_dummy)
+		xoutlook:SetProfType(prof)
+		xoutlook:SetFashionData(fashions,true)
+		xdummy.Equipment.IsUIAvatar = true
+		xdummy.Equipment:EquipFromVisibleList(xoutlook.OutlookList,0,0)
+	end
+	-- add s-fx 
+	if not IsNil(S_Effect) then
+		if FashionCompoundData.SuitRow.SuitQuality == 4 then
+			S_Effect:Play()
+		else
+			S_Effect:Stop()
+		end
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.ReturnDummy( ... )
+	-- body
+	if dummypool ~= 0 then
+		Hotfix.CallSingleMethod("X3DAvatarMgr",true,false,"ReturnDummyPool",dummypool)
+	end
+	--Hotfix.EnableMainDummy(false, nil)
+	local display = Hotfix.GetDocumentMember("FashionStorageDocument","m_displayFashion",false,true)
+	local xdummy = Hotfix.GetSingleMember("X3DAvatarMgr","mainPlayerDummy",false,true,false)
+	local xoutlook = Hotfix.GetSingleMember("X3DAvatarMgr","outlookDataCache",false,true,false)
+	if xdummy ~=nil and xoutlook ~= nil then
+		xoutlook:SetFashionData(display,0,0,true)
+		xoutlook:CalculateOutLookFashion()
+		xdummy.Equipment.IsUIAvatar = true
+		xdummy.Equipment:EquipFromVisibleList(xoutlook.OutlookList,0,0)
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.ShowItemTip(go)
+	local iconsprite = go:GetComponent("UISprite")
+	local uuid = iconsprite.sid
+	if uuid ~= "0" then
+		Hotfix.LuaShowItemTooltipDialog(tonumber(uuid), go)
+	end
+end
+
+
+-- 选中itemid  rpc请求网络信息
+function LuaFashionCompoundAvatarHandler.OnSelect( itemid,suitid )
+	this.ReqItemInfo(itemid)
+	this.RefreshUi()
+end
+
+-- 请求要合成时装的详细信息 合成成功率
+function  LuaFashionCompoundAvatarHandler.ReqItemInfo( itemid )
+	local msg = XFashionCompund_pb.FashionSynthesisInfoArg()
+	msg.fashion_id = tonumber(itemid)
+	--warn("req rate: "..tostring(itemid))
+	local pb_data = msg:SerializeToString()
+   	TestProtol.data = pb_data
+   	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(26721, TestProtol.data, this.ResItemInfo, this.ResItemInfoErr)
+	end
+end
+
+
+function  LuaFashionCompoundAvatarHandler.ResItemInfo(data,length)
+	local  msg = XFashionCompund_pb.FashionSynthesisInfoRes()
+	if msg ~= nil  and m_bIsVisible then
+		msg:ParseFromString(data,length)
+		if msg.result == 0 or msg.result == 270 then
+			-- 先刷数据 再刷ui
+			FashionCompoundData.OnResItemInfo(msg.fashion_id,msg.add_succes_rate)
+			--warn("success_rate: "..tostring(msg.add_succes_rate))
+			this.RefreshRate()
+		else
+			Hotfix.LuaShowSystemTipErrCode(msg.result)
+		end
+	end
+end
+
+function LuaFashionCompoundAvatarHandler.ResItemInfoErr( ... )
+	-- body
+	print("ResItemInfoErr time out")
+end
+
+
+function LuaFashionCompoundAvatarHandler.OnComposeBtnClick( go )
+	if FashionCompoundData.compose_id1 == 0 or FashionCompoundData.compose_id2 == 0 then
+		Hotfix.LuaShowSystemTip("请先选择合成材料")
+	else
+		local msg = XFashionCompund_pb.FashionComposeArg()
+		--print("合成物品:"..tostring(FashionCompoundData.itemid))
+	   	msg.fashion_id = tonumber(FashionCompoundData.itemid)
+	   	msg.uid1 = FashionCompoundData.compose_uid1
+	   	msg.uid2 = FashionCompoundData.compose_uid2
+	   	--print("uid1: "..msg.uid1.." uid2: "..msg.uid2)
+	   	local pb_data = msg:SerializeToString()
+	   	TestProtol.data = pb_data
+	   	if TestProtol.data ~= nil then
+			Hotfix.SendLuaRPC(46372, TestProtol.data, this.ResCompose, this.ResComposeErr)
+		end
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.ResCompose(data,length)
+	local  msg = XFashionCompund_pb.FashionComposeRes()
+	if msg ~= nil and m_bIsVisible then
+		msg:ParseFromString(data,length)
+		if msg.result == 0 then
+			-- to-do result
+
+			FashionCompoundData.OnCompseSucc()
+			LuaFashionCompoundDlg.OnCompse()
+
+			this.PlayComposeFx()
+			this.ReqItemInfo(FashionCompoundData.itemid)
+			LuaFashionCompoundDlg.RefreshEquip()
+		else
+			Hotfix.LuaShowSystemTipErrCode(msg.result)
+			FashionCompoundData.OnCmposeFail()
+			this.ReqItemInfo(FashionCompoundData.itemid) --合成失败 成功率会变
+			this.RefreshUi()
+			LuaFashionCompoundDlg.RefreshEquip()
+		end
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.ResComposeErr()
+	print("lua fashion FashionCompoundData ResErr!")
+end
+
+function LuaFashionCompoundAvatarHandler.PlayComposeFx( ... )
+	-- body
+	if  XFxMgr==nil then
+		XFxMgr = luanet.import_type('XUtliPoolLib.XFxMgr')
+	end
+	this.RemvFx(false)
+	SuccEffect = XFxMgr.singleton:CreateUIFx(m_fx_path,m_compose.transform)
+end
+
+
+function LuaFashionCompoundAvatarHandler.AddSFx( ... )
+	-- body
+	if  XFxMgr==nil then
+		XFxMgr = luanet.import_type('XUtliPoolLib.XFxMgr')
+	end
+	S_Effect = XFxMgr.singleton:CreateUIFx(m_s_path,m_snap)
+	S_Effect:Stop()
+end
+
+
+function LuaFashionCompoundAvatarHandler.RemvFx( all )
+	-- body
+	if  XFxMgr ~= nil then
+		if not IsNil(SuccEffect) then
+			XFxMgr.singleton:DestroyFx(SuccEffect,true)
+			if all then
+				XFxMgr.singleton:DestroyFx(S_Effect,true)
+			end
+		end
+	end
+end
+
+function LuaFashionCompoundAvatarHandler.OnCompose1Click( ... )
+	FashionCompoundData.curr_select = 0
+	FashionCompoundData.CulCurrCompoundMaterials()
+
+	local cnt = #FashionCompoundData.curr_compounds
+	if cnt > 0 then
+		LuaFashionCompoundDlg.OpenBagHandler()
+	else
+		this.OnMetarialNotEnough()
+	end
+end
+
+function LuaFashionCompoundAvatarHandler.OnCompose2Click( ... )
+	FashionCompoundData.curr_select = 1
+	FashionCompoundData.CulCurrCompoundMaterials()
+
+	local cnt = #FashionCompoundData.curr_compounds
+	if cnt > 0 then
+		LuaFashionCompoundDlg.OpenBagHandler()
+	else
+		this.OnMetarialNotEnough()
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.OnMetarialNotEnough( ... )
+	local tip = Hotfix.GetStringTable("NotEnoughFashion")
+	Hotfix.LuaMessageBoxConfirm(tip,this.OnOK,this.OnCancel)
+	local modal = Hotfix.GetSingleMember("UI.ModalDlg","uiBehaviour",true,false,false)
+	if not IsNil(modal.gameObject) then
+		local oklable = modal.gameObject.transform:Find("Bg/OK/Label"):GetComponent("UILabel")
+		local canlable = modal.gameObject.transform:Find("Bg/Cancel/Label"):GetComponent("UILabel")
+		oklable.text = "确定"
+		canlable.text = "取消"
+	end
+end
+
+
+function LuaFashionCompoundAvatarHandler.OnOK( ... )
+	local itemid = Hotfix.GetGlobalString("FashionSynthesisBQItemid")
+	Hotfix.LuaShowItemAccess(tonumber(itemid))
+	--Hotfix.LuaShowSystemTip(tip)
+	LuaFashionCompoundDlg.Close()
+	Hotfix.CallSingleMethod("UI.ModalDlg",true,false,"SetVisible",false)
+end
+
+function LuaFashionCompoundAvatarHandler.OnCancel( ... )
+	Hotfix.CallSingleMethod("UI.ModalDlg",true,false,"SetVisible",false)
+end

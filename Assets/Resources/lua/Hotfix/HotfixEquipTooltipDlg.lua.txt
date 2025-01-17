@@ -1,0 +1,289 @@
+
+
+EquipToolTipDlg = {}
+local this = EquipToolTipDlg
+
+local JadeFrameOldPath = "Bg/Bg/main/JadeFrame"
+local JadeFrameNewPath = "Bg/Bg/main/JadeFrameForLua/ratioFrame"
+local JadeFrameTrans = nil
+local JadeFrameOldTrans = nil
+
+local jadeEffectPath = "Bg/Bg/main/JadeFrameForLua/UI_ghhb_cd_03"
+local jadeEffectTrans = nil
+
+
+local JadeFrameOldComparePath = "Bg/Bg/compare/JadeFrame"
+local JadeFrameNewComparePath = "Bg/Bg/compare/JadeFrameForLua/ratioFrame"
+local JadeFrameCompareTrans = nil
+local JadeFrameOldCompareTrans = nil
+
+local jadeEffectComparePath = "Bg/Bg/compare/JadeFrameForLua/UI_ghhb_cd_03"
+local jadeEffectCompareTrans = nil
+
+
+local equipUid = nil	---ulong userdata
+local CurrEquip  = nil   ---XItem
+local m_jadePool = nil
+local jadeObjList = { }
+
+local m_jadeComparePool = nil
+local jadeObjCompareList = { }
+
+local compareEquip = nil
+
+local timetoken = 0
+local timetokenEffect = 0
+
+local thisObj = nil
+
+function EquipToolTipDlg.Hide( )
+	Hotfix.RemoveTimer(timetoken)
+	Hotfix.RemoveTimer(timetokenEffect)
+end
+
+function EquipToolTipDlg.Unload()
+	if m_jadePool ~= nil then
+		m_jadePool:ReturnAllDisable()
+	end
+
+	if m_jadeComparePool ~= nil then
+		m_jadeComparePool:ReturnAllDisable()
+	end
+	
+	m_jadePool = nil
+	m_jadeComparePool = nil
+
+	jadeObjList = {}
+	JadeFrameOldTrans = nil
+
+	CurrEquip = nil
+	compareEquip = nil
+
+	jadeObjCompareList= { }
+end
+
+
+function EquipToolTipDlg.BeforeRefresh(go)
+
+end
+
+
+function EquipToolTipDlg.AfterRefresh(go)
+
+	if false then
+		return
+	end
+
+	-- if JadeFrameOldTrans ~= nil then
+	-- 	JadeFrameOldTrans.gameObject:SetActive(false)
+	-- end
+
+	thisObj = go
+	timetoken = Hotfix.LuaWait(33, this.OnTimer)		--等待两帧(一秒60帧)，完美
+	timetokenEffect = Hotfix.LuaWait(2000, this.OnTimerEffect)
+end
+
+
+function EquipToolTipDlg.OnTimerEffect()
+	if jadeEffectTrans ~= nil then
+		jadeEffectTrans.gameObject:SetActive(false)
+	end
+end
+
+function EquipToolTipDlg.OnTimer( )
+
+	JadeFrameOldTrans = thisObj.transform:Find(JadeFrameOldPath)
+
+	if not IsNil(JadeFrameOldTrans) then
+	 	if not JadeFrameOldTrans.gameObject.activeInHierarchy then
+	 		return
+	 	end
+	end
+
+	JadeFrameOldTrans.gameObject:SetActive(false)
+		
+	jadeEffectTrans = thisObj.transform:Find(jadeEffectPath)
+
+	if jadeEffectTrans ~= nil then
+		jadeEffectTrans.gameObject:SetActive(false)
+	end
+
+ 	JadeFrameTrans = thisObj.transform:Find(JadeFrameNewPath)
+	JadeFrameTrans.parent.gameObject:SetActive(true)
+
+	local parentSprite = JadeFrameTrans.parent.parent:GetComponent("UISprite")
+	if parentSprite ~= nil then
+
+		-- print("parentSprite gameObject name: "..parentSprite.gameObject.name)
+		-- print("the sprite width: "..tostring(parentSprite.width))
+		-- print("the sprite height: "..tostring(parentSprite.height))
+
+		--用于新六个龙玉槽位对位置，目前的解决方案是获取背景长度，在底部上移40像素，到达理想效果。
+		JadeFrameTrans.parent.localPosition = Vector3(0, 40 - parentSprite.height,0)
+	end
+	-- JadeFrameOldTrans.localPosition			--套装和非套装的装备tips内容显示不同，长短不一，所以龙玉的位置也显示不一
+
+	local CurrEquipUid = Hotfix.GetSingleLongMember("UI.EquipTooltipDlg","mainItemUID",true,true,false)
+	-- Hotfix.GetGetDocumentLongMember("JadeDocument","selectedEquip",true,true)		--string
+
+	print("curr equip uid: "..CurrEquipUid)
+	equipUid = Hotfix.GetLuaLong(CurrEquipUid)							--XLuaLong
+
+	CurrEquip = Hotfix.CallDocumentMethod("XBagDocument", true,"GetItemByUID", equipUid)
+
+	local compareItemUID = Hotfix.GetSingleLongMember("UI.EquipTooltipDlg","compareItemUID",true,true,false)
+	compareEquip = Hotfix.CallDocumentMethod("XBagDocument", true,"GetItemByUID", compareItemUID)
+
+	-- if CurrEquip ~= nil then
+	if not IsNil(CurrEquip) then
+		print("curr equip id: "..tostring(CurrEquip.itemID))
+	else
+		JadeFrameOldTrans.gameObject:SetActive(true)
+		JadeFrameTrans.parent.gameObject:SetActive(false)
+		return
+	end
+
+	-- if compareEquip ~= nil then
+	if not IsNil(compareEquip) then
+		print("compareEquip id: "..tostring(compareEquip.itemID))
+	end
+
+	this.RefreshJadeFrame()
+end 
+
+
+--刷新龙玉模块--
+function EquipToolTipDlg.RefreshJadeFrame()
+
+	local allNil = CurrEquip == nil and compareEquip == nil
+	
+	print("all nil: "..tostring(allNil))
+
+	if JadeFrameTrans == nil or allNil then
+
+		JadeFrameOldTrans.gameObject:SetActive(true)
+		JadeFrameTrans.parent.gameObject:SetActive(false)
+		return
+	end
+	
+	if IsNil(CurrEquip) then
+		JadeFrameOldTrans.gameObject:SetActive(true)
+		JadeFrameTrans.parent.gameObject:SetActive(false)
+		return
+	end
+
+	-- print("jade obj list: "..tostring(#jadeObjList))
+
+	if #jadeObjList == 0 then
+		-- 初始化龙玉对象池
+		m_jadePool= Hotfix.SetupPool(
+				JadeFrameTrans.gameObject, 
+				JadeFrameTrans:Find("JadeTpl").gameObject,
+				6)
+
+		for i = 0, 5 do
+			local partGo = JadeFrameTrans:FindChild("Jade"..tostring(i)).gameObject;
+			local jadeGo = m_jadePool:FetchGameObject()
+
+			jadeGo.transform.localPosition = partGo.transform.localPosition;
+
+			jadeObjList[i] = jadeGo
+
+		end		
+	end
+
+	
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local arr = ArrayList()
+
+	arr:AddRange(CurrEquip.jadeInfo.jades)
+
+	local itemDrawParam = Hotfix.GetSingleMember("XItemDrawerMgr", "Param", true, true, true)
+	
+	for i = 0, 5 do
+
+		-- jadeObjList[i]
+		if arr[i] ~= nil then
+			itemDrawParam.bHideBinding = true
+			Hotfix.CallSingleMethod("XItemDrawerMgr",true,false,"DrawItem",jadeObjList[i], arr[i])
+
+		else
+			jadeObjList[i].transform:Find("NumTop").gameObject:SetActive(false)
+			jadeObjList[i].transform:Find("Icon").gameObject:SetActive(false)
+			jadeObjList[i].transform:Find("Quality").gameObject:SetActive(false)
+			jadeObjList[i].transform:Find("Num").gameObject:SetActive(false)
+			jadeObjList[i].transform:Find("Cover").gameObject:SetActive(false)
+			jadeObjList[i].transform:Find("Lock").gameObject:SetActive(false)
+		end
+
+	end
+
+	this.RefreshJadeFrameCompare()
+end
+
+function EquipToolTipDlg.RefreshJadeFrameCompare()
+	if compareEquip ~= nil then
+
+		jadeEffectCompareTrans = thisObj.transform:Find(jadeEffectComparePath)
+
+		if jadeEffectCompareTrans ~= nil then
+			jadeEffectCompareTrans.gameObject:SetActive(false)
+		end
+
+		JadeFrameOldCompareTrans = thisObj.transform:Find(JadeFrameOldComparePath)
+		JadeFrameCompareTrans = thisObj.transform:Find(JadeFrameNewComparePath)
+
+		JadeFrameOldCompareTrans.gameObject:SetActive(false)
+		JadeFrameCompareTrans.parent.gameObject:SetActive(true)
+
+		local parentSprite = JadeFrameCompareTrans.parent.parent:GetComponent("UISprite")
+		if parentSprite ~= nil then
+			--用于新六个龙玉槽位对位置，目前的解决方案是获取背景长度，在底部上移40像素，到达理想效果。
+			JadeFrameCompareTrans.parent.localPosition = Vector3(0, 40 - parentSprite.height,0)
+		end
+
+		if #jadeObjCompareList == 0 then
+			-- 初始化龙玉对象池
+			m_jadeComparePool= Hotfix.SetupPool(
+					JadeFrameCompareTrans.gameObject, 
+					JadeFrameCompareTrans:Find("JadeTpl").gameObject,
+					6)
+
+			for i = 0, 5 do
+				local partGo = JadeFrameCompareTrans:FindChild("Jade"..tostring(i)).gameObject;
+				local jadeGo = m_jadeComparePool:FetchGameObject()
+
+				jadeGo.transform.localPosition = partGo.transform.localPosition;
+
+				jadeObjCompareList[i] = jadeGo
+
+			end		
+		end
+
+
+		ArrayList = luanet.import_type("System.Collections.ArrayList")
+		local arr = ArrayList()
+
+		arr:AddRange(compareEquip.jadeInfo.jades)
+
+		local itemDrawParam = Hotfix.GetSingleMember("XItemDrawerMgr", "Param", true, true, true)
+		
+		for i = 0, 5 do
+
+			-- jadeObjCompareList[i]
+			if arr[i] ~= nil then
+				itemDrawParam.bHideBinding = true
+				Hotfix.CallSingleMethod("XItemDrawerMgr",true,false,"DrawItem",jadeObjCompareList[i], arr[i])
+
+			else
+				jadeObjCompareList[i].transform:Find("NumTop").gameObject:SetActive(false)
+				jadeObjCompareList[i].transform:Find("Icon").gameObject:SetActive(false)
+				jadeObjCompareList[i].transform:Find("Quality").gameObject:SetActive(false)
+				jadeObjCompareList[i].transform:Find("Num").gameObject:SetActive(false)
+				jadeObjCompareList[i].transform:Find("Cover").gameObject:SetActive(false)
+				jadeObjCompareList[i].transform:Find("Lock").gameObject:SetActive(false)
+			end
+
+		end
+	end
+end

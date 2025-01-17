@@ -1,0 +1,138 @@
+﻿--
+--  LuaBfReturnWelfareHandler.lua
+--  Created by alexpeng on 2016/06/11 09:40:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+--UI相关
+require "LuaBackflowDocument.lua"
+
+--回流每日登陆ui（handler）
+LuaBfReturnWelfareHandler={}
+local this = LuaBfReturnWelfareHandler
+
+local m_bIsVisible = false
+
+local ItemsTrans
+local buyBtn
+local btnText
+local TimesLabel
+--called by MonoBehaviour.Awake
+function LuaBfReturnWelfareHandler.Awake(go)
+	--print("Awake")
+	ItemsTrans = go.transform:Find("Items");
+	buyBtn =  go.transform:Find("BtnGo"):GetComponent("XUIButton")
+	btnText = go.transform:Find("BtnGo/Text"):GetComponent("UILabel");
+	btnText.text =  Hotfix.GetStringTable("BackflowWelfareBuyEnough")
+	TimesLabel = go.transform:Find("BtnGo/times"):GetComponent("UILabel");
+	TimesLabel.gameObject:SetActive(false)
+	buyBtn:SetEnable(false)
+	Hotfix.SetClickCallback(buyBtn.gameObject,this.OnClickGetBtn)
+	LuaBackflowDocument.SetWelfareBuyDlg(this)
+	--LuaBackflowDocument.SetDailyRewardDlg(this)
+end
+
+function LuaBfReturnWelfareHandler.Start()
+	--print("Start")
+end
+
+
+function LuaBfReturnWelfareHandler.OnEnable()
+	--print("LuaBfReturnWelfareHandler.OnEnable")
+	m_bIsVisible = true
+	this.FillContent()
+end
+
+
+function LuaBfReturnWelfareHandler.OnDisable()
+	--print("LuaBfReturnWelfareHandler.OnDisable")
+	m_bIsVisible = false
+	
+end
+
+
+function LuaBfReturnWelfareHandler.OnDestroy()
+	--print("LuaBfReturnWelfareHandler.OnDestroy")
+	m_bIsVisible = false
+
+	
+end
+
+
+function LuaBfReturnWelfareHandler.OnShow()
+	LuaBackflowDocument:ReqBuyBackflowWelfare(1);--1 ===> lookup
+end
+
+function LuaBfReturnWelfareHandler.OnHide()
+	--print("LuaBfReturnWelfareHandler.OnHide")
+	m_bIsVisible = false
+end
+
+function LuaBfReturnWelfareHandler.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaBfReturnWelfareHandler.RefreshUI( ... )
+	this.RefreshBuyBtn()
+	this.FillContent()
+end
+
+function LuaBfReturnWelfareHandler.DisableBuyBtn( ... )
+	if m_bIsVisible == false then return end
+	buyBtn.gameObject:SetActive(false)
+end
+
+function LuaBfReturnWelfareHandler.RefreshBuyBtn()
+	if m_bIsVisible == false then return end
+	buyBtn.gameObject:SetActive(true)
+	TimesLabel.gameObject:SetActive(LuaBackflowDocument.WelfareCountLeft > 0)
+	buyBtn:SetEnable(LuaBackflowDocument.WelfareCountLeft > 0)
+	if LuaBackflowDocument.WelfareCountLeft > 0 then
+		if LuaBackflowDocument.CostItem ~= nil then
+			local itemData = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetItemConf",LuaBackflowDocument.CostItem.itemID)
+			if not IsNil(itemData) then
+				btnText.text = tostring(LuaBackflowDocument.CostItem.itemCount)..itemData.ItemName[0]
+			end
+		end
+	else
+		btnText.text =  Hotfix.GetStringTable("BackflowWelfareBuyEnough")
+	end
+	TimesLabel.text =  math.max(0,LuaBackflowDocument.WelfareCountLeft).."/"..LuaBackflowDocument.WelfareMaxCount
+end
+
+function LuaBfReturnWelfareHandler.FillContent( ... )
+	if m_bIsVisible == false then return end
+	local items = LuaBackflowDocument.GetWelfareItemList()
+	local count = 0
+	if items ~= nil then
+		
+		for i,v in ipairs(items) do
+			if i<=ItemsTrans.childCount then
+				item = ItemsTrans:GetChild(count).gameObject
+				count = count + 1
+				item:SetActive(true)
+				Hotfix.DrawItemView(item, v.itemID, v.itemCount, true)
+				local icon = item.transform:Find("Icon"):GetComponent("UISprite")
+				icon.uid = v.itemID
+				Hotfix.SetClickCallback(icon.gameObject, this.ShowIconTip)
+			end
+		end
+	else
+		buyBtn.gameObject:SetActive(false)
+	end
+	
+	while(count < ItemsTrans.childCount)
+	do 
+		item = ItemsTrans:GetChild(count).gameObject
+		count = count + 1
+		item:SetActive(false)
+	end
+end
+
+function LuaBfReturnWelfareHandler.OnClickGetBtn(go)
+	LuaBackflowDocument:ReqBuyBackflowWelfare(2)
+end
+
+function LuaBfReturnWelfareHandler.ShowIconTip(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid, go)
+end

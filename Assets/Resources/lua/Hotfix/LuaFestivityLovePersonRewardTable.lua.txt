@@ -1,0 +1,33 @@
+require "HotfixGlobal.lua"
+
+--generate by ProtoGen at date: 2018/4/27 10:05:13
+
+--读取表格
+function ReadFestivityLovePersonRewardTable(table)
+	local reader = Hotfix.LuaTableBin(table)
+	if not IsNil(reader) then
+		local rows = {}
+		Hotfix.ReadFileSize(reader)
+		local lineCount = reader:ReadInt32()
+		Hotfix.ReadDataHandle(reader)
+		local columnCount = reader:ReadByte()
+		for i = 1, columnCount, 1 
+		do
+			reader:ReadByte()
+			reader:ReadByte()
+		end
+		for i = 1, lineCount, 1 
+		do
+			Hotfix.ReadRowSize(reader)
+			rows[i] = {};	
+			rows[i].LoveScore = reader:ReadUInt32()
+			rows[i].LoveReward = ReadUIntSeqList(reader,2)
+
+			Hotfix.CheckRowSize(reader,"FestivityLovePersonReward",i)
+		end
+		Hotfix.CheckFileSize(reader,"FestivityLovePersonReward")
+		Hotfix.ReturnableStream(reader)
+		return rows
+	end
+	return nil
+end

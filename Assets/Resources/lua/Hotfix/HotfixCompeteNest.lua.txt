@@ -1,0 +1,30 @@
+require "LuaRankRewardDocument.lua"
+CompeteNest={}
+local this = CompeteNest
+
+local m_Go
+local m_RankRewardBtn
+local m_RankRewardHandler
+
+function CompeteNest.BeforeRefresh(go)
+	print("CompeteNest.BeforeRefresh")
+	m_Go=go
+	m_RankRewardBtn= go.transform:Find("Main/RankRewardBtn").gameObject
+	Hotfix.SetClickCallback(m_RankRewardBtn, this.OnRankRewardBtnClick)
+	return false
+end
+
+function  CompeteNest.OnRankRewardBtnClick()
+	print("CompeteNest.OnRankRewardBtnClick")
+	LuaRankRewardDocument.SetState(2)
+	if IsNil(m_RankRewardHandler) then
+		LuaUIManager.Instance:Load("UI/GameSystem/RankRewardHandler")
+		m_RankRewardHandler = GameObject.Find("RankRewardHandler")
+		m_RankRewardHandler.transform.parent = m_Go.transform:Find("Main")
+		m_RankRewardHandler.transform.localPosition = Vector3.zero
+		m_RankRewardHandler.transform.localScale = Vector3.one
+	else
+		m_RankRewardHandler:SetActive(true)
+	end
+
+end

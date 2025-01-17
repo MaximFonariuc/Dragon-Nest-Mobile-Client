@@ -1,0 +1,32 @@
+﻿--
+--  HotfixChatNewDlg.lua.lua
+--  Created by Administrator on 2017/11/09 19:16:37
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+ChatNewDlg = {}
+local this = ChatNewDlg
+
+function ChatNewDlg.BeforeRefresh(go)
+	return false
+end
+
+
+function ChatNewDlg.AfterRefresh(go)
+	if not IsNil(go) then
+		--local str = "AfterRefresh=>  "..go.name
+		local tran = go.transform:Find("Bg/btns/Xinyue")
+		if not IsNil(tran) then
+			local open = Hotfix.GetGlobalString("XiaoYueGuanJiaOpen")
+			if tostring(open) == "1" then
+				tran.gameObject:SetActive(true)
+			else
+				tran.gameObject:SetActive(false)
+			end
+		end
+	else
+		print("AfterRefresh: There is nil lua script ")
+	end
+
+	return false
+end

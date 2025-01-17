@@ -1,0 +1,139 @@
+﻿--
+--  HotfixClick.lua
+--  Created by huailiang.peng on 2016/03/14 11:35:35
+--
+require "HotfixDungeonSelect.lua"
+require "HotfixHallDlg.lua"
+
+HotfixClick = {}
+local this = HotfixClick
+
+
+-- 在点击之前派发
+local BefRegist = 
+{
+	--["HallDlg(Clone)/_canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysAItem"] = {this.Test2,"点击角色界面"}
+}
+
+
+-- 在点击之后派发
+local AftRegist = 
+{
+	["DungeonSelect(Clone)/Bg/Hard"]    = {DungeonSelect.UpDateGo,"关卡选择界面"},
+	["DungeonSelect(Clone)/Bg/Normal"]  = {DungeonSelect.UpDateGo,"关卡选择界面"},
+}
+
+
+
+-- 阻断c#的点击注册
+local BreakRegist = 
+{
+	--["HallDlg(Clone)/_canvas/MainMenuFrame/MainMenu/Panel1/SysGridH1/SysBSkill"]  = {this.Test1,"点击技能界面"}
+}
+
+
+function HotfixClick.Test1( ... )
+	print("<color=red> test1 in lua </color>")
+end
+
+
+function HotfixClick.Test2( ... )
+	print("<color=red> Test2 in lua </color>")
+end
+
+
+-- 向 c# 注册
+function HotfixClick.FetchRegists( ... )
+	-- body
+	local registeds={}
+	local seprate = "|"
+	local index = 1
+	for k,v in pairs(BefRegist) do
+		--print(k,v)
+		registeds[index] = k
+		index = index + 1
+	end
+
+	registeds[index] = seprate
+	index=index+1
+
+	for k,v in pairs(AftRegist) do
+		--print(k,v)
+		registeds[index] = k
+		index = index + 1
+	end
+
+	registeds[index] = seprate
+	index=index+1
+
+	for k,v in pairs(BreakRegist) do
+		--print(k,v)
+		registeds[index] = k
+		index = index + 1
+	end
+
+	return unpack(registeds)
+end
+
+
+
+function HotfixClick.BeforeClick(path,isbreak)
+	--print(path)
+	--if path == "SettingDlg(Clone)/Bg/ScrollButtons/Panel/Feedback" then
+	--	print("feedback")
+	--	Application.OpenURL("http://bbs.g.qq.com/forum.php?mod=forumdisplay&fid=57488&ADTAG=game.app.lzg")
+	--	print("feedback..")
+	--	return true
+	--end
+
+	if isbreak then
+		for k,v in pairs(BreakRegist) do
+			print(k,v)
+			if k == path then
+				local  func = v[1]
+				if func ~= nil then
+					func()
+				end
+			end
+		end
+	else
+		for k,v in pairs(BefRegist) do
+			print(k,v)
+			if k == path then
+				local  func = v[1]
+				if func ~= nil then
+					func()
+				end
+			end
+		end
+	end
+end
+
+
+function HotfixClick.AfterClick(path)
+	--print(path)
+	--if path == "DungeonSelect(Clone)/Bg/Hard" then
+	--	DungeonSelect.UpDateGo()
+	--	print("Hard")
+	--end
+
+	--if path == "DungeonSelect(Clone)/Bg/Normal" then
+	--	DungeonSelect.UpDateGo()
+	--	print("Normal")
+	--end
+
+	for k,v in pairs(AftRegist) do
+		print(k,v)
+		if k == path then
+			local  func = v[1]
+			if func ~= nil then
+				func()
+			end
+		end
+	end
+end
+
+
+
+
+

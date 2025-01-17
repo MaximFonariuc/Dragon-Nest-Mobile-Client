@@ -1,0 +1,33 @@
+
+XDragonGuildMainHandler = {}
+local this = XDragonGuildMainHandler
+
+function XDragonGuildMainHandler.BeforeHandlerShow( go )
+	return false
+	-- body
+end
+
+function XDragonGuildMainHandler.AfterHandlerShow(go)
+	local btn = go.transform:Find("Bg/MenuList/BtnLeave")
+	if not IsNil(btn) then
+		Hotfix.SetClickCallback(btn.gameObject,this.OnClick)
+	end
+	return false
+end
+function XDragonGuildMainHandler.OnClick(...)
+	Hotfix.LuaMessageBoxConfirm("是否退出",this.ReqLeave,this.OnCancel)
+	local modal = Hotfix.GetSingleMember("UI.ModalDlg","uiBehaviour",true,false,false)
+	local oklable = modal.gameObject.transform:Find("Bg/OK/Label"):GetComponent("UILabel")
+	local canlable = modal.gameObject.transform:Find("Bg/Cancel/Label"):GetComponent("UILabel")
+	oklable.text = "确定"
+	canlable.text = "取消"
+	return true
+end
+function XDragonGuildMainHandler.ReqLeave()
+	local doc = Hotfix.GetSingleMember("XDragonGuildDocument","Doc",true,false,true)
+	doc:ReqLeaveDragonGuild()
+	Hotfix.CallSingleMethod("UI.ModalDlg",true,false,"SetVisible",false)
+end
+function XDragonGuildMainHandler.OnCancel( ... )
+	Hotfix.CallSingleMethod("UI.ModalDlg",true,false,"SetVisible",false)
+end

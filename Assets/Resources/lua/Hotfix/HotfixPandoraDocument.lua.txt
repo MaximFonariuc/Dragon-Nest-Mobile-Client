@@ -1,0 +1,43 @@
+﻿--
+--  HotfixPandoraDocument.lua
+--
+
+local cjson = require "cjson"
+
+HotfixPandoraDocument = {}
+local this = HotfixPandoraDocument
+
+local m_OperatingActivityDlg
+
+function HotfixPandoraDocument.EnterScene()
+	--print("EnterScene")
+end
+
+function HotfixPandoraDocument.EnterSceneFinally()
+	print("HotfixPandoraDocument EnterSceneFinally")
+end
+
+function HotfixPandoraDocument.Attach()
+end
+
+function HotfixPandoraDocument.Detach()
+end
+
+function HotfixPandoraDocument.Reconnect()
+end
+
+function HotfixPandoraDocument.SetOperatingActivityDlg(dlg)
+	m_OperatingActivityDlg = dlg
+end
+
+function HotfixPandoraDocument.PandoraCallback( jsonStr )
+
+	local data = cjson.decode(jsonStr)
+    if data == nil then
+        print("HotfixPandoraDocument PandoraCallback return ")
+        return
+    end    
+end
+
+
+

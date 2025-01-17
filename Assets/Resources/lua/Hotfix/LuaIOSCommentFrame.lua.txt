@@ -1,0 +1,83 @@
+--
+--  m_CommentBtn.lua
+--  Created by alexpeng on 2017/02/09 22:06:00
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+
+SYS_IOSComment = 844
+
+local texturePath = "atlas/UI/GameSystem/Activity/Tex_ioslead_h2Split"
+
+LuaIOSCommentFrame = {}
+local this = LuaIOSCommentFrame
+
+local m_Go
+local m_bIsVisible = false
+
+local m_CommentBtn;
+local m_BgTexture;
+
+
+--called by MonoBehaviour.Awake
+function LuaIOSCommentFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_CommentBtn = m_Go.transform:Find("Button")
+		Hotfix.SetClickCallback(m_CommentBtn.gameObject, this.OnBtnClick)
+	end
+	
+end
+
+function  LuaIOSCommentFrame.OnBtnClick(go)
+	print("IOSCommentBtnClick")
+	--Hotfix.CallSingleMethod("UI.UiUtility", true, false, "OpenHtmlUrl", "IOSCommentUrl")
+	local url = Hotfix.GetGlobalString("IOSCommentUrl")
+	print(url)
+	Application.OpenURL(url)
+end
+
+
+function LuaIOSCommentFrame.Start()
+
+end
+
+function LuaIOSCommentFrame.OnEnable()
+	print("LuaIOSCommentFrame.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaIOSCommentFrame.OnDisable()
+	m_bIsVisible = false
+	print("LuaIOSCommentFrame.OnDisable")
+end
+
+
+function LuaIOSCommentFrame.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaIOSCommentFrame.OnShow()
+	print("LuaIOSCommentFrame.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaOldPlayerRewardFrame SetBgTexture")
+	end
+end
+
+function LuaIOSCommentFrame.OnHide()
+	print("LuaIOSCommentFrame.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaIOSCommentFrame DestoryTexture")
+	end
+end
+
+function LuaIOSCommentFrame.IsVisible()
+	return m_bIsVisible
+end

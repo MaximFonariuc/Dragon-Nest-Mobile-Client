@@ -1,0 +1,378 @@
+--
+--  HotfixGlobal.lua
+--  Created by huailiang.peng on 2016/03/15 06:25:50
+--  This file also used be as init
+--
+
+
+-- 最小数值和最大数值指定返回值的范围。
+-- @function [parent=#math] clamp
+function math.clamp(v, minValue, maxValue)
+	if v < minValue then
+		return minValue
+	end
+	if( v > maxValue) then
+		return maxValue
+	end
+	return v
+end
+
+function printf(format, ...)
+	local str = ""	
+	for i = 1, n do
+		str = string.format(format, str, tostring(arg[i]))
+	end
+	log(str)
+end
+
+-- isnan
+function isnan(number)
+	return not (number == number)
+end
+
+--unity gameobject and transform is nil
+function IsNil(uobj)
+	--print("uobj:"..tostring(uobj==nil).." type: "..tostring(type(uobj)))
+	return uobj == nil or uobj:Equals(nil)
+end
+
+function Split(s, delim)
+    if type(delim) ~= "string" or string.len(delim) <= 0 then return end
+    local start = 1
+    local t = {}
+    while true do
+        local pos = string.find (s, delim, start, false) -- plain find
+        if not pos then break end
+        table.insert (t, string.sub (s, start, pos - 1))
+        start = pos + string.len (delim)
+    end
+    table.insert (t, string.sub (s, start))
+    return t
+end
+
+--json拼接 先clear再用 添加用add 取用get
+local jsonData
+function JsonDataAdd( key,value )
+	if jsonData==nil then
+		jsonData="\""..key.."\":\""..value.."\""
+	else
+		jsonData=jsonData..",".."\""..key.."\":\""..value.."\""
+	end
+end
+
+function JsonDataClear()
+	jsonData=nil
+end
+
+function JsonDataGet()
+	return "{"..jsonData.."}"
+end
+
+--读取表格
+function readCSV(data)
+	local lineStr = string.split(data,'\n\r')
+	local titles = Split(lineStr[1],'\t')
+	--print("rows: "..table.getn(lineStr).." lines:"..table.getn(titles))
+	local ID = 1 --行数
+    local arrs = {}
+    for i = 3, #lineStr, 1 do
+	    -- 一行中，每一列的内容
+        local content = Split(lineStr[i], "\t");
+        arrs[ID] = {};
+        for j = 1, #titles, 1 do
+            arrs[ID][titles[j]] = content[j]
+			--print(ID.." titles:"..titles[j].." cont:"..content[j])
+        end
+        ID = ID + 1
+    end 
+    return arrs
+end
+
+
+--参数分别是表名，列名，主键值(第一列)
+function  readTable(tablename,key,ID)
+    local data = Hotfix.LuaTableBuffer("Table/"..tablename)
+    local lineStr = string.split(data,'\n\r')
+    local titles = Split(lineStr[1],'\t')
+    local line = 1
+    local value
+    for j = 1, #titles, 1 do
+        if titles[j] == key then
+            line = j
+            break
+        end
+    end
+
+    for i = 3, #lineStr, 1 do
+        local content = string.split(lineStr[i], "\t")
+        if tostring(content[1]) == tostring(ID) then
+            value = content[line]
+            break
+        end
+    end 
+    return value
+end
+
+
+function strLength(input)
+    local len  = string.len(input)
+    local left = len
+    local cnt  = 0
+    local arr  = {0, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc}
+    while left ~= 0 do
+        local tmp = string.byte(input, -left)
+        local i   = #arr
+        while arr[i] do
+            if tmp >= arr[i] then
+                left = left - i
+                break
+            end
+            i = i - 1
+        end
+        cnt = cnt + 1
+    end
+    return cnt
+end
+
+--stream读表
+function  ReadBoolArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = reader:ReadBoolean()
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadIntArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = reader:ReadInt32()
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadUIntArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = reader:ReadUInt32()
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadFloatArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = reader:ReadSingle()
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadDoubleArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = reader:ReadDouble()
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadStringArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = Hotfix.ReadString(reader)
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadLongArray(reader)
+	local length = reader:ReadByte()
+	if length > 0 then
+		local array = {}
+		for i = 1, length , 1 do
+			array[i] = Hotfix.ReadLong(reader)
+		end
+		return array
+	end
+	return nil
+end
+
+function  ReadIntSeq(reader,count)
+	Hotfix.ReadSeqHead(reader)
+	local seq = {}
+	if hash ~= 0 then
+		for i = 1, count ,1 do
+			seq[i] = Hotfix.ReadInt(i-1)
+		end
+	end
+	return seq
+end
+
+function  ReadUIntSeq(reader,count)
+	Hotfix.ReadSeqHead(reader)
+	local seq = {}
+	if hash ~= 0 then
+		for i = 1, count ,1 do
+			seq[i] = Hotfix.ReadUInt(i-1)
+		end
+	end
+	return seq
+end
+
+function  ReadFloatSeq(reader,count)
+	Hotfix.ReadSeqHead(reader)
+	local seq = {}
+	if hash ~= 0 then
+		for i = 1, count ,1 do
+			seq[i] = Hotfix.ReadFloat(i-1)
+		end
+	end
+	return seq
+end
+
+function  ReadDoubleSeq(reader,count)
+	Hotfix.ReadSeqHead(reader)
+	local seq = {}
+	if hash ~= 0 then
+		for i = 1, count ,1 do
+			seq[i] = Hotfix.ReadDouble(i-1)
+		end
+	end
+	return seq
+end
+
+function  ReadStringSeq(reader,count)
+	Hotfix.ReadSeqHead(reader)
+	local seq = {}
+	if hash ~= 0 then
+		for i = 1, count ,1 do
+			seq[i] = Hotfix.ReadString(i-1)
+		end
+	end
+	return seq
+end
+
+function  ReadLongSeq(reader,count)
+	Hotfix.ReadSeqHead(reader)
+	local seq = {}
+	if hash ~= 0 then
+		for i = 1, count ,1 do
+			seq[i] = Hotfix.ReadLong(i-1)
+		end
+	end
+	return seq
+end
+
+function  ReadIntSeqList(reader,count)
+	local length = Hotfix.ReadSeqListHead(reader)
+	local seqList = {}
+	local index = 1
+	for i = 1, length ,1 do
+		if hash ~= 0 then
+			for j = 1, count ,1 do
+				seqList[index] = Hotfix.ReadInt(i-1,j-1)
+				index = index + 1
+			end
+		end
+	end
+	return seqList
+end
+
+function  ReadUIntSeqList(reader,count)
+	local length = Hotfix.ReadSeqListHead(reader)
+	-- print("length: "..tostring(length))
+	local seqList = {}
+	local index = 1
+	for i = 1, length ,1 do
+		if hash ~= 0 then
+			for j = 1, count ,1 do
+				seqList[index] = Hotfix.ReadUInt(i-1,j-1)
+				-- print ("the value: "..tostring(seqList[index]))
+				index = index + 1
+			end
+		end	
+	end
+	return seqList
+end
+
+function  ReadFloatSeqList(reader,count)
+	local length = Hotfix.ReadSeqListHead(reader)
+	local seqList = {}
+	local index = 1
+	for i = 1, length ,1 do
+		if hash ~= 0 then
+			for j = 1, count ,1 do
+				seqList[index] = Hotfix.ReadFloat(i-1,j-1)
+				index = index + 1
+			end
+		end
+	end
+	return seqList
+end
+
+function  ReadDoubleSeqList(reader,count)
+	local length = Hotfix.ReadSeqListHead(reader)
+	local seqList = {}
+	local index = 1
+	for i = 1, length ,1 do
+		if hash ~= 0 then
+			for j = 1, count ,1 do
+				seqList[index] = Hotfix.ReadDouble(i-1,j-1)
+				index = index + 1
+			end
+		end
+	end
+	return seqList
+end
+
+function  ReadStringSeqList(reader,count)
+	local length = Hotfix.ReadSeqListHead(reader)
+	local seqList = {}
+	local index = 1
+	for i = 1, length ,1 do
+		if hash ~= 0 then
+			for j = 1, count ,1 do
+				seqList[index] = Hotfix.ReadString(i-1,j-1)
+				index = index + 1
+			end
+		end
+	end
+	return seqList
+end
+
+function  ReadLongSeqList(reader,count)
+	local length = Hotfix.ReadSeqListHead(reader)
+	local seqList = {}
+	local index = 1
+	for i = 1, length ,1 do
+		if hash ~= 0 then
+			for j = 1, count ,1 do
+				seqList[index] =  Hotfix.ReadLong(i-1,j-1)
+				index = index + 1
+			end
+		end
+	end
+	return seqList
+end

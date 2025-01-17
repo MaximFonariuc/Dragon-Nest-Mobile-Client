@@ -1,0 +1,28 @@
+﻿CardCollectDlg={}
+local this = CardCollectDlg
+
+function CardCollectDlg.BeforeRefresh(go)
+	return false
+end
+
+
+function CardCollectDlg.AfterRefresh(go)
+--[[	if not IsNil(go) then
+		local str = "AfterRefresh=>  "..go.name
+		print(str)
+		
+		local ResolveBtn = go.transform:Find("Bg/Detail/Bg/Num/Resolve")
+		if not IsNil(ResolveBtn) then
+			ResolveBtn.localPosition = Vector3(0, 2000, 0)
+		end
+		
+		local AutoResolveBtn = go.transform:Find("Bg/CardList/Bg/AutoResolve")
+		if not IsNil(AutoResolveBtn) then
+			AutoResolveBtn.localPosition = Vector3(0, 2000, 0)
+		end
+	else
+		print("AfterRefresh: There is nil lua script ")
+	end--]]
+
+	return false
+end

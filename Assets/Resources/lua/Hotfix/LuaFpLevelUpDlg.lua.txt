@@ -1,0 +1,266 @@
+﻿--
+--  LuaFpLevelUpDlg.lua
+--  Created by alexpeng on 2016/06/11 09:40:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+--UI相关
+
+--require "LuaFpLevelUpDlg_data.lua"
+
+require "LuaFpGoToLevelUpTable.lua"
+
+LuaFpLevelUpDlg={}
+local this = LuaFpLevelUpDlg
+
+local Go
+local m_go_close
+local m_wrapcontent
+local m_templateGo
+local m_templatePool
+
+local  m_dataItemArray = {}
+local m_openedDataItemArray = {}
+local  m_fpLevelUpTab
+	-- body
+--called by MonoBehaviour.Awake
+function LuaFpLevelUpDlg.Awake(go)
+	print("Awake")
+	Go = go
+	m_go_close = go.transform:Find("Bg/Close").gameObject
+	m_templateGo = go.transform:Find("Bg/Panel/template")
+	m_templatePool = Hotfix.SetupPool(m_templateGo.parent.gameObject, m_templateGo.gameObject, 5)
+	this.InitData()
+end
+
+
+function LuaFpLevelUpDlg.Start()
+	print("Start")
+	Hotfix.SetClickCallback(m_go_close,this.Close)
+end
+
+
+function LuaFpLevelUpDlg.OnEnable()
+	print("LuaFpLevelUpDlg.OnEnable")
+end
+
+
+function LuaFpLevelUpDlg.OnDisable()
+	print("LuaFpLevelUpDlg.OnDisable")
+end
+
+
+function LuaFpLevelUpDlg.OnDestroy()
+	m_templatePool:FakeReturnAll()
+end
+
+
+function LuaFpLevelUpDlg.OnShow()
+	print("LuaFpLevelUpDlg.OnShow")
+
+	this.RefreshUI()
+end
+
+function LuaFpLevelUpDlg.RefreshUI()
+	print("RefreshUI")
+	this.GetData()
+
+	print("GetData finished!")
+	if m_openedDataItemArray == nil then
+		print("m_openedDataItemArray is nil")
+		return
+	end
+
+	print("Start fill UI,length = "..#m_openedDataItemArray)
+	m_templatePool:FakeReturnAll()
+	for i=1,#m_openedDataItemArray,1 do
+		local item = m_templatePool:FetchGameObject()
+		item:SetActive(true)
+		item.transform.localPosition = Vector3(0, - (i - 1) * m_templatePool.TplHeight,0)--m_templatePool.TplPos + 
+		this.FillItem(item,m_openedDataItemArray[i])
+	end
+
+end
+
+function LuaFpLevelUpDlg.FillItem(go,data)
+	-- body
+	print("enter FillItem")
+
+	if (IsNil(go) or data == nil or data.RowData == nil) then
+		print("go or data is null")
+		return
+	end
+
+	local spr = go.transform:FindChild("Sprite"):GetComponent("UISprite")
+	spr.spriteName = data.RowData.IconName
+
+	local lab = go.transform:FindChild("TittleLab"):GetComponent("UILabel")
+	lab.text = data.RowData.Name
+
+	lab = go.transform:FindChild("ContentLab"):GetComponent("UILabel")
+	lab.text = data.RowData.Tips
+
+	lab = go.transform:FindChild("TipsLab"):GetComponent("UILabel") 
+	if(data.isDone) then
+		lab.text = "已完成"
+		go.transform:FindChild("TipsLab/t").gameObject:SetActive(false)
+	else 
+		lab.text = data.LeftNum.."/"..data.TotalNum
+		go.transform:FindChild("TipsLab/t").gameObject:SetActive(true)
+	end
+
+	local tra = go.transform:FindChild("Other")
+	for i=1,tra.childCount,1 do
+		local child = tra:FindChild(tostring(i-1))
+		if IsNil(child) then
+			print("child IsNil,i="..tostring(i))
+		else 
+			child.gameObject:SetActive(tonumber(data.RowData.StarNum) > i-1)
+			--print("star num = ".. data.RowData.StarNum);
+		end
+	end
+
+	tra = go.transform:FindChild("Recommend")
+	tra.gameObject:SetActive((tonumber(data.RowData.IsRecommond) == 1) and (not data.isDone))
+
+	tra = go.transform:FindChild("go")
+	spr = tra:GetComponent("UISprite")
+	--if spr == nil then print("spr is nil") end
+	print(type(data.RowData.SystemId))
+	spr.sid = data.RowData.SystemId--Hotfix.GetObjectString(data.RowData.systemId,"uid")
+	print("FillItem sid ="..tostring(spr.sid))
+
+	Hotfix.SetClickCallback(tra.gameObject,this.OnGoToClick)
+	tra.gameObject:SetActive(not data.isDone)
+end
+
+--初始化数据，只调用一次
+function LuaFpLevelUpDlg.InitData( ... )
+	-- body
+	if m_fpLevelUpTab == nil then
+		m_fpLevelUpTab = ReadFpGoToLevelUpTable("Table/FpGoToLevelUp")
+
+		for i = 1, #m_fpLevelUpTab, 1 do
+			local data = {}
+			data.Id = tonumber(m_fpLevelUpTab[i].Id)
+			data.RowData = m_fpLevelUpTab[i]
+			data.IsOpen = false
+			data.TotalNum = 1
+			data.LeftNum = 0
+			m_dataItemArray[i] = data;
+		end
+	end
+end
+
+--获取数据，每次showd的时候调用
+function LuaFpLevelUpDlg.GetData( ... )
+	-- body
+	if m_dataItemArray == nil then
+		print("m_dataItemArray is IsNil in GetData")
+		return
+	end
+
+	print("enter GetData")
+	local counter = 1
+	m_openedDataItemArray = {}
+
+	for i=1,#m_dataItemArray,1 do
+		m_dataItemArray[i].IsOpen,m_dataItemArray[i].TotalNum,m_dataItemArray[i].LeftNum = this.GetDocData(m_dataItemArray[i].RowData.SystemId)
+		if(m_dataItemArray[i].IsOpen and m_dataItemArray[i].LeftNum == 0) then
+			m_dataItemArray[i].isDone = true
+		else
+			m_dataItemArray[i].isDone = false
+		end
+		--print("isOpen="..tostring(m_dataItemArray[i].IsOpen)..";total="..m_dataItemArray[i].TotalNum..";left="..m_dataItemArray[i].LeftNum)
+		if(m_dataItemArray[i].IsOpen) then
+			m_openedDataItemArray[counter] = m_dataItemArray[i]
+			counter = counter + 1
+			--print("counter = "..tostring(counter))
+		end
+	end
+	--print("#m_openedDataItemArray.length ="..tostring(#m_openedDataItemArray))
+	--排序
+	table.sort(m_openedDataItemArray,this.SortFunction)
+end
+
+function  LuaFpLevelUpDlg.SortFunction(a,b)
+	-- body
+		if(not a.isDone and b.isDone) then --未完成>已完成，未完成的途径位置放在上面，已完成的途径位置方最下
+			return true
+		elseif(a.isDone and not b.isDone) then
+			return false
+		else
+			return a.RowData.StarNum > b.RowData.StarNum --星级排序。星级高的在上面
+		end	
+end
+
+function LuaFpLevelUpDlg.GetDocData(systemId)
+	-- body
+	systemId = tonumber(systemId)
+	--print("enter GetDocData,systemId="..systemId)
+
+	local  isOpen = Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",systemId)--Hotfix.OpenSys(systemId)
+	--print("isOpen="..tostring(isOpen))
+	if(isOpen == false)  then 
+		return false,0,0
+	end
+
+	local total = 0
+	local left = 0
+	if(systemId == 840) then --公会冒险 XSys_GuildDungeon_SmallMonter
+		total = tonumber(Hotfix.GetGlobalString("GuildCampDayCount"))
+		left = Hotfix.GetDocumentMember("GuildSmallMonsterDocument","LeftEnterCount",true,false)
+	elseif(systemId == 890) then --传承 XSys_GuildInherit
+		total = tonumber(Hotfix.GetGlobalString("GuildInheritTeaLimit")) + tonumber(Hotfix.GetGlobalString("GuildInheritStuLimit"))
+		left = Hotfix.GetDocumentMember("XGuildInheritDocument","m_teacherCount",false,true) + Hotfix.GetDocumentMember("XGuildInheritDocument","m_studentCount",false,true)
+	--elseif(systemId == 886) then--跑环 XSys_GuildDailyTask
+	--	total = Hotfix.CallDocumentMethod("GuildDailyTaskDocument", true, "GetTaskItemCount")
+	--	left = Hotfix.CallDocumentMethod("GuildDailyTaskDocument", true, "GetRewardedTaskCount")
+	elseif(systemId == 351) then --活跃度 XSys_Reward_Activity
+		total = Hotfix.CallDocumentMethod("DailyActivitiesDocument", true, "GetTotalActivityNum")
+		left = Hotfix.CallDocumentMethod("DailyActivitiesDocument", true, "GetFinishedActivityNum")
+	elseif(systemId == 111 or systemId == 520 or systemId == 529 or systemId == 540) then
+		local enumType
+		if(systemId == 111) then enumType = Hotfix.GetEnumType("TeamLevelType","4") 			--深渊 XSys_Level_Elite
+		elseif(systemId == 520) then enumType = Hotfix.GetEnumType("TeamLevelType","3") 		--巢穴 XSys_Activity_Nest
+		elseif(systemId == 529) then enumType = Hotfix.GetEnumType("TeamLevelType","9") 		--女神的试炼 XSys_Activity_GoddessTrial
+		elseif(systemId == 540) then enumType = Hotfix.GetEnumType("TeamLevelType","10") 		--无尽的深渊 XSys_EndlessAbyss
+		else print("not Find systemId = "..systemId)
+		end
+		--print("enumType = "..enumType)
+		total = Hotfix.CallDocumentMethod("ExpeditionDocument", true, "GetDayMaxCount",enumType) --TeamLevelType.TeamLevelAbyss
+		left = Hotfix.CallDocumentMethod("ExpeditionDocument", true, "GetDayCount",enumType)
+	else
+		--print("not Find this systemId :"..tostring(systemId))
+	end
+	--print("isOpen = "..tostring(isOpen)..";total = "..tostring(total)..";left = "..tostring(left))
+
+	return isOpen,total,left
+end
+
+function LuaFpLevelUpDlg.OnGoToClick(go)
+	local btn = go.transform:GetComponent("UISprite")
+	local sid = tonumber(btn.sid)
+	local enumType = Hotfix.GetEnumType("XSysDefine",btn.sid)
+	print("OnGoToClick sid="..tostring(sid))
+
+	if(sid == 886) then--跑环 XSys_GuildDailyTask
+		Hotfix.CallSingleMethod("UI.UICommon.UIManager",true,false,"CloseAllUI")
+		Hotfix.CallSingleMethod("XGameSysMgr",true,false,"OpenSystem",enumType)
+	--elseif(sid == 351) then--活跃度 XSys_Reward_Activity
+	--	Hotfix.CallSingleMethod("UI.RewardSystemDlg",true,false,"ShowWorkGameSystem",enumType)
+	elseif(sid == 111) then--深渊 XSys_Level_Elite
+		Hotfix.CallSingleMethod("UI.DungeonSelect",true,false,"AutoShowLastChapter",1,false)
+	--elseif(sid == 520) then--巢穴 XSys_Activity_Nest
+		--Hotfix.CallSingleMethod("UI.XGameSysMgr",true,false,"OpenSystem",sid)
+	else
+		Hotfix.CallSingleMethod("XGameSysMgr",true,false,"OpenSystem",sid)
+	end
+	this.Close(nil)
+end
+
+
+function LuaFpLevelUpDlg.Close(go)
+	LuaUIManager.Instance:Destroy("UI/GameSystem/FpLevelUpDlg")
+	print("Close LuaFpLevelUpDlg")
+end

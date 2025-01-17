@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Monster_orc_green_summon_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.75301003
+  Land_Value: .766589999
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1.75301003
+      inSlope: -5.18452024
+      outSlope: -5.18452024
+      tangentMode: 0
+    - time: .0333300009
+      value: 1.58020997
+      inSlope: -6.12031317
+      outSlope: -6.12031317
+      tangentMode: 0
+    - time: .0666600019
+      value: 1.34502995
+      inSlope: -10.4553852
+      outSlope: -10.4553852
+      tangentMode: 0
+    - time: .0999900028
+      value: .883253992
+      inSlope: -13.6064949
+      outSlope: -13.6064949
+      tangentMode: 0
+    - time: .133320004
+      value: .438021004
+      inSlope: -9.80201054
+      outSlope: -9.80201054
+      tangentMode: 0
+    - time: .166649997
+      value: .229852006
+      inSlope: -4.13456345
+      outSlope: -4.13456345
+      tangentMode: 0
+    - time: .199980006
+      value: .162411004
+      inSlope: -1.15029979
+      outSlope: -1.15029979
+      tangentMode: 0
+    - time: .233309999
+      value: .153173
+      inSlope: -.144914597
+      outSlope: -.144914597
+      tangentMode: 0
+    - time: .266640007
+      value: .152750999
+      inSlope: .0947044343
+      outSlope: .0947044343
+      tangentMode: 0
+    - time: .299970001
+      value: .159485996
+      inSlope: .28453356
+      outSlope: .28453356
+      tangentMode: 0
+    - time: .333299994
+      value: .171718001
+      inSlope: .424572527
+      outSlope: .424572527
+      tangentMode: 0
+    - time: .366629988
+      value: .187787995
+      inSlope: .514836311
+      outSlope: .514836311
+      tangentMode: 0
+    - time: .399960011
+      value: .206037
+      inSlope: .555310428
+      outSlope: .555310428
+      tangentMode: 0
+    - time: .433290005
+      value: .224804997
+      inSlope: .545994639
+      outSlope: .545994639
+      tangentMode: 0
+    - time: .466619998
+      value: .242432997
+      inSlope: .486888945
+      outSlope: .486888945
+      tangentMode: 0
+    - time: .499949992
+      value: .257261008
+      inSlope: .37800771
+      outSlope: .37800771
+      tangentMode: 0
+    - time: .533280015
+      value: .267630994
+      inSlope: .25270009
+      outSlope: .25270009
+      tangentMode: 0
+    - time: .566609979
+      value: .274105996
+      inSlope: .166021705
+      outSlope: .166021705
+      tangentMode: 0
+    - time: .599940002
+      value: .278697997
+      inSlope: .117251888
+      outSlope: .117251888
+      tangentMode: 0
+    - time: .633270025
+      value: .281922013
+      inSlope: .0838882178
+      outSlope: .0838882178
+      tangentMode: 0
+    - time: .666599989
+      value: .284289986
+      inSlope: .0659165308
+      outSlope: .0659165308
+      tangentMode: 0
+    - time: .699930012
+      value: .286316007
+      inSlope: .0633516312
+      outSlope: .0633516312
+      tangentMode: 0
+    - time: .733259976
+      value: .288513005
+      inSlope: .0761774406
+      outSlope: .0761774406
+      tangentMode: 0
+    - time: .766589999
+      value: .291393995
+      inSlope: .0864382982
+      outSlope: .0864382982
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

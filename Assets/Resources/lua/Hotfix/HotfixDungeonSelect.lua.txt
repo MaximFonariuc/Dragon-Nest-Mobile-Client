@@ -1,0 +1,68 @@
+--
+--  HotfixDungeonSelect.lua
+--  Created by alexpeng on 2016/05/11 07:23:57
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+DungeonSelect={}
+local this = DungeonSelect
+local m_goLevelUpGo
+local m_playTween
+
+function DungeonSelect.BeforeRefresh(go)
+	if not IsNil(go) then
+		local str = "BeforeRefresh=>  "..go.name
+		print(str)
+	else
+		print("BeforeRefresh: There is nil lua script ")
+	end
+	
+	return false
+end
+
+
+function DungeonSelect.AfterRefresh(go)
+	if not IsNil(go) then
+		local str = "AfterRefresh=>  "..go.name
+		--m_playTween = go.transform:FindChild("Bg/PlayTween"):GetComponent("UIPlayTween")
+		--m_playTween.finishCb:Setz(this.Finish)
+		DungeonSelect.UpDateGo()
+
+		print(str)
+		--this.Send()
+	else
+		print("AfterRefresh: There is nil lua script ")
+	end
+	return false
+end
+
+function DungeonSelect.UpDateGo( ... )
+	-- body
+	local m_goLevelUpStr = Hotfix.GetStringTable("LEVEL_GO_UP")
+	m_goLevelUpGo = Hotfix.CallSingleMethod("UI.DungeonSelect",true,false,"GetGoLevelUpInfo")
+	if not IsNil(m_goLevelUpGo) then
+		local levelText = m_goLevelUpGo.transform:Find("GoLevelup"):GetComponent("UILabel")
+		if levelText.text == m_goLevelUpStr then
+			Hotfix.SetClickCallback(levelText.gameObject,this.OnGoLevelUp)
+		else
+			if m_goLevelUpStr ~= nil then
+				print("levelText.text = "..levelText.text..";"..m_goLevelUpStr);
+			end
+		end
+	else 
+		print("m_goLevelUpGo is nil")
+	end
+
+	print("UpDateGo");
+end
+
+function Finish( ... )
+	-- body
+	print("tween finish")
+	this.UpDateGo()
+end
+
+function DungeonSelect.OnGoLevelUp( ... )
+	print("OnGoLevelUp")
+	LuaUIManager.Instance:Load("UI/GameSystem/FpLevelUpDlg")
+end

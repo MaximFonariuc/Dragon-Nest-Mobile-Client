@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &123262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 423262}
+  - 114: {fileID: 11423262}
+  m_Layer: 0
+  m_Name: Player_cleric_jump_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &423262
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11423262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.06885624
+  Land_Value: .699999988
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0333300009
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0666600019
+      value: 0
+      inSlope: 5.20486069
+      outSlope: 5.20486069
+      tangentMode: 0
+    - time: .0999900028
+      value: .346956015
+      inSlope: 9.49225998
+      outSlope: 9.49225998
+      tangentMode: 0
+    - time: .133320004
+      value: .632754028
+      inSlope: 7.70099068
+      outSlope: 7.70099068
+      tangentMode: 0
+    - time: .166649997
+      value: .860303998
+      inSlope: 5.59234905
+      outSlope: 5.59234905
+      tangentMode: 0
+    - time: .199980006
+      value: 1.00554001
+      inSlope: 2.8013196
+      outSlope: 2.8013196
+      tangentMode: 0
+    - time: .233309999
+      value: 1.04703999
+      inSlope: .905940592
+      outSlope: .905940592
+      tangentMode: 0
+    - time: .266640007
+      value: 1.06593001
+      inSlope: .321632534
+      outSlope: .321632534
+      tangentMode: 0
+    - time: .299970001
+      value: 1.06848001
+      inSlope: -.0747070014
+      outSlope: -.0747070014
+      tangentMode: 0
+    - time: .333299994
+      value: 1.06095004
+      inSlope: -.283078313
+      outSlope: -.283078313
+      tangentMode: 0
+    - time: .366629988
+      value: 1.04961002
+      inSlope: -.357937157
+      outSlope: -.357937157
+      tangentMode: 0
+    - time: .399960011
+      value: 1.03708994
+      inSlope: -.616712213
+      outSlope: -.616712213
+      tangentMode: 0
+    - time: .433290005
+      value: 1.00849998
+      inSlope: -1.03762352
+      outSlope: -1.03762352
+      tangentMode: 0
+    - time: .466619998
+      value: .967921972
+      inSlope: -1.28111291
+      outSlope: -1.28111291
+      tangentMode: 0
+    - time: .499949992
+      value: .923101008
+      inSlope: -1.8460381
+      outSlope: -1.8460381
+      tangentMode: 0
+    - time: .533280015
+      value: .844865024
+      inSlope: -3.04893637
+      outSlope: -3.04893637
+      tangentMode: 0
+    - time: .566609979
+      value: .719859004
+      inSlope: -4.00040579
+      outSlope: -4.00040579
+      tangentMode: 0
+    - time: .599940002
+      value: .578198016
+      inSlope: -4.47915983
+      outSlope: -4.47915983
+      tangentMode: 0
+    - time: .633270025
+      value: .421278
+      inSlope: -4.89712095
+      outSlope: -4.89712095
+      tangentMode: 0
+    - time: .666599989
+      value: .251756012
+      inSlope: -6.31980228
+      outSlope: -6.31980228
+      tangentMode: 0
+    - time: .699930012
+      value: 0
+      inSlope: -7.55343056
+      outSlope: -7.55343056
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 123262}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

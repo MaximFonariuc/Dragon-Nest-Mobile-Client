@@ -1,0 +1,165 @@
+﻿require "LuaRankRewardDocument.lua"
+LuaRankRewardHandler={}
+local this = LuaRankRewardHandler
+
+local data
+
+local m_Go
+local m_ItemPool
+local m_RewardPool
+local m_Close
+local m_BottomText
+local state = 0
+local print = Debugger.LogWarning
+function LuaRankRewardHandler.Start()
+end
+
+function LuaRankRewardHandler.OnHide()
+end
+
+function LuaRankRewardHandler.OnEnable()
+	m_bIsVisible = true
+end
+
+function LuaRankRewardHandler.OnDisable()
+	m_bIsVisible = false
+end
+
+function LuaRankRewardHandler.OnDestroy()
+	m_bIsVisible = false
+end
+
+function LuaRankRewardHandler.Awake(go)
+	print("LuaRankRewardHandler.Awake")
+	state = LuaRankRewardDocument.GetState()
+	if(IsNil(m_Go)) then
+		if state == 1 then
+			data = Hotfix.CallDocumentMethod("XBigMeleeEntranceDocument", true, "GetRankRewardList")
+		elseif state == 2 then
+			data = LuaRankRewardDocument.GetTable()
+		else
+			data = nil
+		end
+		print("LuaRankRewardHandler.awake    state == "..tostring(state))
+		m_Go = go
+		m_Close = m_Go.transform:Find("Bg/Close").gameObject
+		m_BottomText = m_Go.transform:Find("Bg/BottomText"):GetComponent("UILabel")
+		if state == 2 then
+			m_BottomText.gameObject:SetActive(false)
+		else
+			m_BottomText.text=Hotfix.GetStringTable("BIG_MELEE_RANK_REWARD_TIP");
+		end
+		m_RewardPool = Hotfix.SetupPool(
+			m_Go.transform:Find("Bg/ScrollView").gameObject,
+			m_Go.transform:Find("Bg/ScrollView/RewardTpl").gameObject,
+			8)
+
+		m_ItemPool = Hotfix.SetupPool(
+			m_Go.transform:Find("Bg/ScrollView").gameObject,
+			m_Go.transform:Find("Bg/ScrollView/Item").gameObject,
+			8)
+
+		Hotfix.SetClickCallback(m_Close, this.OnCloseClick)
+	end
+	return false
+end
+
+function  LuaRankRewardHandler.OnCloseClick(go)
+	print("LuaRankRewardHandler.OnCloseClick")
+	LuaUIManager.Instance:Destroy("UI/GameSystem/RankRewardHandler")
+end
+
+function LuaRankRewardHandler.OnShow()
+	if(m_bIsVisible==false)then
+		return
+	end
+	if data == nil then
+		print("LuaRankRewardHandler.OnShow     data is nil")
+		return
+	end
+	--print("LuaRankRewardHandler.OnShow   data.count == "..tostring(#data))
+
+	m_ItemPool:FakeReturnAll()
+	m_RewardPool:FakeReturnAll()
+	local count;
+	if state == 2 then
+		count = #data - 1
+	else
+		count = data.Count - 1
+	end
+	for _i=0,count do
+		local i
+		if state == 2 then
+			i = _i + 1
+		else 
+			i = _i
+		end
+		print("LuaRankRewardHandler.OnShow     1")
+		local go =m_RewardPool:FetchGameObject()
+		local rankNum=go.transform:Find("Bg/Rank/RankNum"):GetComponent("UILabel")
+
+		--print(tostring(data[i]))
+		local rankl = 0
+		local rankr = 0
+		if state == 1 then
+			rankl = data[i].rank[0]
+			rankr = data[i].rank[1]
+		elseif state == 2 then
+			if i == 1 then
+				rankl = data[i].rank
+				rankr = data[i].rank
+			else
+				rankl = data[i - 1].rank + 1
+				rankr = data[i].rank
+			end
+		end
+		if (rankl ==  rankr) then
+			rankNum.text= Hotfix.GetStringTable("Qualifying_Rank_Reward_Desc1",rankl);
+		else
+			rankNum.text= Hotfix.GetStringTable("Qualifying_Rank_Reward_Desc2",rankr);
+		end
+		local rewardcount
+		if state == 2 then
+			rewardcount = (#data[i].reward)/2 - 1
+		else
+			rewardcount = data[i].reward.Count - 1
+		end
+		print("LuaRankRewardHandler.OnShow     2      rewardcount == "..tostring(rewardcount))
+		for _j = 0,rewardcount do
+			print("LuaRankRewardHandler.OnShow      index == "..tostring(_j))
+			local j
+			if state == 2 then
+				j = _j + 1
+			else
+				j = _j
+			end
+			local item = m_ItemPool:FetchGameObject();
+
+			local normalItemDrawer=Hotfix.GetSingleMember("XItemDrawerMgr","normalItemDrawer",true,true,false)
+
+			if state == 2 then
+				normalItemDrawer:DrawItem(item,data[i].reward[j*2 - 1],data[i].reward[j*2])
+			else
+				normalItemDrawer:DrawItem(item,Hotfix.ParseIntSeqList(data[i].reward,j,0),Hotfix.ParseIntSeqList(data[i].reward,j,1))
+			end
+			local itemTip=item.transform:Find("Icon"):GetComponent("UISprite")
+			if state == 2 then
+				itemTip.uid = data[i].reward[j*2 - 1]
+			else
+				itemTip.uid = Hotfix.ParseIntSeqList(data[i].reward,j,0)
+			end
+			Hotfix.SetClickCallback(itemTip.gameObject, this._OnItemClick)
+
+			item.transform.parent = go.transform;
+			item.transform.localPosition = Vector3(m_ItemPool.TplPos.x + m_ItemPool.TplWidth * _j, 0);
+		end
+		print("LuaRankRewardHandler.OnShow     3")
+		go.transform.localPosition = Vector3(0, -m_RewardPool.TplHeight * _i) + m_RewardPool.TplPos;
+	end
+	m_RewardPool:ActualReturnAll()
+	m_ItemPool:ActualReturnAll()
+end
+
+function LuaRankRewardHandler._OnItemClick(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid,go)
+end

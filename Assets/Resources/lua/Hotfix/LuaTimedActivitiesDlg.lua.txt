@@ -1,0 +1,253 @@
+require "LuaTimedActivitiesDoc.lua"
+
+--local texturePath = "atlas/UI/GameSystem/Activity/Tex_active_h2Split"
+
+LuaTimedActivitiesDlg = {}
+local this = LuaTimedActivitiesDlg
+
+local Xsys_TimedAcivities = 480 --限时活动总id
+local Xsys_RechargeActitity = 481 --充值返利
+local Xsys_ConsumeAcivity = 482 --消费活动
+
+local m_ParentGo
+local m_closeGo
+local m_tabTra
+local m_tabsPool
+
+local m_rechargeGo = nil --充值返利
+local m_consumeGo = nil  --累计消费
+
+local m_tempGo
+
+local m_rechargeRedDot = nil
+local m_consumeRedDot = nil
+
+local m_bIsVisible = false
+local m_bIsLoad = false
+
+function LuaTimedActivitiesDlg.Awake(go)
+	m_ParentGo = go
+	m_closeGo = go.transform:Find("Bg/Close").gameObject
+	m_tabTra = go.transform:Find("Tabs/Tpl")
+	m_tabsPool = Hotfix.SetupPool(m_tabTra.parent.gameObject, m_tabTra.gameObject, 2)
+	LuaTimedActivitiesDoc.SetTimedActivitiesDlg(this)
+	m_bIsLoad = true
+end
+
+function LuaTimedActivitiesDlg.Start()
+	--print("Start")
+end
+
+
+function LuaTimedActivitiesDlg.OnEnable()
+	--print("LuaTimedActivitiesDlg.OnEnable  m_bIsVisible = "..tostring(m_bIsVisible))
+	m_bIsVisible = true
+	Hotfix.SetClickCallback(m_closeGo,this.Close)
+end
+
+function LuaTimedActivitiesDlg.OnDisable()
+	--print("LuaTimedActivitiesDlg.OnDisable  m_bIsVisible =" ..tostring(m_bIsVisible))
+
+	m_bIsVisible = false
+	if not IsNil(m_tabsPool) then
+		m_tabsPool:FakeReturnAll()
+	end
+end
+
+
+function LuaTimedActivitiesDlg.OnDestroy()
+	--print("LuaTimedActivitiesDlg.OnDestroy m_bIsVisible = "..tostring(m_bIsVisible))
+	m_bIsLoad = false
+	m_bIsVisible = false
+	if m_token ~= nil then
+		Hotfix.RemoveTimer(m_token)
+	end
+
+	m_rechargeGo = nil
+	m_consumeGo = nil
+	--print("LuaTimedActivitiesDlg.OnDestroy  m_tempGo = "..tostring(m_tempGo))
+end
+
+function LuaTimedActivitiesDlg.OnShow()
+	--print("LuaTimedActivitiesDlg.OnShow")
+	this.SetTabs()
+end
+
+function LuaTimedActivitiesDlg.OnHide()
+	--print("LuaTimedActivitiesDlg.OnHide")
+end
+
+function LuaTimedActivitiesDlg.IsVisible( ... )
+	return m_bIsVisible
+end
+
+function LuaTimedActivitiesDlg.IsLoad( ... )
+	return m_bIsLoad
+end
+
+function LuaTimedActivitiesDlg.PerfabGo( ... )
+	return m_ParentGo
+end
+
+--填充页签
+function LuaTimedActivitiesDlg.SetTabs( ... )
+	
+	m_tabsPool:FakeReturnAll()
+
+	local selectTra
+	local go
+	local lab1
+	local lab2
+	local redDot
+
+	m_rechargeRedDot = nil
+	m_consumeRedDot = nil
+
+	local sysid = 0
+	local isFirst = true
+	local index = 1
+	for i=1,2 do
+	
+		if i==1 then sysid = Xsys_RechargeActitity
+		elseif i==2 then sysid = Xsys_ConsumeAcivity	
+		end
+
+		local isOpen = Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",sysid)
+		if isOpen == true then 
+			go = m_tabsPool:FetchGameObject()
+			go.name = tostring(i)
+
+			go.transform.localScale = Vector3.one
+			go.transform.localPosition = Vector3(m_tabsPool.TplWidth * (index-1),0,0)
+
+			go = go.transform:Find("Bg")
+			lab1 = go:Find("SelectedTextLabel"):GetComponent("UILabel")
+			lab2 = go:Find("TextLabel"):GetComponent("UILabel")
+			redDot = go:Find("RedPoint").gameObject
+
+			if i==1 then
+				if isFirst == true then selectTra = go end
+				m_rechargeRedDot = redDot
+				lab1.text = Hotfix.GetStringTable("TimedRechargeTab")
+				lab2.text = Hotfix.GetStringTable("TimedRechargeTab")
+				redDot:SetActive(LuaTimedActivitiesDoc:GetRedDotBySysId(Xsys_RechargeActitity))
+				Hotfix.SetClickCallback(go.gameObject,this.OnClickRechargeTab)
+			elseif i==2 then
+				if isFirst == true then selectTra = go end
+				m_consumeRedDot = redDot
+				lab1.text = Hotfix.GetStringTable("TimedConsumeTab")
+				lab2.text = Hotfix.GetStringTable("TimedConsumeTab")
+				redDot:SetActive(LuaTimedActivitiesDoc:GetRedDotBySysId(Xsys_ConsumeAcivity))
+				Hotfix.SetClickCallback(go.gameObject,this.OnClickConsumeTab)
+			else
+				lab1.text = ""
+				lab2.text = ""
+				redDot:SetActive(false)
+				Hotfix.SetClickCallback(go.gameObject,this.OnClickNil)
+			end
+
+			isFirst = false
+			index = index + 1
+		end
+
+	end
+
+	--隐藏已经打开过的界面
+	if not IsNil(m_rechargeGo) then
+		m_rechargeGo:SetActive(false)
+	end
+
+	if not IsNil(m_consumeRedDot) then
+		m_consumeRedDot:SetActive(false)
+	end
+
+	--设置默认显示的页签，目前默认第一个
+	if not IsNil(selectTra) then
+		local toggle = selectTra:GetComponent("UIToggle")
+		toggle.value = true
+		if selectTra.parent.gameObject.name == "1" then
+			this.OnClickRechargeTab(selectTra.gameObject)
+		elseif selectTra.parent.gameObject.name == "2" then
+			this.OnClickConsumeTab(selectTra.gameObject)
+		end
+	end
+
+	this.RefreshRedDot()
+end
+
+--刷新tab红点状态
+function LuaTimedActivitiesDlg.RefreshRedDot()
+	print("LuaTimedActivitiesDlg.RefreshRedDot")
+	if not IsNil(m_rechargeRedDot) then
+		m_rechargeRedDot:SetActive(LuaTimedActivitiesDoc:GetRedDotBySysId(Xsys_RechargeActitity))
+	end
+
+	if not IsNil(m_consumeRedDot) then
+		m_consumeRedDot:SetActive(LuaTimedActivitiesDoc:GetRedDotBySysId(Xsys_ConsumeAcivity))
+	end
+end
+
+--充值返利
+function LuaTimedActivitiesDlg.OnClickRechargeTab(go)
+
+	if not IsNil(m_rechargeGo) and m_tempGo == m_rechargeGo then
+		return 
+	end 
+
+	if not IsNil(m_tempGo) then 	--关掉前一个界面
+		m_tempGo:SetActive(false)
+	end
+
+	LuaTimedActivitiesDoc:SetSelectTab(Xsys_RechargeActitity)
+
+	if IsNil(m_rechargeGo) then
+		LuaUIManager.Instance:Load("UI/GameSystem/RechargeActivityHandler")
+		m_rechargeGo = GameObject.Find("RechargeActivityHandler")
+		m_rechargeGo.transform.parent = m_ParentGo.transform:Find("Handlers")
+		m_rechargeGo.transform.localPosition = Vector3.zero
+		m_rechargeGo.transform.localScale = Vector3.one
+		m_rechargeGo:SetActive(true)
+	else
+		m_rechargeGo:SetActive(true)
+	end
+
+	m_tempGo = m_rechargeGo
+end
+
+--累计消费
+function LuaTimedActivitiesDlg.OnClickConsumeTab(go)
+
+	if not IsNil(m_consumeGo) and m_tempGo == m_consumeGo then
+		return 
+	end 
+
+	if not IsNil(m_tempGo) then 	--关掉前一个界面
+		m_tempGo:SetActive(false)
+	end
+
+
+	LuaTimedActivitiesDoc:SetSelectTab(Xsys_ConsumeAcivity)
+
+	if IsNil(m_consumeGo) then
+		LuaUIManager.Instance:Load("UI/GameSystem/ConsumActivityHandler")
+		m_consumeGo = GameObject.Find("ConsumActivityHandler")
+		m_consumeGo.transform.parent = m_ParentGo.transform:Find("Handlers")
+		m_consumeGo.transform.localPosition = Vector3.zero
+		m_consumeGo.transform.localScale = Vector3.one
+		m_consumeGo:SetActive(true)
+	else
+		m_consumeGo:SetActive(true)
+	end
+
+	m_tempGo = m_consumeGo
+end
+
+--空事件
+function LuaTimedActivitiesDlg.OnClickNil(go)
+	print("LuaTimedActivitiesDlg.OnClickNil")
+end
+
+function LuaTimedActivitiesDlg.Close(go)
+	LuaUIManager.Instance:Destroy("UI/GameSystem/TimedActivitiesDlg")
+	--print("Close LuaBackflowDlg")
+end

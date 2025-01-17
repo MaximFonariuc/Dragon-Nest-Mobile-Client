@@ -1,0 +1,271 @@
+﻿--
+--  HotfixPartnerDayDocument.lua
+--
+
+require "HotfixDataPool.lua"
+
+SYS_PARTNERDAY = 846
+
+XRewardData = XDatabase:new()
+function XRewardData:Constructor()
+	XDatabase.Constructor(self)
+
+	self.itemID = 0
+	self.itemCount = 0
+end
+
+function XRewardData:Recycle()
+	XDataPool:Recycle(XRewardData, self)
+end
+
+XPartnerDayTaskData = XDatabase:new()
+function XPartnerDayTaskData:Constructor()
+	XDatabase.Constructor(self)
+
+	self.awards = {}
+	self.fetchedCount = 0
+	self.maxFetchCount = 0
+	self.state = 0 --0:未完成；1：完成；2：已领取
+
+	self.taskID = 0
+	self.taskName = ""
+end
+
+function XPartnerDayTaskData:Recycle()
+	for i=#self.awards,1,-1 do
+		self.awards[i]:Recycle()
+		self.awards[i] = nil
+	end
+	XDataPool:Recycle(XPartnerDayTaskData, self)
+end
+
+------------------------------------------------------------------------------------------
+
+HotfixPartnerDayDocument = {}
+local this = HotfixPartnerDayDocument
+
+local m_DataList = {}
+local m_LeftTime = 0
+local m_ActID = 0
+
+local m_CurActData;
+
+local m_SuperActivityTimeTable = nil
+local m_SuperActivityTaskTable = nil
+local m_SuperActivityTable = nil
+local m_bRedPoint = false
+local m_bUIOpenedRedPoint = false
+
+local m_PartnerDayFrame
+local m_OperatingActivityDlg
+
+local optionDefine = Hotfix.GetEnumType("XOptionsDefine","10006")
+
+function HotfixPartnerDayDocument.GetDatas()
+	return m_DataList
+end
+
+function HotfixPartnerDayDocument.GetLeftTime()
+	return m_LeftTime
+end
+
+function HotfixPartnerDayDocument.GetActID()
+	return m_ActID
+end
+
+function HotfixPartnerDayDocument.GetCurActData()
+	return m_CurActData
+end
+
+function HotfixPartnerDayDocument.SetFrame(frame)
+	m_PartnerDayFrame = frame
+end
+
+function HotfixPartnerDayDocument.SetOperatingActivityDlg(dlg)
+	m_OperatingActivityDlg = dlg
+end
+
+function HotfixPartnerDayDocument.EnterScene()
+	--print("EnterScene")
+	InitTables()
+end
+
+
+function HotfixPartnerDayDocument.EnterSceneFinally()
+	--print("EnterSceneFinally")
+	m_PartnerDayFrame = nil
+	m_OperatingActivityDlg = nil
+end
+
+
+function HotfixPartnerDayDocument.Attach()
+	--print("Attach")
+end
+
+
+function HotfixPartnerDayDocument.Detach()
+	--print("Detach")
+	m_SuperActivityTaskTable = nil
+	m_SuperActivityTimeTable = nil
+	m_SuperActivityTable = nil
+
+	m_ActID = 0
+
+	m_PartnerDayFrame = nil
+	m_OperatingActivityDlg = nil
+	m_bUIOpenedRedPoint = false
+	m_bRedPoint = false
+end
+
+
+function HotfixPartnerDayDocument.Reconnect()
+end
+
+function InitPartnerDayTables()
+
+	if m_SuperActivityTaskTable == nil then
+		print("Load tables")
+		m_SuperActivityTimeTable = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTimeTable", true, false)
+		m_SuperActivityTaskTable = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTaskTable", true, false)
+		m_SuperActivityTable = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTable", true, false)
+		
+		Hotfix.AttachSysRedPointRelative(600, SYS_PARTNERDAY, false)
+	end
+end
+
+function HotfixPartnerDayDocument.RefreshData()
+	
+	InitPartnerDayTables()
+
+	local offsetDayInfos = Hotfix.GetDocumentMember("TempActivityDocument", "offsetDayInfos", false, true)
+	if offsetDayInfos == nil then
+		return
+	end
+
+	-- 获取 当前激活ActID 和 剩余时间
+	local actChanged = false
+	local init = m_ActID == 0
+
+	for i=0,offsetDayInfos.actid.Count -1 do
+		local actid = offsetDayInfos.actid[i]
+		local superActivityTimeRowData = m_SuperActivityTimeTable:GetByactid(actid)
+		if superActivityTimeRowData ~= nil then
+			if superActivityTimeRowData.systemid == SYS_PARTNERDAY then
+				actChanged = m_ActID ~= actid
+				m_LeftTime = superActivityTimeRowData.duration - offsetDayInfos.offsetday[i]
+				m_ActID = actid
+				break
+			end
+		end
+	end
+
+	if actChanged then
+		for i=#m_DataList,1,-1 do
+			m_DataList[i]:Recycle()
+			m_DataList[i] = nil
+		end
+
+		for i = 0, m_SuperActivityTaskTable.Table.Length - 1 do
+			local superActivityTaskRowData = m_SuperActivityTaskTable.Table[i]
+
+			if superActivityTaskRowData.actid == m_ActID then
+				local taskData = XDataPool:GetData(XPartnerDayTaskData)
+				m_DataList[#m_DataList + 1] = taskData
+				taskData.taskID = superActivityTaskRowData.taskid
+				taskData.taskName = superActivityTaskRowData.title
+				taskData.maxFetchCount = superActivityTaskRowData.cnt
+				taskData.fetchedCount = 0
+
+				--奖励
+				if superActivityTaskRowData.items.Count > 0 then					
+					for j = 0, superActivityTaskRowData.items.Count - 1 do
+						local rewardItem = XDataPool:GetData(XRewardData)
+						taskData.awards[#taskData.awards + 1] = rewardItem			
+						rewardItem.itemID = Hotfix.ParseUIntSeqList(superActivityTaskRowData.items,j,0)	
+						rewardItem.itemCount = Hotfix.ParseUIntSeqList(superActivityTaskRowData.items,j,1)					
+					end
+				end				
+			end
+		end
+
+		for i = 0, m_SuperActivityTable.Table.Length - 1 do
+			if m_SuperActivityTable.Table[i].actid == m_ActID then
+				m_CurActData = m_SuperActivityTable.Table[i]
+				break;
+			end
+		end
+
+		if init then
+			local lastOpenActID = Hotfix.CallDocumentMethod("OptionsDocument", true, "GetValue", optionDefine)
+			if lastOpenActID ~= m_ActID then
+				m_bUIOpenedRedPoint = true
+			end
+		end
+	end
+
+	this.RefreshCount()
+end
+
+function HotfixPartnerDayDocument.RefreshCount()
+	print("HotfixPartnerDayDocument.RefreshCount")
+	m_bRedPoint = false
+	for i=1,#m_DataList do
+		local taskData = m_DataList[i]
+		taskData.fetchedCount = Hotfix.CallDocumentMethod("TempActivityDocument", true, "GetActivityProgress", m_ActID, taskData.taskID)
+		taskData.state = Hotfix.CallDocumentMethod("TempActivityDocument", true, "GetActivityState", m_ActID, taskData.taskID)
+
+		print("calReadPoint taskName = "..taskData.taskName..", state = "..tostring(taskData.state)..", fetchedCount = " .. tostring(taskData.fetchedCount)..", maxFetchCount = "..tostring(taskData.maxFetchCount))
+
+		--已完成且有领取次数时显示红点
+		if taskData.state == 1 then
+			local isOpen = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", SYS_PARTNERDAY)
+			if isOpen == true then
+				m_bRedPoint = true
+				print("HotfixPartnerDayDocument.RefreshCount m_bRedPoint = true")
+			end
+		end
+	end
+
+	this._RefreshRedPoint()
+end
+
+function HotfixPartnerDayDocument._RefreshRedPoint()
+	Hotfix.ForceUpdateSysRedPointImmediately(SYS_PARTNERDAY, m_bRedPoint or m_bUIOpenedRedPoint)
+	local sys = Hotfix.GetEnumType("XSysDefine","XSys_OperatingActivity")
+	Hotfix.CallSingleMethod("XGameSysMgr", true, false, "RecalculateRedPointState", sys)
+end
+
+function HotfixPartnerDayDocument.Refresh()
+	print("HotfixPartnerDayDocument.Refresh")
+	this.RefreshData()
+	this.RefreshUI()
+end
+
+function HotfixPartnerDayDocument.RefreshUI()
+	if m_PartnerDayFrame ~= nil then
+		m_PartnerDayFrame.Refresh()
+	end
+
+	if m_OperatingActivityDlg ~= nil and Hotfix.CallSingleMethod("XOperatingActivityView", true, false, "IsVisible") then
+		m_OperatingActivityDlg.RefreshRedPoint()
+	end
+end
+
+function HotfixPartnerDayDocument.OnSpActivityChange( msg )
+	print("HotfixPartnerDayDocument.OnSpActivityChange")
+	if msg.actid == m_ActID then
+		print("HotfixPartnerDayDocument.OnSpActivityChange"..m_ActID..", "..msg.actid)
+		this.Refresh()
+	end
+end
+
+function HotfixPartnerDayDocument.UIOpened()
+	if m_bUIOpenedRedPoint then
+		Hotfix.CallDocumentMethod("OptionsDocument", true, "SetValue", optionDefine, m_ActID, false)
+		m_bUIOpenedRedPoint = false
+		this._RefreshRedPoint()
+		if m_OperatingActivityDlg ~= nil then 
+			m_OperatingActivityDlg.RefreshRedPoint()
+		end
+	end
+end

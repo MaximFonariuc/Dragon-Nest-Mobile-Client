@@ -1,0 +1,101 @@
+﻿--
+--  LuaFashionCompoundSuccHandler.lua
+--  Created by huailiang.peng on 2017/09/05 09:40:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+-- 时装合成成功 弹出框
+require "LuaFashionCompoundData.lua"
+require "LuaFashionCompoundDlg.lua"
+
+LuaFashionCompoundSuccHandler={}
+local this = LuaFashionCompoundSuccHandler
+
+local m_bIsVisible = false
+
+local m_close
+local m_icon
+local m_spr
+local m_title
+
+
+--called by MonoBehaviour.Awake
+function LuaFashionCompoundSuccHandler.Awake(go)
+	--print("Awake")
+	m_close = go.transform:Find("Bg/OK").gameObject
+	m_icon = go.transform:Find("Bg/ResultItem").gameObject
+	m_spr =  go.transform:Find("Bg/ResultItem/Icon").gameObject
+	m_title = go.transform:Find("Bg/ResultName"):GetComponent("UILabel")
+end
+
+function LuaFashionCompoundSuccHandler.Start()
+	--print("Start")
+	Hotfix.SetClickCallback(m_close,this.OnCloseClick)
+end
+
+
+function LuaFashionCompoundSuccHandler.OnEnable()
+	--print("LuaFashionCompoundSuccHandler.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaFashionCompoundSuccHandler.OnDisable()
+	--print("LuaFashionCompoundSuccHandler.OnDisable")
+	m_bIsVisible = false
+end
+
+
+function LuaFashionCompoundSuccHandler.OnDestroy()
+	--print("LuaFashionCompoundSuccHandler.OnDestroy")
+	m_bIsVisible = false
+end
+
+
+function LuaFashionCompoundSuccHandler.OnShow()
+	--print("LuaFashionCompoundSuccHandler.OnShow")
+	LuaFashionCompoundDlg.SetSuccHandler(this)
+	this.RefreshUi()
+end
+
+function LuaFashionCompoundSuccHandler.OnHide()
+	--print("LuaFashionCompoundSuccHandler.OnHide")
+end
+
+function LuaFashionCompoundSuccHandler.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaFashionCompoundSuccHandler.RefreshUi( ... )
+	print("LuaFashionCompoundSuccHandler.RefreshUi m_bIsVisible = "..tostring(m_bIsVisible))
+	-- 1. draw icon 
+	Hotfix.DrawItemView(m_icon, FashionCompoundData.succ_itemid, 1, true)
+	Hotfix.SetClickCallback(m_spr,this.OnItemClick)
+	--2. play fx
+	this.PlayFx()
+	-- 3. set title
+	local config = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetItemConf", FashionCompoundData.succ_itemid)
+	if config ~= nil then
+		local name = config.ItemName[0]
+		m_title.text = tostring(name)
+	end
+end
+
+--播放特效
+function LuaFashionCompoundSuccHandler.PlayFx(go)
+
+end
+
+
+function LuaFashionCompoundSuccHandler.OnCloseClick(go)
+	LuaUIManager.Instance:Destroy("UI/GameSystem/FashionCompoundSuccHandler")
+end
+
+
+function LuaFashionCompoundSuccHandler.OnItemClick( ... )
+	-- body
+	local itemid = FashionCompoundData.succ_itemid
+	Hotfix.LuaShowItemTooltipDialogByUID(itemid, m_spr)
+end
+
+

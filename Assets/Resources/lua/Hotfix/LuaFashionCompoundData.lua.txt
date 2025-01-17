@@ -1,0 +1,355 @@
+﻿--
+--  FashionCompoundData.lua
+--  Created by huailiang.peng on 2017/09/05 04:37:20
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+-- 存储时装合成相关数据的地方
+
+require "LuaFashionSynthesisTable.lua"
+
+FashionCompoundData = {}
+local this = FashionCompoundData
+
+-- 合成物品id
+FashionCompoundData.itemid = 0
+FashionCompoundData.compose_id1 = 0
+FashionCompoundData.compose_id2 = 0
+FashionCompoundData.compose_uid1 = ""
+FashionCompoundData.compose_uid2 = ""
+FashionCompoundData.success_rate = 0
+FashionCompoundData.add_rate = 0
+
+
+-- 合成成功的物品id
+FashionCompoundData.succ_itemid = 0
+
+-- 选中的套装
+FashionCompoundData.SuitRow = nil
+
+-- s品质时装列表
+FashionCompoundData.list_s = {}
+
+-- a品质时装列表
+FashionCompoundData.list_a = {}
+
+-- b品质时装列表
+FashionCompoundData.list_b = {}
+
+-- 所有要合成的时装列表
+FashionCompoundData.list_all = {}
+
+-- 不直接读取fashionsuit表 那个FashionID配的不全  
+-- 和list_all序列对应
+FashionCompoundData.list_fashions={}
+
+-- 0 代表选中左边 1代表选中右边
+FashionCompoundData.curr_select = 0
+
+-- 当前合成材料 -itemid 
+FashionCompoundData.curr_compounds ={}
+
+-- 当前合成材料 --uid(string)
+FashionCompoundData.curr_uid_compounds = {}
+
+-- 引用c#表格内存
+local FashionSuit 
+
+-- 时装合成表
+local FashionSynthesis
+
+-- fashionBag
+local FashionBag
+
+function FashionCompoundData.OnUISelect(fashion_id)
+	-- body
+	this.itemid=fashion_id
+	if FashionSynthesis ~= nil then 
+		for i=1,#FashionSynthesis do
+			if tonumber(FashionSynthesis[i].FashionID) == tonumber(fashion_id) then
+				this.success_rate = FashionSynthesis[i].SuccessRate
+			end
+		end
+	else
+		error("******* FashionSynthesis is nil ********")
+	end
+end
+
+function FashionCompoundData.OnResItemInfo(fashion_id,add_succ_rate)
+	-- body
+	this.add_rate = add_succ_rate
+end
+
+
+function FashionCompoundData.OnCompseSucc( ... )
+	-- body
+	this.compose_id1 = 0
+	this.compose_id2 = 0
+	this.compose_uid1 = ""
+	this.compose_uid2 = ""
+	this.add_rate = 0
+	this.ReculList()
+end
+
+
+function FashionCompoundData.OnCmposeFail( ... )
+	this.compose_id2 = 0
+	this.compose_uid2 = ""
+	this.ReculList()
+end
+
+function FashionCompoundData.OnDestroy()
+	this.succ_itemid = this.itemid
+	this.compose_id1 = 0
+	this.compose_id2 = 0
+	this.success_rate = 0
+	this.add_rate = 0
+	this.itemid = 0
+	this.SuitRow = nil
+end
+
+
+--重新计算s品质 和a品质列表
+function FashionCompoundData.ReculList( ... )
+	this.Dolist()
+
+	local level = Hotfix.GetPlayer("Level")
+	FashionBag = Hotfix.GetDocumentMember("FashionDocument","FashionBag",true,false)
+	if FashionSuit == nil then
+		local table = Hotfix.GetDocumentStaticMember("XFashionDocument","_fashionSuitTable",false,true)
+		FashionSuit = table.Table
+	end
+
+	local cnt= #this.list_all
+
+	for i=1,cnt do
+		local row = this.GetSuitRow(this.list_all[i])
+		local  showlevel = row.ShowLevel
+		local quality = row.SuitQuality
+		--print("level: "..tostring(showlevel).." quality: "..tostring(quality))
+		local key = tonumber(row.SuitID)
+		if level >= showlevel then
+			if tonumber(quality) == 3 then  -- A
+				this.list_a[key] = this.Parse(this.list_fashions[i],row.SuitID)
+			elseif tonumber(quality) == 2 then
+				this.list_b[key] = this.Parse(this.list_fashions[i],row.SuitID)
+			elseif tonumber(quality) == 4 then -- S
+				this.list_s[key] = this.Parse(this.list_fashions[i],row.SuitID)
+			end
+		end
+	end
+	--print("cnt list: "..tostring(cnt).." s cnt: "..tostring(#this.list_s))
+end
+
+
+
+function FashionCompoundData.ReculCurrEquipState()
+	-- body
+	if SuitRow == nil then return end
+	local cnt = #this.list_all
+	local key = tonumber(SuitRow.SuitID)
+	for i=1,cnt do
+		if this.list_all[i] == key then
+			if SuitRow.SuitQuality == 3 then
+				this.list_a[key] = this.Parse(this.list_fashions[i],key)
+			elseif SuitRow.SuitQuality == 2 then
+				this.list_b[key] = this.Parse(this.list_fashions[i],key)
+			elseif SuitRow.SuitQuality == 4 then 
+				this.list_s[key] = this.Parse(this.list_fashions[i],key)
+				print(" key: "..tostring(key))
+				for k,v in pairs(this.list_s[key]) do
+					--print(k,v)
+					--print("canCompose: "..tostring(this.list_s[key].canCompose).." get: "..tostring(this.list_s[key].get))
+				end
+			end
+		end
+	end
+end
+
+
+function  FashionCompoundData.GetSuitRow( suitid )
+	local cnt= FashionSuit.Length - 1
+	for i=0,cnt do
+		if FashionSuit[i].SuitID == suitid then
+			return FashionSuit[i]
+		end
+	end
+	return nil
+end
+
+-- 计算可以合成的套装 
+function FashionCompoundData.Dolist( )
+	if FashionSynthesis == nil then 
+		FashionSynthesis = ReadFashionSynthesisTable("Table/FashionSynthesis")
+	end
+
+	if #this.list_all == 0  then
+		local index = 1
+		local lastid = 0 
+		for i=1,#FashionSynthesis do
+			if FashionSynthesis[i].SuitID ~= lastid then
+				lastid = FashionSynthesis[i].SuitID
+				this.list_all[index] = lastid
+				index = index + 1
+			end
+		end
+
+		local index2 = 0
+		index = 1
+		lastid = 0
+		this.list_fashions[index] = {}
+		for i=1,#FashionSynthesis do
+			if FashionSynthesis[i].SuitID == lastid then
+				index = index + 1
+				this.list_fashions[index2][index] = FashionSynthesis[i].FashionID
+			else
+				index = 1
+				index2 = index2 + 1
+				this.list_fashions[index2]={}
+				this.list_fashions[index2][index] = FashionSynthesis[i].FashionID
+			end
+			lastid = FashionSynthesis[i].SuitID
+		end
+	end
+	return false
+end
+
+-- fashionlist 是luatable
+function  FashionCompoundData.Parse(fashionlist,suitid)
+	local  cnt = #fashionlist
+	local node={}
+	--print("<color=red>falshions cnt: "..tostring(cnt).."</color>")
+	for i=1,cnt do
+		node[i] = {}
+		node[i].get = this.IsGet(fashionlist[i])
+		node[i].itemid = fashionlist[i]
+		node[i].suitid = suitid
+		node[i].canCompose = this.CanCompose(fashionlist[i],suitid) and not node[i].get
+	end
+	return node
+end
+
+
+function FashionCompoundData.IsGet(itemid)
+	local cnt = FashionBag.Count - 1
+	for i=0,cnt do
+		if FashionBag[i].itemID == itemid then
+			return true
+		end
+	end
+	return false
+end
+
+-- 背包里没有且合成材料足够返回true
+-- 低一级品质 且 个数大于等于2
+function  FashionCompoundData.CanCompose( itemid,suitid )
+	if this.list_all == nil then 
+		this.Dolist()
+	end
+
+	local row = this.GetSuitRow(suitid)
+	local quality = row.CraftedItemQuality 
+	local config = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetFashionConf", itemid)
+	local pos = 1
+	if config~= nil then pos = config.EquipPos end
+	
+	local cnt = 0
+	local list = Hotfix.CallDocumentMethod("FashionDocument",true,"GetFashionInBag",pos,false)
+	local count = list.Count - 1
+	for i=0,count do
+		local iconfig = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetItemConf", list[i].itemID)
+		if tonumber(iconfig.ItemQuality) == tonumber(quality) and iconfig.TimeLimit <= 0 then 
+			cnt = cnt + 1
+		end 
+	end
+	--print("itemid: "..tostring(itemid)," pos:"..pos," cnt:"..tostring(cnt)," count: "..tostring(count)," quality:"..tostring(quality))
+	return cnt>=2
+end
+
+
+-- 计算当前选中时装部件的合成材料 存在curr_compounds
+function FashionCompoundData.CulCurrCompoundMaterials( ... )
+	this.curr_compounds = {}
+	this.curr_uid_compounds = {}
+
+	local quality = this.SuitRow.CraftedItemQuality
+	local config = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetFashionConf", this.itemid)
+	local pos = 1
+	if config~= nil then pos = config.EquipPos end
+	
+	local cnt = 0
+	local list = Hotfix.CallDocumentMethod("FashionDocument",true,"GetFashionInBag",pos,true)
+	local count = list.Count - 1
+
+	print("CulCurrCompoundMaterials "..tostring(pos).." list cnt: "..tostring(list.count).." select: "..tostring(this.curr_select).." uid1: "..tostring(this.compose_id1))
+	for i=0,count do
+		local iconfig = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetItemConf", list[i].itemID)
+		--print(iconfig.ItemName[0].." quality:"..tostring(iconfig.ItemQuality))
+		if tonumber(iconfig.ItemQuality) == tonumber(quality) then 
+			local uid  = Hotfix.GetObjectString(list[i],"uid",true,true)
+			print("for uid: "..tostring(Uid))
+			if this.curr_select == 0 and this.compose_id2 ~= 0 and uid == this.compose_uid2 then
+				-- 点左边 右边选中的不计入合成材料
+				print("compose_id2: "..tostring(this.compose_id2).." uid: "..this.compose_uid2)
+			elseif this.curr_select == 1 and this.compose_id1 ~= 0 and uid == this.compose_uid1 then
+				-- 点右边 左边选中的不计入合成材料
+				print("compose_id1: "..tostring(this.compose_id1).." uid1: "..this.compose_uid1)
+			else
+				table.insert(this.curr_compounds,list[i].itemID)
+				table.insert(this.curr_uid_compounds,uid)
+			end
+		end 
+	end
+	--print("all cnt: "..tostring(#this.curr_compounds))
+end
+
+
+-- 选中后需计算 itemid SuitRow 和被合成的材料
+function FashionCompoundData.OnSelect(itemid,suitid)
+	this.itemid = itemid
+	this.compose_id1 = 0
+	this.compose_id2 = 0
+	this.OnUISelect(itemid)
+	if FashionSuit == nil then
+		local table = Hotfix.GetDocumentStaticMember("FashionDocument","_fashionSuitTable",false,true)
+		FashionSuit = table.Table
+	end
+
+	local cnt= FashionSuit.Length - 1
+	--print("cnt: "..tostring(cnt).." suitid:"..tostring(suitid).." itemid: "..tostring(itemid))
+	for i=0,cnt do
+		--print("suitid: "..tostring(FashionSuit[i].SuitID).." suitid:"..tostring(suitid).." equal: "..tostring(FashionSuit[i].SuitID == suitid))
+		if tonumber(FashionSuit[i].SuitID) == tonumber(suitid) then
+			this.SuitRow = FashionSuit[i]
+			--print("suitrow: "..tostring(suitid))
+		end
+	end
+end
+
+
+function FashionCompoundData.OnSelectSuit(suitid)
+	if FashionSuit == nil then
+		local table = Hotfix.GetDocumentStaticMember("FashionDocument","_fashionSuitTable",false,true)
+		FashionSuit = table.Table
+	end
+	local cnt= FashionSuit.Length - 1
+	for i=0,cnt do
+		if FashionSuit[i].SuitID == suitid then
+			this.SuitRow = FashionSuit[i]
+		end
+	end
+end
+
+
+function FashionCompoundData.GetCurrFashions( ... )
+	-- body
+	local index = 1
+	for i=1,#this.list_all do
+		if this.list_all[i] == this.SuitRow.SuitID then
+			index = i
+			break
+		end
+	end
+	return this.list_fashions[index]
+end
+

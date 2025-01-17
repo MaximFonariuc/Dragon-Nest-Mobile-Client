@@ -1,0 +1,43 @@
+--
+--  LuaParseFetchMailArg.lua
+--  Created by alexpeng on 2016/05/14 02:56:09
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+LuaParseFetchMailArg={}
+local this = LuaParseFetchMailArg
+require "FetchMailArg_pb.lua"
+require "FetchMailRes_pb.lua"
+
+
+function LuaParseFetchMailArg.encoder()  
+    local msg = FetchMailArg_pb.FetchMailArg()
+    msg.page = 64
+    msg.count = 255
+    local pb_data = msg:SerializeToString()  
+	print("mail=> "..msg.page.."-"..msg.count)
+    TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(12373, TestProtol.data, Res, Err)
+	else
+		print("test proto data is nil")
+	end
+end
+
+function Res(data,length)
+	print("res fetch mail")
+	local msg = FetchMailRes_pb.FetchMailRes()
+	msg:ParseFromString(data,length)
+	print("parse page:"..msg.page.." count:"..msg.pagecount) 
+end
+
+function Err(code)
+end
+
+
+function LuaParseFetchMailArg.decoder()  
+	local msg = FetchMailArg_pb.FetchMailArg()
+	local length = #TestProtol.data
+	msg:ParseFromString(TestProtol.data,length)
+	print("parse page:"..msg.page.." count:"..msg.count) 
+end

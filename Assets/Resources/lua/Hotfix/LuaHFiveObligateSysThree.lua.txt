@@ -1,0 +1,78 @@
+--
+--  LuaHFiveObligateSysThree.lua
+--  Created by alexpeng on 2017/02/09 10:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+XSys_H5ObligateSysThree = 392
+
+local texturePath
+
+LuaHFiveObligateSysThree = {}
+local this = LuaHFiveObligateSysThree
+
+local m_Go
+local m_bIsVisible = false
+
+local m_ExchangeBtn;
+local m_BgTexture;
+
+
+--called by MonoBehaviour.Awake
+function LuaHFiveObligateSysThree.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_ExchangeBtn = m_Go.transform:Find("Button")
+		Hotfix.SetClickCallback(m_ExchangeBtn.gameObject, this.OnBtnClick)
+		texturePath = Hotfix.GetGlobalString("H5ObligateSysThreeTexPath")
+		print("LuaHFiveObligateSysOne texturePath"..texturePath);
+	end
+	
+end
+
+function  LuaHFiveObligateSysThree.OnBtnClick(go)
+	print("OnCDKeyBtnClick")
+	Hotfix.CallSingleMethod("UI.UiUtility", true, false, "OpenHtmlUrl", "H5ObligateSysThreeUrl")
+end
+
+
+function LuaHFiveObligateSysThree.Start()
+
+end
+
+function LuaHFiveObligateSysThree.OnEnable()
+	print("LuaHFiveObligateSysThree.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaHFiveObligateSysThree.OnDisable()
+	m_bIsVisible = false
+	print("LuaHFiveObligateSysThree.OnDisable")
+end
+
+
+function LuaHFiveObligateSysThree.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaHFiveObligateSysThree.OnShow()
+	print("LuaHFiveObligateSysThree.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaHFiveObligateSysThree SetBgTexture")
+	end
+end
+
+function LuaHFiveObligateSysThree.OnHide()
+	print("LuaHFiveObligateSysThree.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaHFiveObligateSysThree DestoryTexture")
+	end
+end
+
+function LuaHFiveObligateSysThree.IsVisible()
+	return m_bIsVisible
+end

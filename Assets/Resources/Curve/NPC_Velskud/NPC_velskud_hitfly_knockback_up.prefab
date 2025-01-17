@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &190656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490656}
+  - 114: {fileID: 11490656}
+  m_Layer: 0
+  m_Name: NPC_velskud_hitfly_knockback_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &490656
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11490656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.37636995
+  Land_Value: .0333300009
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0333300009
+      value: 0
+      inSlope: 2.01362133
+      outSlope: 2.01362133
+      tangentMode: 0
+    - time: .0666600019
+      value: .134228006
+      inSlope: 6.23646832
+      outSlope: 6.23646832
+      tangentMode: 0
+    - time: .0999900028
+      value: .415722996
+      inSlope: 7.9279027
+      outSlope: 7.9279027
+      tangentMode: 0
+    - time: .133320004
+      value: .662702024
+      inSlope: 6.1029253
+      outSlope: 6.1029253
+      tangentMode: 0
+    - time: .166649997
+      value: .822543979
+      inSlope: 4.50871563
+      outSlope: 4.50871563
+      tangentMode: 0
+    - time: .199980006
+      value: .963253021
+      inSlope: 3.92193174
+      outSlope: 3.92193174
+      tangentMode: 0
+    - time: .233309999
+      value: 1.08397996
+      inSlope: 3.3097353
+      outSlope: 3.3097353
+      tangentMode: 0
+    - time: .266640007
+      value: 1.18387997
+      inSlope: 2.70267081
+      outSlope: 2.70267081
+      tangentMode: 0
+    - time: .299970001
+      value: 1.26414001
+      inSlope: 2.11296272
+      outSlope: 2.11296272
+      tangentMode: 0
+    - time: .333299994
+      value: 1.32473004
+      inSlope: 1.48334765
+      outSlope: 1.48334765
+      tangentMode: 0
+    - time: .366629988
+      value: 1.36301994
+      inSlope: .774676204
+      outSlope: .774676204
+      tangentMode: 0
+    - time: .399960011
+      value: 1.37636995
+      inSlope: -.171017066
+      outSlope: -.171017066
+      tangentMode: 0
+    - time: .433290005
+      value: 1.35161996
+      inSlope: -1.38343787
+      outSlope: -1.38343787
+      tangentMode: 0
+    - time: .466619998
+      value: 1.28415
+      inSlope: -2.5133512
+      outSlope: -2.5133512
+      tangentMode: 0
+    - time: .499949992
+      value: 1.18408
+      inSlope: -3.33933258
+      outSlope: -3.33933258
+      tangentMode: 0
+    - time: .533280015
+      value: 1.06155002
+      inSlope: -3.8611021
+      outSlope: -3.8611021
+      tangentMode: 0
+    - time: .566609979
+      value: .926698983
+      inSlope: -4.79020452
+      outSlope: -4.79020452
+      tangentMode: 0
+    - time: .599940002
+      value: .742235005
+      inSlope: -6.38007355
+      outSlope: -6.38007355
+      tangentMode: 0
+    - time: .633270025
+      value: .501402974
+      inSlope: -7.23225498
+      outSlope: -7.23225498
+      tangentMode: 0
+    - time: .666599989
+      value: .260132998
+      inSlope: -6.40636349
+      outSlope: -6.40636349
+      tangentMode: 0
+    - time: .699930012
+      value: .0743549019
+      inSlope: -3.90238452
+      outSlope: -3.90238452
+      tangentMode: 0
+    - time: .733259976
+      value: 0
+      inSlope: -2.23087263
+      outSlope: -2.23087263
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 190656}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

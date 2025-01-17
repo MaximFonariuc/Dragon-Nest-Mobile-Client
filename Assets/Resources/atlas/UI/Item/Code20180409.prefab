@@ -1,0 +1,696 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1187374851135496}
+  m_IsPrefabParent: 1
+--- !u!1 &1187374851135496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4942149699925046}
+  - component: {fileID: 114315441766718206}
+  m_Layer: 0
+  m_Name: Code20180409
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4942149699925046
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187374851135496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114315441766718206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187374851135496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: bbf4a60f615619549bd60aefd1815411, type: 2}
+  mSprites:
+  - name: ac_noblesse01_body
+    x: 186
+    y: 293
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ac_noblesse01_boots
+    x: 327
+    y: 105
+    width: 57
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 3
+    paddingBottom: 5
+  - name: ac_noblesse01_cannon_weapon
+    x: 133
+    y: 24
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ac_noblesse01_gauntlet
+    x: 0
+    y: 35
+    width: 61
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 7
+    paddingBottom: 6
+  - name: ac_noblesse01_glove
+    x: 127
+    y: 454
+    width: 56
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 9
+    paddingBottom: 9
+  - name: ac_noblesse01_helmet
+    x: 68
+    y: 452
+    width: 58
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 8
+    paddingBottom: 8
+  - name: ac_noblesse01_leg
+    x: 201
+    y: 442
+    width: 54
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_bigbow_weapon
+    x: 62
+    y: 28
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_body
+    x: 126
+    y: 160
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_boots
+    x: 71
+    y: 160
+    width: 54
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 14
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_glove
+    x: 204
+    y: 159
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_helmet
+    x: 377
+    y: 230
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_leg
+    x: 257
+    y: 301
+    width: 56
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_noblesse01_quiver
+    x: 0
+    y: 99
+    width: 62
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 11
+    paddingTop: 12
+    paddingBottom: 3
+  - name: as_noblesse01_body
+    x: 0
+    y: 161
+    width: 70
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 4
+    paddingBottom: 3
+  - name: as_noblesse01_boots
+    x: 0
+    y: 302
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_noblesse01_crook
+    x: 0
+    y: 231
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_noblesse01_glove
+    x: 66
+    y: 373
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_noblesse01_helmet
+    x: 204
+    y: 378
+    width: 51
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 12
+    paddingTop: 10
+    paddingBottom: 3
+  - name: as_noblesse01_leg
+    x: 142
+    y: 293
+    width: 43
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 18
+    paddingRight: 15
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_noblesse01_scimitar_weapon
+    x: 324
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_noblesse01_body
+    x: 256
+    y: 372
+    width: 70
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 4
+    paddingBottom: 3
+  - name: cl_noblesse01_boots
+    x: 448
+    y: 174
+    width: 58
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 12
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_noblesse01_glove
+    x: 395
+    y: 443
+    width: 68
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 4
+  - name: cl_noblesse01_helmet
+    x: 137
+    y: 427
+    width: 63
+    height: 26
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 3
+    paddingTop: 25
+    paddingBottom: 25
+  - name: cl_noblesse01_leg
+    x: 257
+    y: 230
+    width: 53
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_noblesse01_mace_weapon
+    x: 314
+    y: 300
+    width: 62
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_noblesse01_shield
+    x: 447
+    y: 309
+    width: 62
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 7
+    paddingBottom: 7
+  - name: ka_noblesse01_body
+    x: 204
+    y: 88
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ka_noblesse01_boots
+    x: 464
+    y: 443
+    width: 45
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 17
+    paddingTop: 3
+    paddingBottom: 4
+  - name: ka_noblesse01_charm
+    x: 448
+    y: 245
+    width: 62
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 7
+    paddingBottom: 6
+  - name: ka_noblesse01_fan_weapon
+    x: 133
+    y: 95
+    width: 70
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 7
+    paddingBottom: 5
+  - name: ka_noblesse01_glove
+    x: 378
+    y: 301
+    width: 68
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ka_noblesse01_helmet
+    x: 197
+    y: 250
+    width: 52
+    height: 42
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 17
+    paddingBottom: 17
+  - name: ka_noblesse01_leg
+    x: 204
+    y: 17
+    width: 63
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_noblesse01_body
+    x: 338
+    y: 34
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_noblesse01_book
+    x: 385
+    y: 169
+    width: 60
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 8
+  - name: so_noblesse01_boots
+    x: 327
+    y: 371
+    width: 50
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 14
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_noblesse01_glove
+    x: 395
+    y: 372
+    width: 68
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_noblesse01_helmet
+    x: 63
+    y: 134
+    width: 62
+    height: 25
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 3
+    paddingTop: 26
+    paddingBottom: 25
+  - name: so_noblesse01_leg
+    x: 0
+    y: 373
+    width: 65
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_noblesse01_staff_weapon
+    x: 0
+    y: 444
+    width: 67
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 3
+    paddingTop: 5
+    paddingBottom: 3
+  - name: wa_noblesse01_body
+    x: 70
+    y: 302
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_noblesse01_boots
+    x: 256
+    y: 442
+    width: 67
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 6
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_noblesse01_gauntlet
+    x: 141
+    y: 364
+    width: 62
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 7
+    paddingBottom: 7
+  - name: wa_noblesse01_glove
+    x: 71
+    y: 231
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_noblesse01_helmet
+    x: 311
+    y: 264
+    width: 63
+    height: 35
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 6
+    paddingTop: 21
+    paddingBottom: 20
+  - name: wa_noblesse01_leg
+    x: 274
+    y: 159
+    width: 52
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_noblesse01_sword_weapon
+    x: 268
+    y: 18
+    width: 69
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 4
+    paddingTop: 4
+    paddingBottom: 3
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+  mCoordinates: 0
+  sprites: []

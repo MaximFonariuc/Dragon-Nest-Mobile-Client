@@ -1,0 +1,355 @@
+﻿--
+--  LuaFashionCompoundTabHandler.lua
+--  Created by huailiang.peng on 2017/09/05 09:40:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+-- 时装合成左侧 列表界面
+require "LuaFashionCompoundDlg.lua"
+require "HotfixGlobal.lua"
+
+
+LuaFashionCompoundTabHandler={}
+local this = LuaFashionCompoundTabHandler
+
+local m_bIsVisible = false
+local m_curr_suitid = 0
+local m_curr_itemid = 0
+
+local m_icons = {}
+local m_kuangs = {}
+local m_scroll
+local m_tab_s
+local m_s_root
+local m_s_tween
+local m_tab_a
+local m_a_root
+local m_a_tween
+local m_tab_b
+local m_b_root
+local m_b_tween
+local m_tpl
+local m_table
+
+local m_max = 7
+
+local m_s_list = {}
+local m_a_list = {}
+local m_b_list = {}
+
+--called by MonoBehaviour.Awake
+function LuaFashionCompoundTabHandler.Awake(go)
+	--print("Awake")
+	for i=1,m_max do
+		m_icons[i] = go.transform:Find("EquipFrame/Part"..tostring(i)).gameObject
+		m_kuangs[i] = m_icons[i].transform:Find("P"):GetComponent("UISprite")
+	end
+
+	m_tab_s = go.transform:Find("Left/TypeList/Table/Level_S").gameObject
+	m_tab_a = go.transform:Find("Left/TypeList/Table/Level_A").gameObject
+	m_tab_b = go.transform:Find("Left/TypeList/Table/Level_B").gameObject
+	m_scroll = go.transform:Find("Left/TypeList"):GetComponent("UIScrollView")
+	m_tpl = go.transform:Find("Tpl").gameObject
+	m_s_root = m_tab_s.transform:Find("ChildList").gameObject
+	m_a_root = m_tab_a.transform:Find("ChildList").gameObject
+	m_b_root = m_tab_b.transform:Find("ChildList").gameObject
+	m_s_tween = m_s_root.transform:GetComponent("TweenScale")
+	m_a_tween = m_a_root.transform:GetComponent("TweenScale")
+	m_b_tween = m_b_root.transform:GetComponent("TweenScale")
+	m_table = go.transform:Find("Left/TypeList/Table"):GetComponent("UITable")
+	m_s_list = {}
+	m_a_list = {}
+	m_b_list = {}
+end
+
+function LuaFashionCompoundTabHandler.Start()
+	--Hotfix.SetClickCallback(m_tab_a,this.OnTabA_Click)
+	--Hotfix.SetClickCallback(m_tab_s,this.OnTabS_Click)
+end
+
+
+function LuaFashionCompoundTabHandler.OnEnable()
+	m_bIsVisible = true
+end
+
+
+function LuaFashionCompoundTabHandler.OnDisable()
+	m_bIsVisible = false
+end
+
+
+function LuaFashionCompoundTabHandler.OnDestroy()
+	m_bIsVisible = false
+	m_curr_suitid = 0
+	m_curr_itemid = 0
+end
+
+
+function LuaFashionCompoundTabHandler.OnShow()
+	m_scroll:ResetPosition()
+	LuaFashionCompoundDlg.SetBagHandler(this)
+	this.RefreshUi()
+	if m_curr_suitid ~= 0 then
+		this.EquipSuit(m_curr_suitid)
+	end
+end
+
+function LuaFashionCompoundTabHandler.OnHide()
+	--print("LuaFashionCompoundTabHandler.OnHide")
+end
+
+function LuaFashionCompoundTabHandler.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaFashionCompoundTabHandler.RefreshUi( ... )
+	--print("LuaFashionCompoundTabHandler.RefreshUi m_bIsVisible = "..tostring(m_bIsVisible))
+	this.SetupS()
+	this.SetupA()
+	this.SetupB()
+	m_s_tween:Play()
+	m_a_tween:Play()
+	m_b_tween:Play()
+end
+
+
+function LuaFashionCompoundTabHandler.OnTabS_Click(go)
+	m_select_s = true
+	this.SetupS()
+	warn("OnTabS_Click")
+	print(tostring(m_s_root.transform.localScale))
+end
+
+
+function LuaFashionCompoundTabHandler.OnTabA_Click(go)
+	m_select_s = false
+	this.SetupA()
+	warn("OnTabA_Click")
+	print(tostring(m_a_root.transform.localScale))
+end
+
+function LuaFashionCompoundTabHandler.ReruenS( ... )
+	-- body
+	local cnt = #m_s_list
+	for i=1,cnt do
+		if not IsNil(m_s_list[i]) then
+			NGUITools.Destroy(m_s_list[i])
+		end
+	end
+	m_s_list = {}
+end
+
+
+function LuaFashionCompoundTabHandler.ReruenA( ... )
+	-- body
+	local  cnt = #m_a_list
+	for i=1,cnt do
+		if not IsNil(m_a_list[i]) then
+		 	NGUITools.Destroy(m_a_List[i])
+		 end
+	end
+	m_a_list = {}
+end
+
+
+function LuaFashionCompoundTabHandler.ReruenB( ... )
+	-- body
+	local cnt = #m_b_list
+	for i=1,cnt do
+		if not IsNil(m_b_list[i]) then
+			NGUITools.Destroy(m_b_list[i])
+		end
+	end
+end
+
+function LuaFashionCompoundTabHandler.SetupS( ... )
+	-- body
+	this.ReruenS()
+	local table = FashionCompoundData.list_s
+	local index = 0
+	for k,v in pairs(table) do
+		local go = NGUITools.AddChild(m_s_root,m_tpl)
+		local y  = -20-48*index
+		go.transform.localPosition = Vector3(0,y,0)
+		if m_curr_suitid == 0 then 
+			m_curr_suitid = k
+			local toggle = go.transform:GetComponent('UIToggle')
+			toggle.value = true
+		end
+		local spr = go.transform:GetComponent("UISprite")
+		spr.sid = tostring(k)
+		Hotfix.SetClickCallback(go,this.EquipAll)
+		local row = FashionCompoundData.GetSuitRow(k)
+		local lbl = go.transform:Find("SelectLab"):GetComponent("UILabel")
+		local lbl2 = go.transform:Find("UnSelectLab"):GetComponent("UILabel")
+		lbl.text = row.SuitName
+		lbl2.text = row.SuitName
+		index = index + 1
+		m_s_list[index] = go
+	end
+	this.ResetPosition()
+end
+
+
+function LuaFashionCompoundTabHandler.SetupA( ... )
+	-- body
+	local table = FashionCompoundData.list_a
+	this.ReruenA()
+	local index = 0
+	for k,v in pairs(table) do
+		local go = NGUITools.AddChild(m_a_root,m_tpl)
+		local y  = -48*index
+		go.transform.localPosition = Vector3(0,y,0)
+		if m_curr_suitid == 0 then
+			m_curr_suitid = k
+			local toggle = go.transform:GetComponent('UIToggle')
+			toggle.value = true
+		end
+		local spr = go.transform:GetComponent("UISprite")
+		spr.sid = tostring(k)
+		--print("k is: "..tostring(k))
+		Hotfix.SetClickCallback(go,this.EquipAll)
+		local row = FashionCompoundData.GetSuitRow(k)
+		local lbl = go.transform:Find("SelectLab"):GetComponent("UILabel")
+		local lbl2 = go.transform:Find("UnSelectLab"):GetComponent("UILabel")
+		lbl.text = row.SuitName
+		lbl2.text = row.SuitName
+		index = index + 1
+		m_a_list[index] = go
+	end
+	this.ResetPosition()
+end
+
+
+function LuaFashionCompoundTabHandler.SetupB( ... )
+	-- body
+	local table = FashionCompoundData.list_b
+	this.ReruenB()
+	local index = 0
+	for k,v in pairs(table) do
+		local go = NGUITools.AddChild(m_b_root,m_tpl)
+		local y  = -48*index
+		go.transform.localPosition = Vector3(0,y,0)
+		if m_curr_suitid == 0 then 
+			m_curr_suitid = k
+			local toggle = go.transform:GetComponent('UIToggle')
+			toggle.value = true
+		end
+		local spr = go.transform:GetComponent("UISprite")
+		spr.sid = tostring(k)
+		--print("k is: "..tostring(k))
+		Hotfix.SetClickCallback(go,this.EquipAll)
+		local row = FashionCompoundData.GetSuitRow(k)
+		local lbl = go.transform:Find("SelectLab"):GetComponent("UILabel")
+		local lbl2 = go.transform:Find("UnSelectLab"):GetComponent("UILabel")
+		lbl.text = row.SuitName
+		lbl2.text = row.SuitName
+		index = index + 1
+		m_a_list[index] = go
+	end
+	this.ResetPosition()
+end
+
+
+function LuaFashionCompoundTabHandler.ResetPosition( ... )
+	-- body
+	m_table.repositionNow = true
+	m_table:Reposition()
+end
+
+function LuaFashionCompoundTabHandler.EquipAll( go )
+	-- body
+	local spr = go.transform:GetComponent("UISprite")
+	local suitid = tonumber(spr.sid)
+	if m_curr_suitid ~= suitid then
+		m_curr_itemid = 0
+		m_curr_suitid = 0
+	end
+	this.EquipSuit(suitid)
+end
+
+
+function LuaFashionCompoundTabHandler.RefreshLast()
+	this.EquipSuit(m_curr_suitid)
+end
+
+function LuaFashionCompoundTabHandler.EquipSuit(suitid)
+	m_curr_suitid = suitid
+	local data = FashionCompoundData.list_s[suitid]
+	if data == nil then
+		data = FashionCompoundData.list_a[suitid]
+	end
+	if data == nil then
+		data = FashionCompoundData.list_b[suitid]
+	end
+
+	--print("data cnt: "..tostring(#data))
+	for i=1,m_max do
+		--print("draw icon: "..tostring(data[i].itemid.." get: "..tostring(data[i].get).." conpose: "..tostring(data[i].canCompose)))
+		Hotfix.DrawItemView(m_icons[i], data[i].itemid, 1, false)
+		this.SetItemLight(m_icons[i],data[i].get)
+
+		local spr = m_icons[i].transform:Find("unGet"):GetComponent("UISprite") --可合成图片的显示
+		if data[i].canCompose then
+			spr.alpha = 1
+		else
+			spr.alpha = 0
+		end
+
+		local icon = m_icons[i].transform:Find("Icon/Icon"):GetComponent("UISprite")
+		icon.sid = data[i].itemid.."|"..data[i].suitid
+		Hotfix.SetClickCallback(icon.gameObject, this.OnItemClick)
+
+		if m_curr_itemid == 0 then
+			this.OnItemClick(icon.gameObject)
+		end
+	end
+
+	FashionCompoundData.OnSelectSuit(suitid)
+	LuaFashionCompoundDlg.RefreshDummy()
+end
+
+
+function LuaFashionCompoundTabHandler.SetItemLight(go,light)
+	-- body
+	local iconSpr = go.transform:Find("Icon/Icon"):GetComponent("UISprite")
+	local qualitySpr = go.transform:Find("Quality"):GetComponent("UISprite")
+	if light then
+		iconSpr.color = Color.white
+		qualitySpr.color = Color.white
+	else
+		iconSpr.color = Color.black
+		qualitySpr.color = Color.black
+	end
+end
+
+
+
+--点击 可合成
+function LuaFashionCompoundTabHandler.OnItemClick( go )
+	-- body
+	--print("go name: "..go.name)
+	this.CloseAllKuang()
+	local kuang = go.transform.parent.parent:Find("P"):GetComponent("UISprite")
+	kuang.alpha = 1
+
+	local iconsprite = go.transform:GetComponent("UISprite")
+	local args = Split(iconsprite.sid,"|")
+	local itemid = args[1]
+	local suitid = args[2]
+	m_curr_itemid = tonumber(itemid)
+	--print("itemid: "..tostring(itemid).." suitid: "..tostring(suitid))
+	if itemid ~= 0  and itemid ~= FashionCompoundData.itemid then
+		FashionCompoundData.OnSelect(itemid,suitid)
+		LuaFashionCompoundDlg.OnSelect(itemid,suitid)
+	end
+end
+
+
+function LuaFashionCompoundTabHandler.CloseAllKuang( ... )
+	-- body
+	local cnt = #m_kuangs
+	for i=1,cnt do
+		m_kuangs[i].alpha = 0 
+	end
+end

@@ -1,0 +1,843 @@
+﻿require "LuaJadeEquipDataModel.lua"
+
+--新龙玉系统视图--  hotfix
+JadeEquipHandler = {}
+local this = JadeEquipHandler
+
+local normalRatioScale = Vector3(1,1,1)
+local needRatioScale = Vector3(0.8, 0.8, 0.8)
+local needRatioScaleTween = Vector3(0.6, 0.6, 0.6)
+
+local selectedBgPath = "Frame1/p/P"
+local selectedBgTrans = nil 
+
+local GroupBtnPath = "ForLua/Btngroup"
+local GroupBtnTrans = nil 
+
+local EquipedPanelTrans = nil
+
+local CurrEquipUidStr = nil 
+local CurrEquip = nil
+
+local epHandler = nil		--c#里面的龙玉装备主界面
+
+local BtnTakeoffPath = "EquipedPanel/SelectMenu/BtnTakeoff"
+local BtnTakeoffTrans = nil
+
+local SelectEqNamePath = "SelectedEquip/Name"
+local SelectEqNameTrans = nil
+
+local timetoken = 0
+
+---------------<为了左侧龙玉装备重写
+local itemDrawParam = nil
+local m_EquipFrame = nil
+local m_itemPool = nil
+local m_jadeSmallPool = nil
+local SLOT_COUNT = 6		--新龙玉系统有六个Info槽位
+local m_JadeEquipItemMap = {} 	--龙玉二维数组表，第一维表示那个装备槽位，第二维表示六个中的第几个龙玉，数组下标从0开始
+local m_EquipObjList = {}		--装备body equip item obj集合，数组下标从0开始
+local m_XEquipItemList = {}		--装备body equip item class 集合，玩家当前身体装备数据集合，单个元素在lua里为userdata
+local m_XEquipItemUidStrList = {}		--由于在镶嵌或者卸载龙玉操作之后，再通过反射拿m_XEquipItemList里面对应装备里的uid取不到，为0，导致界面逻辑误，才特地用该table来缓存
+local CacheEquipPos = -1
+------------------->
+
+
+local BtnEQoneKeyTrans = nil
+
+
+function JadeEquipHandler.Hide( )
+	-- print ("hide")
+
+	LuaJadeEquipDataModel.JadeEquipDlgUnLoad()
+	Hotfix.RemoveTimer(timetoken)
+end
+
+function JadeEquipHandler.Unload()
+	LuaJadeEquipDataModel.JadeEquipDlgUnLoad()
+	-- m_jadePool:ReturnAllDisable()
+	-- m_jadePool = nil
+
+	LuaJadeEquipDataModel.ClearData()
+
+	if not IsNil(m_itemPool) then 
+		m_itemPool:ReturnAllDisable()
+	end
+
+	if not IsNil(m_jadeSmallPool) then 
+		m_jadeSmallPool:ReturnAllDisable()
+	end
+	m_itemPool = nil
+	m_jadeSmallPool = nil 
+
+	m_JadeEquipItemMap = {}
+	m_EquipObjList = {}
+	m_XEquipItemList= {}
+end
+
+
+function JadeEquipHandler.BeforeHandlerShow(go)
+	 -- print("1333")
+end
+
+-- print "do  Hotfix....."
+
+function JadeEquipHandler.AfterHandlerShow(go)
+
+	-- print("2333")
+
+	LuaJadeEquipDataModel.SetJadeEquipHandler(this)
+
+	-- print "1"
+
+	-- if true then
+	-- 	return
+	-- end
+
+	-- print"初始化配表"
+	LuaJadeEquipDataModel.LocalTableInit()
+
+	-- print "2"
+
+	LuaJadeEquipDataModel.ArgGetJadeSealAllInfo()
+
+	-- print "3"
+
+	epHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_JadeEquipHandler", true, true, false)
+	if IsNil(epHandler) then
+		print "can not find epHandler!!!"
+	end
+
+	-- print "4"
+
+	SelectEqNameTrans = go.transform:Find(SelectEqNamePath)
+
+	-- print "5"
+
+	GroupBtnTrans = go.transform:Find(GroupBtnPath)
+	selectedBgTrans = go.transform:Find(selectedBgPath)
+
+	-- print "6"
+	
+	this.RefreshCurrSelectedEquip()
+
+	-- print "7"
+
+	m_EquipFrame = go.transform:Find("ForLua/EquipFrameForLua")
+
+	if CurrEquipUidStr == "0" then
+
+		-- if selectedBgTrans ~= nil then
+		-- 	selectedBgTrans.gameObject:SetActive(true)
+		-- end
+
+		if not IsNil(GroupBtnTrans)then
+			GroupBtnTrans.gameObject:SetActive(false)
+		end
+
+		if not IsNil(m_EquipFrame) then
+			m_EquipFrame.gameObject:SetActive(false)
+		end
+
+		return
+	end
+
+	if not IsNil(m_EquipFrame) then
+		m_EquipFrame.gameObject:SetActive(true)
+	end
+
+	this.HideOldPrefab(go)
+	this.InitLeftEquipFrame(go)
+	this.ShowEquipments()
+
+	-- print "8"
+	-- if selectedBgTrans ~= nil then
+	-- 	selectedBgTrans.gameObject:SetActive(false)
+	-- end
+
+	-- print "9"
+
+	if not IsNil(GroupBtnTrans) then
+		local level = Hotfix.GetPlayer("Level")
+		if level < 60 then
+			GroupBtnTrans.gameObject:SetActive(false)
+		else
+			GroupBtnTrans.gameObject:SetActive(true)
+		end
+	end
+
+	-- print "10"
+
+	Hotfix.SetClickCallback(GroupBtnTrans.gameObject, this.GotoGroupPanelOnClick)
+
+	-- print "11"
+
+	-- timetoken = Hotfix.LuaWait(330, this.InitALLBodyEquipClick)	
+
+	-- this.InitALLBodyEquipClick()
+	
+
+	-- print "12"
+
+	EquipedPanelTrans = go.transform:Find("EquipedPanel")
+
+	this.InitALLJadeInfoClick(go)
+
+	local SelectFrameTrans = EquipedPanelTrans:Find("SelectMenu/SelectFrame")
+	if not IsNil(SelectFrameTrans) then
+		SelectFrameTrans.localScale = Vector3(1, 1, 1)
+	end
+
+	local btnTakeoffTrans = EquipedPanelTrans:Find("SelectMenu/BtnTakeoff")
+	if not IsNil(btnTakeoffTrans) then
+		btnTakeoffTrans.localPosition = Vector3(65, 0, 0)
+		btnTakeoffTrans.localScale = needRatioScale
+
+		-------tweenscale没有warp------
+		-- print("do get tween scale")
+		-- local tweenScale = btnTakeoffTrans:GetComponent("TweenScale")
+		-- print("end get tween scale")
+
+		-- if not IsNil(tweenScale) then
+		-- --------------------------------------------------导致ios包闪退
+		-- 	tweenScale.from = needRatioScale
+		-- 	print("from: "..tostring(tweenScale.from.x))
+		-- 	tweenScale.to = needRatioScaleTween
+		-- end
+	end
+
+
+	-- print "13"
+	--test
+
+	-- print("equippos: "..tostring(equipListRowData.EquipPos))
+	-- local seq = Hotfix.CallDocumentMethod("JadeDocument",true, "GetSlotInfoByPos", equipListRowData.EquipPos)
+
+	-- print("seq.count: "..seq.count)
+
+	BtnTakeoffTrans = go.transform:Find(BtnTakeoffPath)
+	Hotfix.SetClickCallback(BtnTakeoffTrans.gameObject, this.TakeOffJade)
+
+	JadeEquipHandler.RefreshEquipListRedPoint( )
+
+	BtnEQoneKeyTrans = go.transform:Find("ForLua/BtnEqOnekey")
+	if not IsNil(BtnEQoneKeyTrans) then
+
+		local level = Hotfix.GetPlayer("Level")
+		if level < 60 then
+			BtnEQoneKeyTrans.gameObject:SetActive(false)
+		else
+			BtnEQoneKeyTrans.gameObject:SetActive(true)
+		end
+
+		Hotfix.SetClickCallback(BtnEQoneKeyTrans.gameObject, this.EqOnekeyOnClick)
+	end
+end
+
+function JadeEquipHandler.EqOnekeyOnClick( go )
+	LuaJadeEquipDataModel.ArgInlayAllJade()
+end
+
+--隐藏老的预设--
+function JadeEquipHandler.HideOldPrefab(go)
+	local EquipFrameTrans = go.transform:Find("EquipFrame")		--左侧装备10个槽位
+	if not IsNil(EquipFrameTrans) then
+		-- EquipFrameTrans.gameObject:SetActive(false)
+		EquipFrameTrans.gameObject:SetActive(true)
+		EquipFrameTrans.localPosition = Vector3(-208,3000,0)		--老的c#逻辑换龙玉后（注册事件），会更新左侧装备栏小红点，暴力隐藏会导致报空引用，所以不能隐藏，只能移出屏幕之外
+	end
+
+	-- local  SelectedEquipTrans = go.transform:Find("SelectedEquip")		--中间icon
+	-- if not IsNil(SelectedEquipTrans) then
+	-- 	SelectedEquipTrans.gameObject:SetActive(false)
+	-- end 
+
+	-- local  SelectedEquipBgTrans = go.transform:Find("Frame1/p/P")		--中间icon的bg
+	-- if not IsNil(SelectedEquipBgTrans) then
+	-- 	SelectedEquipBgTrans.gameObject:SetActive(false)
+	-- end 
+
+	-- local EquipPanelTrans = go.transform:Find("EquipedPanel")		--右侧龙玉镶嵌槽位
+	-- if not IsNil(EquipPanelTrans) then
+	-- 	EquipPanelTrans.gameObject:SetActive(false)
+	-- end
+end
+
+function JadeEquipHandler.RefreshEqPos(theEpPos)
+	CacheEquipPos = theEpPos
+end
+
+
+function JadeEquipHandler.TakeOffJade(go)
+	local targetSlotIndex = PrivateExtensions.GetPrivateField(epHandler,"m_SelectedSlotIndex") --c# int
+	if targetSlotIndex ~= nil then
+		print "do get dataModel eqPos"
+		CacheEquipPos = LuaJadeEquipDataModel.GetCurrEquipPos()
+		print("CacheEquipPos: "..CacheEquipPos)
+		LuaJadeEquipDataModel.ReqTakeOffJade(targetSlotIndex)
+	end
+end
+
+
+--去组合界面--
+function JadeEquipHandler.GotoGroupPanelOnClick(go)
+	print "now go to groupPanel" 
+	CacheEquipPos = LuaJadeEquipDataModel.GetCurrEquipPos()
+	LuaUIManager.Instance:Load("UI/GameSystem/JadeGroupPanel")
+end
+
+
+--刷新当前选中装备--
+function JadeEquipHandler.RefreshCurrSelectedEquip( )
+	
+	LuaJadeEquipDataModel.RefreshCurrEquip()
+
+	CurrEquipUidStr = LuaJadeEquipDataModel.GetCurrEquipUidStr()
+	-- Hotfix.GetGetDocumentLongMember("JadeDocument","selectedEquip",true,true)		--string
+	-- print("CurrEquipUid: "..CurrEquipUidStr)
+	
+	-- local equipUid = Hotfix.GetLuaLong(CurrEquipUidStr)							--XLuaLong
+
+	CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()
+	-- Hotfix.CallDocumentMethod("XBagDocument", true,"GetItemByUID", equipUid)
+
+	-- LuaJadeEquipDataModel.SetCurrEquip(CurrEquip)
+end
+
+
+--[[初始化左侧10个身体装备槽位的点击事件]]--
+--初始化左侧装备栏--
+function JadeEquipHandler.InitLeftEquipFrame( go )
+	
+	 if IsNil(m_EquipFrame) then
+	 	print "m_EquipFrame is none"
+	 	return
+	 end
+
+	 local m_EquipFrameObj = m_EquipFrame.gameObject
+
+	 if #m_EquipObjList == 0 then
+	 	-- 初始化装备对象池
+		m_itemPool = Hotfix.SetupPool(
+				m_EquipFrame.gameObject, 
+				m_EquipFrame:Find("ItemTpl").gameObject,
+				10)
+
+		for i = 0, 9 do
+
+			local partGo = m_EquipFrame:FindChild("Part"..tostring(i)).gameObject
+			local itemGo = m_itemPool:FetchGameObject()
+			
+			this.InitEquipSoltBgClickEvent(partGo,i)
+			this.InitEquipItemObjClickEvent(itemGo,i)
+
+			m_EquipObjList[i] = itemGo
+			
+			-- Hotfix.CallSingleMethod("UI.UiUtility",true,false,"AddChild",m_EquipFrame,itemGo)
+			
+			-- print("1 itemGo pos x"..itemGo.transform.localPosition.x)
+			
+			itemGo.transform.localPosition = partGo.transform.localPosition;
+
+			--print("2 itemGo pos x"..itemGo.transform.localPosition.x)
+		end
+	 end
+
+ 	if #m_JadeEquipItemMap == 0 then 
+		-- 初始化龙玉对象池
+		m_jadePool= Hotfix.SetupPool(
+				m_EquipFrame.gameObject, 
+				m_EquipFrame:Find("JadeTpl").gameObject,
+				10)
+
+		for i = 0, 9 do
+			local partGo = m_EquipFrame:FindChild("Part"..tostring(i)).gameObject;
+			local jadeGo = m_jadePool:FetchGameObject()
+			
+			jadeGo.transform.localPosition = partGo.transform.localPosition;
+
+			m_JadeEquipItemMap[i] = { }		--Lua里没有所谓的二维数组，但是可以通过table的特性来表达所谓的二维数组
+
+			for j = 0,SLOT_COUNT do
+				local t = jadeGo.transform:FindChild("Jade"..tostring(j))
+				if not IsNil(t) then
+					m_JadeEquipItemMap[i][j] = t.gameObject
+
+					-- print(string.format("then solt index is: %d",i))
+					-- print(string.format("then jade index is: %d",j))
+					else
+					m_JadeEquipItemMap[i][j] = nil
+				end
+			end
+		end
+ 	end
+end
+
+---初始化有装备的槽位点击事件----刷新当前选中装备----
+function JadeEquipHandler.InitEquipItemObjClickEvent(itemGo,index)
+	local EquipItemIcon = itemGo.transform:FindChild("Icon"):GetComponent("UISprite")
+	EquipItemIcon.uid = index
+
+	Hotfix.SetClickCallback(EquipItemIcon.gameObject, this.EquipItemOnClick)
+end
+function JadeEquipHandler.EquipItemOnClick( go )
+	local epIndex = go:GetComponent("UISprite").uid
+
+	if CacheEquipPos == epIndex then
+		return 
+	end
+
+	-- print("the epindex: "..epIndex)
+	-- print("CacheEquipPos: "..CacheEquipPos)
+	CacheEquipPos = epIndex
+
+	if m_XEquipItemList[epIndex] ~= nil then
+
+		local theUidStr = m_XEquipItemUidStrList[epIndex]
+		 -- Hotfix.GetObjectString(m_XEquipItemList[epIndex],"uid")
+		 --由于在镶嵌或者卸载龙玉操作之后，再通过反射拿m_XEquipItemList里面对应装备里的uid取不到，为0，导致界面逻辑误，才特地用该table来缓存
+
+		if theUidStr == "0" then
+			return
+		end
+
+		-- print("theUidStr: "..theUidStr)
+		local equipUid = Hotfix.GetLuaLong(theUidStr)		
+		Hotfix.CallDocumentMethod("JadeDocument",true, "SelectEquip", equipUid)		
+
+		this.refreshFinde999()
+	else
+
+	end
+end
+
+--初始化空的装备槽点击事件----一般文字提示----
+function JadeEquipHandler.InitEquipSoltBgClickEvent(partGo,index)
+	local SoltBgIcon = partGo.transform:FindChild("Bg"):GetComponent("UISprite")
+	SoltBgIcon.uid = index
+
+	Hotfix.SetClickCallback(SoltBgIcon.gameObject, this.EmptySoltOnClick)
+end
+function JadeEquipHandler.EmptySoltOnClick( go )
+	local epIndex = go:GetComponent("UISprite").uid
+
+	local epType = Hotfix.GetEnumType("EquipPosition",tostring(epIndex))
+
+	-- print("theindex: "..tostring(epIndex).."  thetype: "..tostring(epType))
+
+	local epDes = Hotfix.CallSingleMethod("UI.UiUtility",false,false,"GetEquipPartName",epType)
+	-- print("theDes: "..epDes)
+
+	local epTypeStr = tostring(epType)
+	 if epTypeStr == "Earrings" or epTypeStr == "Rings" or epTypeStr == "Necklace" then
+		epDes =  Hotfix.GetStringTable("SHIPIN_FROM",epDes)
+		-- print("---------theDes: "..epDes)
+	 end
+                
+    Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",epDes,"fece00")
+end
+
+--刷新左侧装备栏装备icon
+function JadeEquipHandler.ShowEquipments()
+
+	local bag = Hotfix.GetDocumentMember("XBagDocument", "EquipBag", true, true)
+
+	-- local itemDrawParam = Hotfix.GetSingleMember("XItemDrawerMgr","Param",true,true,true)
+
+	local bag_arr = PrivateExtensions.GetPrivateField(bag,"Bag")
+
+	if bag_arr ~= nil then
+
+		-- print("length:"..tostring(bag_arr.Length))
+		-- print ("xxxxxxxxxxx:"..tostring(bag_arr[0].itemID))
+
+		-- print("the bag_arr type: "..type(bag_arr))
+
+		ArrayList = luanet.import_type("System.Collections.ArrayList")
+		local arr = ArrayList()
+		arr:AddRange(bag_arr)
+
+		itemDrawParam = Hotfix.GetSingleMember("XItemDrawerMgr", "Param", true, true, true)
+
+		for i =0,bag_arr.Length - 1 do
+
+			local hasEquip = (arr[i] ~= nil)
+
+			this.RefreshJadeDisplayHandler(i,arr[i])
+
+			-- if arr[i] ~= nil then
+			if hasEquip then
+				m_EquipObjList[i]:SetActive(true)	
+				itemDrawParam.bHideBinding = true
+				Hotfix.CallSingleMethod("XItemDrawerMgr",true,false,"DrawItem",m_EquipObjList[i],bag_arr[i])
+
+				m_XEquipItemList[i] = bag_arr[i]
+
+				m_XEquipItemUidStrList[i] = Hotfix.GetObjectString(bag_arr[i],"uid")
+			else
+				--lua 的nil不能作为 null传给c#
+				--Hotfix.CallSingleMethod("XItemDrawerMgr",true,false,"DrawItem",m_EquipObjList[i],arr[i])
+				m_XEquipItemUidStrList[i] = "0"
+				m_EquipObjList[i]:SetActive(false)	
+			end
+		end
+	end	
+end
+
+--刷新具体装备对应的镶嵌龙玉显示处理--
+function JadeEquipHandler.RefreshJadeDisplayHandler(index, eqItem)
+	
+	local hasEquip = (eqItem ~= nil)
+
+	if type(hasEquip) ~= "boolean" then
+		return
+	end
+
+	-- print("--------------------the index: "..tostring(index))
+
+	local smallJade = m_JadeEquipItemMap[index][0]
+	if smallJade ~= nil then
+		-- print("has small jade")
+		smallJade.transform.parent.gameObject:SetActive(hasEquip)
+
+		if hasEquip then
+
+			ArrayList = luanet.import_type("System.Collections.ArrayList")
+			local arr = ArrayList()
+			arr:AddRange(eqItem.jadeInfo.jades)
+			for i =0, 5 do
+				local hasJade = arr[i] ~= nil
+				if hasJade then
+					-- print("item id: "..arr[i].itemID)
+				end
+				m_JadeEquipItemMap[index][i].transform:Find("Icon").gameObject:SetActive(hasJade)
+			end
+		end
+	else
+		-- print("has no small jade obj")
+	end
+end
+
+function JadeEquipHandler.SmallJadeRefreshInEqSlotPos( )
+	
+	print("CacheEquipPos: "..CacheEquipPos)
+
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local arr = ArrayList()
+	arr:AddRange(CurrEquip.jadeInfo.jades)
+	for i =0, 5 do
+		local hasJade = arr[i] ~= nil
+		m_JadeEquipItemMap[CacheEquipPos][i].transform:Find("Icon").gameObject:SetActive(hasJade)
+	end
+end
+
+--lua Replace c#里刷新左侧装备红点,在龙玉替换、龙玉升级之后调用
+function JadeEquipHandler.RefreshEquipListRedPoint( )
+	local eqPosRedList = Hotfix.CallDocumentMethod("JadeDocument",true, "GetAllCanBeMorePowerfulEquips")	--c# userdata
+	local thelistCount = eqPosRedList.Count
+	print("eqPosRedList count: "..tostring(thelistCount))
+
+	local needShow = false
+	for i = 0, 9 do 
+		local tempObj = m_EquipObjList[i]
+		if tempObj ~= nil then
+			if tempObj.activeInHierarchy then
+				needShow = false
+
+				for j = 0, thelistCount -1 do
+					local tempPos = eqPosRedList[j]
+					if tempPos == i then
+						needShow = true
+						break
+					end
+				end
+
+				local redPointTrans = tempObj.transform:Find("RedPoint")
+				if redPointTrans ~= nil then
+					
+					redPointTrans.gameObject:SetActive(needShow)
+					
+					if needShow then
+						local redSpr = redPointTrans:GetComponent("UISprite")
+						local iconSpr = tempObj.transform:Find("Icon/Icon"):GetComponent("UISprite")
+						redSpr.depth = iconSpr.depth + 1
+					end
+					
+				end
+			end
+		end
+	end
+end
+
+--[[初始化左侧10个身体装备槽位的点击事件]]--
+
+
+
+
+
+--[[初始化右侧用于界面6个龙玉孔的点击事件]]--
+--go为自身的gameObject--
+function JadeEquipHandler.InitALLJadeInfoClick(go)
+	EquipedPanelTrans = go.transform:Find("EquipedPanel")
+
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local arr = ArrayList()
+	arr:AddRange(CurrEquip.jadeInfo.jades)
+
+	if EquipedPanelTrans ~= nil then
+		for i = 0,5 do
+			local tempTrans = EquipedPanelTrans:Find("item"..tostring(i))
+			-- print("temp name: "..tostring(tempTrans.gameObject.name))
+
+			tempTrans.localScale = normalRatioScale--needRatioScale
+
+			if not tempTrans.gameObject.activeInHierarchy then
+				tempTrans.gameObject:SetActive(true)
+				tempTrans:Find("HasJade").gameObject:SetActive(false)
+				tempTrans:Find("Lock").gameObject:SetActive(false)
+				tempTrans:Find("Empty/JadeTpl").gameObject:SetActive(false)
+
+				local iSp = tempTrans:GetComponent("XUISprite")
+				iSp.ID = i
+			end
+
+			Hotfix.SetClickCallback(tempTrans.gameObject, this.JadeInfoTplOnClick)
+		end
+	end
+
+	this.refreshFinde999()
+end
+
+---策划要求写死  
+function JadeEquipHandler.ShaoCaoZuo(slotIndex)
+
+	print("the jade slot index: "..tostring(slotIndex))
+
+	-- if arr[slotIndex] ~= nil then
+	-- 	local theGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(arr[slotIndex].itemID)
+	-- 	if theGroupId == 999 then
+	-- 		if not IsNil(EquipedPanelTrans) then
+	-- 			local TargetTrans = EquipedPanelTrans:Find("item"..tostring(slotIndex))
+	-- 			if not IsNil(TargetTrans) then
+	-- 				local theNameLb = TargetTrans:Find("HasJade/AttrName"):GetComponent("UILabel")
+	-- 				if theNameLb ~= nil then
+	-- 					theNameLb.text = "全元素攻"
+	-- 				end
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
+
+	this.refreshFinde999()
+
+	this.SmallJadeRefreshInEqSlotPos()
+end
+
+function JadeEquipHandler.refreshFinde999(arr)
+
+	this.RefreshCurrSelectedEquip()
+
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local arr = ArrayList()
+	arr:AddRange(CurrEquip.jadeInfo.jades)
+
+	if EquipedPanelTrans ~= nil then
+		for i = 0,5 do
+			local tempTrans = EquipedPanelTrans:Find("item"..tostring(i))
+
+			if arr[i] ~= nil then
+				local theGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(arr[i].itemID)
+				if theGroupId == 999 then
+					local theNameLb = tempTrans:Find("HasJade/AttrName"):GetComponent("UILabel")
+					if theNameLb ~= nil then
+						theNameLb.text = Hotfix.GetGlobalString("JadeAllElementattack")--"全元素攻"
+					end
+				end
+			end
+
+		end
+	end
+end
+
+--六个龙玉Info槽点击事件--
+function JadeEquipHandler.JadeInfoTplOnClick(go)
+
+	print("jade name: "..tostring(go.name))
+
+	if epHandler ~= nil then
+		this.OnSlotClicked(epHandler, go)		
+	end
+end
+
+
+--原来c#里JadeEquipHandler的_OnSlotClicked(四个龙玉槽的点击事件)--
+--参数epHandler为龙玉装备的handler，go为龙玉Info的槽的gameObject--
+function JadeEquipHandler.OnSlotClicked(epHandler, go)
+
+	if CurrEquip == nil then
+		print " can not find CurEquip"
+		return
+	end
+
+	local iSp = go:GetComponent("XUISprite")
+	if iSp ~= nil then
+		LuaJadeEquipDataModel.SetSelectSlot(tonumber(iSp.ID))
+	end
+
+	local equipListRowData = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"GetEquipConf",CurrEquip.itemID)
+	if equipListRowData == nil then
+		print "has not eplistRowData"
+		return
+	end
+
+	local iSp = go:GetComponent("XUISprite")
+	if iSp ~= nil then
+		local index = tonumber(iSp.ID)		--现在龙玉全部配位1角，没有槽位区别之分
+		print("the slot index: "..tostring(index))
+
+		print "do SlotLevelIsOpen"
+		local slotlvIsOpen = Hotfix.CallDocumentMethod("JadeDocument",true, "SlotLevelIsOpen", equipListRowData.EquipPos, index)
+		if not slotlvIsOpen then
+			return
+		end
+
+		ArrayList = luanet.import_type("System.Collections.ArrayList")
+		local arr = ArrayList()
+		arr:AddRange(CurrEquip.jadeInfo.jades)
+
+		local jade = arr[index]
+
+		if jade ~= nil then
+
+			print "do _ToggleOperateMenu"
+			PrivateExtensions.CallPrivateMethod(epHandler,"_ToggleOperateMenu",true, index)
+		else
+
+			LuaJadeEquipDataModel.SetSelectSlot(index)
+			print "now go to groupPanel" 
+			-- LuaUIManager.Instance:Load("UI/GameSystem/JadeBagListPanel")
+			
+			print "do GetSlot"
+			local slot = Hotfix.CallDocumentMethod("JadeDocument",true, "GetSlot", equipListRowData.EquipPos, index)
+
+			--c#里0xf表示的十六进制的f，转为十进制为15
+			if slot ~= 0 and slot ~= 15 then
+				print "do SelectSlot"
+				Hotfix.CallDocumentMethod("JadeDocument",true, "SelectSlot", index)
+			end
+		end
+	end
+end
+--[[初始化右侧用于界面6个龙玉孔的点击事件]]--
+
+
+function JadeEquipHandler.RefreshSelectedName(theName)
+
+	do return end
+
+	if SelectEqNameTrans ~= nil then
+		local nameLb = SelectEqNameTrans:GetComponent("UILabel")
+		if nameLb ~= nil then
+			nameLb.text = theName
+		end
+	end
+end
+
+
+
+function JadeEquipHandler.RefreshSelectJadeInfoFrame(currJadeSlotIndex)
+
+	local theJadeSlots = PrivateExtensions.GetPrivateField(epHandler,"m_JadeSlots")
+
+	local m_SelectMenu = PrivateExtensions.GetPrivateField(epHandler,"m_SelectMenu")
+
+	if  theJadeSlots ~= nil and m_SelectMenu ~= nil then
+		print("select frame get")
+
+		print("cur slot index: "..tostring(currJadeSlotIndex))
+		print("x: "..tostring(theJadeSlots[currJadeSlotIndex].transform.localPosition.x))
+		print("y: "..tostring(theJadeSlots[currJadeSlotIndex].transform.localPosition.y))
+		m_SelectMenu.transform.localPosition = theJadeSlots[currJadeSlotIndex].transform.localPosition
+	end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- function JadeEquipHandler.DoArgOperation()
+-- 	luanet.import_type("System.Collections.Generic.List")
+	
+-- 	ArrayList = luanet.import_type("System.Collections.ArrayList")
+-- 	-- luanet.import_type("System.Collections.Generic.List")
+
+--  	local jadeList = Hotfix.CallDocumentMethod("JadeDocument",true, "GetJades")
+--  	print("the list count: "..tostring(jadeList.Count))
+	
+
+-- 	local arr = ArrayList()
+-- 	arr:AddRange(jadeList:ToArray())
+	
+--  	print("item id: "..tostring(arr[0].itemID))
+
+--  	local uid = Hotfix.GetObjectString(arr[0],"uid",true,true)
+--  	print("uid: "..uid)
+
+--  	local optype = 0
+--  	local slotindex = 0
+
+--  	print("optype: "..type(optype))
+--  	print("slotindex: "..type(slotindex))
+-- 	LuaJadeEquipDataModel.ArgOperation({optype,uid,slotindex})
+-- end
+
+
+-- --[[初始化左侧10个身体装备槽位的点击事件]]--
+-- function JadeEquipHandler.InitALLBodyEquipClick( )
+
+-- 	local eqHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_equipHandler", true, true, false)
+
+-- 	if eqHandler ~= nil then
+	
+-- 		local bodyEquipArr = PrivateExtensions.GetPrivateField(eqHandler,"m_EquipGo")
+-- 		print("bodyEquipArr count: "..tostring(bodyEquipArr.Length))
+		
+-- 		if bodyEquipArr ~= nil then	
+
+-- 			ArrayList = luanet.import_type("System.Collections.ArrayList")
+-- 			local arr = ArrayList()
+-- 			arr:AddRange(bodyEquipArr)
+
+
+-- 			for i = 0, bodyEquipArr.Length - 1 do
+-- 				print("bind index: "..tostring(i))
+-- 				local tempObj = arr[i]
+
+-- 				if arr[i] ~= nil then
+-- 					print ("has eq id: "..tostring(i))
+-- 					local SoltBgIcon = tempObj.transform:FindChild("Icon"):GetComponent("XUISprite")
+-- 					SoltBgIcon.ID = i
+
+-- 					local tt = DelegateFactory.UILib_SpriteClickEventHandler(this.BodyEquipOnClick)
+				
+-- 					SoltBgIcon:RegisterSpriteClickEventHandler(tt)
+-- 					-- Hotfix.SetClickCallback(SoltBgIcon.gameObject, this.BodyEquipOnClick)
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end
+

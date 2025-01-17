@@ -1,0 +1,168 @@
+--
+--  Lua520DayFrame.lua
+--  Created by alexpeng on 2017/04/26 14:06:00
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+require "Lua520DayDocument.lua"
+
+SYS_520Day = 847
+
+Lua520DayFrame = {}
+local this = Lua520DayFrame
+
+local m_Go
+
+local timeleft = 7200
+local timetoken = 0
+
+local items = {}
+local cnts =  {}
+local m_CommentBtn
+local m_TimerLbl 
+local m_descLbl
+local m_txtBg
+local m_objItem = {}
+local m_itemPool
+
+
+--called by MonoBehaviour.Awake
+function Lua520DayFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+
+		local xit =  Hotfix.GetGlobalString("ValentineRwd")
+		
+		local strs = Split(xit,'|')
+		--print(tostring(#strs))
+		for i=1,#strs do
+			local sp = Split(strs[i],'=')
+			items[i] = tonumber(sp[1])
+			cnts[i] = tonumber(sp[2])
+		end
+
+		m_CommentBtn = m_Go.transform:Find("Bg/BtnGo"):GetComponent("UISprite")
+		m_TimerLbl =  m_Go.transform:Find("Bg/Time"):GetComponent("UILabel")
+		m_descLbl  =  m_Go.transform:Find("Bg/Label"):GetComponent("UILabel")
+		m_txtBg =  m_Go.transform:Find("Bg/Tex"):GetComponent("UITexture")
+		Hotfix.SetClickCallback(m_CommentBtn.gameObject, this.OnBtnClick)
+		timetoken = Hotfix.LuaLoop(1000,0,this.OnTimer)
+		
+		m_itemPool = Hotfix.SetupPool(
+			m_Go.transform:Find("Bg/ItemList").gameObject, 
+			m_Go.transform:Find("Bg/ItemList/ItemTpl").gameObject,
+			8)
+
+	end
+end
+
+
+function Lua520DayFrame.Start()
+end
+
+function Lua520DayFrame.OnEnable()
+	--print("Lua520DayFrame.OnEnable")
+	Hotfix.SetTexture(m_txtBg,"atlas/UI/GameSystem/Activity/ActivePic_1_h2Split",false)
+end
+
+
+function Lua520DayFrame.OnDisable()
+	--print("Lua520DayFrame.OnDisable")
+	Hotfix.DestoryTexture(m_txtBg,"atlas/UI/GameSystem/Activity/ActivePic_1_h2Split")
+end
+
+
+function Lua520DayFrame.OnDestroy()
+	Hotfix.RemoveTimer(timetoken)
+end
+
+
+function Lua520DayFrame.OnShow()
+	print("Lua520DayFrame.OnShow")
+	timeleft = Lua520DayDocument.GetTimeleft()
+	this.OnTimer()
+	this.SetupIcons()
+	local txt = Hotfix.GetStringTable("VtenineDesc")
+	txt = Hotfix.CallSingleMethod("UI.UiUtility", false, false, "ReplaceReturn", txt)
+	m_descLbl.text=txt
+
+	ValentREDPOINT = false
+	ValentClicked = true
+	Hotfix.ForceUpdateSysRedPointImmediately(SYS_520Day, false)
+	Hotfix.ForceUpdateSysRedPointImmediately(600, false)
+end
+
+function Lua520DayFrame.OnHide()
+	print("Lua520DayFrame.OnHide")
+end
+
+
+function  Lua520DayFrame.OnBtnClick(go)
+	print("520DayClick")
+	Hotfix.OpenSys(24) --XSys_FlowerRank
+
+end
+
+function Lua520DayFrame.SetupIcons()
+	if m_itemPool == nil then return end
+	m_itemPool:ReturnAll()
+	local cnt = #items
+	for i=1,cnt do
+		local item = m_itemPool:FetchGameObject()
+		item.transform.localPosition = Vector3(85*(i-1),0,0)
+		Hotfix.DrawItemView(item, items[i], 1, true)
+
+		local icon = item.transform:Find("Icon"):GetComponent("UISprite")
+		icon.uid = items[i]
+		Hotfix.SetClickCallback(icon.gameObject, this.ShowIconTip)
+
+		local sign = item.transform:Find("jiaobiao")
+		sign.gameObject:SetActive(i==1)
+	end
+end
+
+
+function  Lua520DayFrame.OnFocus()
+	--timeleft = 3600
+end
+
+function  Lua520DayFrame.ShowIconTip(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid, go)
+end
+
+function Lua520DayFrame.OnItemClick(go)
+	local widget = go.transform:GetComponent("UIWidget")
+	local itemid = widget.uid
+	Hotfix.LuaShowDetailTooltipDialog(itemid,go)
+end
+
+function Lua520DayFrame.OnTimer()
+	print("Lua520DayFrame.OnTimer=>"..tostring(timeleft))
+	timeleft=timeleft-1
+	local seconds = timeleft % 60
+	local m = math.floor(timeleft / 60)
+	local min  =  m % 60
+	local hour = math.floor(m/60)
+
+	--print("seconds: "..tostring(seconds).." m: "..tostring(m).." min: "..tostring(min).." hour: "..tostring(hour))
+	local s_second = tostring(seconds)
+	if seconds < 10 then s_second="0"..s_second end
+	local s_min = tostring(min)
+	if min <10 then s_min="0"..s_min end
+	local s_hour = tostring(hour)
+	if hour< 10 and hour >=0 then 
+		s_hour = "0"..s_hour
+	elseif hour < 0  then
+		s_hour = "00"
+	end
+
+	if m_TimerLbl ~= nil then
+	 	if seconds < 0 or min <0 or hour <0 then
+	    	m_TimerLbl.text = "活动倒计时 00:00:00"
+	    else
+	    	m_TimerLbl.text = "活动倒计时 "..s_hour..":"..s_min..":"..s_second
+	    end
+	end
+end

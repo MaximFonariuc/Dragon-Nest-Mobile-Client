@@ -1,0 +1,1134 @@
+﻿
+-- require "LuaJadeGroupTableTable.lua"
+-- require "LuaJadeSealTableTable.lua"
+require "LuaJadeEquipDataModel.lua"
+
+----新龙玉系统组合界面
+LuaJadeGroupPanel = {}
+local this = LuaJadeGroupPanel
+
+local theJadeSealMaxLevel = 12			---策划可通过修改这个数值来调整程序对最高组合等级的预览显示逻辑处理
+
+local thisObj = nil
+local thisTrans = nil
+
+local CloseBtnTrans = nil
+local CurSelectedEqTrans = nil
+
+local CurrEquip = nil  --XItem
+
+local JadeFrameTrans = nil
+local m_jadePool = nil
+local jadeObjList = { }		--顶部龙玉镶嵌槽位的龙玉集合
+
+local m_uiScrollView = nil
+local m_uiWrapContent = nil
+local m_jadeGroupPool = nil
+
+local normalScale = Vector3(0.75,0.75,0.75)
+
+local currEquipJadeIdList = {}			--当前装备所镶嵌的龙玉id表，用于判断组合预览界面是否灰色显示
+-- local currEqJadeUidList = {}		--当前装备所镶嵌的龙玉uid表，string存贮,用于判断组合预览界面是否灰色显示
+	
+local DetaiTitlePath = "Bg/AttrFrame/Title/Title"
+local DetaiTitleLb = nil
+local AttrRootPath = "Bg/AttrFrame/AttrRoot"
+local AttrRootTrans = nil
+local AttrList = {}			--组合增益属性文字集合
+local m_ArrtPool = nil
+local ExtraRootPath = "Bg/AttrFrame/ExtraRoot"
+local ExtraRootTrans = nil
+local ExtraList ={}			--额外特殊增益效果文字集合
+local m_ExtraPool = nil
+
+local CurrSelectJadeGroupItemIndex = 0
+local oldJadeGroupItemTrans = nil
+
+local cacheGroupTabNum = 0		--页签数缓存，用于镶嵌卸下时触发组合，但不实时刷新之用
+
+-- local toolTipParamBinded = nil
+
+function LuaJadeGroupPanel.Init()
+
+	if thisObj == nil then
+		return
+	end
+
+	thisTrans = thisObj.transform
+
+	if thisTrans == nil then
+		return
+	end
+
+	CloseBtnTrans = thisTrans:Find("Bg/Close")
+	if CloseBtnTrans ~= nil then
+		Hotfix.SetClickCallback(CloseBtnTrans.gameObject, this.CloseBtnOnClick)	
+	end
+
+	---上部当前装备、龙玉初始化---
+	CurSelectedEqTrans = thisTrans:Find("Bg/Equip")	
+
+	JadeFrameTrans = thisTrans:Find("Bg/JadeFrame")
+
+	if JadeFrameTrans ~= nil and #jadeObjList == 0 then
+		-- 初始化龙玉对象池
+		m_jadePool= Hotfix.SetupPool(
+				JadeFrameTrans.gameObject, 
+				JadeFrameTrans:Find("JadeTpl").gameObject,
+				6)
+
+		for i = 0, 5 do
+			-- local partGo = JadeFrameTrans:FindChild("Jade"..tostring(i)).gameObject;
+			local jadeGo = m_jadePool:FetchGameObject()
+
+			local thepos = Vector3(i*90,0,0)
+			jadeGo.transform.localPosition = thepos	--partGo.transform.localPosition;
+			jadeGo.transform.localScale = Vector3(0.9,0.9,0.9)
+
+			jadeObjList[i] = jadeGo
+		end		
+	end
+
+	---左侧组合列表初始化---
+	local GroupPanelTrans = thisTrans:Find("Bg/ArtifactSetFrame/ItemList")
+	local WrapContentTrans = GroupPanelTrans:Find("WrapContent")
+
+	m_uiScrollView = GroupPanelTrans:GetComponent("UIScrollView")
+	m_uiWrapContent = WrapContentTrans.gameObject
+
+	if m_uiScrollView ~= nil and m_uiWrapContent ~= nil then
+		-- 初始化龙玉组合对象池
+		m_jadeGroupPool = Hotfix.SetupPool(
+			GroupPanelTrans.gameObject, 
+			WrapContentTrans:Find("DetailTpl").gameObject,
+			6)
+	end
+
+	Hotfix.InitWrapContent(m_uiWrapContent, this.WrapContentItemUpdated)
+	
+
+	---右侧详情初始化---
+	DetaiTitleLb = thisTrans:Find(DetaiTitlePath):GetComponent("UILabel")
+	AttrRootTrans = thisTrans:Find(AttrRootPath)
+	ExtraRootTrans = thisTrans:Find(ExtraRootPath)
+	local AttrFrameTrans = thisTrans:Find("Bg/AttrFrame")
+	if AttrFrameTrans ~= nil and #AttrList == 0 and #ExtraList == 0 then
+
+		m_ArrtPool = Hotfix.SetupPool(
+				AttrFrameTrans.gameObject,
+				AttrFrameTrans:Find("Attr").gameObject,
+				6)
+
+		m_ExtraPool = Hotfix.SetupPool(
+				AttrFrameTrans.gameObject,
+				AttrFrameTrans:Find("Extra").gameObject,
+				2)
+	end
+
+
+	this.InitProfFrame()
+end
+
+----组合界面，镶嵌卸载后，只刷新龙玉icon，不滚动列表
+function LuaJadeGroupPanel.RefreshScrollViewAfterResOperation()
+	local currSelectedGroupCount = #LuaJadeEquipDataModel.GetSealTableByTabNum(cacheGroupTabNum)
+	Hotfix.SetWrapContentCount(m_uiWrapContent, currSelectedGroupCount, false)
+
+	if not IsNil(oldJadeGroupItemTrans) then
+		--doShowDetail
+		LuaJadeGroupPanel.JadeGroupItemOnClick(oldJadeGroupItemTrans)
+	end
+end
+
+
+
+local haveActive = false
+local needFourceGo = nil
+----正常刷新组合列表逻辑
+function LuaJadeGroupPanel.RefreshGroupScrollView()
+
+	CurrSelectJadeGroupItemIndex = 0
+
+	haveActive = false
+
+	needFourceGo = nil
+
+	-- print"刷新界面"
+	print("cacheGroupTabNum: "..cacheGroupTabNum)
+	local currSelectedGroupCount = #LuaJadeEquipDataModel.GetSealTableByTabNum(cacheGroupTabNum)
+	-- #LuaJadeEquipDataModel.GetCurrSelectedGroupTable()
+
+	-- print("curr Group Count: "..currSelectedGroupCount)
+	
+	Hotfix.SetWrapContentCount(m_uiWrapContent, currSelectedGroupCount, false)
+	
+	oldJadeGroupItemTrans = m_uiWrapContent.transform:GetChild(0)
+	
+	if not haveActive then
+		this.JadeGroupItemOnClick(nil)
+		m_uiScrollView:ResetPosition() 
+	else
+		if needFourceGo ~= nil then
+			this.JadeGroupItemOnClick(needFourceGo)
+
+			local xuiScroll = m_uiScrollView.gameObject:GetComponent("XUIScrollView")
+
+			local theY = -needFourceGo.transform.localPosition.y
+			print("theY: "..tostring(theY))
+
+			xuiScroll:SetPosition(theY)
+
+			-- local targetPos = Vector3(needFourceGo.transform.localPosition.x,needFourceGo.transform.localPosition.y,needFourceGo.transform.localPosition.z)
+			-- m_uiScrollView:MoveRelative(targetPos)
+
+			-- m_uiScrollView:RestrictWithinBounds(true)
+		end
+	end
+	
+end
+
+
+
+function LuaJadeGroupPanel.WrapContentItemUpdated(t,index)
+	
+	-- print("the index: "..index)
+
+	local tempdata = LuaJadeEquipDataModel.GetSealTableByTabNum(cacheGroupTabNum)[index + 1] ------------dataCountdex为c#控件传来的数组下标从0开始，而lua里的table下标从1开始，故+1
+	-- LuaJadeEquipDataModel.GetCurrSelectedGroupTable()[index + 1] 	--index为c#控件传来的数组下标从0开始，而lua里的table下标从1开始，故+1
+
+	-- print("the tempdata sealName: "..tostring(tempdata.SealName))  --读表txt文件一定要保存utf-8格式，再转成.bytes文件
+
+	local groupBg = t:GetComponent("XUISprite")
+	if groupBg ~= nil then
+		groupBg.ID = index
+		Hotfix.SetClickCallback(t.gameObject, this.JadeGroupItemOnClick)
+	end
+
+	local selectFrameObj = t:Find("Select").gameObject
+	if selectFrameObj ~= nil then
+		if CurrSelectJadeGroupItemIndex == index then
+			-- print("true index: "..index)
+			selectFrameObj:SetActive(true)
+		else
+			-- print("false index: "..index)
+			selectFrameObj:SetActive(false)
+		end
+	end
+
+
+	local realData = nil
+	local DetailReal = false
+	local hasSeal,needGroupNum,hasSealId = LuaJadeEquipDataModel.HasSealIdAndGroupNum()
+	local Activated = t:Find("Activated").gameObject
+	if hasSeal then
+
+		-- print("hasSealId: "..hasSealId)
+		-- print("temp id: "..tempdata.SealID)
+		-- print("needGroupNum: "..needGroupNum)
+		realData = LuaJadeEquipDataModel.GetLocalSealSingleDataBytabNum(hasSealId,needGroupNum)
+
+		if realData ~= nil then
+
+			-- print("realData.SealID: "..realData.SealID)
+
+			if realData.SealID ~= tempdata.SealID then
+				if #realData.SealSuit == #tempdata.SealSuit then
+					DetailReal = true
+					for i=1,#realData.SealSuit do
+						if realData.SealSuit[i] ~= tempdata.SealSuit[i] then
+							DetailReal = false
+							break
+						end
+					end
+				else
+					DetailReal = false
+				end
+			else
+				DetailReal = true
+			end	
+		else
+			DetailReal = false
+		end
+		
+	end
+
+
+	local groupName = t:Find("Grade/Label"):GetComponent("UILabel")
+	if groupName ~= nil then
+		if not DetailReal then
+			Activated:SetActive(false)	
+			groupName.text = tempdata.SealName
+		else
+			Activated:SetActive(true)
+			haveActive = true
+			needFourceGo = t.gameObject
+			groupName.text = realData.SealName
+		end
+	end
+
+	local groupQualitySprite = t:Find("Grade"):GetComponent("UISprite")
+	if groupQualitySprite ~= nil then
+
+		-- print("quality: "..tostring(tempdata.SealQuality))
+		local spriteNameStr = Hotfix.CallSingleMethod("UI.UiUtility",true,false,"GetItemQualityIcon",tempdata.SealQuality)
+
+		groupQualitySprite.spriteName = spriteNameStr
+	end
+
+	local jadeParentTrans = t:Find("GroupFrame")
+	local jadeParentChildCount = 0
+	if jadeParentTrans ~= nil then
+		jadeParentChildCount = jadeParentTrans.childCount
+	end
+
+	if jadeParentChildCount ~= tempdata.SealNum then
+		if jadeParentChildCount > tempdata.SealNum then
+			for i=jadeParentChildCount,tempdata.SealNum + 1, -1 do
+				m_jadePool:ReturnInstance(jadeParentTrans:GetChild(i-1).gameObject, true)
+			end
+		else
+			for i=jadeParentChildCount + 1,tempdata.SealNum do
+				
+				-- local tempObj = m_jadePool:FetchGameObject()
+
+				local newItem = m_jadePool:FetchGameObject()	--tempObj.transform:Find("Common").gameObject
+
+				newItem.transform.parent = jadeParentTrans
+			 	newItem.transform.localScale = normalScale
+			 	local thepos = Vector3((i-1)*70,0,0)
+			 	-- Vector3((i-1)*100-118,-40,0)
+				newItem.transform.localPosition = thepos --Vector3(m_itemPool.TplWidth * (i-1) + m_itemPool.TplPos.x, m_itemPool.TplPos.y, m_itemPool.TplPos.z)
+--				print("new position "..i.." "..tostring(newItem.transform.localPosition))
+				
+				-- print "--------------------------------"
+
+				local groupId = tempdata.SealSuit[i]
+				-- print("the gourpid: "..groupId)
+				local theJadeItemId = LuaJadeEquipDataModel.GetPreJadeItemId(groupId)
+				-- print("the jade item id: "..theJadeItemId)
+				if theJadeItemId == nil then
+					return
+				end
+
+				local jadeObj = newItem.transform:Find("Common").gameObject
+				local commonSprite = jadeObj:GetComponent("UISprite")
+
+
+				local needShowGray = true
+
+				-- print "-----------------------------------------------------------------"
+				-- print("currEquipJadeIdList count: "..tostring(#currEquipJadeIdList))
+
+				-- print("theJadeItemId: "..tostring(theJadeItemId))
+
+				local ownJadeItemId = 0
+				for i =1,#currEquipJadeIdList do
+
+					local jadeItemId = currEquipJadeIdList[i] 
+					local tempGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(jadeItemId)
+
+					if tempGroupId == groupId then
+
+						-- print "not gray"
+						-- print("list temp id: "..tostring(currEquipJadeIdList[i]))
+						needShowGray = false
+						ownJadeItemId = jadeItemId
+						break
+					end
+
+					-- print("list temp id: "..tostring(currEquipJadeIdList[i]))
+				end
+
+				local iconTransForClick = jadeObj.transform:Find("Icon")
+				local isp = iconTransForClick:GetComponent("XUISprite")
+				isp.ID = theJadeItemId
+				
+
+				local icon = iconTransForClick:Find("Icon"):GetComponent("UISprite")
+				local qualityFrame = jadeObj.transform:Find("Quality"):GetComponent("UISprite")
+
+				---<ngui bug
+				commonSprite.enabled = false	--点击层级
+				icon.enabled = false			--材质定点图形绘制
+				qualityFrame.enabled = false	--材质定点图形绘制
+				commonSprite.enabled = true
+				icon.enabled = true
+				qualityFrame.enabled = true
+				---ngui bug>
+
+				if needShowGray then					
+					icon.color = Color.black
+					qualityFrame.color = Color.black
+					Hotfix.DrawItemView(jadeObj,theJadeItemId,1,false)	
+					isp.ID = theJadeItemId
+					Hotfix.SetClickCallback(jadeObj,this.smallJadeTempletTipDlg)		
+				else
+					icon.color = Color.white
+					qualityFrame.color = Color.white
+					Hotfix.DrawItemView(jadeObj,ownJadeItemId,1,false)	
+					isp.ID = ownJadeItemId
+					Hotfix.SetClickCallback(jadeObj,this.smallJadeDetailTipDlg)	
+				end
+			end
+		end
+	else
+		-- print("jadeParentChildCount: "..tostring(jadeParentChildCount))
+		-- print("suit count: "..tostring(#tempdata.SealSuit))
+
+		for i =0,jadeParentChildCount - 1 do 
+			local tempTrans = jadeParentTrans:GetChild(i)
+			tempTrans.gameObject:SetActive(true)
+
+			local index = i + 1
+			local groupId = tempdata.SealSuit[index]
+			-- print("the gourpid: "..groupId)
+			local theJadeItemId = LuaJadeEquipDataModel.GetPreJadeItemId(groupId)
+			-- print("the jade item id: "..theJadeItemId)
+
+			if theJadeItemId == nil then
+				return
+			end
+
+			local jadeObj = tempTrans:Find("Common").gameObject
+			
+
+			local needShowGray = true
+
+			local ownJadeItemId = 0
+			for i =1,#currEquipJadeIdList do
+
+				local jadeItemId = currEquipJadeIdList[i] 
+				local tempGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(jadeItemId)
+
+				if tempGroupId == groupId then
+					needShowGray = false
+					ownJadeItemId = jadeItemId
+					break
+				end
+			end
+
+
+			local iconTransForClick = jadeObj.transform:Find("Icon")
+			local isp = iconTransForClick:GetComponent("XUISprite")
+			isp.ID = theJadeItemId
+			Hotfix.SetClickCallback(jadeObj,this.smallJadeTempletTipDlg)	
+
+			local icon = iconTransForClick:Find("Icon"):GetComponent("UISprite")
+			local qualityFrame = jadeObj.transform:Find("Quality"):GetComponent("UISprite")
+
+			if needShowGray then					
+				icon.color = Color.black
+				qualityFrame.color = Color.black
+				Hotfix.DrawItemView(jadeObj,theJadeItemId,1,false)
+				isp.ID = theJadeItemId
+				Hotfix.SetClickCallback(jadeObj,this.smallJadeTempletTipDlg)		
+			else
+				icon.color = Color.white
+				qualityFrame.color = Color.white	
+				Hotfix.DrawItemView(jadeObj,ownJadeItemId,1,false)	
+				isp.ID = ownJadeItemId
+				Hotfix.SetClickCallback(jadeObj,this.smallJadeDetailTipDlg)	
+			end
+		end
+	end
+end
+function LuaJadeGroupPanel.smallJadeTempletTipDlg(go)
+
+	local isp = go.transform:Find("Icon"):GetComponent("XUISprite")
+	local itemid = isp.ID
+
+	Hotfix.LuaShowItemTooltipDialog(itemid, go)
+end
+function LuaJadeGroupPanel.smallJadeDetailTipDlg(go)
+	local isp = go.transform:Find("Icon"):GetComponent("XUISprite")
+	local itemid = isp.ID
+
+	-- local ixsp = go.transform:Find("Icon"):GetComponent("IXUISprite")
+
+	-- print("itemid: "..tostring(itemid))
+	-- toolTipParamBinded = true
+	Hotfix.LuaShowDetailTooltipDialog(itemid, go)
+
+	-- Hotfix.LuaShowItemTooltipDialogByUID(currEqJadeUidList[itemid],go)
+
+	
+	-- ArrayList = luanet.import_type("System.Collections.ArrayList")	
+ -- 	local jadeList = Hotfix.CallDocumentMethod("JadeDocument",true, "GetJades")
+ -- 	print("the list count: "..tostring(jadeList.Count))
+	
+	-- local arr = ArrayList()
+	-- arr:AddRange(jadeList:ToArray())
+
+	-- local uid = ""
+	-- for i = 0, jadeList.Count - 1 do
+	-- 	local temp = arr[i]
+
+	-- 	if temp ~= nil then
+	-- 		if temp.itemID == itemid then
+	-- 			print("itemID: "..tostring(temp.itemID))
+	-- 			print("temp type: "..type(temp))
+	-- 			uid = Hotfix.GetObjectString(temp,"uid",true,true)
+	-- 			print("uid: "..uid)
+	-- 			break
+	-- 		end
+	-- 	end
+	-- end
+
+
+	-- if uid ~= "" then
+	-- 	Hotfix.LuaShowItemTooltipDialogByUID(uid, go)
+	-- end
+end
+
+function LuaJadeGroupPanel.JadeGroupItemOnClick(go)
+
+	local tempdata = nil
+
+	print("cacheGroupTabNum: "..cacheGroupTabNum)
+
+	if go ~= nil then
+		print("the jadeGroup name: "..tostring(go.name))
+ 		local index = go:GetComponent("XUISprite").ID
+
+ 		-- if CurrSelectJadeGroupItemIndex == index then
+ 		-- 	return
+ 		-- end
+	
+		tempdata = LuaJadeEquipDataModel.GetSealTableByTabNum(cacheGroupTabNum)[index + 1]
+		--LuaJadeEquipDataModel.GetCurrSelectedGroupTable()[index + 1] 	--index为c#控件传来的数组下标从0开始，而lua里的table下标从1开始，故+1
+
+		oldJadeGroupItemTrans:Find("Select").gameObject:SetActive(false)
+		CurrSelectJadeGroupItemIndex = index
+		oldJadeGroupItemTrans = go.transform
+		oldJadeGroupItemTrans:Find("Select").gameObject:SetActive(true)
+	else
+		tempdata = LuaJadeEquipDataModel.GetSealTableByTabNum(cacheGroupTabNum)[1]
+		--LuaJadeEquipDataModel.GetCurrSelectedGroupTable()[1] 	--index为c#控件传来的数组下标从0开始，而lua里的table下标从1开始，故+1
+		if oldJadeGroupItemTrans ~= nil then
+			oldJadeGroupItemTrans:Find("Select").gameObject:SetActive(true)
+			CurrSelectJadeGroupItemIndex = 0
+		end
+	end
+
+	local realData = nil
+	local DetailReal = false
+	local hasSeal,needGroupNum,hasSealId = LuaJadeEquipDataModel.HasSealIdAndGroupNum()
+	
+	print("has seal: "..tostring(hasSeal))
+
+	if hasSeal then
+		print("hasSealId: "..hasSealId)
+		print("needGroupNum: "..needGroupNum)
+		realData = LuaJadeEquipDataModel.GetLocalSealSingleDataBytabNum(hasSealId,needGroupNum)
+		if realData ~= nil then
+			if realData.SealID ~= tempdata.SealID then
+				if #realData.SealSuit == #tempdata.SealSuit then
+					DetailReal = true
+					for i=1,#realData.SealSuit do
+						if realData.SealSuit[i] ~= tempdata.SealSuit[i] then
+							DetailReal = false
+							break
+						end
+					end
+				else
+					DetailReal = false
+				end
+			end		
+		else
+			DetailReal = false
+		end
+	end
+
+	if not DetailReal then
+		this.RefreshGroupDetail(tempdata.SealID)
+	else
+		this.RefreshGroupDetail(hasSealId)
+
+	end
+end
+
+
+function LuaJadeGroupPanel.RefreshGroupDetail(sealId)
+ 	if type(sealId) ~= "number" then
+ 		print "sealId must be a number!!!"
+ 	end
+
+ 	local targetLocalData = LuaJadeEquipDataModel.GetLocalSealSingleData(sealId)
+
+ 	if targetLocalData ~= nil then
+
+ 		-- print("seal id: "..tostring(targetLocalData.SealID))
+
+ 		if DetaiTitleLb ~= nil then
+ 			DetaiTitleLb.text = targetLocalData.SealName
+ 		end
+
+ 		-------------属性增益----------------
+ 		local AttrChildCount = AttrRootTrans.childCount
+ 		local dataCount = #targetLocalData.SealAttributes
+		-- print("------------dataCount: "..tostring(dataCount))
+
+ 	-- 	for i = 1,dataCount do
+ 	-- 		print("the data: "..tostring(targetLocalData.SealAttributes[i]))
+ 	-- 	end
+
+ 		local theTempDataCount = dataCount / 2		--数据是键值对，所以除2才表示一个属性的增益数据
+
+ 		if AttrChildCount ~= theTempDataCount then
+ 			if AttrChildCount > theTempDataCount then
+				for i=AttrChildCount,theTempDataCount + 1, -1 do
+					m_ArrtPool:ReturnInstance(AttrRootTrans:GetChild(i-1).gameObject, true)	
+				end
+
+				this.refreshAllChild(AttrChildCount, AttrRootTrans, targetLocalData,  this.DoAttrDisplay)
+ 			else
+ 				this.refreshAllChild(AttrChildCount, AttrRootTrans, targetLocalData,  this.DoAttrDisplay)
+
+ 				for i = AttrChildCount + 1, theTempDataCount do 		--这里又要从4条数据开始遍历，区分id和value
+
+ 					local tempObj = m_ArrtPool:FetchGameObject()
+
+					tempObj.transform.parent = AttrRootTrans
+					tempObj.transform.localPosition = Vector3(0,-24 * (i-1), 0)
+					this.DoAttrDisplay(targetLocalData,tempObj,i)
+ 				end
+ 			end
+ 		else
+ 			this.refreshAllChild(AttrChildCount, AttrRootTrans, targetLocalData,  this.DoAttrDisplay)
+ 			-- for i = 0,AttrChildCount - 1 do
+ 			-- 	local tempTrans = AttrRootTrans:Find("item"..tostring(i))
+ 			-- 	if tempTrans ~= nil then
+ 			-- 		local index = i + 1		
+ 			-- 		this.DoAttrDisplay(targetLocalData,tempTrans.gameObject,index)
+ 			-- 	end
+ 			-- end
+ 		end
+
+
+ 		-------------buff特殊效果增益----------------	
+
+		local ExtraChildCount = ExtraRootTrans.childCount
+ 		local buffCount = #targetLocalData.SealBuff
+ 		local theTempbuffDataCount = buffCount / 2
+
+ 		-- print("buffCount: "..tostring(buffCount))
+
+		local thebuffTempDataCount = buffCount / 2		--数据是键值对，所以除2才表示一个属性的增益数据
+
+		if ExtraChildCount ~= theTempbuffDataCount then
+			if ExtraChildCount > theTempbuffDataCount then
+				for i=ExtraChildCount,theTempbuffDataCount + 1, -1 do
+					m_ExtraPool:ReturnInstance(ExtraRootTrans:GetChild(i-1).gameObject, true)	
+				end
+				this.refreshAllChild(ExtraChildCount, ExtraRootTrans, targetLocalData,  this.DOExtraDisplay)
+			else
+				this.refreshAllChild(ExtraChildCount, ExtraRootTrans, targetLocalData,  this.DOExtraDisplay)
+				for i = ExtraChildCount + 1, theTempbuffDataCount do 		--这里又要从4条数据开始遍历，区分id和value
+
+					local tempObj = m_ExtraPool:FetchGameObject()
+
+					tempObj.transform.parent = ExtraRootTrans
+					tempObj.transform.localPosition = Vector3(0,-24 * (i-1), 0)
+
+					this.DOExtraDisplay(targetLocalData,tempObj,i)	
+ 				end
+			end
+		else
+			this.refreshAllChild(ExtraChildCount, ExtraRootTrans, targetLocalData,  this.DOExtraDisplay)
+			-- for i = 0,ExtraChildCount - 1 do
+			-- 	local tempTrans = ExtraRootTrans:Find("item"..tostring(i))
+ 		-- 		if tempTrans ~= nil then
+ 		-- 			local index =(i + 1 )
+ 		-- 			this.DOExtraDisplay(targetLocalData,tempTrans.gameObject,index)
+ 		-- 		end
+			-- end
+		end
+		
+ 	end
+end
+
+function LuaJadeGroupPanel.refreshAllChild(childCount, rootTrans, targetData, func)
+	for i = 0 , childCount - 1 do
+		local tempTrans = rootTrans:Find("item"..tostring(i))
+		if tempTrans ~= nil then
+			local index =(i + 1 )
+			func(targetData,tempTrans.gameObject,index)
+			-- this.DOExtraDisplay(targetData,tempTrans.gameObject,index)
+		end	
+	end
+end
+
+function LuaJadeGroupPanel.DOExtraDisplay(targetLocalData,tempObj,index)
+	-- print("index: "..tostring(index))
+
+	index = (index - 1) * 2 + 1
+
+	local buffId = targetLocalData.SealBuff[index]
+	local sealLv = targetLocalData.SealBuff[index + 1]
+
+	-- print("the buff id: "..tostring(buffId))
+
+	if  buffId ~= 0 then 
+		
+		tempObj:SetActive(true)
+
+		local titleNameLb = tempObj.transform:Find("Title"):GetComponent("UILabel")
+
+		local buffRowData = Hotfix.CallSingleMethod("XBuffTemplateManager",true,false,"GetBuffData",buffId,sealLv)
+
+		--保护机制，buff表里对应的buff等级低于龙玉组合表里的等级，则取能取到的最高等级
+		while buffRowData == nil do
+			sealLv = sealLv - 1
+			buffRowData = Hotfix.CallSingleMethod("XBuffTemplateManager",true,false,"GetBuffData",buffId,sealLv)			
+		end	
+
+
+		if buffRowData ~= nil then
+
+			-- local nameColor = Hotfix.CallSingleMethod("UI.UiUtility",true,false,"GetItemQualityColor",targetLocalData.SealQuality)
+
+			titleNameLb.text = buffRowData.BuffName
+
+			-- titleNameLb.color = nameColor
+		else
+			print("buffId: "..tostring(buffId))
+			print"the buffid can not find!!!!!!!! please checkout the SealBuff which form JadeSeal table in the BuffList table"
+			tempObj:SetActive(false)
+		end
+
+	else
+		tempObj:SetActive(false)
+	end
+end
+
+function LuaJadeGroupPanel.DoAttrDisplay(targetLocalData,tempObj,i)
+
+	-- print("i: "..tostring(i))
+
+	local index = (i - 1) * 2 + 1
+
+	local data1 = targetLocalData.SealAttributes[index]
+	local data2 = targetLocalData.SealAttributes[index + 1]
+
+	-- print("data1: "..tostring(data1))
+	-- print("data2: "..tostring(data2))
+
+	local attrNameLb = tempObj.transform:Find("Title"):GetComponent("UILabel")
+	local attrValueLb = tempObj.transform:Find("Current"):GetComponent("UILabel")
+	local attrNextVlaueLb = tempObj.transform:Find("Next"):GetComponent("UILabel")
+
+	local tt = Hotfix.CallSingleMethod("XAttributeCommon",true,true,"GetAttrStr",data1)
+
+	-- = Hotfix.CallSingleMethod("XAttributeCommon",true,true,"GetAttrValueStr",data1,data2,true)		--不知为何取不到c#里数据
+
+	local tt1 = nil
+	if this.IsPercentRange(data1) then
+		tt1 = "+"..tostring(data2).."%"
+	else
+		tt1 = "+"..tostring(data2)
+	end
+	 				
+	-- print ("tt: "..tt)
+	-- print("tt1: "..tt1)
+
+	attrNameLb.text = tt
+	attrValueLb.text = tt1
+
+	theJadeSealMaxLevel = tonumber(Hotfix.GetGlobalString("JadeSealMaxLvNum"))
+	if targetLocalData.SealLevel == theJadeSealMaxLevel then
+		attrNextVlaueLb.text =  Hotfix.GetGlobalString("JadeSealMaxLvTxt")--"最高"
+		return 
+	end
+
+	local nextLocalData = LuaJadeEquipDataModel.GetLocalSealSingleData(targetLocalData.SealID + 1)
+	if nextLocalData ~= nil then
+
+		-- print("the next data id: "..tostring(nextLocalData.SealID))
+		local nexttype =  nextLocalData.SealAttributes[index]
+		local nextdata = nextLocalData.SealAttributes[index + 1]
+
+		local nextValueStr = nil
+		if this.IsPercentRange(nexttype) then
+			nextValueStr = "+"..tostring(nextdata).."%"
+		else
+			nextValueStr = "+"..tostring(nextdata)
+		end
+		attrNextVlaueLb.text = nextValueStr
+	else
+		attrNextVlaueLb.text = Hotfix.GetGlobalString("JadeSealMaxLvTxt")--"最高"
+	end
+end
+
+function LuaJadeGroupPanel.IsPercentRange( id )
+	-- print("the attr id: "..id)
+	if id > 1000 and id < 1301 then			--参考c#里面XAttributeCommon的IsPercentRange方法
+		return true
+	else
+		return false
+	end
+end
+
+
+function LuaJadeGroupPanel.RefreshMainEquipIcon()
+	if CurSelectedEqTrans ~= nil then
+
+		LuaJadeEquipDataModel.RefreshCurrEquip()
+
+		-- local CurrEquipUid = Hotfix.GetGetDocumentLongMember("JadeDocument","selectedEquip",true,true)		--string
+	
+		-- print("curr equip uid: "..CurrEquipUid)
+		-- local equipUid = Hotfix.GetLuaLong(CurrEquipUid)							--XLuaLong
+
+		CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()
+		-- Hotfix.CallDocumentMethod("XBagDocument", true,"GetItemByUID", equipUid)
+
+		Hotfix.CallSingleMethod("XItemDrawerMgr",true,false,"DrawItem",CurSelectedEqTrans.gameObject, CurrEquip)
+
+
+		local nameLb = CurSelectedEqTrans:Find("Name"):GetComponent("UILabel")
+		local nameStrList =  Split(nameLb.text,'+')
+		nameLb.text = nameStrList[1]
+	end
+end
+
+
+
+function LuaJadeGroupPanel.RefreshAllJadeSlot()
+
+	CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()			--当前选中装备的数据是存在c#中的，所以由lua发起协议后，需要从c#那在拉一次当前选中装备的数据信息
+
+	currEquipJadeIdList = {}
+
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local arr = ArrayList()
+	arr:AddRange(CurrEquip.jadeInfo.jades)
+
+
+	print("jadeObjList count: "..(#jadeObjList))
+
+	for i = 0, 5 do
+
+		local tempJade = jadeObjList[i].transform:Find("Common").gameObject
+		local tempAddBg = jadeObjList[i].transform:Find("Add").gameObject
+		local tempLockBg = jadeObjList[i].transform:Find("Lock").gameObject
+
+		local iSp = jadeObjList[i]:GetComponent("XUISprite")
+		iSp.ID = i
+
+		Hotfix.SetClickCallback(tempJade,this.TakeOffTargetJade)
+
+		Hotfix.SetPressCallback(tempAddBg,this.justForTween)
+
+		Hotfix.SetClickCallback(tempAddBg,this.OpenJadeBagListPanel)
+
+		tempAddBg:SetActive(false)
+		tempLockBg:SetActive(false)
+		tempJade:SetActive(false)
+
+		if arr[i] ~= nil then
+			
+			tempJade:SetActive(true)
+
+			Hotfix.CallSingleMethod("XItemDrawerMgr",true,false,"DrawItem",tempJade, arr[i])
+
+			-- print "----------------------------------"
+			-- print("currEquipJadeIdList count: "..tostring(#currEquipJadeIdList))
+			-- print("jade item id: "..tostring(arr[i].itemID))
+			local index = #currEquipJadeIdList + 1
+
+			local itemId = arr[i].itemID
+			-- print("jade item id: "..tostring(itemId))
+			currEquipJadeIdList[index] = itemId
+
+			-- local uidStr = Hotfix.GetObjectString(arr[i],"uid")
+			-- print("jade item uid: "..uidStr)
+			-- currEqJadeUidList[itemId] = uidStr
+		else
+
+			-- tempJade.transform:Find("NumTop").gameObject:SetActive(false)
+			-- tempJade.transform:Find("Icon").gameObject:SetActive(false)
+			-- tempJade.transform:Find("Quality").gameObject:SetActive(false)
+			-- tempJade.transform:Find("Num").gameObject:SetActive(false)
+			-- tempJade.transform:Find("Cover").gameObject:SetActive(false)
+			-- tempJade.transform:Find("Lock").gameObject:SetActive(false)
+
+
+			local equipListRowData = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"GetEquipConf",CurrEquip.itemID)
+			if equipListRowData == nil then
+				print "has not eplistRowData"
+				return
+			end
+
+			local playerData = Hotfix.GetSingleMember("XAttributeMgr","XPlayerData",true,false,false)
+
+			if playerData ~= nil then			
+
+				local CurrLv = playerData.Level
+				-- print("cur lv: "..tostring(CurrLv))
+				local seq = Hotfix.CallDocumentMethod("JadeDocument",true, "GetSlotInfoByPos", equipListRowData.EquipPos)
+				local needLv = Hotfix.ParseUIntSeqList(seq,i,1) 
+				-- print("need lv: "..tostring(needLv))
+
+				if CurrLv >= needLv then
+					tempAddBg:SetActive(true)
+				else
+					tempLockBg:SetActive(true)
+				end
+			end
+		end
+	end
+end
+
+function LuaJadeGroupPanel.TakeOffTargetJade(go)
+	local iSp = go.transform.parent:GetComponent("XUISprite")
+	
+	print("the slot index: "..tostring(iSp.ID))
+	LuaJadeEquipDataModel.SetSelectSlot(iSp.ID)
+
+	LuaJadeEquipDataModel.ReqTakeOffJade(iSp.ID)
+end
+
+function LuaJadeGroupPanel.justForTween(go)
+	local addTween = go:GetComponent("XUIPlayTween")
+	addTween:PlayTween(true)
+end
+function LuaJadeGroupPanel.OpenJadeBagListPanel(go)
+
+	local iSp = go.transform.parent:GetComponent("XUISprite")
+	
+	print("the slot index: "..tostring(iSp.ID))
+	LuaJadeEquipDataModel.SetSelectSlot(iSp.ID)
+
+	print "now go to groupPanel" 
+	LuaUIManager.Instance:Load("UI/GameSystem/JadeBagListPanel")
+end
+
+function LuaJadeGroupPanel.CloseBtnOnClick(go)
+	if thisObj ~= nil then
+		this.OnHide()
+		thisObj:SetActive(false)
+	end
+end
+
+
+local ProfBtnTransPath = "Bg/ArtifactSetFrame/Prof/Bg"
+local ProfBtnTrans = nil
+local EqSetProfFramePath = "Bg/ArtifactSetFrame/EquipSetProfFrame"
+local EqSetProfFrame = nil
+local m_ProfPool = nil
+local ProfObjList = {}
+local EqSetPfFrameClosePath = "Bg/ArtifactSetFrame/EquipSetProfFrame/Block"
+local EqSetPfFrameCloseTrans = nil
+
+local currSelectProfObj = nil
+
+function LuaJadeGroupPanel.InitProfFrame()
+	if thisTrans == nil then
+		return
+	end
+
+	EqSetPfFrameCloseTrans = thisTrans:Find(EqSetPfFrameClosePath)
+	Hotfix.SetClickCallback(EqSetPfFrameCloseTrans.gameObject,this.ProfTabOnClick)
+
+	ProfBtnTrans = thisTrans:Find(ProfBtnTransPath)
+	EqSetProfFrame = thisTrans:Find(EqSetProfFramePath)
+
+	Hotfix.SetClickCallback(ProfBtnTrans.gameObject,this.ProfTabOnClick)
+
+	ProfBtnTrans.gameObject:SetActive(true)
+	EqSetProfFrame.gameObject:SetActive(true)
+
+
+	local gridTrans = EqSetProfFrame.transform:Find("Grid")
+
+	if #ProfObjList == 0 and gridTrans.childCount< 5 then
+
+		m_ProfPool = Hotfix.SetupPool(
+			gridTrans.gameObject,
+			gridTrans:Find("ProfTpl").gameObject,
+			6)
+
+		local tabCount = LuaJadeEquipDataModel.GetInitSealTabeCount()
+		print("tabCount: "..tabCount)
+
+		for i = 1 , tabCount do 
+			local newItem = m_ProfPool:FetchGameObject()
+			local isp = newItem:GetComponent("XUISprite")
+			-- isp.ID = i
+
+			isp.ID = LuaJadeEquipDataModel.GetSealTabNumByNum()
+			print("tab num: "..isp.ID)
+
+			local theLb = newItem.transform:Find("T"):GetComponent("UILabel")
+
+			local selecT = newItem.transform:Find("Selected")
+			selecT.gameObject:SetActive(false)
+
+			this.SetTabName(isp.ID - 1,theLb)
+
+			Hotfix.SetClickCallback(newItem,this.ProfItemOnClick)
+
+			ProfObjList[i] = newItem	
+		end
+
+		gridTrans:GetComponent("UIGrid"):Reposition()
+		gridTrans:Find("ProfTpl").gameObject:SetActive(false)
+	end
+
+	-- 已经有这条逻辑了：打开界面默认弹至当前已激活属性页签并选中显示，若无已激活属性则默认弹至最低组合数量，第一条组合条目，如：二龙组合第一条组合条目
+	-- local isp = ProfObjList[#ProfObjList]:GetComponent("XUISprite")
+	-- local num = isp.ID + 1
+	-- LuaJadeEquipDataModel.SetCurrGroupNum(num)
+end
+
+function LuaJadeGroupPanel.ProfTabOnClick(go)
+
+	local bshow = not EqSetProfFrame.gameObject.activeInHierarchy
+	EqSetProfFrame.gameObject:SetActive(bshow)
+end
+function LuaJadeGroupPanel.ProfItemOnClick(go)
+	local isp = go:GetComponent("XUISprite")
+	local num = isp.ID
+
+	LuaJadeEquipDataModel.SetCurrGroupNum(num)
+	
+	if cacheGroupTabNum ~= num then
+		cacheGroupTabNum = num
+
+		this.RefreshGroupScrollView()
+
+		if currSelectProfObj ~= nil then
+			-- currSelectProfObj.transform:Find("Selected").gameObject:SetActive(false)
+		end
+
+		-- go.transform:Find("Selected").gameObject:SetActive(true)
+		currSelectProfObj = go
+
+		local tLb = ProfBtnTrans.parent:Find("V"):GetComponent("UILabel")
+		this.SetTabName(isp.ID - 1, tLb)
+	end
+
+	this.ProfTabOnClick(nil)
+end
+function LuaJadeGroupPanel.SetTabName(index, uilabel)
+	local tt = ""
+
+	if index == 1 then
+		tt = Hotfix.GetGlobalString("JadeSealTab2")
+		elseif index == 2 then
+			tt = Hotfix.GetGlobalString("JadeSealTab3")
+			elseif index == 3 then
+				tt = Hotfix.GetGlobalString("JadeSealTab4")
+				elseif index == 4 then
+					tt = Hotfix.GetGlobalString("JadeSealTab5")
+					elseif index == 5 then
+						tt = Hotfix.GetGlobalString("JadeSealTab6")--"六龙组合"
+	end
+
+	uilabel.text = tt
+end
+
+function LuaJadeGroupPanel.RefreshSealAbout( )
+	this.RefreshAllJadeSlot()
+
+	-- this.RefreshGroupScrollView()
+	-- this.ProfItemOnClick(ProfObjList[#ProfObjList])
+
+	-- local isp = ProfObjList[#ProfObjList]:GetComponent("XUISprite")
+	-- local num = isp.ID + 1
+	-- LuaJadeEquipDataModel.SetCurrGroupNum(num)
+
+	local hasSeal,needGroupNum = LuaJadeEquipDataModel.HasSealIdAndGroupNum()
+
+	print("hasSeal: "..tostring(hasSeal))
+
+	print("needGroupNum: "..tostring(needGroupNum))
+
+
+	if hasSeal then
+		cacheGroupTabNum = needGroupNum
+	else
+		cacheGroupTabNum = LuaJadeEquipDataModel.GetCurrGroupNum()
+	end
+
+	
+	-- local isp = ProfObjList[cacheGroupTabNum - 1]:GetComponent("XUISprite")
+
+	this.RefreshGroupScrollView()
+	local tLb = ProfBtnTrans.parent:Find("V"):GetComponent("UILabel")
+	this.SetTabName(cacheGroupTabNum - 1, tLb)
+	EqSetProfFrame.gameObject:SetActive(false)
+end
+
+
+function LuaJadeGroupPanel.OnShow()
+
+	-- toolTipParamBinded = Hotfix.GetSingleMember("UI.TooltipParam", "bBinded", true, true, false)
+	-- print("the binded type: "..type(toolTipParamBinded))
+
+	LuaJadeEquipDataModel.SetJadeGroupFrame(this)
+
+	local itemDrawParam = Hotfix.GetSingleMember("XItemDrawerMgr", "Param", true, true, true)
+	itemDrawParam.bHideBinding = true
+
+	this.RefreshMainEquipIcon()
+
+	this.RefreshSealAbout()
+	
+	-- this.RefreshAllJadeSlot()
+
+	-- -- this.RefreshGroupScrollView()
+	-- this.ProfItemOnClick(ProfObjList[#ProfObjList])
+	
+end
+
+function LuaJadeGroupPanel.OnHide()
+	LuaJadeEquipDataModel.JadGroupDlgUnLoad()
+	currSelectProfObj = nil
+end
+
+---------------------------------------Unity monobehavior 生命周期 方法-------------------------------------------
+
+function LuaJadeGroupPanel.Awake(go)
+	thisObj = go
+	this.Init()
+end
+
+function LuaJadeGroupPanel.Start()
+
+end
+
+function LuaJadeGroupPanel.OnEnable()
+
+end
+
+function LuaJadeGroupPanel.OnDisable()
+		
+end
+
+function LuaJadeGroupPanel.OnDestroy()
+	jadeObjList = {}
+	currEquipJadeIdList = {}
+	AttrList = {}
+	ExtraList= {}
+	ProfObjList = {}
+
+	LuaJadeEquipDataModel.JadGroupDlgUnLoad()
+	currSelectProfObj = nil
+	oldJadeGroupItemTrans = nil
+
+	m_jadePool:ReturnAllDisable()
+	m_jadePool = nil
+
+	m_jadeGroupPool:ReturnAllDisable()
+	m_jadeGroupPool = nil
+
+	m_ArrtPool:ReturnAllDisable()
+	m_ArrtPool = nil
+
+	m_ExtraPool:ReturnAllDisable()
+	m_ExtraPool = nil
+
+	m_ProfPool:ReturnAllDisable()
+	m_ProfPool = nil
+end

@@ -1,0 +1,709 @@
+--
+--  Lua520FestivityDlg.lua
+--  Created by Declanchen on 2018/04/17 15:06:00
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+--520庆典大会的视图逻辑
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+require "Lua520FestivityDoc.lua"
+require("LuaItemIconListData")
+
+---@class Lua520FestivityDlg
+Lua520FestivityDlg = {}
+local this = Lua520FestivityDlg
+
+--普通玫瑰贡献
+---@type UnityEngine.GameObject
+local normalItemObj = nil
+local normalItemId = 3550
+local normalCostNum = 2
+local normalCostNumLb = nil
+local normalDonateBtnObj = nil
+local normalDonateBtnPath = "Main/Rose1/BtnSubmit"
+
+--读表
+local tips = "所需道具不足，无法捐献"
+
+--特殊玫瑰捐献
+---@type UnityEngine.GameObject
+local specialItemObj = nil
+local specialItemId = 3551
+local specialCostNum = 2
+local specialCostNumLb = nil
+local specialDonateBtnObj = nil
+local specialDonateBtnPath = "Main/Rose2/BtnSubmit"
+
+local CurScoreTileLb = nil
+local CurScoreTileStr = "全服恋爱值"
+local CurScoreNumLb = nil
+
+---@type UnityEngine.Transform
+local chestGrideTrans = nil
+local m_BoxRewardPool = nil
+local chestList = {}		--数组下标从0开始
+
+--读庆典积分宝箱配表
+local boxNum = 4
+
+---@type UnityEngine.GameObject
+local selfObj = nil
+
+---@type UnityEngine.Transform
+local selfTrans = nil
+
+---@type UnityEngine.GameObject
+local gotoRankBtnObj = nil
+
+---@type UnityEngine.GameObject
+local ActivityHelpBtnObj = nil
+
+--恋爱值排行榜
+local m_rankSpr = nil
+local m_rankLb = nil
+local m_rankValueLb = nil
+
+---@type UnityEngine.GameObject
+local RankScrollViewObj = nil
+---@type NGUI.UIScrollView
+local rank_ScrollView = nil
+---@type UnityEngine.GameObject
+local rank_WrapContentObj = nil
+
+local rank_Pool = nil
+
+---@type NGUI.UISlider
+local ProgressComp = nil
+
+
+function Lua520FestivityDlg.Init()
+
+	if IsNil(selfObj) or IsNil(selfTrans) then
+		return
+	end
+
+	--local loveTitleLb = selfTrans:Find("Main/LoveValue/T"):GetComponent("UILabel")
+	--loveTitleLb.text = Hotfix.GetStringTable("ServiceLoveScore")
+
+	local TipsLb = selfTrans:Find("Main/Tips"):GetComponent("UILabel")
+	if not IsNil(TipsLb) then
+		TipsLb.text = Hotfix.GetStringTable("LoveActivityTime")
+	end
+
+    CurScoreNumLb = selfTrans:Find("Main/LoveValue/Value"):GetComponent("UILabel")
+
+	--初始化说明规则按钮
+	ActivityHelpBtnObj = selfTrans:Find("Main/Help").gameObject
+	if not IsNil(ActivityHelpBtnObj) then
+		Hotfix.SetClickCallback(ActivityHelpBtnObj, this.HelpOnClick)
+	end
+
+	--初始化排名奖励按钮点击事件
+	gotoRankBtnObj = selfTrans:Find("Main/BtnRank").gameObject
+	if not IsNil(gotoRankBtnObj) then
+		Hotfix.SetClickCallback(gotoRankBtnObj, this.GotoRankDlgOnClick)
+	end
+
+	--普通玫瑰贡献
+	normalItemObj = selfTrans:Find("Main/Rose1/ItemTpl").gameObject
+   
+	Hotfix.SetClickCallback(normalItemObj, this.ItemIconTipsOnClick)
+
+    normalCostNumLb = selfTrans:Find("Main/Rose1/ItemTpl/NumLb"):GetComponent("UILabel")
+	Hotfix.DrawItemView(normalItemObj, normalItemId, 1, false)
+	local normalIcon = normalItemObj.transform:Find("Icon")
+ 	local isp = normalIcon:GetComponent("XUISprite")
+	isp.ID = normalItemId
+	normalDonateBtnObj = selfTrans:Find(normalDonateBtnPath).gameObject
+	Hotfix.SetClickCallback(normalDonateBtnObj, this.NormalDonateBtnOnClick)
+
+	--特殊玫瑰贡献
+	specialItemObj = selfTrans:Find("Main/Rose2/ItemTpl").gameObject
+	Hotfix.SetClickCallback(specialItemObj, this.ItemIconTipsOnClick)
+
+    specialCostNumLb = selfTrans:Find("Main/Rose2/ItemTpl/NumLb"):GetComponent("UILabel")
+	Hotfix.DrawItemView(specialItemObj, specialItemId, 1, false)
+	local specialIcon = specialItemObj.transform:Find("Icon")
+	local isp = specialIcon:GetComponent("XUISprite")
+	isp.ID = specialItemId
+	specialDonateBtnObj = selfTrans:Find(specialDonateBtnPath).gameObject
+	Hotfix.SetClickCallback(specialDonateBtnObj, this.SpeicalDonateBtnOnClick)
+
+	CurScoreTileLb = selfTrans:Find("Main/LoveValue/T"):GetComponent("UILabel")
+	CurScoreTileLb.text = CurScoreTileStr
+
+	--初始化恋爱积分宝箱
+	chestGrideTrans = selfTrans:Find("Main/LoveValue/Progress/Chests")
+	if not IsNil(chestGrideTrans)  and #chestList == 0 then
+		m_BoxRewardPool = Hotfix.SetupPool(
+				chestGrideTrans.gameObject,
+				chestGrideTrans:Find("Chest").gameObject,
+				6)
+
+		for i = 0, boxNum, 1 do
+			---@type UnityEngine.GameObject
+			local boxTempObj =  m_BoxRewardPool:FetchGameObject()
+			local thePos = Vector3(i * 90, 0, 0)
+			boxTempObj.transform.localPosition = thePos
+			boxTempObj.transform.localScale = Vector3.one
+
+			chestList[i] = boxTempObj
+		end
+	end
+
+	m_rankValueLb = selfTrans:Find("Main/BuildRank/MyRank/Point"):GetComponent("UILabel")
+	m_rankSpr = selfTrans:Find("Main/BuildRank/MyRank/Rank"):GetComponent("UISprite")
+	m_rankLb = selfTrans:Find("Main/BuildRank/MyRank/Rank3"):GetComponent("UILabel")
+
+
+	--初始化排名奖励ScrollView
+	local RankScrollViewTrans = selfTrans:Find("Main/BuildRank/ScrollView")
+	RankScrollViewObj = RankScrollViewTrans.gameObject
+	local RankWrapTrans = RankScrollViewTrans:Find("WrapContent")
+	rank_ScrollView = RankScrollViewTrans:GetComponent("UIScrollView")
+	rank_WrapContentObj = RankWrapTrans.gameObject
+
+	if rank_ScrollView ~= nil and rank_WrapContentObj ~= nil then
+		-- 初始化排名奖励对象池
+		rank_Pool = Hotfix.SetupPool(
+				RankScrollViewObj,
+				RankWrapTrans:Find("RankTpl").gameObject,
+				8)
+	end
+	Hotfix.InitWrapContent(rank_WrapContentObj, this.WrapContentRankUpdated)
+
+	ProgressComp = selfTrans:Find("Main/LoveValue/Progress"):GetComponent("UISlider")
+end
+
+---@param t UnityEngine.Transform
+function Lua520FestivityDlg.WrapContentRankUpdated(t,index)
+
+	local rankTable = Lua520FestivityDoc.GetRankTable()
+	local theIndex = index + 1
+
+	local tempData = rankTable[theIndex]
+
+	local theLoveValue = tempData.powerpoint
+
+	local LoveValueLb = t:Find("Point"):GetComponent("UILabel")
+	if not IsNil(LoveValueLb) then
+		LoveValueLb.text = theLoveValue
+	end
+
+	--print"-------------------------------"
+	local theRanking = theIndex --tempData.Rank + 1
+	--print("tempDataRank: "..tempData.Rank)
+	--print("theRank: "..theRanking)
+
+	local theRankSpr = t:Find("Rank"):GetComponent("UISprite")
+	local theRankLb = t:Find("Rank3"):GetComponent("UILabel")
+
+	if theRanking == theIndex then
+		this.RankingHandle(index, theRankSpr, theRankLb)
+	end
+
+	local NameLb = t:Find("Name"):GetComponent("UILabel")
+	if not IsNil(NameLb) then
+		NameLb.text = tempData.RoleName
+	end
+
+end
+
+
+function Lua520FestivityDlg.RefreshUIAndData()
+
+    local itemBag = Hotfix.GetDocumentMember("XBagDocument", "ItemBag", true, true)
+    if not IsNil(itemBag) then
+        normalCostNum = PublicExtensions.CallPublicMethod(itemBag,"GetItemCount",normalItemId)
+        specialCostNum = PublicExtensions.CallPublicMethod(itemBag,"GetItemCount",specialItemId)
+    end
+
+    if not IsNil(normalCostNumLb) and not IsNil(specialCostNumLb) then
+        normalCostNumLb.text = tostring(normalCostNum)
+        specialCostNumLb.text = tostring(specialCostNum)
+    end
+
+end
+
+
+function Lua520FestivityDlg.ItemIconTipsOnClick(go)
+	local isp = go.transform:Find("Icon"):GetComponent("XUISprite")
+	local itemid = isp.ID
+
+	print ("theitem id: "..itemid)
+
+	Hotfix.LuaShowItemTooltipDialog(itemid, go)
+
+	local theSelectFrameTrans = go.transform:Find("ItemSelector(Clone)")
+	if not IsNil(theSelectFrameTrans) then
+		theSelectFrameTrans.gameObject:SetActive(false)
+	end 
+end
+
+function Lua520FestivityDlg.NormalDonateBtnOnClick(go)
+
+    if normalCostNum == 0 then
+        Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",tips,"fece00")
+        return
+    end
+
+    Lua520FestivityDoc.ArgDonateLoveItem(normalItemId)
+end
+
+function Lua520FestivityDlg.SpeicalDonateBtnOnClick(go)
+
+    if specialCostNum == 0 then
+        Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",tips,"fece00")
+        return
+    end
+
+    Lua520FestivityDoc.ArgDonateLoveItem(specialItemId)
+end
+
+function Lua520FestivityDlg.HelpOnClick(go)
+	Hotfix.CallSingleMethod("UI.XCommonHelpTipView",true,false,"ShowHelp",XSys_520Festivity)
+end
+
+function Lua520FestivityDlg.GotoRankDlgOnClick(go)
+	LuaUIManager.Instance:Load("UI/OperatingActivity/520FestivityRankDlg")
+end
+
+--刷新积分宝箱列表
+function Lua520FestivityDlg.RefreshScoreBoxList()
+
+	local theBoxStateTable = Lua520FestivityDoc.GetRewardBoxStateList()
+
+	for i = 0, #chestList, 1 do
+		---@type UnityEngine.GameObject
+		local tempBoxObj = chestList[i]
+		local iSp = tempBoxObj:GetComponent("XUISprite")
+		iSp.ID = i
+
+		local boxTable = Lua520FestivityDoc.GetFestivityTable()
+
+		local ExpLb = tempBoxObj.transform:Find("Exp"):GetComponent("UILabel")
+		local theIndex = i + 1
+		if not IsNil(ExpLb) then
+			ExpLb.text = boxTable[theIndex].LoveScore
+		end
+
+		--print("the index: "..theIndex)
+		local theGiftIcon = boxTable[theIndex].GiftIcon
+		--print("the gift icon: "..theGiftIcon)
+
+		local boxSpr = tempBoxObj:GetComponent("UISprite")
+		if not IsNil(boxSpr) then
+			boxSpr.spriteName =  theGiftIcon
+		end
+
+		local redObj = tempBoxObj.transform:Find("RedPoint").gameObject
+		redObj:SetActive(false)
+
+		local fxObj = tempBoxObj.transform:Find("UI_hyd").gameObject
+		fxObj:SetActive(false)
+
+		local needShowRedPoint = false
+
+		if theBoxStateTable[i+1] then
+			boxSpr.spriteName = boxSpr.spriteName.."_2"
+		else
+			if Lua520FestivityDoc.GetServiceLoveValue() >= boxTable[theIndex].LoveScore then
+				--boxSpr.spriteName = boxSpr.spriteName.."_1"
+				redObj:SetActive(true)
+				fxObj:SetActive(true)
+
+				needShowRedPoint = true
+			end
+		end
+
+		Lua520FestivityDoc.RefreshRedPoint(needShowRedPoint)
+
+
+		Hotfix.SetClickCallback(tempBoxObj, this.RewardBoxOnClick)
+	end
+end
+
+---@param go UnityEngine.GameObject
+function Lua520FestivityDlg.RewardBoxOnClick(go)
+
+	local iSp = go:GetComponent("XUISprite")
+	local theIndex = iSp.ID + 1
+
+	local theBoxStateTable = Lua520FestivityDoc.GetRewardBoxStateList()
+	local boxTable = Lua520FestivityDoc.GetFestivityTable()
+
+	if Lua520FestivityDoc.GetServiceLoveValue() >= boxTable[theIndex].LoveScore and not theBoxStateTable[theIndex] then
+		Lua520FestivityDoc.ArgGetBoxReward(iSp.ID)
+	else
+		print("click index: "..tostring(theIndex))
+
+		local boxTable = Lua520FestivityDoc.GetFestivityTable()
+		--print("score: "..boxTable[theIndex].LoveScore)
+
+		local theGiftList = boxTable[theIndex].LoveGift
+
+		print("the gift count: "..tostring(#theGiftList))
+
+		LuaItemIconListData.SetDataTable(theGiftList)
+		LuaItemIconListData.SetTargetPos(go.transform.position)
+		LuaUIManager.Instance:Load("UI/GameSystem/ItemIconListDlgForLua")
+	end
+
+end
+
+local timetoken = 0
+function Lua520FestivityDlg.OnShow()
+
+	Lua520FestivityDoc.SetFestivityFrame(this)
+
+	this.RefreshUIAndData()
+
+
+    Lua520FestivityDoc.ArgLoveRankList()
+    Lua520FestivityDoc.ArgFestivityInfo()
+
+	timetoken = Hotfix.LuaLoop(2000,10000,this.OnTimer)
+
+end
+
+function Lua520FestivityDlg.OnTimer()
+
+	--print("timetoken trigger")
+	-- Lua520FestivityDoc.ArgLoveRankList()
+	Lua520FestivityDoc.ArgFestivityInfo()
+end
+
+function Lua520FestivityDlg.refreshAboutFestivalInfo(curMyValue, curServiceValue, boxGetList)
+	if not IsNil(CurScoreNumLb) then
+		CurScoreNumLb.text = tostring(curServiceValue)
+	end
+
+	if not IsNil(m_rankValueLb) then
+		m_rankValueLb.text = curMyValue
+	end
+
+	this.RefreshUIAndData()
+
+	local boxTable = Lua520FestivityDoc.GetFestivityTable()
+	local TheMaxValue = boxTable[#boxTable].LoveScore
+
+	--print "----------------------------------------"
+	local theIndex = #boxTable
+	--print("thecurServiceValue: "..curServiceValue)
+	local theOffValue = 0
+	for i = 1, #boxTable do
+		local theScore = boxTable[i].LoveScore
+		--print("theScore: "..theScore)
+		if curServiceValue < theScore then
+			theIndex = i - 1
+
+			local preIndex = 1
+			local preScore = 0
+			if i ~= 1 then
+				preIndex = i - 1
+
+				preScore = boxTable[preIndex].LoveScore
+			end
+
+			local diff = theScore - preScore
+			local offset =  curServiceValue - preScore
+			theOffValue = offset / diff *  0.2
+
+			break
+		end
+	end
+
+	--print "----------------------------------------------"
+	--print("theCurServiceValue: "..curServiceValue)
+	--print("maxValue: "..TheMaxValue)
+
+	--print("theIndex: "..theIndex)
+	--print("箱子总数： "..#boxTable)
+	local theValue = theIndex / #boxTable + theOffValue  --curServiceValue / TheMaxValue
+
+	--print("theValue: "..theValue)
+
+
+	if not IsNil(ProgressComp) then
+	ProgressComp.value = theValue
+	end
+
+	this.RefreshScoreBoxList()
+
+end
+
+function Lua520FestivityDlg.refreshAboutRankInfo(myRanking, RankDataList)
+
+	if not IsNil(m_rankSpr) and not IsNil(m_rankLb) then
+
+		this.RankingHandle(myRanking, m_rankSpr, m_rankLb)
+
+		--m_rankLb.gameObject:SetActive(false)
+		--m_rankSpr.gameObject:SetActive(false)
+        --
+		--if myRanking < 3 then
+		--	m_rankSpr.gameObject:SetActive(true)
+        --
+		--	if myRanking == 0 then
+		--		m_rankSpr.spriteName = "N1"
+		--		elseif myRanking == 1 then
+		--			m_rankSpr.spriteName = "N2"
+		--			elseif myRanking == 2 then
+		--				m_rankSpr.spriteName = "N3"
+		--	end
+		--else
+		--	m_rankLb.gameObject:SetActive(true)
+		--	m_rankLb.text = tostring(myRanking)
+		--end
+	end
+
+	print("theRankListCount: "..#RankDataList)
+
+	local rankTable = Lua520FestivityDoc.GetRankTable()
+	local rankTableCount = #rankTable
+	--print("rank count: "..rankTableCount)
+	if not IsNil(rank_WrapContentObj) then
+		Hotfix.SetWrapContentCount(rank_WrapContentObj, rankTableCount, false)
+	end
+
+	rank_ScrollView:ResetPosition();
+end
+
+function Lua520FestivityDlg.RankingHandle(theMyRanking, rankSpr, rankLb)
+
+	--print("the ranking: "..theMyRanking)
+
+	rankLb.gameObject:SetActive(false)
+	rankSpr.gameObject:SetActive(false)
+
+	if theMyRanking == 4294967295 then
+		rankLb.gameObject:SetActive(true)
+		rankLb.text = "未上榜"
+		return
+	end
+
+	if theMyRanking < 3 then
+		rankSpr.gameObject:SetActive(true)
+
+		if theMyRanking == 0 then
+			rankSpr.spriteName = "N1"
+		elseif theMyRanking == 1 then
+			rankSpr.spriteName = "N2"
+		elseif theMyRanking == 2 then
+			rankSpr.spriteName = "N3"
+		end
+
+	else
+		rankLb.gameObject:SetActive(true)
+		rankLb.text = tostring(theMyRanking + 1)
+	end
+end
+
+
+function Lua520FestivityDlg.OnHide()
+	if timetoken ~= nil then
+		Hotfix.RemoveTimer(timetoken)
+	end
+    Lua520FestivityDoc.UnloadFestivityFrame()
+end
+
+---------------------------------------------------- Unity MonoBehaviour 生命周期 -------------------------------------------------
+function Lua520FestivityDlg.Awake(go)
+	selfObj = go
+
+	selfTrans = selfObj.transform
+
+	this.Init()
+end
+
+function Lua520FestivityDlg.Start()
+
+end
+
+function Lua520FestivityDlg.OnEnable()
+
+	 Lua520FestivityDoc.ArgLoveRankList()
+	 
+end
+
+function Lua520FestivityDlg.OnDisable()
+	--Hotfix.RemoveTimer(timetoken)
+
+	-- if timetoken ~= nil then
+	-- 	Hotfix.RemoveTimer(timetoken)
+	-- end
+	
+ --    Lua520FestivityDoc.UnloadFestivityFrame()
+end
+
+function Lua520FestivityDlg.OnDestroy()
+	if m_BoxRewardPool ~= nil then
+		m_BoxRewardPool:ReturnAllDisable()
+	end
+
+
+	chestList = { }
+
+	if rank_Pool ~= nil then
+		rank_Pool:ReturnAllDisable()
+	end
+
+	--Hotfix.RemoveTimer(timetoken)
+end
+
+
+--SYS_520Day = 847
+--local m_Go
+--
+--local timeleft = 7200
+--local timetoken = 0
+--
+--local items = {}
+--local cnts =  {}
+--local m_CommentBtn
+--local m_TimerLbl
+--local m_descLbl
+--local m_txtBg
+--local m_objItem = {}
+--local m_itemPool
+----called by MonoBehaviour.Awake
+--function Lua520FestivityDlg.Awake(go)
+--
+--
+--
+--	if(IsNil(m_Go)) then
+--		m_Go = go
+--
+--		local xit =  Hotfix.GetGlobalString("ValentineRwd")
+--
+--		local strs = Split(xit,'|')
+--		--print(tostring(#strs))
+--		for i=1,#strs do
+--			local sp = Split(strs[i],'=')
+--			items[i] = tonumber(sp[1])
+--			cnts[i] = tonumber(sp[2])
+--		end
+--
+--		m_CommentBtn = m_Go.transform:Find("Bg/BtnGo"):GetComponent("UISprite")
+--		m_TimerLbl =  m_Go.transform:Find("Bg/Time"):GetComponent("UILabel")
+--		m_descLbl  =  m_Go.transform:Find("Bg/Label"):GetComponent("UILabel")
+--		m_txtBg =  m_Go.transform:Find("Bg/Tex"):GetComponent("UITexture")
+--		Hotfix.SetClickCallback(m_CommentBtn.gameObject, this.OnBtnClick)
+--		timetoken = Hotfix.LuaLoop(1000,0,this.OnTimer)
+--
+--		m_itemPool = Hotfix.SetupPool(
+--			m_Go.transform:Find("Bg/ItemList").gameObject,
+--			m_Go.transform:Find("Bg/ItemList/ItemTpl").gameObject,
+--			8)
+--
+--	end
+--end
+--
+--function Lua520FestivityDlg.Start()
+--end
+--
+--function Lua520FestivityDlg.OnEnable()
+--	--print("Lua520DayFrame.OnEnable")
+--	Hotfix.SetTexture(m_txtBg,"atlas/UI/GameSystem/Activity/ActivePic_1_h2Split",false)
+--end
+--
+--
+--function Lua520FestivityDlg.OnDisable()
+--	--print("Lua520DayFrame.OnDisable")
+--	Hotfix.DestoryTexture(m_txtBg,"atlas/UI/GameSystem/Activity/ActivePic_1_h2Split")
+--end
+--
+--
+--function Lua520FestivityDlg.OnDestroy()
+--	Hotfix.RemoveTimer(timetoken)
+--end
+--
+--
+--function Lua520FestivityDlg.OnShow()
+--	print("Lua520DayFrame.OnShow")
+--	timeleft = Lua520DayDocument.GetTimeleft()
+--	this.OnTimer()
+--	this.SetupIcons()
+--	local txt = Hotfix.GetStringTable("VtenineDesc")
+--	txt = Hotfix.CallSingleMethod("UI.UiUtility", false, false, "ReplaceReturn", txt)
+--	m_descLbl.text=txt
+--
+--	ValentREDPOINT = false
+--	ValentClicked = true
+--	Hotfix.ForceUpdateSysRedPointImmediately(SYS_520Day, false)
+--	Hotfix.ForceUpdateSysRedPointImmediately(600, false)
+--end
+--
+--function Lua520FestivityDlg.OnHide()
+--	print("Lua520DayFrame.OnHide")
+--end
+--
+--
+--function  Lua520FestivityDlg.OnBtnClick(go)
+--	print("520DayClick")
+--	Hotfix.OpenSys(24) --XSys_FlowerRank
+--
+--end
+--
+--function Lua520FestivityDlg.SetupIcons()
+--	if m_itemPool == nil then return end
+--	m_itemPool:ReturnAll()
+--	local cnt = #items
+--	for i=1,cnt do
+--		local item = m_itemPool:FetchGameObject()
+--		item.transform.localPosition = Vector3(85*(i-1),0,0)
+--		Hotfix.DrawItemView(item, items[i], 1, true)
+--
+--		local icon = item.transform:Find("Icon"):GetComponent("UISprite")
+--		icon.uid = items[i]
+--		Hotfix.SetClickCallback(icon.gameObject, this.ShowIconTip)
+--
+--		local sign = item.transform:Find("jiaobiao")
+--		sign.gameObject:SetActive(i==1)
+--	end
+--end
+--
+--
+--function  Lua520FestivityDlg.OnFocus()
+--	--timeleft = 3600
+--end
+--
+--function  Lua520FestivityDlg.ShowIconTip(go)
+--	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid, go)
+--end
+--
+--function Lua520FestivityDlg.OnItemClick(go)
+--	local widget = go.transform:GetComponent("UIWidget")
+--	local itemid = widget.uid
+--	Hotfix.LuaShowDetailTooltipDialog(itemid,go)
+--end
+--
+--function Lua520FestivityDlg.OnTimer()
+--	print("Lua520DayFrame.OnTimer=>"..tostring(timeleft))
+--	timeleft=timeleft-1
+--	local seconds = timeleft % 60
+--	local m = math.floor(timeleft / 60)
+--	local min  =  m % 60
+--	local hour = math.floor(m/60)
+--
+--	--print("seconds: "..tostring(seconds).." m: "..tostring(m).." min: "..tostring(min).." hour: "..tostring(hour))
+--	local s_second = tostring(seconds)
+--	if seconds < 10 then s_second="0"..s_second end
+--	local s_min = tostring(min)
+--	if min <10 then s_min="0"..s_min end
+--	local s_hour = tostring(hour)
+--	if hour< 10 and hour >=0 then
+--		s_hour = "0"..s_hour
+--	elseif hour < 0  then
+--		s_hour = "00"
+--	end
+--
+--	if m_TimerLbl ~= nil then
+--	 	if seconds < 0 or min <0 or hour <0 then
+--	    	m_TimerLbl.text = "活动倒计时 00:00:00"
+--	    else
+--	    	m_TimerLbl.text = "活动倒计时 "..s_hour..":"..s_min..":"..s_second
+--	    end
+--	end
+--end

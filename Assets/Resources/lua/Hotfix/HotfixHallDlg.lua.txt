@@ -1,0 +1,191 @@
+﻿--
+--  HotfixHallDlg.lua
+--  Created by kaguraliu on 2016/06/06 17:51:15
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "XSystemActivity_pb.lua"
+require "HotfixDocument.lua"
+
+HallDlg = {}
+local this = HallDlg
+
+local m_go
+local m_flag = true
+-- local m_btn_nextday
+
+--local token = 0
+
+-- 变身相关变量
+--local m_btn_Change
+
+function HallDlg.BeforeRefresh(go)
+	--Go = go
+	-- m_btn_nextday= go.transform:Find("_canvas/SecondMenuFrame/SecondMenu/SysGridV2/SysGNextDayReward").gameObject
+	-- print("hall=> "..go.name.." m_btn: "..tostring(IsNil(m_btn_nextday)))
+	--Hotfix.AttachSysRedPointRelative(46, 38, false)
+	--Hotfix.AttachSysRedPointRelative(46, 39, true)
+
+	-- m_btn_nextday= go.transform:Find("_canvas/SecondMenuFrame/SecondMenu/SysGridV2/SysGNextDayReward").gameObject
+	--this.HideNvSheng()
+	return false
+end
+
+function HallDlg.AfterRefresh(go)
+	 if not IsNil(go) then
+	 	local str = "AfterRefresh=>  "..go.name
+	 	--this.RefreshNextDayIcons() --旧的
+	 	m_go = go;
+	 	print(str)
+	 	this.ShowTimedActivities()
+	 	--LuaBackflowDocument.SetHallDlg(this)
+
+	 	--this.SetChangeLeftTime(10)
+	 	--print("xxxxxxxxxx level:"..LuaGameInfo.single.name.." coin:"..LuaGameInfo.single.coin.." energy:"..LuaGameInfo.single.energy)
+	 	this.DragonSysShowSet()
+
+	 	local xplatGo= GameObject.Find("XGamePoint")
+		if not IsNil(xplatGo) then
+			local xpalt = xplatGo:GetComponent("XPlatform")
+			local sim = xpalt:GetSim()
+			if tostring(sim) == "MM" then
+	 			Hotfix.SetDocumentMember("AdditionRemindDocument","is3G",false,false,true)
+	 		end
+	 	end
+	else
+		print("AfterRefresh: HallDlg.AfterRefresh is nil lua script ")
+	end
+	return false
+end
+
+
+function HallDlg.Hide(go)
+
+	return false
+end
+
+function HallDlg.Unload(go)
+	return false
+end
+
+
+function HallDlg.DragonSysShowSet()
+	local isIsVisible = Hotfix.CallSingleMethod("UI.XMainInterface",true,false,"IsVisible")
+	if isIsVisible == false then
+		return
+	end
+	if IsNil(m_go) then return end
+	local dragon = m_go.transform:Find("_canvas/SecondMenuFrame/SecondMenu/H2/SysGridH2_2/SysLimitDragon")
+	if IsNil(dragon) then return end
+	 local dragonIsOpen = Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",542);
+	 if dragonIsOpen == true then
+	 	dragon.gameObject:SetActive(true)
+	 	Hotfix.SetClickCallback(dragon.gameObject,this.DragonSysShow)
+	 else dragon.gameObject:SetActive(false)
+	 end
+end
+
+function HallDlg.DragonSysShow(...)
+	Hotfix.CallSingleMethod("XGameSysMgr",true,false,"OpenSystem",542)
+end
+
+--刷新回流按钮状态
+function HallDlg.ShowTimedActivities()
+	--print("HallDlg.ShowTimedActivities")
+
+
+	--界面没打开不刷新
+	local isIsVisible = Hotfix.CallSingleMethod("UI.XMainInterface",true,false,"IsVisible")
+	print("isIsVisible = "..tostring(isIsVisible))
+	if isIsVisible == false then return end
+		
+	if IsNil(m_go) then return end
+
+	local tra = m_go.transform:Find("_canvas/SecondMenuFrame/SecondMenu/H2/SysGridH2_1/SysTimedActivities")
+	if IsNil(tra) then return end
+
+	local isOpen = Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",481) or Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",482) --限时活动480
+	--print("-------------------ShowTimedActivities isOpen = "..tostring(isOpen).."  RewardStatus = "..tostring(status))
+	if isOpen == true then
+		tra.gameObject:SetActive(true)
+		Hotfix.SetClickCallback(tra.gameObject,this.OnClickTimedActivitiesBtn)
+		--print("按钮已经设成了true")
+	else
+		Hotfix.SetClickCallback(tra.gameObject,this.OnClickNil)
+		tra.gameObject:SetActive(false)
+	end
+	local behaviour = Hotfix.GetSingleMember("UI.XMainInterface","uiBehaviour",true,false,false)
+	if behaviour ~= nil then
+		local sysListH2 = behaviour.m_SysListH2
+		if not IsNil(sysListH2) then
+			print("sysListH2 Refresh")
+			sysListH2:Refresh()
+		else 
+			print("sysListH2 IsNil")
+		end
+	else
+		print("behaviour is nil")
+	end
+end
+--点击回流按钮
+function HallDlg.OnClickTimedActivitiesBtn(go)
+	print("HallDlg.OnClickTimedActivitiesBtn")
+	--print("------------------------------------------------------------------IsLoad = "..tostring(LuaBackflowDlg.IsLoad()))
+	LuaUIManager.Instance:Load("UI/GameSystem/TimedActivitiesDlg")
+end
+
+function HallDlg.OnClickNil(go)
+	print("HallDlg.OnClickNil")
+end
+--
+function HallDlg.OnLoginRewardRep(data,length)
+--print("--------req      tttttttttttttttttttttt------------ ")
+	local msg = XSystemActivity_pb.LoginRewardRet()
+	if nil ~= msg then
+		msg:ParseFromString(data,length)
+
+		local _redpoint = false
+
+		for i = 1,#msg.rewards do
+			local item = msg.rewards[i]
+			if nil ~= item then
+				if 2 == item.state then
+					_redpoint = true
+					break
+				end
+			end
+		end 
+		
+		--Hotfix.ForceUpdateSysRedPointImmediately(460, _redpoint)
+
+	end
+end
+
+
+function HallDlg.OnLoginRewardErr(data)
+	print("Lua Get Login Reward List Error")
+end
+
+function  HallDlg.TimeOut( ... )
+	print("time out")
+	--Hotfix.RemoveTimer(token)
+end
+
+function  HallDlg.HideNvSheng( ... )
+ -- body
+ local root = GameObject.Find("Scene/DN_nvshenxiang")
+ if IsNil(root) then return end
+ local obj1 = root.transform:Find("Object01")
+ local obj2 = root.transform:Find("Object008aaa")
+ local obj3 = root.transform:Find("objNew_Sainthaven_06Aaaa")
+ local obj4 = root.transform:Find("objNew_Sainthaven_Statue")
+ local obj5 = root.transform:Find("objNew_Sainthaven_Statue_Back")
+ local obj6 = root.transform:Find("objNew_Sainthaven_Statue_Sphere")
+ if not IsNil(obj1) then obj1.gameObject:SetActive(false) end
+ if not IsNil(obj2) then obj2.gameObject:SetActive(false) end
+ if not IsNil(obj3) then obj3.gameObject:SetActive(false) end
+ if not IsNil(obj4) then obj4.gameObject:SetActive(false) end
+ if not IsNil(obj5) then obj5.gameObject:SetActive(false) end
+ if not IsNil(obj6) then obj6.gameObject:SetActive(false) end
+end
+

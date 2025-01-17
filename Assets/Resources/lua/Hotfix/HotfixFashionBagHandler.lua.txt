@@ -1,0 +1,55 @@
+﻿--
+--  HotfixSettingDlg.lua.lua
+--  Created by Administrator on 2016/09/30 09:16:37
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+FashionBagHandler={}
+local this = FashionBagHandler
+local  m_goCompose
+local pos
+
+function FashionBagHandler.BeforeHandlerShow(go)
+	if not IsNil(go) then
+		local str = "BeforeRefresh=>  "..go.name
+		print(str)
+	else
+		print("BeforeRefresh: There is nil lua script ")
+	end
+	return false
+end
+
+
+function FashionBagHandler.AfterHandlerShow(go)
+	if not IsNil(go) then
+		local str = "AfterRefresh=>  "..go.name
+		print(str)
+
+		if IsNil(m_goCompose) then
+
+			m_goCompose = go.transform:Find("BtnCompose").gameObject
+			pos = m_goCompose.transform.localPosition
+			local isOpen = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", 162)
+			
+			if not isOpen then
+				--m_goCompose.transform.localPosition = Vector3(98, 211)
+				m_goCompose.transform.localPosition = Vector3(1000,1000,0)
+			end
+
+			if not IsNil(m_goCompose) then 
+				Hotfix.SetClickCallback(m_goCompose,this.OnComposeClick)
+			end
+
+		end
+	end
+	return false
+end
+
+
+
+function FashionBagHandler.OnComposeClick( ... )
+	-- body
+	print("OnComposeClick...")
+
+	LuaUIManager.Instance:Load("UI/GameSystem/FashionCompoundDlg")
+end

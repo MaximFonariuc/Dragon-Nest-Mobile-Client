@@ -1,0 +1,101 @@
+require "XGetGrowthFundTime_pb.lua"
+XWelfareGrowthFundHandler = {}
+
+local this = XWelfareGrowthFundHandler
+local m_timeLabel
+local m_leftTime = 0
+local m_token = 0
+function XWelfareGrowthFundHandler.BeforeHandlerShow( go )
+	if not IsNil(go) then
+		local str = "BeforeRefresh=>  "..go.name
+		print(str)
+		if IsNil(m_timeLabel) then
+			m_timeLabel = go.transform:Find("T"):GetComponent("UILabel")
+			m_timeLabel.text = ""
+		end
+	else
+		print("BeforeRefresh: There is nil lua script ")
+	end
+	return false
+end
+
+function XWelfareGrowthFundHandler.AfterHandlerShow(go)
+	if not IsNil(go) then
+		local msg = XGetGrowthFundTime_pb.GetGrowthFundTimeArg()
+		local pb_data = msg:SerializeToString()
+		if pb_data ~= nil then
+			Hotfix.SendLuaRPC(38694,pb_data,this.OnGetTime,this.OnError)
+			print "XWelfareGrowthFundHandler SendLuaRPC"
+		end
+	end
+
+	return false
+end
+
+function  XWelfareGrowthFundHandler.OnGetTime(data,length )
+	-- body
+	print "XWelfareGrowthFundHandler.OnGetTime"
+	local msg = XGetGrowthFundTime_pb.GetGrowthFundTimeRes()
+	if msg ~= nil then
+		 msg:ParseFromString(data,length)
+
+		if msg.err ~= 0 then
+		 	Hotfix.LuaShowSystemTip("请求数据失败")
+		else
+			 m_leftTime = msg.lefttime 
+			 if m_token~= 0 then
+			 	Hotfix.RemoveTimer(m_token)
+			 end
+			 m_token = Hotfix.LuaLoop(1000,m_leftTime,this.ShowTime)
+			 this.RefreshLabel()
+
+		end
+	end
+end
+
+function XWelfareGrowthFundHandler.OnDisable( )
+	-- body
+	if m_token ~= 0 then
+		Hotfix.RemoveTimer(m_token)
+		m_token = 0
+	end
+end
+
+function XWelfareGrowthFundHandler.OnDestroy()
+	-- body
+
+	if m_token ~= 0 then
+		Hotfix.RemoveTimer(m_token)
+		m_token = 0
+	end
+end
+
+function XWelfareGrowthFundHandler.OnError( ... )
+	-- body
+	print "XWelfareGrowthFundHandler.OnError"
+end
+
+function XWelfareGrowthFundHandler.ShowTime( ... )
+	-- body
+	if m_leftTime > 0 then
+		m_leftTime = m_leftTime-1	
+	else
+		m_leftTime  = 0
+	end
+	this.RefreshLabel()
+end
+
+function XWelfareGrowthFundHandler.RefreshLabel( )
+	-- body
+	if not IsNil(m_timeLabel) then
+		if m_leftTime > 0 then
+			local s = m_leftTime%60
+			local m = math.modf(m_leftTime/60)
+			local min = m%60
+			local hour = math.modf(m/60)
+			m_timeLabel.text = "限时购买"..hour.."小时"..min.."分"..s.."秒结束"
+		else
+			m_timeLabel.text = "已结束"
+		end
+	end
+end

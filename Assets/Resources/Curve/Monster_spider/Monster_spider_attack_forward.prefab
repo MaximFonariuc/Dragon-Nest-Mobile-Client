@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Monster_spider_attack_forward
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: .155370846
+  Land_Value: .633270025
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: -.367032677
+      outSlope: -.367032677
+      tangentMode: 0
+    - time: .0333300009
+      value: -.0122331996
+      inSlope: -.367034197
+      outSlope: -.367034197
+      tangentMode: 0
+    - time: .0666600019
+      value: -.0244664997
+      inSlope: -.367034197
+      outSlope: -.367034197
+      tangentMode: 0
+    - time: .0999900028
+      value: -.0366997011
+      inSlope: 1.24855828
+      outSlope: 1.24855828
+      tangentMode: 0
+    - time: .133320004
+      value: .0587624013
+      inSlope: 2.86414194
+      outSlope: 2.86414194
+      tangentMode: 0
+    - time: .166649997
+      value: .154223993
+      inSlope: 1.26681101
+      outSlope: 1.26681101
+      tangentMode: 0
+    - time: .199980006
+      value: .143207997
+      inSlope: -.330512941
+      outSlope: -.330512941
+      tangentMode: 0
+    - time: .233309999
+      value: .132192001
+      inSlope: -.33051306
+      outSlope: -.33051306
+      tangentMode: 0
+    - time: .266640007
+      value: .121175997
+      inSlope: -.33051306
+      outSlope: -.33051306
+      tangentMode: 0
+    - time: .299970001
+      value: .110160001
+      inSlope: -.33050853
+      outSlope: -.33050853
+      tangentMode: 0
+    - time: .333299994
+      value: .0991443023
+      inSlope: -.330508649
+      outSlope: -.330508649
+      tangentMode: 0
+    - time: .366629988
+      value: .0881282985
+      inSlope: -.33051455
+      outSlope: -.33051455
+      tangentMode: 0
+    - time: .399960011
+      value: .0771121979
+      inSlope: -.330514431
+      outSlope: -.330514431
+      tangentMode: 0
+    - time: .433290005
+      value: .0660962015
+      inSlope: -.33051306
+      outSlope: -.33051306
+      tangentMode: 0
+    - time: .466619998
+      value: .0550802015
+      inSlope: -.33051461
+      outSlope: -.33051461
+      tangentMode: 0
+    - time: .499949992
+      value: .0440641008
+      inSlope: -.330514491
+      outSlope: -.330514491
+      tangentMode: 0
+    - time: .533280015
+      value: .0330481008
+      inSlope: -.33051312
+      outSlope: -.33051312
+      tangentMode: 0
+    - time: .566609979
+      value: .0220321007
+      inSlope: -.33051461
+      outSlope: -.33051461
+      tangentMode: 0
+    - time: .599940002
+      value: .0110160001
+      inSlope: -.330514312
+      outSlope: -.330514312
+      tangentMode: 0
+    - time: .633270025
+      value: 0
+      inSlope: -.330512822
+      outSlope: -.330512822
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

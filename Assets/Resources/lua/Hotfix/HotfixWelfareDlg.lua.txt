@@ -1,0 +1,35 @@
+﻿--
+--  HotfixWelfareDlg.lua.lua
+--  Created by Administrator on 2016/09/30 09:16:37
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+WelfareDlg={}
+local this = WelfareDlg
+
+function WelfareDlg.BeforeRefresh(go)
+	return false
+end
+
+
+function WelfareDlg.AfterRefresh(go)
+	print ("Welfare refresh")
+	
+	if not IsNil(go) then
+		local str = "AfterRefresh=>  "..go.name
+		print(str)
+		
+		local isvisible = Hotfix.CallSingleMethod("UI.DramaDlg", true, false, "IsVisible")
+		
+		print ("Isvisible: " .. tostring(isvisible))
+		
+		if isvisible then
+			Hotfix.CallSingleMethod("UI.DramaDlg", true, false, "SetVisible", false)
+		end
+		
+	else
+		print("AfterRefresh: There is nil lua script ")
+	end
+
+	return false
+end

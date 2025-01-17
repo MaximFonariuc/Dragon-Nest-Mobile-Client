@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Must Change 'package' to the Game Package Name! -->
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tencent.qgame.livesdk"
+    android:installLocation="preferExternal"
+    android:theme="@android:style/Theme.NoTitleBar"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <!-- Microphone permissions-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+
+    <application
+        android:name="com.tencent.qgame.livesdk.LiveApplication"
+        android:theme="@android:style/Theme.NoTitleBar">
+        <!-- 配置 WNS APP ID -->
+        <meta-data android:name="WNS_APP_ID" android:value="203090" />
+        <!-- 配置 WNS CMD -->
+
+        <activity
+            android:name="com.tencent.qgame.live.media.ProjectionPermissionGrantActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="com.tencent.rtmp.video.TXScreenCapture$TXScreenCaptureAssistantActivity"
+            android:theme="@android:style/Theme.Translucent"/>
+
+        <activity
+            android:name="com.tencent.qgame.livesdk.webview.BrowserActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true">
+        </activity>
+
+        <!-- WNS service,注意进程名为  :wns ，其它组件请不要使用这个进程名 -->
+        <service
+            android:name="com.tencent.wns.service.WnsMain"
+            android:exported="false"
+            android:process=":wns">
+            <intent-filter>
+                <action android:name="com.tencent.wns.service.WnsMain"/>
+            </intent-filter>
+        </service>
+
+        <!-- 注册WNS心跳接收器 -->
+        <receiver
+            android:name="com.tencent.base.os.clock.AlarmClockReceiver"
+            android:exported="false"
+            android:process=":wns">
+            <intent-filter>
+                <action android:name="wns.heartbeat"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 注册WNS push接收器 -->
+        <service
+            android:name=".wns.push.PushService"
+            android:exported="false">
+            <intent-filter>
+                <!-- 注意 action需要修改为  wns.push.to.<package name> -->
+                <action android:name="wns.push.to.com.tencent.tmgp.dragonnest"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

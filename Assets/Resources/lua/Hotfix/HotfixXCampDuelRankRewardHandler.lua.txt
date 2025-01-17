@@ -1,0 +1,135 @@
+﻿require "LuaCampDuelRankRewardTable.lua"
+
+XCampDuelRankRewardHandler={}
+local this = XCampDuelRankRewardHandler
+
+local m_Go
+local data
+
+local m_ShowCampID
+local m_handler
+local m_BtnSwitch
+
+local m_RewardPool
+local m_ItemPool
+local m_ScrollView
+function XCampDuelRankRewardHandler.AfterHandlerShow(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BtnSwitch=m_Go.transform:Find("Bg/BtnSwitch")
+		m_LabelSwitch=m_Go.transform:Find("Bg/Intro"):GetComponent("UILabel")
+		Hotfix.SetClickCallback(m_BtnSwitch.gameObject, this._OnSwitchClick)
+	end
+	
+	data = ReadCampDuelRankRewardTable("Table/CampDuelRankReward")
+
+	m_ShowCampID=Hotfix.GetDocumentMember("XCampDuelDocument","campID",true,true)
+	print("m_ShowCampID:"..m_ShowCampID)
+	if(m_ShowCampID==0)then
+		m_ShowCampID=1
+	end
+	m_ShowCampID=m_ShowCampID
+	
+	m_handler=Hotfix.GetSingleMember("XRankView","_RankRewardHandler",false,true,false)
+	if(IsNil(m_handler))then
+		print("XCampDuelRankRewardHandler.m_handler null")
+		return
+	end
+	
+	m_ItemPool=m_handler.m_ItemPool
+	m_RewardPool=m_handler.m_RewardPool
+	m_ScrollView=m_handler.m_ScrollView
+	this.Refresh()
+	return false
+end
+
+function XCampDuelRankRewardHandler.Refresh()
+	if(data==nil)then
+		print("XCampDuelRankRewardHandler.data null")
+		return
+	end
+	print("XCampDuelRankRewardHandler.AfterHandlerShow "..#data)
+	
+	if(m_ShowCampID==1)then
+		m_LabelSwitch.text= Hotfix.GetStringTable(("CAMPDUEL_SHOW_RANK_REWARD"),Hotfix.GetStringTable("CAMPDUEL_LEFT_NAME"));	
+	else
+		m_LabelSwitch.text= Hotfix.GetStringTable(("CAMPDUEL_SHOW_RANK_REWARD"),Hotfix.GetStringTable("CAMPDUEL_RIGHT_NAME"));	
+	end
+	
+	local x=1
+	local t
+	m_ItemPool:FakeReturnAll()
+	m_RewardPool:FakeReturnAll()
+	for i=1,#data do
+		--print("=====i="..i)
+		if(m_ShowCampID ==data[i].CampID)then
+			if(data[i].IsWin)then
+				local go =m_RewardPool:FetchGameObject()
+				t=go.transform:Find("Bg/Win")
+				
+				this.RefreshOneRankItem(t,data[i])
+				
+				--PrivateExtensions.CallPrivateMethod(m_handler,"RefreshOneRankItem",t,data[i])
+				for j=x,#data do
+					x=j
+					--print("=====j="..j)
+					if( m_ShowCampID ==data[j].CampID and not data[j].IsWin)then
+						print("OK j="..j)
+						t=go.transform:Find("Bg/Lose")
+						this.RefreshOneRankItem(t,data[j])
+						--PrivateExtensions.CallPrivateMethod(m_handler,"RefreshOneRankItem",t,data[j])
+						x=j+1
+						break
+					end
+				end
+				
+				go.transform.localPosition = Vector3(0, -m_RewardPool.TplHeight * i) + m_RewardPool.TplPos
+			end
+		end
+	end
+	m_RewardPool:ActualReturnAll()
+	m_ItemPool:ActualReturnAll()
+	
+	m_ScrollView:ResetPosition()
+end
+
+function XCampDuelRankRewardHandler.RefreshOneRankItem(go,oneData)
+	local rankNum=go.transform:Find("Rank/RankNum"):GetComponent("UILabel")
+	if (oneData.Rank[2] ==  oneData.Rank[1]) then
+		rankNum.text= Hotfix.GetStringTable("Qualifying_Rank_Reward_Desc1",oneData.Rank[2]);
+	else
+		rankNum.text= Hotfix.GetStringTable("Qualifying_Rank_Reward_Desc2",oneData.Rank[2]);
+	end
+	
+	print("#oneData.Reward="..tostring((#oneData.Reward)/2))
+	local itemParent=go.transform:Find("Item")
+	for i=1,(#oneData.Reward)/2 do
+		local item=m_ItemPool:FetchGameObject()
+		
+		local normalItemDrawer=Hotfix.GetSingleMember("XItemDrawerMgr","normalItemDrawer",true,true,false)
+
+		normalItemDrawer:DrawItem(item,oneData.Reward[i*2-1],oneData.Reward[i*2])
+
+		local itemTip=item.transform:Find("Icon"):GetComponent("UISprite")
+		itemTip.uid = oneData.Reward[i*2-1]
+
+		Hotfix.SetClickCallback(itemTip.gameObject, this._OnItemClick)
+
+		item.transform.parent = itemParent;
+		item.transform.localPosition = Vector3(m_ItemPool.TplWidth * (i-1), 0);
+	end
+end
+
+function XCampDuelRankRewardHandler._OnItemClick(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid,go)
+end
+
+function XCampDuelRankRewardHandler._OnSwitchClick(go)
+	if(m_ShowCampID==1)then
+		m_ShowCampID=2
+	else
+		m_ShowCampID=1
+	end
+	this.Refresh()
+end
+

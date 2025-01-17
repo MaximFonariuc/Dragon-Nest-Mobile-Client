@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &147566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 447566}
+  - 114: {fileID: 11447566}
+  m_Layer: 0
+  m_Name: Player_warrior_jump_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &447566
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11447566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.10369003
+  Land_Value: .666599989
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0333300009
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0666600019
+      value: 0
+      inSlope: 3.81711674
+      outSlope: 3.81711674
+      tangentMode: 0
+    - time: .0999900028
+      value: .25444901
+      inSlope: 11.0067654
+      outSlope: 11.0067654
+      tangentMode: 0
+    - time: .133320004
+      value: .733711004
+      inSlope: 11.3593006
+      outSlope: 11.3593006
+      tangentMode: 0
+    - time: .166649997
+      value: 1.01165998
+      inSlope: 4.63934898
+      outSlope: 4.63934898
+      tangentMode: 0
+    - time: .199980006
+      value: 1.04296994
+      inSlope: .828082442
+      outSlope: .828082442
+      tangentMode: 0
+    - time: .233309999
+      value: 1.06685996
+      inSlope: .617313147
+      outSlope: .617313147
+      tangentMode: 0
+    - time: .266640007
+      value: 1.08412004
+      inSlope: .429643422
+      outSlope: .429643422
+      tangentMode: 0
+    - time: .299970001
+      value: 1.09549999
+      inSlope: .264776647
+      outSlope: .264776647
+      tangentMode: 0
+    - time: .333299994
+      value: 1.10177004
+      inSlope: .122862846
+      outSlope: .122862846
+      tangentMode: 0
+    - time: .366629988
+      value: 1.10369003
+      inSlope: -.0130511131
+      outSlope: -.0130511131
+      tangentMode: 0
+    - time: .399960011
+      value: 1.10090005
+      inSlope: -.190370053
+      outSlope: -.190370053
+      tangentMode: 0
+    - time: .433290005
+      value: 1.09099996
+      inSlope: -.438345492
+      outSlope: -.438345492
+      tangentMode: 0
+    - time: .466619998
+      value: 1.07167995
+      inSlope: -.755475163
+      outSlope: -.755475163
+      tangentMode: 0
+    - time: .499949992
+      value: 1.04064
+      inSlope: -1.14161277
+      outSlope: -1.14161277
+      tangentMode: 0
+    - time: .533280015
+      value: .995580018
+      inSlope: -1.59692478
+      outSlope: -1.59692478
+      tangentMode: 0
+    - time: .566609979
+      value: .934189022
+      inSlope: -5.02316046
+      outSlope: -5.02316046
+      tangentMode: 0
+    - time: .599940002
+      value: .660736024
+      inSlope: -10.6153545
+      outSlope: -10.6153545
+      tangentMode: 0
+    - time: .633270025
+      value: .226568997
+      inSlope: -9.91203117
+      outSlope: -9.91203117
+      tangentMode: 0
+    - time: .666599989
+      value: 0
+      inSlope: -6.79775715
+      outSlope: -6.79775715
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 147566}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

@@ -1,0 +1,23 @@
+BattleViewDlg={}
+local this = BattleViewDlg
+
+function BattleViewDlg.AfterRefresh(go)
+    -- local cst = luanet.import_type("XMainClient.XScene")
+    local cst = Hotfix.GetSingleMember("XScene","_scene_type",true,true,false)
+    -- Debugger.LogWarning("errcode" .. tostring(cst))
+    if not IsNil(go) then
+        if tostring(cst) == "SCENE_COMPETEDRAGON" then
+            local t1 = go.transform:Find("_canvas/Spectate/Share")
+            local t2 = go.transform:Find("_canvas/Spectate/Barrage")
+            local t3 = go.transform:Find("_canvas/Spectate/Hide")
+            t3.position = t2.position
+            t2.position = t1.position
+            local cp = go.transform:Find("_canvas/Spectate/Share"):GetComponent("XUISprite")
+            cp.gameObject:SetActive(false)
+        end
+    end
+	return false
+end
+
+function BattleViewDlg.BeforeRefresh(go)
+end

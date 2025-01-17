@@ -1,0 +1,787 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1552186753433490}
+  m_IsPrefabParent: 1
+--- !u!1 &1552186753433490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4888168373472646}
+  - component: {fileID: 114617580724707906}
+  m_Layer: 0
+  m_Name: Equip3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4888168373472646
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552186753433490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114617580724707906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552186753433490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 736edc3ee3fed4240a425e2a2375665d, type: 2}
+  mSprites:
+  - name: ac_mist_cannon_weapon
+    x: 244
+    y: 264
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ac_mist_gauntlet
+    x: 406
+    y: 449
+    width: 67
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 3
+    paddingTop: 7
+    paddingBottom: 6
+  - name: ac_mist_helmet
+    x: 382
+    y: 323
+    width: 68
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 4
+    paddingTop: 8
+    paddingBottom: 7
+  - name: ac_volcano_cannon_weapon
+    x: 53
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ac_volcano_gauntlet
+    x: 0
+    y: 452
+    width: 52
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 9
+    paddingBottom: 7
+  - name: ac_volcano_helmet
+    x: 0
+    y: 387
+    width: 46
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 15
+    paddingTop: 6
+    paddingBottom: 6
+  - name: all_mist_body
+    x: 178
+    y: 177
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: all_mist_boots
+    x: 319
+    y: 43
+    width: 61
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 8
+    paddingTop: 3
+    paddingBottom: 5
+  - name: all_mist_earrings
+    x: 441
+    y: 113
+    width: 59
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 3
+  - name: all_mist_glove
+    x: 453
+    y: 385
+    width: 55
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 10
+    paddingTop: 8
+    paddingBottom: 5
+  - name: all_mist_leg
+    x: 317
+    y: 112
+    width: 62
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 5
+    paddingBottom: 3
+  - name: all_mist_necklace
+    x: 315
+    y: 319
+    width: 66
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 6
+  - name: all_mist_ring
+    x: 275
+    y: 450
+    width: 54
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 7
+    paddingBottom: 7
+  - name: all_volcano_body
+    x: 0
+    y: 324
+    width: 70
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 11
+    paddingBottom: 3
+  - name: all_volcano_boots
+    x: 0
+    y: 53
+    width: 53
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 4
+  - name: all_volcano_earrings
+    x: 54
+    y: 60
+    width: 46
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 15
+    paddingTop: 7
+    paddingBottom: 7
+  - name: all_volcano_glove
+    x: 71
+    y: 132
+    width: 55
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 12
+    paddingTop: 6
+    paddingBottom: 7
+  - name: all_volcano_leg
+    x: 124
+    y: 444
+    width: 56
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 5
+    paddingBottom: 3
+  - name: all_volcano_necklace
+    x: 49
+    y: 196
+    width: 61
+    height: 66
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 7
+  - name: all_volcano_ring
+    x: 63
+    y: 267
+    width: 56
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 10
+    paddingBottom: 10
+  - name: ar_mist_bigbow_weapon
+    x: 452
+    y: 42
+    width: 53
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_mist_helmet
+    x: 442
+    y: 184
+    width: 58
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 7
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_mist_quiver
+    x: 252
+    y: 40
+    width: 66
+    height: 66
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 7
+    paddingTop: 7
+    paddingBottom: 3
+  - name: ar_volcano_bigbow_weapon
+    x: 71
+    y: 371
+    width: 62
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 8
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_volcano_helmet
+    x: 54
+    y: 7
+    width: 59
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 9
+    paddingTop: 12
+    paddingBottom: 12
+  - name: ar_volcano_quiver
+    x: 101
+    y: 76
+    width: 63
+    height: 55
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 10
+    paddingTop: 18
+    paddingBottom: 3
+  - name: as_mist_crook
+    x: 183
+    y: 37
+    width: 68
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 5
+    paddingTop: 4
+    paddingBottom: 3
+  - name: as_mist_helmet
+    x: 317
+    y: 181
+    width: 62
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_mist_scimitar_weapon
+    x: 248
+    y: 107
+    width: 68
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 5
+    paddingTop: 4
+    paddingBottom: 3
+  - name: as_volcano_crook
+    x: 114
+    y: 8
+    width: 68
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 5
+    paddingTop: 6
+    paddingBottom: 3
+  - name: as_volcano_helmet
+    x: 181
+    y: 449
+    width: 44
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 17
+    paddingRight: 15
+    paddingTop: 6
+    paddingBottom: 7
+  - name: as_volcano_scimitar_weapon
+    x: 111
+    y: 199
+    width: 66
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 7
+    paddingTop: 6
+    paddingBottom: 3
+  - name: cl_mist_helmet
+    x: 249
+    y: 194
+    width: 67
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 4
+  - name: cl_mist_mace_weapon
+    x: 317
+    y: 252
+    width: 66
+    height: 66
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 3
+    paddingTop: 7
+    paddingBottom: 3
+  - name: cl_mist_shield
+    x: 446
+    y: 261
+    width: 61
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 8
+    paddingBottom: 7
+  - name: cl_volcano_helmet
+    x: 120
+    y: 308
+    width: 56
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 8
+    paddingBottom: 6
+  - name: cl_volcano_mace_weapon
+    x: 134
+    y: 378
+    width: 65
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 3
+    paddingTop: 8
+    paddingBottom: 3
+  - name: cl_volcano_shield
+    x: 178
+    y: 248
+    width: 65
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 5
+    paddingTop: 8
+    paddingBottom: 6
+  - name: ka_mist_charm
+    x: 381
+    y: 4
+    width: 60
+    height: 49
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 14
+    paddingBottom: 13
+  - name: ka_mist_fan_weapon
+    x: 381
+    y: 54
+    width: 70
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 10
+    paddingBottom: 8
+  - name: ka_mist_helmet
+    x: 382
+    y: 385
+    width: 70
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 7
+    paddingBottom: 7
+  - name: ka_volcano_charm
+    x: 231
+    y: 335
+    width: 61
+    height: 47
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 15
+    paddingBottom: 14
+  - name: ka_volcano_fan_weapon
+    x: 266
+    y: 387
+    width: 69
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 8
+    paddingBottom: 7
+  - name: ka_volcano_helmet
+    x: 226
+    y: 449
+    width: 48
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 7
+    paddingBottom: 6
+  - name: so_mist_book
+    x: 380
+    y: 183
+    width: 61
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 4
+  - name: so_mist_helmet
+    x: 451
+    y: 325
+    width: 60
+    height: 59
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 10
+    paddingBottom: 7
+  - name: so_mist_staff_weapon
+    x: 336
+    y: 448
+    width: 69
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 9
+    paddingBottom: 3
+  - name: so_volcano_book
+    x: 127
+    y: 136
+    width: 50
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 14
+    paddingTop: 7
+    paddingBottom: 7
+  - name: so_volcano_helmet
+    x: 177
+    y: 311
+    width: 53
+    height: 66
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 5
+    paddingBottom: 5
+  - name: so_volcano_staff_weapon
+    x: 200
+    y: 383
+    width: 65
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 3
+    paddingTop: 8
+    paddingBottom: 3
+  - name: wa_mist_gauntlet
+    x: 384
+    y: 255
+    width: 61
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 5
+  - name: wa_mist_helmet
+    x: 380
+    y: 114
+    width: 60
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 4
+  - name: wa_mist_sword_weapon
+    x: 178
+    y: 107
+    width: 69
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 4
+    paddingTop: 4
+    paddingBottom: 3
+  - name: wa_volcano_gauntlet
+    x: 0
+    y: 263
+    width: 62
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 8
+    paddingBottom: 8
+  - name: wa_volcano_helmet
+    x: 0
+    y: 192
+    width: 48
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 13
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_volcano_sword_weapon
+    x: 0
+    y: 123
+    width: 70
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 5
+    paddingBottom: 3
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+  mCoordinates: 0
+  sprites: []

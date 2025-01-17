@@ -1,0 +1,42 @@
+require "HotfixGlobal.lua"
+
+--generate by ProtoGen at date: 2017/10/10 19:16:09
+
+--读取表格
+function ReadSuperActivityTimeTable(table)
+	local reader = Hotfix.LuaTableBin(table)
+	if not IsNil(reader) then
+		local rows = {}
+		Hotfix.ReadFileSize(reader)
+		local lineCount = reader:ReadInt32()
+		Hotfix.ReadDataHandle(reader)
+		local columnCount = reader:ReadByte()
+		for i = 1, columnCount, 1 
+		do
+			reader:ReadByte()
+			reader:ReadByte()
+		end
+		for i = 1, lineCount, 1 
+		do
+			Hotfix.ReadRowSize(reader)
+			rows[i] = {};	
+			rows[i].actid = reader:ReadUInt32()
+			rows[i].systemid = reader:ReadUInt32()
+			rows[i].starttime = reader:ReadUInt32()
+			rows[i].duration = reader:ReadUInt32()
+			rows[i].rewardtime = reader:ReadUInt32()
+			rows[i].pointid = reader:ReadUInt32()
+			rows[i].needpoint = reader:ReadUInt32()
+			rows[i].rate = reader:ReadSingle()
+			rows[i].starthour = reader:ReadUInt32()
+			rows[i].datetype = reader:ReadUInt32()
+			rows[i].timestage = ReadUIntSeqList(reader,2)
+
+			Hotfix.CheckRowSize(reader,"SuperActivityTime",i)
+		end
+		Hotfix.CheckFileSize(reader,"SuperActivityTime")
+		Hotfix.ReturnableStream(reader)
+		return rows
+	end
+	return nil
+end

@@ -1,0 +1,129 @@
+﻿--
+--  LuaNotifyProcess.lua
+--  Created by alexpeng on 2016/06/07 07:26:47
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+LuaNotifyProcess={}
+local this = LuaNotifyProcess
+
+require "LuaNotifyRoute.lua"
+
+--注册PTC协议 默认c#的逻辑还会执行的 lua在c#之后
+--如果也在NetworkOutCSharp注册过 c#逻辑不会执行
+--copy buff ptc
+--协议号、回调函数、协议名(为了可读性，没实际鸟用)
+local PTC =
+{
+	 [24832]  = { LuaNotifyRoute.Regist24832, "SpActivityChange"},
+	 [4059]   = { LuaNotifyRoute.Regist4059,  "SpActivityOffsetDay"},
+	-- [23114]  = { LuaNotifyRoute.Regist23114, "HintNotify"}
+	 [34113]  = {LuaNotifyRoute.Regist34113,  "LoginReward"},
+	--[28395]  = {LuaNotifyRoute.Regist28395,  "PtcG2C_OutLookChangeNtf"},
+	--[28079]  = {LuaNotifyRoute.Regist28079,  "PtcG2C_ArtifactEffectWorkNtf"},
+	[12835] =  {LuaNotifyRoute.RegistFashionBuy,"PtcG2C_IBShopHasBuyNtf"},
+	[23820] =  {LuaNotifyRoute.Regist23820,"PtcG2C_ServerOpenDayNtf"},
+	[51433] =  {LuaNotifyRoute.RegistPayGiftNtf,"PtcG2C_PayGiftNtf"},
+	[12835] =  {LuaNotifyRoute.RegistFashionBuy,"PtcG2C_IBShopHasBuyNtf"},
+	[40338] =  {LuaNotifyRoute.Regist40338,"PtcG2C_LevelSealNtf"},
+	[41168] =  {LuaNotifyRoute.Regist41168,"PtcG2C_OpenSystemNtf"},
+	[51248] =  {LuaNotifyRoute.Regist51248,"PtcG2C_JadeSlotInfoNtf"},		--老的龙玉镶嵌卸载协议回调后，服务器再推一条ptc来满足策划的特殊需求
+	[28202] =  {LuaNotifyRoute.Regist28202,"PtcG2C_Get520FestivalRedPacket"}
+	--不要註冊選角的ptc-19493
+}
+
+
+--  don't copy buff ptc 只用来做回调
+-- 节省内存开销
+-- 协议号、回调函数、协议名(为了可读性)
+local PtcCB = 
+{
+	--[4059] = { LuaNotifyRoute.Regist4059 ,"LeagueBattleOneResultNtf"},
+}
+
+
+-- 重载掉之前的c#协议 (包含rpc ptc)
+-- 协议号、协议名
+local NetworkOverideCSharp = 
+{
+	--[31095] = {this.Test,"BuyGoldAndFatigueRes"},	
+	--[23114] = {this.Test2,"HintNotify"}
+	--[27802] = {LuaNotifyRoute.Regist27802,"DrawLottery"}
+	--[56986]  = {LuaNotifyRoute.RegistDragonRwd,"DragonRwd"}
+}
+
+
+
+--主动派发注册消息
+-- PTC
+function LuaNotifyProcess.Process(itype,data,length)  
+	--print("process: "..type)
+    
+    local find = false
+
+    for k,v in pairs(PTC) do
+    	if k == itype then
+    		local func = v[1]
+    		if func ~= nil then
+    		   func(data,length)
+    		end
+    		find = true
+    		break
+    	end
+    end
+
+    if not find then
+    	for k,v in pairs(PtcCB) do
+    		if v == itype then
+    			local func = v[1]
+    			if func ~= nil then
+    				func(data,length)
+    			end
+    			break
+    		end
+    	end
+    end
+end
+
+
+-- NetworkOutCSharp屏蔽的网络协议
+-- 只有回调通知
+function LuaNotifyProcess.ProcessOveride(itype,data,length)
+	for k,v in pairs(NetworkOverideCSharp) do
+		if k == itype then
+			local func = v[1]
+			if func ~= nil then
+				func(data,length)
+			end
+			break
+		end
+	end
+end
+
+
+--处理注册消息ID
+function LuaNotifyProcess.FetchRegistedID()
+	local registeds = {} 
+
+	local index = 1
+	for k,v in pairs(PTC) do
+		--print("k: "..tostring(k).." v: "..tostring(v[2]))
+		registeds[index] = k
+		registeds[index+1] = 1  --copybuff
+		index = index + 2
+	end
+
+	for k,v in pairs(PtcCB) do
+		registeds[index]= k
+		registeds[index+1] = 0  --nocppy
+		index = index + 2
+	end
+
+	for k,v in pairs(NetworkOverideCSharp) do
+		registeds[index] = k
+		registeds[index + 1] = 2 --not dispacher in c#
+		index = index + 2
+	end
+
+	return unpack(registeds)
+end

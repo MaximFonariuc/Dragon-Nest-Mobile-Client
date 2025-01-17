@@ -1,0 +1,264 @@
+require "HotfixGlobal.lua"
+require "XGiftCard_pb.lua"
+require "LuaGiftCardDocument.lua"
+require "LuaPayGiftTableTable.lua"
+
+--local texturePath = "atlas/UI/GameSystem/Activity/Tex_active_h2Split"
+
+LuaGiftCardFrame = {}
+local this = LuaGiftCardFrame
+
+local m_Go
+local m_IosDetailBtn
+-- local m_BgTexture
+local m_itemPool
+local m_GiftCardPool
+local m_GiftCardGrid
+local m_IosDetailPanel
+local m_IosDetailClose
+
+local m_bIsVisible = false
+
+local m_GiftCardTable
+
+function LuaGiftCardFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		LuaGiftCardDocument.SetLuaGiftCardFrame(this)
+		m_GiftCardTable = ReadPayGiftTableTable("Table/PayGift")
+
+		m_Go = go
+		-- m_BgTexture = m_Go.transform:Find("Bg/Tex"):GetComponent("UITexture")
+
+		m_IosDetailBtn = m_Go.transform:Find("IOSDetail").gameObject
+		Hotfix.SetClickCallback(m_IosDetailBtn, this.IOSDetailBtnClick)	
+
+		--ios显示详情按钮
+		local plat = Application.platform
+		if tostring(plat) == "IPhonePlayer" and LuaGiftCardDocument.IsShowDetail() then
+			m_IosDetailBtn:SetActive(true)
+		else
+			m_IosDetailBtn:SetActive(false)
+		end	
+
+		m_IosDetailPanel = m_Go.transform:Find("IOSDetailPanel").gameObject	 
+		m_IosDetailPanel:SetActive(false)
+		m_IosDetailClose = m_Go.transform:Find("IOSDetailPanel/Btn").gameObject	
+		Hotfix.SetClickCallback(m_IosDetailClose, this.IOSDetailCloseBtnClick)	 
+
+		m_itemPool = Hotfix.SetupPool(
+			m_Go.transform:Find("ListGiftBag/Grid/Tpl/List").gameObject, 
+			m_Go.transform:Find("ListGiftBag/Grid/Tpl/List/ItemTpl").gameObject,
+			6)
+
+		m_GiftCardPool = Hotfix.SetupPool(
+			m_Go.transform:Find("ListGiftBag").gameObject, 
+			m_Go.transform:Find("ListGiftBag/Grid/Tpl").gameObject,
+			3)
+
+		m_GiftCardGrid = m_Go.transform:Find("ListGiftBag/Grid"):GetComponent("UIGrid")
+
+		--时间
+		local timeString = Hotfix.GetGlobalString("PayGiftOpenTime")
+		local startEnd = Split(timeString,"|")
+		local startTime = startEnd[1]
+		local endTime = startEnd[2]
+		local time1 = Split(startTime,"=")
+		local time2 = Split(endTime,"=")
+		local timeLabel = m_Go.transform:Find("Time"):GetComponent("UILabel")
+		timeLabel.text = "活动时间："..time1[1].."."..time1[2].."."..time1[3].." 05:00-"..time2[1].."."..time2[2].."."..time2[3].." 05:00"
+		--timeLabel.text = "活动时间："..time1[1].."年"..time1[2].."月"..time1[3].."日 05:00-"..time2[1].."年"..time2[2].."月"..time2[3].."日 05:00"
+
+		--说明
+		local descLabel = m_Go.transform:Find("Desc"):GetComponent("UILabel")
+		descLabel.text = Hotfix.GetStringTable("GiftCardDesc")
+	end
+end
+
+function  LuaGiftCardFrame.IOSDetailBtnClick(go)
+	m_IosDetailPanel:SetActive(true)
+end
+
+function  LuaGiftCardFrame.IOSDetailCloseBtnClick(go)
+	m_IosDetailPanel:SetActive(false)
+end
+
+function LuaGiftCardFrame.Start()
+	print("LuaGiftCardFrame.Start")
+end
+
+function LuaGiftCardFrame.OnEnable()
+	print("LuaGiftCardFrame.OnEnable")
+	m_bIsVisible = true
+	--this.RefreshStatus()
+end
+
+
+function LuaGiftCardFrame.OnDisable()
+	print("LuaGiftCardFrame.OnDisable")
+	m_bIsVisible = false
+end
+
+
+function LuaGiftCardFrame.OnDestroy()
+	m_bIsVisible = false
+	LuaGiftCardDocument.SetLuaGiftCardFrame(nil)
+end
+
+
+function LuaGiftCardFrame.OnShow()
+	print("LuaGiftCardFrame.OnShow")
+	this.RefreshReward()
+end
+
+function LuaGiftCardFrame.OnHide()
+	print("LuaGiftCardFrame.OnHide")
+	-- if not IsNil(m_BgTexture) then
+	-- 	Hotfix.DestoryTexture(m_BgTexture, texturePath)
+	-- 	print("LuaLoginRewardFrame DestoryTexture")
+	-- end
+end
+
+function LuaGiftCardFrame.RefreshRedPoint(isCanReceive)
+	-- print("LuaGiftCardFrame.RefreshRedPoint m_isCanReceive: "..tostring(isCanReceive))
+	-- LuaLoginRewardDocument.SetStatus(isCanReceive)
+	-- Hotfix.ForceUpdateSysRedPointImmediately(LuaLoginRewardDocument.XSys_LoginReward, LuaLoginRewardDocument.GetStatus())
+	-- local sys = Hotfix.GetEnumType("XSysDefine","XSys_OperatingActivity")
+	-- Hotfix.CallSingleMethod("XGameSysMgr", true, false, "RecalculateRedPointState", sys)
+end
+
+function LuaGiftCardFrame.RefreshReward()
+	if(m_bIsVisible==false)then
+		return
+	end
+	print("LuaGiftCardFrame.RefreshReward")
+
+	--ios显示详情按钮
+	local plat = Application.platform
+	if tostring(plat) == "IPhonePlayer" and LuaGiftCardDocument.IsShowDetail() then
+		m_IosDetailBtn:SetActive(true)
+	else
+		m_IosDetailBtn:SetActive(false)
+	end
+
+	--礼包
+	local giftCardCount = #m_GiftCardTable
+
+	m_GiftCardPool:FakeReturnAll()
+	m_itemPool:FakeReturnAll()
+
+	for i = 1, giftCardCount do
+		local giftData = LuaGiftCardDocument.GetGiftData(m_GiftCardTable[i].ID)
+		if giftData == nil then
+			--一次没有购买过的礼包不在list里
+			print("******* giftData ID = "..m_GiftCardTable[i].ID.." is nil ********")
+		end
+		local clickLeftTime = LuaGiftCardDocument.GetClickLeftTime(m_GiftCardTable[i].ID)
+		print("clickLeftTime "..m_GiftCardTable[i].ID..":"..clickLeftTime)
+
+		local gift = m_GiftCardPool:FetchGameObject()
+		gift.transform.parent = m_GiftCardGrid.gameObject.transform
+		gift.transform.localScale = Vector3.one
+		
+		--购买按钮
+		local btn = gift.transform:Find("Btn"):GetComponent("UISprite")
+		btn.uid = i
+		Hotfix.SetClickCallback(btn.gameObject, this.OnBuyBtnClick)
+		btn.gameObject:SetActive((giftData == nil and clickLeftTime == 0) or (giftData ~= nil and giftData.buycount ~= m_GiftCardTable[i].LimitCount and clickLeftTime == 0))
+
+		local btnText = gift.transform:Find("Btn/T"):GetComponent("UILabel")
+		btnText.text = m_GiftCardTable[i].Name
+
+		--次数显示
+		local CountTip = gift.transform:Find("Times"):GetComponent("UILabel")
+		local flag=Hotfix.GetGlobalString("PayGiftType")
+		
+		local buycount=0
+		if(giftData ~= nil)then
+			buycount=giftData.buycount
+		end
+		
+		if(flag~=nil and flag=="1")then
+			CountTip.text = Hotfix.GetStringTable("GiftCardWeekBuy",m_GiftCardTable[i].LimitCount-buycount,m_GiftCardTable[i].LimitCount)
+		else 
+			CountTip.text = Hotfix.GetStringTable("GiftCardDayBuy",m_GiftCardTable[i].LimitCount-buycount,m_GiftCardTable[i].LimitCount)
+		end
+		
+		--等待说明
+		local waitTip = gift.transform:Find("Tip"):GetComponent("UILabel")
+		
+		if(giftData ~= nil and giftData.buycount >= m_GiftCardTable[i].LimitCount) then
+			waitTip.text = "已购买"
+			waitTip.gameObject:SetActive(true)
+		else
+			waitTip.text = Hotfix.GetStringTable("GiftCardWait")
+			waitTip.gameObject:SetActive(clickLeftTime > 0)
+		end
+
+		--价值xRMB
+		local valueText = gift.transform:Find("Value"):GetComponent("UILabel")
+		valueText.text = m_GiftCardTable[i].Desc
+
+		--礼包道具
+		local chestConfig = Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetChestConf", m_GiftCardTable[i].ItemID)
+
+		if chestConfig ~= nil then
+			local dropList = chestConfig.DropID
+			if dropList ~= nil then
+				for k = 0, dropList.Length - 1 do
+					local dropID = dropList[k]
+					local dropTable = Hotfix.GetDocumentStaticMember("XBagDocument", "DropTable", true, false)
+					for m = 0, dropTable.Table.Length - 1 do
+						if dropTable.Table[m].DropID == dropID then
+							local itemID = dropTable.Table[m].ItemID
+							local itemCount = dropTable.Table[m].ItemCount
+
+							local item = m_itemPool:FetchGameObject()
+							local grid = gift.transform:Find("List"):GetComponent("UIGrid")
+							item.transform.parent = grid.gameObject.transform
+							item.transform.localScale = Vector3.one
+							
+							local normalItemDrawer=Hotfix.GetSingleMember("XItemDrawerMgr","normalItemDrawer",true,true,false)
+							normalItemDrawer:DrawItem(item, itemID, itemCount, true)
+							
+							local sp=item.transform:Find("Icon"):GetComponent("UISprite")
+							sp.uid = itemID
+							Hotfix.SetClickCallback(sp.gameObject, this.OnItemClick)
+						end
+					end										
+				end
+			end
+		end			
+	end
+	m_GiftCardGrid.repositionNow = true
+	m_itemPool:ActualReturnAll()
+	m_GiftCardPool:ActualReturnAll()
+end
+
+function LuaGiftCardFrame.OnBuyBtnClick(go)
+	local index = go:GetComponent("UISprite").uid
+	local XPlayerData = Hotfix.GetSingleMember("XAttributeMgr", "XPlayerData", true, false, false)
+	local roleIDString = Hotfix.GetObjectString(XPlayerData, "RoleID", true, false)
+	local roleID = Hotfix.GetLuaLong(roleIDString)
+
+	--强制隐藏购买按钮，直到服务器通知状态
+	go:SetActive(false)
+	local waitTip = go.transform.parent:Find("Tip"):GetComponent("UILabel")
+	waitTip.text = Hotfix.GetStringTable("GiftCardWait")
+	waitTip.gameObject:SetActive(true)
+
+	--本地设置状态
+	LuaGiftCardDocument.SetGiftData(m_GiftCardTable[index].ID)
+
+	--print(m_GiftCardTable[index].ID..","..tostring(roleID)..","..m_GiftCardTable[index].ParamID..","..m_GiftCardTable[index].Price)
+	Hotfix.CallDocumentMethod("XRechargeDocument", true, "SDKBuyGoods", m_GiftCardTable[index].ID, 1, roleID, "", m_GiftCardTable[index].ParamID, m_GiftCardTable[index].Price)
+end
+
+function LuaGiftCardFrame.OnItemClick(go)
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid,go)
+end
+
+
+
+
+
+

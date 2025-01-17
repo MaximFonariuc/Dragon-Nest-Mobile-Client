@@ -1,0 +1,133 @@
+--
+--  HotfixDNSelectCharDlg.lua
+--  Created by alexpeng on 2016/05/19 05:25:15
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+
+require "HotfixGlobal.lua"
+require "HotfixDataPool.lua"
+DNSelectCharDlg={}
+local this = DNSelectCharDlg
+
+local  mWrapContent 
+local mAvatar 
+
+
+
+function DNSelectCharDlg.BeforeRefresh(go)
+	if not IsNil(go) then
+		local str = "BeforeRefresh=>  "..go.name
+		print(str)
+		--warn(str)
+		--error(str)
+		--local  test = Hotfix.GetDocumentMember("SelectCharacterDocument","tttt",false,true)
+		--print("tttt: "..test)
+		--local  test2 = Hotfix.GetDocumentMember("SelectCharacterDocument","testlist",false,true)
+		--print("list count: "..tostring(test2.Count))
+		--local  array = test2:ToArray()
+		--print("list0: "..tostring(array[0]))
+
+		--local o = Hotfix.GetEnumType("XSysDefine","XSys_Character")
+		--local xlulong = Hotfix.GetLuaLong("12345656")
+		--Hotfix.CallSingleMethod("GameMallDlg",true,false,"ShowMalltype",o,xlulong)
+	else
+		print("BeforeRefresh: There is nil lua script ")
+	end
+	
+	return false
+end
+
+function DNSelectCharDlg.AfterRefresh(go)
+	if not IsNil(go) then
+		--local str = "AfterRefresh=>  "..go.name
+		--print(str)
+		--local lgo=go.transform:Find("Bg/SelectFrame/EnterGame")
+		--UIEventListener.Get(lgo.gameObject).onClick = this.DoClick;
+		
+		--local twgo = go.transform:Find("Bg/SelectFrame/ProfName")
+		--local tween = twgo:GetComponent("UIPlayTween")
+		--tween.finishCb:Setz(this.Finish)
+
+		-- heheList = {}
+		-- hahaList = {}
+		-- print("Get Hehe")
+		-- for i=1,3 do
+		-- 	heheList[i] = XDataPool:GetData(XHehe)
+		-- end
+
+		-- print("Get Haha")
+		-- for i=1,2 do
+		-- 	hahaList[i] = XDataPool:GetData(XHaha)
+		-- end
+
+		-- print("Clear Hehe")
+		-- for i=1,3 do
+		-- 	heheList[i]:Recycle()
+		-- 	heheList[i] = nil
+		-- end
+
+		-- print("Clear Haha")
+		-- for i=1,2 do
+		-- 	hahaList[i]:Recycle()
+		-- 	hahaList[i] = nil
+		-- end
+
+		-- print("Get Hehe")
+		-- for i=1,2 do
+		-- 	heheList[i] = XDataPool:GetData(XHehe)
+		-- end
+
+		--print("xxxxxxxxxxx   uid"..tostring(label.uid))
+
+		--local test = Hotfix.GetSingleMember("UI.PPTDlg", "_last_power_sound_time", false, true, false)
+		--print("ssshow: "..tostring(test))
+        --test = Hotfix.GetSingleMember("CarnivalDlg", "_test", false, true, true)
+        --print("xxshow: "..tostring(test))
+        --Hotfix.CallSingleMethod("CarnivalDlg", false, true, "testMethod")
+        --test = Hotfix.CallSingleMethod("CarnivalDlg", false, true, "testMethod2",1,"abc")
+        --print("test2 now is: "..tostring(test))
+        --Hotfix.SetSingleMember("UI.PPTDlg", "_PPTtime", 100,false, true, false)
+        --test = Hotfix.GetSingleMember("UI.PPTDlg", "_PPTtime", false, true, false)
+		--print("cccchow: "..tostring(test))
+		--test = Hotfix.GetDocumentMember("XChatDocument","startTime",false,true)
+		--print("startTime: "..tostring(test))
+		--Hotfix.CallDocumentMethod("XChatDocument",false,"ContainRole",123456)
+	else
+		print("AfterRefresh: There is nil lua script ")
+	end
+	return false
+end
+
+
+function DNSelectCharDlg.DoClick(go)
+	print("go name: "..tostring(go.name))
+end
+
+
+function  DNSelectCharDlg.Finish(tween)
+	print("tween finish")
+end
+
+function DNSelectCharDlg.UpdateWrap(trans,index)
+	local  name = trans:Find("Name"):GetComponent("UILabel")
+	name.text = "Name"..index
+end
+
+
+function DNSelectCharDlg.Send( ... )
+	--print("DNSelectCharDlg Send...")
+end
+
+function  DNSelectCharDlg.Resp(data,length)
+end
+
+
+function  DNSelectCharDlg.OnErr( ... ) end
+
+
+function  DNSelectCharDlg.CreateAvatar( go )
+	print("Create avatar")
+	local tran = go.transform:Find("Bg")
+	Hotfix.CreateCommonDummy(6005,tran,0,0,200,false)
+end

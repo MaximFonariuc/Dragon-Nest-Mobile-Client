@@ -1,0 +1,1042 @@
+--
+--  HotfixOperatingActivityDlg.lua.lua
+--  Created by Administrator on 2016/09/30 09:16:37
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+require "HotfixCollectWordsDocument.lua"
+require "HotfixPartnerDayDocument.lua"
+require "HotfixPandoraDocument.lua"
+require "LuaLoginRewardFrame.lua"
+require "LuaOperatingActivityTable.lua"
+require "LuaCDKeyExchangeFrame.lua"
+require "LuaOldPlayerRewardFrame.lua"
+require "LuaOldPlayerDesignationFrame.lua"
+require "LuaIOSCommentFrame.lua"
+require "Lua520DayFrame.lua"
+require "LuaHFiveObligateSysOne.lua"
+require "LuaHFiveObligateSysTwo.lua"
+require "LuaHFiveObligateSysThree.lua"
+require "LuaQQWalletFrame.lua"
+require "LuaActivityDocument"
+require "LuaGiftCardDocument.lua"
+require "Lua520FestivityDoc.lua"
+require "LuaShadowCatDocument.lua"
+
+OperatingActivityDlg={}
+local this = OperatingActivityDlg
+
+local m_OperatingActivityTable
+local m_Go
+
+local m_CollectWordsText
+local m_CollectWordsFrame = nil
+local m_CollectWordsRedPoint = nil
+
+local m_PartnerDayText
+local m_PartnerDayFrame = nil
+local m_PartnerDayRedPoint = nil
+
+local m_LoginRewardText
+local m_LoginRewardFrame = nil
+local m_LoginRewardRedPoint = nil
+
+local m_CDKeyText
+local m_CDKeyFrame = nil
+local m_cdKeyRed 
+
+local m_OldPlayerRewardText
+local m_OldPlayerRewardFrame = nil
+local m_OldPlayerRewardRedp
+
+local m_OldPlayerDesignationText
+local m_OldPlayerDesignationFrame = nil
+local m_OldPlayerDesignationRedp
+
+local m_IOSCommentText
+local m_IOSCommentFrame = nil
+local m_IOSCommentRedp
+
+local m_520DayText
+local m_520DayFrame = nil
+local m_520Redp 
+
+local m_H5ObligateSysOneText
+local m_H5ObligateSysOneFrame = nil
+local m_H5ObligateSysOneRedp
+
+local m_H5ObligateSysTwoText
+local m_H5ObligateSysTwoFrame = nil
+local m_H5ObligateSysTwoRedp
+
+local m_H5ObligateSysThreeText
+local m_H5ObligateSysThreeFrame = nil
+local m_H5ObligateSysThreeRedp
+
+local m_QQWalletText
+local m_QQWalletFrame = nil
+local m_QQWalletRedp
+
+local m_GiftCardText
+local m_GiftCardFrame = nil
+local m_GiftCardRedp
+
+local m_FestivityText
+local m_FestivityFrame = nil
+local m_FestivityRedp
+
+local m_ShadowCatText
+local m_ShadowCatFrame = nil
+local m_ShadowCatRedp
+
+---@type UnityEngine.GameObject
+local mCurrHandlerFrameObj = nil
+
+local  m_selectTabText
+
+function OperatingActivityDlg.BeforeRefresh(go)
+	if not IsNil(go) then
+		local str = "BeforeRefresh=>  "..go.name
+		print(str)
+
+		m_Go = go
+
+		if IsNil(operatingActivityTable) then
+			m_OperatingActivityTable = ReadOperatingActivityTable("Table/OperatingActivity")
+			print(XSys_ShadowCat)
+			for i = 1, #m_OperatingActivityTable, 1 do
+				print(m_OperatingActivityTable[i].SysID.." "..m_OperatingActivityTable[i].TabName)--.." "..m_OperatingActivityTable[i].TabIcon)
+				
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_LoginReward then
+					m_LoginRewardText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_COLLECTWORDS then
+					m_CollectWordsText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_PARTNERDAY then
+					print("BeforeRefresh SYS_PARTNERDAY")
+					m_PartnerDayText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_CDKey then
+					m_CDKeyText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_OldPlayerReward then
+					m_OldPlayerRewardText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_OldPlayerDesignation then
+					m_OldPlayerDesignationText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_IOSComment then
+					m_IOSCommentText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == SYS_520Day then
+					m_520DayText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_H5ObligateSysOne then
+					m_H5ObligateSysOneText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_H5ObligateSysTwo then
+					m_H5ObligateSysTwoText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_H5ObligateSysThree then
+					m_H5ObligateSysThreeText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_QQWallet then
+					m_QQWalletText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_GiftCard then
+					m_GiftCardText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_520Festivity then
+					m_FestivityText = m_OperatingActivityTable[i].TabName
+				end
+				if tonumber(m_OperatingActivityTable[i].SysID) == XSys_ShadowCat then
+					m_ShadowCatText = m_OperatingActivityTable[i].TabName
+				end
+			end
+			--print(m_CollectWordsText)
+			--print(m_PartnerDayText)
+			--print(m_CDKeyText)
+			--print(m_OldPlayerRewardText)
+			--print(m_OldPlayerDesignationText)
+			--print(m_IOSCommentText)
+			--print(m_520DayText)
+			--print(m_H5ObligateSysOneText)
+			--print(m_H5ObligateSysTwoText)
+			--print(m_H5ObligateSysThreeText)
+		end
+		
+		HotfixCollectWordsDocument.SetOperatingActivityDlg(this)
+
+		HotfixPartnerDayDocument.SetOperatingActivityDlg(this)
+
+		HotfixPandoraDocument.SetOperatingActivityDlg(this)
+
+		Lua520FestivityDoc.SetOperatingActivityDlg(this)
+		
+		LuaShadowCatDocument.SetOperatingActivityDlg(this)
+	else
+		print("BeforeRefresh: There is nil lua script ")
+	end
+	return false
+end
+
+function OperatingActivityDlg.AfterRefresh(go)
+	print("AfterRefresh......"..go.name)
+	if not IsNil(go) then
+		local str = "AfterRefresh=>  "..go.name
+		print(str)
+
+		m_CollectWordsRedPoint = nil
+		m_PartnerDayRedPoint = nil
+		m_LoginRewardRedPoint = nil
+		m_selectTabText = ""
+
+		-----@type UnityEngine.Transform
+		--local theGridTrans =  go.transform:Find("Bg/Left/padTabs/Grid")
+		-----@type UnityEngine.Transform
+		--local theLastTabTrans = theGridTrans:GetChild(theGridTrans.childCount - 1)
+		--print("the last name: ".. theLastTabTrans.name)
+
+		for i=0,20 do
+			local tabTrans = go.transform:Find("Bg/Left/padTabs/Grid/item"..i.."/Bg")
+			if IsNil(tabTrans) then
+				break
+			end
+
+			local toggle = tabTrans:GetComponent("UIToggle")
+			local tabText = tabTrans:Find("TextLabel"):GetComponent("UILabel")
+
+			if tabText.text == m_LoginRewardText then
+				Hotfix.SetClickCallback(tabTrans.gameObject,this.OnLoginRewardClick)
+				m_LoginRewardRedPoint = tabTrans:Find("RedPoint").gameObject
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_LoginRewardText
+					end
+				end
+			elseif tabText.text == m_CollectWordsText then
+				Hotfix.SetClickCallback(tabTrans.gameObject,this.OnCollectWordsClick)
+				m_CollectWordsRedPoint = tabTrans:Find("RedPoint").gameObject
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_CollectWordsText
+					end
+				end
+			elseif tabText.text == m_PartnerDayText then
+				Hotfix.SetClickCallback(tabTrans.gameObject,this.OnPartnerDayClick)
+				m_PartnerDayRedPoint = tabTrans:Find("RedPoint").gameObject
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_PartnerDayText
+					end
+				end
+			elseif tabText.text == m_CDKeyText then
+				Hotfix.SetClickCallback(tabTrans.gameObject,this.OnCDKeyClick)
+				m_cdKeyRed = tabTrans:Find("RedPoint").gameObject
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_CDKeyText
+					end
+				end
+			elseif tabText.text == m_OldPlayerRewardText then
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnOldPlayerRewardClick)
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_OldPlayerRewardText
+					end
+				end
+			elseif tabText.text == m_OldPlayerDesignationText then
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnOldPlayerDesignationClick)
+				m_OldPlayerDesignationRedp = tabTrans:Find("RedPoint").gameObject
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_OldPlayerDesignationText
+					end
+				end
+			elseif tabText.text == m_IOSCommentText then
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnIOSCommentClick)
+				m_IOSCommentRedp = tabTrans:Find("RedPoint").gameObject
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_IOSCommentText
+					end
+				end
+			elseif tabText.text == m_520DayText then
+				m_520Redp = tabTrans:Find("RedPoint")
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.On520DayClick)
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_520DayText
+					end
+				end
+			elseif tabText.text == m_H5ObligateSysOneText then
+				m_H5ObligateSysOneRedp = tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnH5ObligateSysOneFrameClick)
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_H5ObligateSysOneText
+					end
+				end
+			elseif tabText.text == m_H5ObligateSysTwoText then
+				m_H5ObligateSysTwoRedp = tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnH5ObligateSysTwoFrameClick)
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_H5ObligateSysTwoText
+					end
+				end
+			elseif tabText.text == m_H5ObligateSysThreeText then
+				m_H5ObligateSysThreeRedp = tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnH5ObligateSysThreeFrameClick)
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_H5ObligateSysThreeText
+					end
+				end
+			elseif tabText.text == m_QQWalletText then
+				m_QQWalletRedp =  tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject,this.OnQQWalletClick)
+				if toggle~=nil then
+					if toggle.value == true then
+						m_selectTabText = m_QQWalletText
+					end
+				end
+			elseif tabText.text == m_GiftCardText then
+				m_GiftCardRedp = tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnGiftCardClick)
+				if toggle~=nil and tabTrans.parent.gameObject.activeSelf then
+					if toggle.value == true then
+						m_selectTabText = m_GiftCardText
+					end
+				end
+			elseif tabText.text == m_FestivityText then
+				m_FestivityRedp = tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnFestivityClick)
+				if toggle~=nil and tabTrans.parent.gameObject.activeSelf then
+					if toggle.value == true then
+						m_selectTabText = m_FestivityText
+					end
+				end
+			elseif tabText.text == m_ShadowCatText then
+				m_ShadowCatRedp = tabTrans:Find("RedPoint").gameObject
+				Hotfix.SetClickCallback(tabTrans.gameObject, this.OnShadowCatClick)
+				if toggle~=nil and tabTrans.parent.gameObject.activeSelf then
+					if toggle.value == true then
+						m_selectTabText = m_ShadowCatText
+						print(m_selectTabText)
+					end
+				end
+			else
+				Hotfix.SetClickCallback(tabTrans.gameObject,this.OnTabClick)
+			end
+			
+		end
+
+		--if not IsNil(theLastTabTrans) then
+        --
+		--	if not IsNil(m_FestivityRedp) then
+		--		local go = UnityEngine.GameObject.Instantiate(theLastTabTrans.gameObject)
+        --
+		--		if not IsNil(go) then
+        --
+		--			m_FestivityRedp = go.transform:Find("Bg/RedPoint").gameObject
+        --
+		--			go.name = "theTest"
+		--			go.transform.parent = theGridTrans
+		--			go.transform.localScale = Vector3.one
+		--			local theTargetY = theLastTabTrans.localPosition.y - 74
+		--			go.transform.localPosition = Vector3(0, theTargetY, 0)
+        --
+		--			local theTextLb = go.transform:Find("Bg/TextLabel"):GetComponent("UILabel")
+		--			theTextLb.text = m_FestivityText
+		--			local theSelectedTextLb = go.transform:Find("Bg/SelectedTextLabel"):GetComponent("UILabel")
+		--			theSelectedTextLb.text = m_FestivityText
+        --
+		--			Hotfix.SetClickCallback(go, this.OnFestivityClick)
+		--		end
+		--	end
+        --
+		--end
+
+		if not IsNil(m_LoginRewardFrame) then
+			m_LoginRewardFrame:SetActive(false)
+		end
+		
+		if not IsNil(m_CollectWordsFrame) then
+			m_CollectWordsFrame:SetActive(false)
+		end
+
+		if not IsNil(m_PartnerDayFrame) then
+			m_PartnerDayFrame:SetActive(false)
+		end
+		
+		if not IsNil(m_CDKeyFrame) then
+			m_CDKeyFrame:SetActive(false)
+		end
+
+		if not IsNil(m_OldPlayerRewardFrame) then
+			m_OldPlayerRewardFrame:SetActive(false)
+		end
+		
+		if not IsNil(m_OldPlayerDesignationFrame) then
+			m_OldPlayerDesignationFrame:SetActive(false)
+		end
+		
+		if not IsNil(m_IOSCommentFrame) then
+			m_IOSCommentFrame:SetActive(false)
+		end
+
+		if not IsNil(m_520DayFrame) then
+			m_520DayFrame:SetActive(false)
+		end
+
+		if not IsNil(m_H5ObligateSysOneFrame) then
+			m_H5ObligateSysOneFrame:SetActive(false)
+		end
+
+		if not IsNil(m_H5ObligateSysTwoFrame) then
+			m_H5ObligateSysTwoFrame:SetActive(false)
+		end
+
+		if not IsNil(m_H5ObligateSysThreeFrame) then
+			m_H5ObligateSysThreeFrame:SetActive(false)
+		end
+
+		if not IsNil(m_QQWalletFrame) then
+			m_QQWalletFrame:SetActive(false)
+		end
+
+		if not IsNil(m_GiftCardFrame) then
+			m_GiftCardFrame:SetActive(false)
+		end
+
+		if not IsNil(m_FestivityFrame) then
+			m_FestivityFrame:SetActive(false)
+		end
+
+		if not IsNil(m_ShadowCatFrame) then
+			m_ShadowCatFrame:SetActive(false)
+		end
+
+		this.RefreshRedPoint()
+		this.DefaultSelect()
+		--if IsNil(m_goRename) then
+		--	local goVip = go.transform:Find("Bg/UserInfoPanel/BottomButtons/SwitchAccount").gameObject
+		--	local tranUser = go.transform:Find("Bg/UserInfoPanel")
+		--	if not IsNil(goVip) then 
+		--		m_goRename = GameObject.Instantiate(goVip)
+		--		m_goRename.name = "RenameBtn"
+		--		m_goRename.transform.parent = tranUser
+		--		m_goRename.transform.localPosition = Vector3(180,230,0)
+		--		m_goRename.transform.localScale = Vector3.one
+		--		Hotfix.SetClickCallback(m_goRename,this.OnRenameClick)
+
+		--		local  lbl = m_goRename.transform:Find("Label"):GetComponent("UILabel")
+		--		lbl.text = "改 名"
+		--	else 
+		--		print("goVip is Nil")
+		--	end
+		--end
+
+		--if IsNil(m_goName) then
+		--	m_goName = go.transform:Find("Bg/UserInfoPanel/BaseInfo/Username").gameObject
+		--end
+	else
+		print("AfterRefresh: There is nil lua script ")
+	end
+
+	return false
+end
+
+function OperatingActivityDlg.DefaultSelect( ... )
+	print("m_selectTabText = "..m_selectTabText)
+	if m_selectTabText == "" then return end
+
+	if m_selectTabText == m_LoginRewardText then
+		this.OnLoginRewardClick()
+	elseif m_selectTabText == m_CollectWordsText then
+		this.OnCollectWordsClick()
+	elseif m_selectTabText == m_PartnerDayText then
+		this.OnPartnerDayClick()
+	elseif m_selectTabText == m_CDKeyText then
+		this.OnCDKeyClick()
+	elseif m_selectTabText == m_OldPlayerRewardText then
+		this.OnOldPlayerRewardClick()
+	elseif m_selectTabText == m_OldPlayerDesignationText then
+		this.OnOldPlayerDesignationClick()
+	elseif m_selectTabText == m_IOSCommentText then
+		this.OnIOSCommentClick()
+	elseif m_selectTabText == m_520DayText then
+		this.On520DayClick()
+	elseif m_selectTabText == m_H5ObligateSysOneText then
+		this.OnH5ObligateSysOneFrameClick()
+	elseif m_selectTabText == m_H5ObligateSysTwoText then
+		this.OnH5ObligateSysTwoFrameClick()
+	elseif m_selectTabText == m_H5ObligateSysThreeText then
+		this.OnH5ObligateSysThreeFrameClick()
+	elseif m_selectTabText == m_QQWalletText then
+		this.OnQQWalletClick()
+	elseif m_selectTabText == m_GiftCardText then
+		this.OnGiftCardClick()
+	elseif m_selectTabText == m_FestivityText then
+		this.OnFestivityClick()
+	elseif m_selectTabText == m_ShadowCatText then
+		this.OnShadowCatClick()
+	end
+end
+
+function OperatingActivityDlg.Hide(go)
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/LoginRewardFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/CollectWordsFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/CDKeyExchangeFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/OldPlayerRewardFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/OldPlayerDesignationFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/IOSCommentFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/PartnerDayFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/520DayFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/HFiveObligateSysOne")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/HFiveObligateSysTwo")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/HFiveObligateSysThree")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/QQWalletFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/GiftCardFrame")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/520FestivityDlg")
+	LuaUIManager.Instance:Hide("UI/OperatingActivity/ShadowCatFrame")
+
+	m_OldPlayerRewardFrame = nil
+	m_IOSCommentFrame = nil
+	m_CDKeyFrame = nil
+	m_OldPlayerDesignationFrame = nil
+	m_LoginRewardFrame = nil
+	m_CollectWordsFrame = nil
+	m_PartnerDayFrame = nil
+	m_520DayFrame = nil
+	m_H5ObligateSysOneFrame = nil
+	m_H5ObligateSysTwoFrame = nil
+	m_H5ObligateSysThreeFrame = nil
+	m_QQWalletFrame = nil
+	m_GiftCardFrame = nil
+	m_FestivityFrame = nil
+	m_ShadowCatFrame = nil
+	return true
+end
+
+function OperatingActivityDlg.OnLoginRewardClick( ... )
+	-- body
+	print("OnLoginRewardClick...")
+	
+	if IsNil(m_LoginRewardFrame) then
+		--print("Load m_LoginRewardFrame")
+		LuaUIManager.Instance:Load("UI/OperatingActivity/LoginRewardFrame")
+		m_LoginRewardFrame = GameObject.Find("LoginRewardFrame")
+		m_LoginRewardFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_LoginRewardFrame.transform.localPosition = Vector3.zero
+		m_LoginRewardFrame.transform.localScale = Vector3.one
+	else
+		m_LoginRewardFrame:SetActive(true)
+	end
+
+	--local childCount = m_LoginRewardFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_LoginRewardFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_LoginRewardFrame)
+	--end
+
+	this.CurrFameDisplay(m_LoginRewardFrame)
+end
+
+function OperatingActivityDlg.OnCollectWordsClick( ... )
+	-- body
+	print("OnCollectWordsClick...")
+
+	if IsNil(m_CollectWordsFrame) then
+		--print("Load CollectWordsFrame")
+		LuaUIManager.Instance:Load("UI/OperatingActivity/CollectWordsFrame")
+		m_CollectWordsFrame = GameObject.Find("CollectWordsFrame")
+		--m_CollectWordsFrame.name = "CollectWordsFrame"
+		m_CollectWordsFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_CollectWordsFrame.transform.localPosition = Vector3.zero
+		m_CollectWordsFrame.transform.localScale = Vector3.one
+	else
+		m_CollectWordsFrame:SetActive(true)
+	end
+
+	--local childCount = m_CollectWordsFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_CollectWordsFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_CollectWordsFrame)
+	--end
+
+	this.CurrFameDisplay(m_CollectWordsFrame)
+end
+
+function OperatingActivityDlg.OnPartnerDayClick( ... )
+	-- body
+	print("OnPartnerDayClick...")
+
+	if IsNil(m_PartnerDayFrame) then
+		--print("Load PartnerDayFrame")
+		LuaUIManager.Instance:Load("UI/OperatingActivity/PartnerDayFrame")
+		m_PartnerDayFrame = GameObject.Find("PartnerDayFrame")
+		--m_PartnerDayFrame.name = "PartnerDayFrame"
+		m_PartnerDayFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_PartnerDayFrame.transform.localPosition = Vector3.zero
+		m_PartnerDayFrame.transform.localScale = Vector3.one
+	else
+		m_PartnerDayFrame:SetActive(true)
+	end
+
+	--local childCount = m_PartnerDayFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_PartnerDayFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_PartnerDayFrame)
+	--end
+
+	this.CurrFameDisplay(m_PartnerDayFrame)
+end
+
+function OperatingActivityDlg.OnCDKeyClick( ... )
+	-- body
+	print("OnCDKeyClick...")
+
+	if IsNil(m_CDKeyFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/CDKeyExchangeFrame")
+		m_CDKeyFrame = GameObject.Find("CDKeyExchangeFrame")
+		m_CDKeyFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_CDKeyFrame.transform.localPosition = Vector3.zero
+		m_CDKeyFrame.transform.localScale = Vector3.one
+	else
+		m_CDKeyFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceCDKeyUpdateRedp(true)
+	if not IsNil(m_cdKeyRed) then  m_cdKeyRed.gameObject:SetActive(false) end
+
+	--local childCount = m_CDKeyFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_CDKeyFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_CDKeyFrame)
+	--end
+
+	this.CurrFameDisplay(m_CDKeyFrame)
+end
+
+function OperatingActivityDlg.OnOldPlayerRewardClick( ... )
+	-- body
+	print("OnOldPlayerRewardClick...")
+
+	if IsNil(m_OldPlayerRewardFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/OldPlayerRewardFrame")
+		m_OldPlayerRewardFrame = GameObject.Find("OldPlayerRewardFrame")
+		m_OldPlayerRewardFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_OldPlayerRewardFrame.transform.localPosition = Vector3.zero
+		m_OldPlayerRewardFrame.transform.localScale = Vector3.one
+	else
+		m_OldPlayerRewardFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceOldPlayerRewdUpdateRedp(true)
+	if not IsNil(m_OldPlayerRewardRedp) then  m_OldPlayerRewardRedp.gameObject:SetActive(false) end
+
+	--local childCount = m_OldPlayerRewardFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_OldPlayerRewardFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_OldPlayerRewardFrame)
+	--end
+
+	this.CurrFameDisplay(m_OldPlayerRewardFrame)
+end
+
+function OperatingActivityDlg.OnOldPlayerDesignationClick( ... )
+	-- body
+	print("OnOldPlayerDesignationClick...")
+
+	if IsNil(m_OldPlayerDesignationFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/OldPlayerDesignationFrame")
+		m_OldPlayerDesignationFrame = GameObject.Find("OldPlayerDesignationFrame")
+		m_OldPlayerDesignationFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_OldPlayerDesignationFrame.transform.localPosition = Vector3.zero
+		m_OldPlayerDesignationFrame.transform.localScale = Vector3.one
+	else
+		m_OldPlayerDesignationFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceOldPlayerDesgnUpdateRedp(true)
+	if not IsNil(m_OldPlayerDesignationRedp) then  m_OldPlayerDesignationRedp.gameObject:SetActive(false) end
+
+	--local childCount = m_OldPlayerDesignationFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_OldPlayerDesignationFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_OldPlayerDesignationFrame)
+	--end
+
+	this.CurrFameDisplay(m_OldPlayerDesignationFrame)
+end
+
+function OperatingActivityDlg.OnIOSCommentClick( ... )
+	-- body
+	print("OnIOSCommentClick...")
+
+	if IsNil(m_IOSCommentFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/IOSCommentFrame")
+		m_IOSCommentFrame = GameObject.Find("IOSCommentFrame")
+		m_IOSCommentFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_IOSCommentFrame.transform.localPosition = Vector3.zero
+		m_IOSCommentFrame.transform.localScale = Vector3.one
+	else
+		m_IOSCommentFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceIOSCommentUpdateRedp(true)
+	if not IsNil(m_IOSCommentRedp) then  m_IOSCommentRedp.gameObject:SetActive(false) end
+
+	--local childCount = m_IOSCommentFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_IOSCommentFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_IOSCommentFrame)
+	--end
+
+	this.CurrFameDisplay(m_IOSCommentFrame)
+end
+
+function OperatingActivityDlg.On520DayClick( ... )
+	print("On520DayClick...")
+	if IsNil(m_520DayFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/520DayFrame")
+		m_520DayFrame = GameObject.Find("520DayFrame")
+		m_520DayFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_520DayFrame.transform.localPosition = Vector3.zero
+		m_520DayFrame.transform.localScale = Vector3.one
+	else
+		m_520DayFrame:SetActive(true)
+	end
+	
+	if not IsNil(m_520Redp) then  m_520Redp.gameObject:SetActive(false) end
+
+	--local childCount = m_520DayFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_520DayFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_520DayFrame)
+	--end
+
+	this.CurrFameDisplay(m_520DayFrame)
+end
+
+--1111
+function OperatingActivityDlg.OnH5ObligateSysOneFrameClick( ... )
+	-- body
+	print("OnH5ObligateSysOneFrameClick...")
+
+	if IsNil(m_H5ObligateSysOneFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/HFiveObligateSysOne")
+		m_H5ObligateSysOneFrame = GameObject.Find("HFiveObligateSysOne")
+		m_H5ObligateSysOneFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_H5ObligateSysOneFrame.transform.localPosition = Vector3.zero
+		m_H5ObligateSysOneFrame.transform.localScale = Vector3.one
+	else
+		m_H5ObligateSysOneFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceHFiveObligateUpdateRedp(true)
+	if not IsNil(m_H5ObligateSysOneRedp) then m_H5ObligateSysOneRedp:SetActive(false) end
+
+	--local childCount = m_H5ObligateSysOneFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_H5ObligateSysOneFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_H5ObligateSysOneFrame)
+	--end
+
+	this.CurrFameDisplay(m_H5ObligateSysOneFrame)
+end
+
+function OperatingActivityDlg.OnH5ObligateSysTwoFrameClick( ... )
+	-- body
+	print("OnH5ObligateSysTwoFrameClick...")
+
+	if IsNil(m_H5ObligateSysTwoFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/HFiveObligateSysTwo")
+		m_H5ObligateSysTwoFrame = GameObject.Find("HFiveObligateSysTwo")
+		m_H5ObligateSysTwoFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_H5ObligateSysTwoFrame.transform.localPosition = Vector3.zero
+		m_H5ObligateSysTwoFrame.transform.localScale = Vector3.one
+	else
+		m_H5ObligateSysTwoFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceHFiveObligateTwoUpdateRedp(true)
+	if not IsNil(m_H5ObligateSysTwoRedp) then m_H5ObligateSysTwoRedp:SetActive(false) end
+
+	--local childCount = m_H5ObligateSysTwoFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_H5ObligateSysTwoFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_H5ObligateSysTwoFrame)
+	--end
+
+	this.CurrFameDisplay(m_H5ObligateSysTwoFrame)
+end
+
+function OperatingActivityDlg.OnH5ObligateSysThreeFrameClick( ... )
+	-- body
+	print("OnH5ObligateSysThreeFrameClick...")
+
+	if IsNil(m_H5ObligateSysThreeFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/HFiveObligateSysThree")
+		m_H5ObligateSysThreeFrame = GameObject.Find("HFiveObligateSysThree")
+		m_H5ObligateSysThreeFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_H5ObligateSysThreeFrame.transform.localPosition = Vector3.zero
+		m_H5ObligateSysThreeFrame.transform.localScale = Vector3.one
+	else
+		m_H5ObligateSysThreeFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceHFiveObligateThreeUpdateRedp(true)
+	if not IsNil(m_H5ObligateSysThreeRedp) then m_H5ObligateSysThreeRedp:SetActive(false) end
+
+	--local childCount = m_H5ObligateSysThreeFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_H5ObligateSysThreeFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_H5ObligateSysThreeFrame)
+	--end
+
+	this.CurrFameDisplay(m_H5ObligateSysThreeFrame)
+end
+
+function OperatingActivityDlg.OnValentineDayClick( ... )
+	--local childCount = m_520DayFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_520DayFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_520DayFrame)
+	--end
+
+	this.CurrFameDisplay(m_520DayFrame)
+end
+
+function OperatingActivityDlg.OnQQWalletClick( ... )
+	if IsNil(m_QQWalletFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/QQWalletFrame")
+		m_QQWalletFrame = GameObject.Find("QQWalletFrame")
+		m_QQWalletFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_QQWalletFrame.transform.localPosition = Vector3.zero
+		m_QQWalletFrame.transform.localScale = Vector3.one
+	else
+		m_QQWalletFrame:SetActive(true)
+	end
+
+	LuaActivityDocument.ForceQQWalletUpdateRedp(true)
+	if not IsNil(m_QQWalletRedp) then  m_QQWalletRedp.gameObject:SetActive(false) end
+
+	--local childCount = m_QQWalletFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_QQWalletFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_QQWalletFrame)
+	--end
+
+	this.CurrFameDisplay(m_QQWalletFrame)
+end
+
+function OperatingActivityDlg.OnGiftCardClick( ... )
+	-- body
+	print("OnGiftCardClick...")
+	
+	if IsNil(m_GiftCardFrame) then
+		--print("Load m_GiftCardFrame")
+		LuaUIManager.Instance:Load("UI/OperatingActivity/GiftCardFrame")
+		m_GiftCardFrame = GameObject.Find("GiftCardFrame")
+		m_GiftCardFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_GiftCardFrame.transform.localPosition = Vector3.zero
+		m_GiftCardFrame.transform.localScale = Vector3.one
+	else
+		m_GiftCardFrame:SetActive(true)
+	end
+
+	--local childCount = m_GiftCardFrame.transform.parent.childCount
+	--for i=0,childCount-1 do
+	--	local child = m_GiftCardFrame.transform.parent:GetChild(i)
+	--	child.gameObject:SetActive(child.gameObject == m_GiftCardFrame)
+	--end
+
+	this.CurrFameDisplay(m_GiftCardFrame)
+end
+
+function OperatingActivityDlg.OnFestivityClick( ... )
+	print("festivity click")
+
+	--LuaUIManager.Instance:Hide("UI/OperatingActivity/HFiveObligateSysTwo")
+
+	if IsNil(m_FestivityFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/520FestivityDlg")
+		m_FestivityFrame = GameObject.Find("520FestivityDlg")
+		m_FestivityFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_FestivityFrame.transform.localPosition = Vector3.zero
+		m_FestivityFrame.transform.localScale = Vector3.one
+	else
+		m_FestivityFrame:SetActive(true)
+	end
+
+	this.CurrFameDisplay(m_FestivityFrame)
+
+	-- local theTargetTrans = m_FestivityFrame.transform.parent:Find("HFiveObligateSysTwo")
+	-- if not IsNil(theTargetTrans) then
+	-- 	theTargetTrans.gameObject:SetActive(false)
+	-- end
+end
+
+function OperatingActivityDlg.OnShadowCatClick( ... )
+	print("shadowcat click")
+
+	if IsNil(m_ShadowCatFrame) then
+		LuaUIManager.Instance:Load("UI/OperatingActivity/ShadowCatFrame")
+		m_ShadowCatFrame = GameObject.Find("ShadowCatFrame")
+		m_ShadowCatFrame.transform.parent = m_Go.transform:Find("Bg/Right")
+		m_ShadowCatFrame.transform.localPosition = Vector3.zero
+		m_ShadowCatFrame.transform.localScale = Vector3.one
+	else
+		m_ShadowCatFrame:SetActive(true)
+	end
+
+	this.CurrFameDisplay(m_ShadowCatFrame)
+end
+
+---@param targetFrameObj UnityEngine.GameObject
+function OperatingActivityDlg.CurrFameDisplay( targetFrameObj )
+	if not IsNil(mCurrHandlerFrameObj) then
+		mCurrHandlerFrameObj:SetActive(false)
+	end
+
+	mCurrHandlerFrameObj = targetFrameObj
+	mCurrHandlerFrameObj:SetActive(true)
+end
+
+function OperatingActivityDlg.OnTabClick( ... )
+	-- body
+	print("OnTabClick...")
+
+	if not IsNil(m_LoginRewardFrame) then
+		m_LoginRewardFrame:SetActive(false)
+	end
+	
+	if not IsNil(m_CollectWordsFrame) then
+		m_CollectWordsFrame:SetActive(false)
+	end
+
+	if not IsNil(m_PartnerDayFrame) then
+		m_PartnerDayFrame:SetActive(false)
+	end
+	
+	if not IsNil(m_CDKeyFrame) then
+		m_CDKeyFrame:SetActive(false)
+	end
+
+	if not IsNil(m_OldPlayerRewardFrame) then
+		m_OldPlayerRewardFrame:SetActive(false)
+	end
+	
+	if not IsNil(m_OldPlayerDesignationFrame) then
+		m_OldPlayerDesignationFrame:SetActive(false)
+	end
+	
+	if not IsNil(m_IOSCommentFrame) then
+		m_IOSCommentFrame:SetActive(false)
+	end
+
+	if not IsNil(m_520DayFrame) then
+		m_520DayFrame:SetActive(false)
+	end
+
+	if not IsNil(m_H5ObligateSysOneFrame) then
+		m_H5ObligateSysOneFrame:SetActive(false)
+	end
+
+	if not IsNil(m_H5ObligateSysTwoFrame) then
+		m_H5ObligateSysTwoFrame:SetActive(false)
+	end
+
+	if not IsNil(m_H5ObligateSysThreeFrame) then
+		m_H5ObligateSysThreeFrame:SetActive(false)
+	end
+
+	if not IsNil(m_QQWalletFrame) then
+		m_QQWalletFrame:SetActive(false)
+	end
+
+	if not IsNil(m_GiftCardFrame) then
+		m_GiftCardFrame:SetActive(false)
+	end
+
+	if not IsNil(m_FestivityFrame) then
+		m_FestivityFrame:SetActive(false)
+	end
+
+	if not IsNil(m_ShadowCatFrame) then
+		m_ShadowCatFrame:SetActive(false)
+	end
+	--LuaUIManager.Instance:Load("UI/GameSystem/ReNameDlg")
+end
+
+function OperatingActivityDlg.RefreshRedPoint()
+	if not IsNil(m_LoginRewardRedPoint) then
+		m_LoginRewardRedPoint:SetActive(Hotfix.GetSysRedPointState(XSys_LoginReward))
+	end
+	
+	if not IsNil(m_CollectWordsRedPoint) then
+		m_CollectWordsRedPoint:SetActive(Hotfix.GetSysRedPointState(SYS_COLLECTWORDS))
+	end
+
+	if not IsNil(m_PartnerDayRedPoint) then
+		m_PartnerDayRedPoint:SetActive(Hotfix.GetSysRedPointState(SYS_PARTNERDAY))
+	end
+
+	if not IsNil(m_QQWalletRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_QQWallet)
+		m_QQWalletRedp:SetActive(red)
+	end
+
+	if not IsNil(m_cdKeyRed) then
+		local red =  Hotfix.GetSysRedPointState(SYS_CDKey)
+		m_cdKeyRed:SetActive(red)
+	end
+
+	if not IsNil(m_OldPlayerDesignationRedp) then
+		local red = Hotfix.GetSysRedPointState(SYS_OldPlayerDesignation) 
+		m_OldPlayerDesignationRedp:SetActive(red)
+	end
+
+	if not IsNil(m_IOSCommentRedp) then
+		local red = Hotfix.GetSysRedPointState(SYS_IOSComment) 
+		m_IOSCommentRedp:SetActive(red)
+	end
+
+	if not IsNil(m_OldPlayerRewardRedp) then
+		local red = Hotfix.GetSysRedPointState(SYS_OldPlayerReward) 
+		m_OldPlayerRewardRedp:SetActive(red)
+	end
+
+	if not IsNil(m_H5ObligateSysOneRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_H5ObligateSysOne) 
+		m_H5ObligateSysOneRedp:SetActive(red)
+	end
+
+	if not IsNil(m_H5ObligateSysTwoRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_H5ObligateSysTwo) 
+		m_H5ObligateSysTwoRedp:SetActive(red)
+	end
+
+	if not IsNil(m_H5ObligateSysThreeRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_H5ObligateSysThree) 
+		m_H5ObligateSysThreeRedp:SetActive(red)
+	end
+
+	if not IsNil(m_GiftCardRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_GiftCard) 
+		m_GiftCardRedp:SetActive(red)
+	end
+
+	if not IsNil(m_FestivityRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_520Festivity)
+		m_FestivityRedp:SetActive(red)
+	end
+
+	if not IsNil(m_ShadowCatRedp) then
+		local red = Hotfix.GetSysRedPointState(XSys_ShadowCat)
+		m_ShadowCatRedp:SetActive(red)
+	end
+end

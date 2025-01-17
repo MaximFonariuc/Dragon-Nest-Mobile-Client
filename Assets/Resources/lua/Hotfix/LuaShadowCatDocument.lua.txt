@@ -1,0 +1,80 @@
+require "XShadowCat_pb.lua"
+
+XSys_ShadowCat = 1001
+
+LuaShadowCatDocument = {}
+local this = LuaShadowCatDocument
+local m_isCanReceive=false
+
+local m_LuaShadowCatFrame= nil
+local m_ChestState = {}
+local m_OperatingActivityDlg = nil
+
+function LuaShadowCatDocument.EnterScene()
+	Hotfix.AttachSysRedPointRelative(600, XSys_ShadowCat, false)
+end
+
+function LuaShadowCatDocument.SetLuaShadowCatFrame(frame)
+	m_LuaShadowCatFrame = frame
+end
+
+function LuaShadowCatDocument.Detach()
+
+	m_LuaShadowCatFrame = nil	
+	m_ChestState = {}
+end
+
+--1 拉数据 2 领奖
+function LuaShadowCatDocument.ReqShadowCatOperation(self,type,num)
+	local msg = XShadowCat_pb.ShadowCatOperationArg()
+	msg.type = type
+	msg.num = num
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(7140, TestProtol.data, this.OnGetReward, this.OnErr)
+	else
+		print("test proto data is nil")
+	end
+end
+
+-- 0 不能领取 1能领取 2领过了
+function LuaShadowCatDocument.OnGetReward(data,length)
+	local  msg = XShadowCat_pb.ShadowCatOperationRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		-- print("errorcode is: "..tostring(msg.errorcode))
+		-- print(msg)
+		if msg.errorcode ~= 0 then
+			-- exclude INVALID_REQUEST
+			if msg.errorcode ~= ERR_INVALID_REQUEST then
+				Hotfix.LuaShowSystemTipErrCode(msg.errorcode)				
+			end
+		else
+			-- chest state
+			m_ChestState = msg.treasures
+			m_LuaShadowCatFrame.Refresh()
+		end
+	else
+		print("GetReward msg is nil")
+	end
+end
+
+function LuaShadowCatDocument.GetChestStates()
+	return m_ChestState
+end
+
+function LuaShadowCatDocument.OnErr( ... )
+end
+
+function LuaShadowCatDocument.SetOperatingActivityDlg(dlg)
+	m_OperatingActivityDlg = dlg
+end
+
+function LuaShadowCatDocument.RefreshRedPoint(isCanReceive)
+	m_isCanReceive=isCanReceive
+	Hotfix.ForceUpdateSysRedPointImmediately(XSys_ShadowCat, m_isCanReceive)
+	if m_OperatingActivityDlg ~= nil then
+		m_OperatingActivityDlg.RefreshRedPoint()
+	end
+end

@@ -1,0 +1,38 @@
+require "HotfixGlobal.lua"
+
+--generate by ProtoGen at date: 2017/10/10 19:15:22
+
+--读取表格
+function ReadFpGoToLevelUpTable(table)
+	local reader = Hotfix.LuaTableBin(table)
+	if not IsNil(reader) then
+		local rows = {}
+		Hotfix.ReadFileSize(reader)
+		local lineCount = reader:ReadInt32()
+		Hotfix.ReadDataHandle(reader)
+		local columnCount = reader:ReadByte()
+		for i = 1, columnCount, 1 
+		do
+			reader:ReadByte()
+			reader:ReadByte()
+		end
+		for i = 1, lineCount, 1 
+		do
+			Hotfix.ReadRowSize(reader)
+			rows[i] = {};	
+			rows[i].Id = reader:ReadUInt32()
+			rows[i].Name = Hotfix.ReadString(reader)
+			rows[i].SystemId = reader:ReadUInt32()
+			rows[i].Tips = Hotfix.ReadString(reader)
+			rows[i].IconName = Hotfix.ReadString(reader)
+			rows[i].StarNum = reader:ReadUInt32()
+			rows[i].IsRecommond = reader:ReadUInt32()
+
+			Hotfix.CheckRowSize(reader,"FpGoToLevelUp",i)
+		end
+		Hotfix.CheckFileSize(reader,"FpGoToLevelUp")
+		Hotfix.ReturnableStream(reader)
+		return rows
+	end
+	return nil
+end

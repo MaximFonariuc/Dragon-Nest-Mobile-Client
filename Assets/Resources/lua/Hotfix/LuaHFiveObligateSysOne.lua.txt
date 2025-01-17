@@ -1,0 +1,77 @@
+--
+--  LuaHFiveObligateSysOne.lua
+--  Created by alexpeng on 2017/02/09 10:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+XSys_H5ObligateSysOne = 390
+
+local texturePath
+
+LuaHFiveObligateSysOne = {}
+local this = LuaHFiveObligateSysOne
+
+local m_Go
+local m_bIsVisible = false
+
+local m_ExchangeBtn;
+local m_BgTexture;
+
+--called by MonoBehaviour.Awake
+function LuaHFiveObligateSysOne.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_ExchangeBtn = m_Go.transform:Find("Button")
+		Hotfix.SetClickCallback(m_ExchangeBtn.gameObject, this.OnBtnClick)
+		texturePath = Hotfix.GetGlobalString("H5ObligateSysOneTexPath")
+		print("LuaHFiveObligateSysOne texturePath"..texturePath);
+	end
+	
+end
+
+function LuaHFiveObligateSysOne.OnBtnClick(go)
+	print("LuaHFiveObligateSysOne")
+	Hotfix.CallSingleMethod("UI.UiUtility", true, false, "OpenHtmlUrl", "H5ObligateSysOneUrl")
+end
+
+
+function LuaHFiveObligateSysOne.Start()
+
+end
+
+function LuaHFiveObligateSysOne.OnEnable()
+	print("LuaHFiveObligateSysOne.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaHFiveObligateSysOne.OnDisable()
+	m_bIsVisible = false
+	print("LuaHFiveObligateSysOne.OnDisable")
+end
+
+
+function LuaHFiveObligateSysOne.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaHFiveObligateSysOne.OnShow()
+	print("LuaH5ObligateSysOne.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaHFiveObligateSysOne SetBgTexture")
+	end
+end
+
+function LuaHFiveObligateSysOne.OnHide()
+	print("LuaH5ObligateSysOne.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaHFiveObligateSysOne DestoryTexture")
+	end
+end
+
+function LuaHFiveObligateSysOne.IsVisible()
+	return m_bIsVisible
+end

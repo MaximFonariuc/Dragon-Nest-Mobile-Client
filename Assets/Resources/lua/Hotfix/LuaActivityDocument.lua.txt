@@ -1,0 +1,211 @@
+--
+--  LuaActivityDocument.lua
+--  Created by alexpeng on 2017/04/26 14:06:00
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+
+LuaActivityDocument = {}
+local this = LuaActivityDocument
+
+
+PlayerPrefs  = UnityEngine.PlayerPrefs
+
+
+local m_activityID = 600
+
+local m_QQWalletSysID = 393
+local m_oldplayerDesignationID = 843
+local m_cdKeyID = 841
+--local m_oldplayerRewdID = 842
+local m_HFiveObligateID =390
+local m_HFiveObligateTwoID = 391
+local m_HFiveObligateThreeID = 392
+local m_IOSCommentID = 844
+
+local m_Festival520ID = 486
+
+local QQWalletClicked = false
+local OldPlayerDesginClicked=false
+local CDKeyClicked = false
+--local OldPlayerRewdClick = false
+local HFiveObligateClick = false
+local HFiveObligateTwoClick = false
+local HFiveObligateThreeClick = false
+local IOSCommentClick = false
+
+
+local tQQWallet="tQQWallet"
+local tOldPlayerDesin="tOldPlayerDesin"
+local tCDKey="tCDKey"
+--local tOldPlayerRw="tOldPlayerRw"
+local tHFiveObligate="tHFiveObligate"
+local tHFiveObligateTwo="tHFiveObligateTwo"
+local tHFiveObligateThree="tHFiveObligateThree"
+local tIOSComment="tIOSComment"
+
+local isAttach = false
+
+
+
+
+function LuaActivityDocument.EnterScene()
+	if not isAttach then
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_QQWalletSysID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_oldplayerDesignationID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_cdKeyID, false)
+		--Hotfix.AttachSysRedPointRelative(m_activityID, m_oldplayerRewdID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_HFiveObligateID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_HFiveObligateTwoID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_HFiveObligateThreeID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_IOSCommentID, false)
+		Hotfix.AttachSysRedPointRelative(m_activityID, m_Festival520ID, false)
+
+		local gap = 5 * 3600
+		local time = os.time() - gap
+		local date = os.date("%Y-%m-%d",time)
+
+		--print("qq: "..PlayerPrefs.GetString(tQQWallet,"0").." old: "..PlayerPrefs.GetString(tOldPlayerDesin,"0").." two: ".." oldrwd:"..PlayerPrefs.GetString(tOldPlayerRw,"0"))
+		QQWalletClicked = PlayerPrefs.GetString(tQQWallet,"0") == date
+		OldPlayerDesginClicked = PlayerPrefs.GetString(tOldPlayerDesin,"0") == date
+		CDKeyClicked = PlayerPrefs.GetString(tCDKey,"0") == date
+		OldPlayerRewdClick = PlayerPrefs.GetString(tOldPlayerRw,"0") == date
+		HFiveObligateClick = PlayerPrefs.GetString(tHFiveObligate,"0") == date
+		HFiveObligateTwoClick = PlayerPrefs.GetString(tHFiveObligateTwo,"0") == date
+		HFiveObligateThreeClick = PlayerPrefs.GetString(tHFiveObligateThree,"0") == date
+		IOSCommentClick = PlayerPrefs.GetString(tIOSComment,"0") == date
+
+		--print("date:"..tostring(date).." QQWalletClicked: "..tostring(QQWalletClicked).." playerdesn:"..tostring(OldPlayerDesginClicked).." CDKeyClicked:"..tostring(CDKeyClicked).." OldPlayerRewdClick:"..tostring(OldPlayerRewdClick))
+		--print("HFiveObligateClick: "..tostring(HFiveObligateClick).." HFiveObligateTwoClick:"..tostring(HFiveObligateTwoClick).." HFiveObligateThreeClick:"..tostring(HFiveObligateThreeClick))
+		isAttach = true
+	end
+
+	this.CulRedp()
+end
+
+
+function LuaActivityDocument.Save(name)
+	-- body
+	local gap = 5 * 3600
+	local time = os.time() - gap
+	local date = os.date("%Y-%m-%d",time)
+	--print("save: "..name.." date:"..date)
+	PlayerPrefs.SetString(name,date)
+end
+
+
+function LuaActivityDocument.CulRedp( ... )
+	
+	local bqqwallet = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_QQWalletSysID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_QQWalletSysID,bqqwallet  and not QQWalletClicked)
+	local bolddesgn =Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_oldplayerDesignationID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_oldplayerDesignationID,bolddesgn and not OldPlayerDesginClicked)
+	local bcdkey=Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_cdKeyID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_cdKeyID,bcdkey and not CDKeyClicked)
+	--local boldrewd = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_oldplayerRewdID)
+	--Hotfix.ForceUpdateSysRedPointImmediately(m_oldplayerRewdID, false and not OldPlayerRewdClick)
+	local bhfiveone = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_HFiveObligateID, bhfiveone and not HFiveObligateClick)
+	local bhfivetwo = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateTwoID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_HFiveObligateTwoID, bhfivetwo and not HFiveObligateTwoClick)
+	local bhfivethree =Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateThreeID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_HFiveObligateThreeID, bhfivethree and not HFiveObligateThreeClick)
+	local bioscomm = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_IOSCommentID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_IOSCommentID, bioscomm and not IOSCommentClick)
+
+	--print("LuaActivityDocument.CulRedp: "..tostring(QQWalletClicked).." cdkey:"..tostring(CDKeyClicked).." two:"..tostring(HFiveObligateClick).." two:"..tostring(HFiveObligateTwoClick))
+	--print("tQQWallet: "..tostring(bqqwallet).." bcdkey:"..tostring(bcdkey).." two:"..tostring(bhfivetwo))
+end
+
+
+-- qq钱包
+function LuaActivityDocument.ForceQQWalletUpdateRedp(click)
+	-- body
+	QQWalletClicked = click
+	this.Save(tQQWallet)
+	local open = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_QQWalletSysID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_QQWalletSysID, open and not QQWalletClicked)
+	this.RefreshRed()
+end
+
+
+-- 一键关注
+function LuaActivityDocument.ForceOldPlayerDesgnUpdateRedp(click)
+	-- body
+	OldPlayerDesginClicked=click
+	this.Save(tOldPlayerDesin)
+	local open = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_oldplayerDesignationID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_oldplayerDesignationID,open and  not OldPlayerDesginClicked)
+	this.RefreshRed()
+end
+
+
+-- 福利兑换
+function LuaActivityDocument.ForceCDKeyUpdateRedp(click)
+	-- body
+	CDKeyClicked=click
+	this.Save(tCDKey)
+	local open =  Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_cdKeyID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_cdKeyID,open and not CDKeyClicked)
+	this.RefreshRed()
+
+end
+
+
+-- 端游福利
+function LuaActivityDocument.ForceOldPlayerRewdUpdateRedp( click )
+	-- body
+	OldPlayerRewdClick=click
+	this.Save(tOldPlayerRw)
+	local open = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_oldplayerRewdID, open and not OldPlayerRewdClick)
+	this.RefreshRed()
+end
+
+
+--实名认证
+function LuaActivityDocument.ForceHFiveObligateUpdateRedp(click)
+	-- body
+	HFiveObligateClick=click
+	this.Save(tHFiveObligate)
+	local open = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_HFiveObligateID,open and not HFiveObligateClick)
+	this.RefreshRed()
+end
+
+
+function LuaActivityDocument.ForceHFiveObligateTwoUpdateRedp(click)
+	-- body
+	HFiveObligateTwoClick=click
+	this.Save(tHFiveObligateTwo)
+	local open =  Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateTwoID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_HFiveObligateTwoID,open and  not HFiveObligateTwoClick)
+	this.RefreshRed()
+end
+
+
+function LuaActivityDocument.ForceHFiveObligateThreeUpdateRedp(click)
+	-- body
+	HFiveObligateThreeClick=click
+	this.Save(tHFiveObligateThree)
+	local open = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_HFiveObligateThreeID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_HFiveObligateThreeID, open and not HFiveObligateThreeClick)
+	this.RefreshRed()
+end
+
+
+function LuaActivityDocument.ForceIOSCommentUpdateRedp(click)
+	-- body
+	IOSCommentClick=click
+	this.Save(tIOSComment)
+	local open = Hotfix.CallSingleMethod("XGameSysMgr", true, false, "IsSystemOpen", m_IOSCommentID)
+	Hotfix.ForceUpdateSysRedPointImmediately(m_IOSCommentID, open and not IOSCommentClick)
+	this.RefreshRed()
+end
+
+
+function LuaActivityDocument.RefreshRed( ... )
+	-- body
+	local sys = Hotfix.GetEnumType("XSysDefine","XSys_OperatingActivity")
+	Hotfix.CallSingleMethod("XGameSysMgr", true, false, "RecalculateRedPointState", sys)
+end

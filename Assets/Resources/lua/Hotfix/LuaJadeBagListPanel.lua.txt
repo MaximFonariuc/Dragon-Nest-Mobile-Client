@@ -1,0 +1,307 @@
+﻿require "LuaJadeEquipDataModel.lua"
+
+----龙玉背包视图类 
+LuaJadeBagListPanel = {}
+local this = LuaJadeBagListPanel
+
+local thisObj = nil
+local thisTrans = nil
+
+local selectSlotItemList = nil
+local theListCount = 0
+
+local CloseBtnTrans = nil
+
+local m_uiScrollView = nil
+local m_WrapContent = nil
+
+local m_LimitLb = nil
+
+local JadeShowInBagList = {}
+
+local bgHandler = nil
+-- local powerfullMgr = nil
+
+local jadeTable = nil
+
+function LuaJadeBagListPanel.Init()
+	if thisObj == nil then
+		return
+	end
+
+	jadeTable = Hotfix.GetDocumentMember("JadeDocument","jadeTable",true,false)
+
+	-- print "Init 1"
+
+	bgHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_JadeBagHandler", true, true, false)
+		
+	-- powerfullMgr = Hotfix.GetSingleMember("UI.ItemSystemDlg", "RedPointMgr", true, true, false)
+
+	-- print "Init 2"
+	thisTrans = thisObj.transform
+
+	-- print "Init 3"
+	if thisTrans == nil then
+		return
+	end
+
+	-- print "Init 4"
+	CloseBtnTrans = thisTrans:Find("Bg/Close")
+	if CloseBtnTrans ~= nil then
+		Hotfix.SetClickCallback(CloseBtnTrans.gameObject, this.CloseBtnOnClick)	
+	end
+
+	-- print "Init 5"
+	m_uiScrollView = thisTrans:Find("Bg/BagPanel"):GetComponent("UIScrollView")
+
+	-- print "Init 6"
+	m_WrapContent = thisTrans:Find("Bg/BagPanel/WrapContent").gameObject
+
+	-- print "Init 7"
+	Hotfix.InitWrapContent(m_WrapContent, this.BagWrapContentUpdated)
+
+	-- print "Init 8"
+	m_LimitLb = thisTrans:Find("Bg/Limit"):GetComponent("UILabel")
+
+end
+
+
+function LuaJadeBagListPanel.BagWrapContentUpdated(t, index)
+	
+	if index < 0 or index > theListCount then
+		return
+	end
+
+	-- print("the index: "..tonumber(index))
+
+	local CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()
+	if CurrEquip ~= nil then
+
+		-- print("currEq itemid: "..tostring(CurrEquip.itemID))
+
+		local equipListRowData = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"GetEquipConf",CurrEquip.itemID)
+		if equipListRowData == nil then
+			print "has not eplistRowData"
+			return
+		end
+
+		-- print "do item"
+
+		local item = JadeShowInBagList[index + 1]--selectSlotItemList[index]
+
+		-- print "do slotIndex"
+		local slotIndex =  Hotfix.GetDocumentMember("JadeDocument","selectedSlotIndex",true,true)	
+
+		-- print "do slot"
+		local slot = Hotfix.CallDocumentMethod("JadeDocument",true, "GetSlot", equipListRowData.EquipPos, slotIndex)
+
+		-- print "do drawJade"
+		Hotfix.CallSingleMethod("UI.JadeEquipHandler",true,true,"DrawJadeWithAttr",t.gameObject,slot,item,0)
+
+		-- print "do bg"
+		local bg = t:GetComponent("XUISprite")
+		bg.ID = index
+
+
+		Hotfix.SetClickCallback(t.gameObject, this.BagJadeClick)
+
+		-- print "do transform name"
+
+		t.name = "jade"..tostring(item.itemID)
+
+		local redPointObj = t:Find("RedPoint").gameObject
+
+		-- print "do hasMorePowerful"
+		
+		local hasMorePowerful = Hotfix.CallDocumentMethod("JadeDocument",true, "CanBeMorePowerful", CurrEquip, slotIndex, item)
+		redPointObj:SetActive(hasMorePowerful)
+
+		-- print "do powerful"
+		if hasMorePowerful then
+
+			local redSpr = redPointObj:GetComponent("UISprite")
+			local iconSpr = t:Find("JadeTpl/Icon/Icon"):GetComponent("UISprite")
+			redSpr.depth = iconSpr.depth + 1
+			-- print("red point depth: "..tostring(redSpr.depth))
+		end
+		-- print "end do powerful"
+
+
+		-----策划要求写死
+		local theGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(item.itemID)
+		if theGroupId == 999 then
+			local theLb = t:Find("AttrName"):GetComponent("UILabel")
+			if not IsNil(theLb) then
+				theLb.text = Hotfix.GetGlobalString("JadeAllElementattack")--"全元素攻"
+			end
+		end
+	end
+end
+
+function LuaJadeBagListPanel.BagJadeClick(go)
+	local bg = go:GetComponent("XUISprite")
+ 	local index = bg.ID
+
+	local item = JadeShowInBagList[index + 1] --selectSlotItemList[index]
+
+	local uid = Hotfix.GetObjectString(item,"uid",true,true)
+ 	print("uid: "..uid)
+
+ 	LuaJadeEquipDataModel.ReqPutOnJade(uid)
+ 	this.CloseBtnOnClick(nil)
+end
+
+
+function LuaJadeBagListPanel.RefreshBagListScrollView( )
+
+	JadeShowInBagList = {}
+
+	local SlotIndex = LuaJadeEquipDataModel.GetSelectSlot()
+	Hotfix.CallDocumentMethod("JadeDocument",true, "SelectSlot", SlotIndex)
+	-- print("theSlotIndex: "..tostring(SlotIndex))
+
+
+	selectSlotItemList = Hotfix.GetDocumentMember("JadeDocument","SelectedSlotItemList",true,false)
+	--Hotfix.CallDocumentMethod("JadeDocument",true, "GetJades")
+	theListCount = selectSlotItemList.Count
+ 	-- print("the list count: "..tostring(theListCount))
+
+
+	local CurrEquip = LuaJadeEquipDataModel.GetCurrEquip()			
+
+	ArrayList = luanet.import_type("System.Collections.ArrayList")
+	local JadeArr = ArrayList()
+	JadeArr:AddRange(CurrEquip.jadeInfo.jades)
+
+
+	-- print "befor for listcount "
+	-- ArrayList = luanet.import_type("System.Collections.ArrayList")	
+	-- local arr = ArrayList()
+	-- arr:AddRange(selectSlotItemList:ToArray())
+	
+	for i = 0,theListCount - 1 do 
+		local temp = selectSlotItemList[i]--arr[i]
+		local HasEquip = false
+
+		local lvHigher = false
+
+		for j = 0, 5 do
+			if JadeArr[j] ~= nil then
+				local jadeGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(JadeArr[j].itemID)
+				local tempGroupId = LuaJadeEquipDataModel.GetGroupIdByjadeItemId(temp.itemID)
+				if jadeGroupId == tempGroupId then
+					HasEquip = true
+
+					if jadeTable ~= nil then
+						local jadeArrRowData = PublicExtensions.CallPublicMethod(jadeTable,"GetByJadeID",JadeArr[j].itemID)
+						local jadeTempRowData = PublicExtensions.CallPublicMethod(jadeTable,"GetByJadeID",temp.itemID)
+
+						if  jadeTempRowData.JadeLevel > jadeArrRowData.JadeLevel then
+							lvHigher = true
+						end
+					end
+					
+					break
+				end
+			end
+		end
+
+		if not HasEquip then
+			JadeShowInBagList[#JadeShowInBagList + 1] = temp
+			elseif lvHigher then
+				JadeShowInBagList[#JadeShowInBagList + 1] = temp
+		end
+	end
+
+	-- print("need show list count: "..tostring(#JadeShowInBagList))
+
+	-- print "after for listcount "
+
+	-- Hotfix.SetWrapContentCount(m_WrapContent, theListCount, false)
+	Hotfix.SetWrapContentCount(m_WrapContent, #JadeShowInBagList, false)
+	m_uiScrollView:ResetPosition()
+
+	-- print "do bg handler hide "
+	if not IsNil(bgHandler) then
+		PublicExtensions.CallPublicMethod(bgHandler,"SetVisible",false)
+	end
+end
+
+function LuaJadeBagListPanel.RefreshLimitLb()
+
+	if m_LimitLb ~= nil then
+		
+		-- print "limitLb 1"
+
+		local playerData = Hotfix.GetSingleMember("XAttributeMgr","XPlayerData",true,false,false)
+
+		-- print "limitLb 2"
+		if playerData ~= nil then			
+
+			-- print "limitLb 3"
+			local eqLv = playerData.Level
+			
+			-- print "limitLb 4"
+			local jadeLv = Hotfix.CallDocumentMethod("JadeDocument",true,"EquipLevel2JadeLevel",eqLv)
+
+			-- print "limitLb 5"
+			local theText = Hotfix.GetStringTable("JADE_LEVEL_REQUIREMENT",tostring(eqLv),tostring(jadeLv))
+			-- print(theText)
+
+			-- print "limitLb 6"
+			m_LimitLb.text = theText
+		end
+	end
+end
+
+function LuaJadeBagListPanel.CloseBtnOnClick(go)
+	if thisObj ~= nil then
+		this.OnHide()
+		thisObj:SetActive(false)
+	end
+end
+
+
+function LuaJadeBagListPanel.OnShow()
+
+	print "show 1"
+	LuaJadeEquipDataModel.SetJadeBagListFrame(this)
+	
+	print "show 2"
+	this.RefreshBagListScrollView()
+
+	print "show 3"
+	this.RefreshLimitLb()
+
+end
+
+function LuaJadeBagListPanel.OnHide()
+	LuaJadeEquipDataModel.JadeBagDlgUnLoad()
+	-- powerfullMgr:ReturnAll()
+end
+
+---------------------------------------Unity monobehavior 生命周期 方法-------------------------------------------
+
+function LuaJadeBagListPanel.Awake(go)
+	thisObj = go
+	print "Awake 1"
+	this.Init()
+
+	print "Awake 2"
+end
+
+function LuaJadeBagListPanel.Start()
+
+end
+
+function LuaJadeBagListPanel.OnEnable()
+
+end
+
+function LuaJadeBagListPanel.OnDisable()
+	
+end
+
+function LuaJadeBagListPanel.OnDestroy()
+	-- powerfullMgr:Unload()
+end

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Monster_skeleton_hit_fly_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: .746118009
+  Land_Value: .499949992
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 10.8867683
+      outSlope: 10.8867683
+      tangentMode: 0
+    - time: .0333300009
+      value: .362856001
+      inSlope: 7.23523808
+      outSlope: 7.23523808
+      tangentMode: 0
+    - time: .0666600019
+      value: .482300997
+      inSlope: 3.36696625
+      outSlope: 3.36696625
+      tangentMode: 0
+    - time: .0999900028
+      value: .587297976
+      inSlope: 2.82925248
+      outSlope: 2.82925248
+      tangentMode: 0
+    - time: .133320004
+      value: .670898974
+      inSlope: 2.0830636
+      outSlope: 2.0830636
+      tangentMode: 0
+    - time: .166649997
+      value: .726154983
+      inSlope: 1.12839842
+      outSlope: 1.12839842
+      tangentMode: 0
+    - time: .199980006
+      value: .746118009
+      inSlope: .134398252
+      outSlope: .134398252
+      tangentMode: 0
+    - time: .233309999
+      value: .735113978
+      inSlope: -.635253429
+      outSlope: -.635253429
+      tangentMode: 0
+    - time: .266640007
+      value: .703772008
+      inSlope: -1.20787573
+      outSlope: -1.20787573
+      tangentMode: 0
+    - time: .299970001
+      value: .654596984
+      inSlope: -1.70532632
+      outSlope: -1.70532632
+      tangentMode: 0
+    - time: .333299994
+      value: .590094984
+      inSlope: -2.12763309
+      outSlope: -2.12763309
+      tangentMode: 0
+    - time: .366629988
+      value: .512768984
+      inSlope: -3.0614748
+      outSlope: -3.0614748
+      tangentMode: 0
+    - time: .399960011
+      value: .386016995
+      inSlope: -4.46797085
+      outSlope: -4.46797085
+      tangentMode: 0
+    - time: .433290005
+      value: .214934006
+      inSlope: -4.82209682
+      outSlope: -4.82209682
+      tangentMode: 0
+    - time: .466619998
+      value: .0645760968
+      inSlope: -3.22433305
+      outSlope: -3.22433305
+      tangentMode: 0
+    - time: .499949992
+      value: 0
+      inSlope: -1.93747699
+      outSlope: -1.93747699
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

@@ -1,0 +1,106 @@
+require "XLoginReward_pb.lua"
+
+XSys_LoginReward = 995
+
+LuaLoginRewardDocument = {}
+local this = LuaLoginRewardDocument
+
+local itemID = {}
+local itemCount = {}
+local awardsCount=0
+
+local m_isCanReceive=false
+
+local m_LuaLoginRewardFrame= nil
+
+function HotfixCollectWordsDocument.EnterScene()
+	--print("EnterScene")
+	Hotfix.AttachSysRedPointRelative(600, XSys_LoginReward, false)
+end
+
+function LuaLoginRewardDocument.SendLoginActivityAwardReq()
+	print("send rpc SendLoginActivityAwardReq")
+	
+	local msg = XLoginReward_pb.LoginActArg()
+    local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaPtc(16542, TestProtol.data)
+	end
+end
+
+function LuaLoginRewardDocument.SendLoginActivity()
+	print("send rpc LoginActivityArg")
+	
+	local msg=XLoginReward_pb.LoginActivityArg()
+	
+	local pb_data=msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data~=nil then
+		Hotfix.SendLuaRPC(64167,TestProtol.data,this.SetItem,this.OnErr)
+	else
+		print("LoginActivityArg is nil")
+	end
+end
+
+function LuaLoginRewardDocument.SetStatus(isCanReceive)
+	m_isCanReceive=isCanReceive
+	Hotfix.ForceUpdateSysRedPointImmediately(XSys_LoginReward, m_isCanReceive)
+	local sys = Hotfix.GetEnumType("XSysDefine","XSys_OperatingActivity")
+	Hotfix.CallSingleMethod("XGameSysMgr", true, false, "RecalculateRedPointState", sys)
+	print("m_isCanReceive: "..tostring(m_isCanReceive))
+	if m_LuaLoginRewardFrame~=nil then
+		m_LuaLoginRewardFrame.RefreshStatus()
+	end
+end
+
+function LuaLoginRewardDocument.GetStatus()
+	return m_isCanReceive
+end
+
+function LuaLoginRewardDocument.GetItemID()
+	return itemID
+end
+
+function LuaLoginRewardDocument.GetItemCount()
+	return itemCount
+end
+
+function LuaLoginRewardDocument.GetAwardsCount()
+	return awardsCount
+end
+
+function LuaLoginRewardDocument.SetLuaLoginRewardFrame(frame)
+	m_LuaLoginRewardFrame = frame
+end
+
+function LuaLoginRewardDocument.SetItem(data,length)
+	local msg = XLoginReward_pb.LoginActivityRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		print("errcode is: "..tostring(msg.errcode))
+		if msg.errcode ~= 0 then
+			-- exclude INVALID_REQUEST
+			if msg.errcode ~= ERR_INVALID_REQUEST then
+				Hotfix.LuaShowSystemTipErrCode(msg.errcode)
+			end
+		else
+			awardsCount=#(msg.items)
+			print("awardsCount: "..tostring(awardsCount))
+			for i=1,awardsCount do
+				print("itemID: "..tostring(msg.items[i].itemID))
+				itemID[i]=msg.items[i].itemID
+				itemCount[i]=msg.items[i].itemCount
+			end
+			if m_LuaLoginRewardFrame~=nil then
+				m_LuaLoginRewardFrame.RefreshReward()
+			end
+		end
+	else
+		print("change name reply msg is nil")
+	end
+end
+
+function LuaLoginRewardDocument.OnErr( ... )
+ 	print("LuaLoginRewardDocument OnErr!")
+end

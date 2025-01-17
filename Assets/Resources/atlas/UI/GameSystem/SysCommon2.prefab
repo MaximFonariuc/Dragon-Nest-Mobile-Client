@@ -1,0 +1,592 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1565292889422858}
+  m_IsPrefabParent: 1
+--- !u!1 &1565292889422858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4744509704605408}
+  - component: {fileID: 114304759696398120}
+  m_Layer: 0
+  m_Name: SysCommon2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4744509704605408
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1565292889422858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114304759696398120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1565292889422858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: da88f1b4cca07f64792137afbd15ac3e, type: 2}
+  mSprites:
+  - name: CrossGVG_Honor_0
+    x: 370
+    y: 2
+    width: 131
+    height: 39
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: LevelEffect1
+    x: 152
+    y: 1
+    width: 76
+    height: 31
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 2
+    paddingBottom: 3
+  - name: LevelEffect2
+    x: 296
+    y: 2
+    width: 63
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 13
+    paddingTop: 0
+    paddingBottom: 0
+  - name: TeamFrame_Avenue
+    x: 231
+    y: 123
+    width: 78
+    height: 89
+    borderLeft: 18
+    borderRight: 56
+    borderTop: 59
+    borderBottom: 18
+    paddingLeft: 12
+    paddingRight: 4
+    paddingTop: 10
+    paddingBottom: 15
+  - name: TeamFrame_Other1
+    x: 225
+    y: 33
+    width: 70
+    height: 89
+    borderLeft: 18
+    borderRight: 40
+    borderTop: 44
+    borderBottom: 26
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 10
+    paddingBottom: 15
+  - name: TeamFrame_Spring
+    x: 152
+    y: 57
+    width: 72
+    height: 88
+    borderLeft: 20
+    borderRight: 28
+    borderTop: 54
+    borderBottom: 22
+    paddingLeft: 12
+    paddingRight: 10
+    paddingTop: 13
+    paddingBottom: 13
+  - name: TeamFrame_Wedding1
+    x: 145
+    y: 269
+    width: 79
+    height: 96
+    borderLeft: 28
+    borderRight: 48
+    borderTop: 64
+    borderBottom: 24
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 6
+    paddingBottom: 12
+  - name: TeamFrame_Xinyue
+    x: 433
+    y: 407
+    width: 74
+    height: 105
+    borderLeft: 35
+    borderRight: 35
+    borderTop: 38
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 11
+    paddingTop: 0
+    paddingBottom: 9
+  - name: TeamFrame_xz_1
+    x: 78
+    y: 172
+    width: 76
+    height: 96
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 9
+    paddingBottom: 9
+  - name: TeamFrame_xz_10
+    x: 0
+    y: 64
+    width: 75
+    height: 96
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 9
+    paddingBottom: 9
+  - name: TeamFrame_xz_11
+    x: 378
+    y: 216
+    width: 76
+    height: 94
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 10
+    paddingBottom: 10
+  - name: TeamFrame_xz_12
+    x: 225
+    y: 243
+    width: 76
+    height: 96
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 9
+    paddingBottom: 9
+  - name: TeamFrame_xz_2
+    x: 0
+    y: 259
+    width: 77
+    height: 97
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 9
+  - name: TeamFrame_xz_3
+    x: 296
+    y: 340
+    width: 78
+    height: 98
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 7
+    paddingTop: 7
+    paddingBottom: 9
+  - name: TeamFrame_xz_4
+    x: 76
+    y: 75
+    width: 75
+    height: 96
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 9
+    paddingBottom: 9
+  - name: TeamFrame_xz_5
+    x: 375
+    y: 311
+    width: 77
+    height: 95
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 8
+    paddingTop: 10
+    paddingBottom: 9
+  - name: TeamFrame_xz_6
+    x: 0
+    y: 161
+    width: 75
+    height: 97
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 8
+    paddingBottom: 9
+  - name: TeamFrame_xz_7
+    x: 155
+    y: 146
+    width: 75
+    height: 96
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 10
+    paddingBottom: 8
+  - name: TeamFrame_xz_8
+    x: 302
+    y: 213
+    width: 75
+    height: 97
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 8
+    paddingBottom: 9
+  - name: TeamFrame_xz_9
+    x: 378
+    y: 120
+    width: 75
+    height: 95
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 34
+    borderBottom: 34
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 10
+    paddingBottom: 9
+  - name: VIP_Avatar_Xinyue
+    x: 310
+    y: 148
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar10
+    x: 0
+    y: 448
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar11
+    x: 0
+    y: 383
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar6
+    x: 78
+    y: 292
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar7
+    x: 151
+    y: 448
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar8
+    x: 151
+    y: 383
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar9
+    x: 216
+    y: 448
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Bubble_dwy_1
+    x: 281
+    y: 439
+    width: 76
+    height: 73
+    borderLeft: 44
+    borderRight: 22
+    borderTop: 56
+    borderBottom: 6
+    paddingLeft: 7
+    paddingRight: 9
+    paddingTop: 4
+    paddingBottom: 15
+  - name: VIP_Bubble_dwy_2
+    x: 65
+    y: 357
+    width: 79
+    height: 77
+    borderLeft: 44
+    borderRight: 22
+    borderTop: 56
+    borderBottom: 6
+    paddingLeft: 9
+    paddingRight: 4
+    paddingTop: 0
+    paddingBottom: 15
+  - name: VIP_Bubble_dwy_3
+    x: 216
+    y: 366
+    width: 79
+    height: 72
+    borderLeft: 44
+    borderRight: 22
+    borderTop: 56
+    borderBottom: 6
+    paddingLeft: 5
+    paddingRight: 8
+    paddingTop: 6
+    paddingBottom: 14
+  - name: VIP_Bubble_dwy_4
+    x: 65
+    y: 435
+    width: 85
+    height: 77
+    borderLeft: 58
+    borderRight: 14
+    borderTop: 58
+    borderBottom: 6
+    paddingLeft: 0
+    paddingRight: 7
+    paddingTop: 0
+    paddingBottom: 15
+  - name: VIP_Bubble_dwy_5
+    x: 358
+    y: 439
+    width: 74
+    height: 73
+    borderLeft: 34
+    borderRight: 34
+    borderTop: 54
+    borderBottom: 6
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 15
+  - name: VIP_Bubble_Xinyue
+    x: 0
+    y: 1
+    width: 64
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 15
+    paddingBottom: 15
+  - name: VIP_Bubble8
+    x: 370
+    y: 42
+    width: 77
+    height: 77
+    borderLeft: 28
+    borderRight: 47
+    borderTop: 47
+    borderBottom: 24
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 5
+    paddingBottom: 10
+  - name: VIP_Chat10
+    x: 453
+    y: 370
+    width: 36
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 2
+    paddingBottom: 2
+  - name: VIP_Chat11
+    x: 448
+    y: 46
+    width: 37
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 2
+    paddingBottom: 2
+  - name: VIP_Chat7
+    x: 477
+    y: 144
+    width: 20
+    height: 34
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 17
+    paddingRight: 19
+    paddingTop: 3
+    paddingBottom: 3
+  - name: VIP_Chat8
+    x: 454
+    y: 179
+    width: 25
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 16
+    paddingTop: 2
+    paddingBottom: 2
+  - name: VIP_Chat9
+    x: 448
+    y: 83
+    width: 28
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 2
+    paddingBottom: 2
+  - name: VIP_Frame_Xinyue
+    x: 296
+    y: 39
+    width: 73
+    height: 83
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 8
+    paddingTop: 0
+    paddingBottom: 9
+  - name: VIP_Frame8
+    x: 76
+    y: 1
+    width: 75
+    height: 73
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 6
+    paddingTop: 8
+    paddingBottom: 11
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+  mCoordinates: 0
+  sprites: []

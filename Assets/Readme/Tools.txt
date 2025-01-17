@@ -1,0 +1,84 @@
+一、右键Tool
+
+1.Prefab
+
+Batch Modify Item Depth：批量改道具相关的Prefab的一些参数（余凯负责）
+
+AddStaticRigdbody：对使用静态碰撞体的prefab添加rigbody，主要针对会有animator使其会移动的物件（庞池海负责）
+
+2.Texture
+
+Compress: 打开压缩贴图的工具窗口，可以配置贴图压缩参数（庞池海负责）
+
+DefaultCompress：贴图默认的压缩方式，andorid ETC_RGB4，ios PVRTC_RGB4，带alpha图的尺寸减半并输出成r通道，andorid ETC_RGB4，ios PVRTC_RGB4（庞池海负责）
+
+FindTex：粗略估算目录下texture的大小（庞池海负责）
+
+TextureCombine：将几张图的通道抽取合并到一张图，复杂特效的控制图使用（庞池海负责）
+
+3.UI
+
+Compress SeparateAlpha：通用的UI Atlas和Texuture拆图工具（庞池海负责）
+
+SeparateAlpha：只拆Atlas图，开发有时需要快速查看（庞池海负责）
+
+Compress SeparateAlphaHere：StaticUI目录下的UI Atlas和Texuture拆图工具（庞池海负责）
+
+CheckUISameName：检查UI贴图是否有重名（庞池海负责）
+
+FindAtlas Texture：查找prefab下的相同atlas和texture（庞池海负责）
+
+4.Fbx
+
+OptmizeGameObject：Creatures目录下物件的优化骨骼工具（可破坏物件除外）（庞池海负责）
+
+OptmizeEquip：角色优化骨骼工具（Equipment目录）（庞池海负责）
+
+SaveSkinAsset（快捷键Ctrl+3）：角色mesh和贴图预处理工具（庞池海负责）
+
+MakeExtraEquip：相同mesh不同texture的套装的快速处理工具（庞池海负责）
+
+MakeFbxReadOnly：处理场景物件只读属性的工具，大于1500顶点的物件不做静态合并，并移除不易要的animator（庞池海负责）
+
+SaveMountAsset（快捷键Ctrl+4）：保存角色挂在物件（翅膀，尾巴，精灵）（庞池海负责）
+
+5.Animation
+
+ReduceKeyFrame：预处理animation，移除相同的关键帧（庞池海负责）
+
+6.Material
+
+Cutoff2RMat2（快捷键Ctrl+2）：处理coutout（名字中包含CutoutDiffuse或者TransparentDiffuse）的材质，将材质替换为相应的rgb+alpha的形式,rgb为压缩格式，alpha为r通道，alpha分辨率减半（庞池海负责）
+
+Cutoff2RMat：同上，alpha全分辨率（庞池海负责）
+
+FindMat：程序用调试代码
+
+FindSameMat：查找相同文件明的材质（庞池海负责）
+
+7.Scene
+
+PrcessSceneMat：预处理场景材质球，将coutout的材质替换为rgb+alpha的形式（庞池海负责）
+
+PrcessSceneTerrain：处理地形basemapDistance距离为1000，减少baseMapResolution为16（庞池海负责）
+
+RecoverMaterial：烘培lightmap前将cutout的材质还原成默认形式，降mesh的normal打开（庞池海负责）
+
+ChangeMaterial：烘培lightmap后将cutout的材质替换为rgb+alpha的形式，降mesh的normal关闭，移除不必要的animator（庞池海负责）
+
+8.Table
+
+SaveBin：将表格保存为二进制格式（庞池海负责）
+
+DumpTableScriptMap：导出table路径和对应CVSTable类的对应关系（庞池海负责）
+
+9.Test
+程序debug专用
+
+二、XEditor
+
+Res Import Setting...
+
+1.UI Texture Settings：UI 贴图压缩选项配置（庞池海负责）
+
+2.Model Settings：模型导入属性设置（庞池海负责）

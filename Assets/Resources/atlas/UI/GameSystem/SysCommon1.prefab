@@ -1,0 +1,540 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1232425860254556}
+  m_IsPrefabParent: 1
+--- !u!1 &1232425860254556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4370254599586532}
+  - component: {fileID: 114536244189684122}
+  m_Layer: 0
+  m_Name: SysCommon1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4370254599586532
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1232425860254556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114536244189684122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1232425860254556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: fa7961b23904de546a889f93123990ae, type: 2}
+  mSprites:
+  - name: Icon_Hun
+    x: 464
+    y: 410
+    width: 33
+    height: 33
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: LvEffect1
+    x: 160
+    y: 350
+    width: 82
+    height: 79
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 13
+    paddingBottom: 0
+  - name: LvEffect2
+    x: 241
+    y: 433
+    width: 82
+    height: 79
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 13
+    paddingBottom: 0
+  - name: Partner_blood
+    x: 316
+    y: 44
+    width: 64
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 12
+    paddingTop: 17
+    paddingBottom: 17
+  - name: Partner_defense
+    x: 326
+    y: 303
+    width: 64
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 12
+    paddingTop: 17
+    paddingBottom: 17
+  - name: TeamFrame_Moon
+    x: 0
+    y: 219
+    width: 91
+    height: 110
+    borderLeft: 42
+    borderRight: 44
+    borderTop: 54
+    borderBottom: 50
+    paddingLeft: 2
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 4
+  - name: TeamFrame_Star
+    x: 157
+    y: 46
+    width: 77
+    height: 96
+    borderLeft: 38
+    borderRight: 38
+    borderTop: 42
+    borderBottom: 42
+    paddingLeft: 8
+    paddingRight: 9
+    paddingTop: 9
+    paddingBottom: 9
+  - name: TeamFrame_Sun
+    x: 0
+    y: 110
+    width: 91
+    height: 108
+    borderLeft: 40
+    borderRight: 40
+    borderTop: 50
+    borderBottom: 50
+    paddingLeft: 0
+    paddingRight: 3
+    paddingTop: 5
+    paddingBottom: 1
+  - name: TeamFrame_Wedding
+    x: 92
+    y: 232
+    width: 81
+    height: 97
+    borderLeft: 36
+    borderRight: 42
+    borderTop: 44
+    borderBottom: 38
+    paddingLeft: 9
+    paddingRight: 4
+    paddingTop: 7
+    paddingBottom: 10
+  - name: VIP_AFrame1
+    x: 257
+    y: 214
+    width: 66
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 13
+    paddingTop: 13
+    paddingBottom: 10
+  - name: VIP_AFrame2
+    x: 326
+    y: 233
+    width: 66
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 13
+    paddingTop: 13
+    paddingBottom: 10
+  - name: VIP_AFrame3
+    x: 0
+    y: 40
+    width: 66
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 13
+    paddingTop: 13
+    paddingBottom: 10
+  - name: VIP_Avatar1
+    x: 389
+    y: 107
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar2
+    x: 322
+    y: 103
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar3
+    x: 324
+    y: 168
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar4
+    x: 257
+    y: 149
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Avatar5
+    x: 251
+    y: 84
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 14
+  - name: VIP_Bubble1
+    x: 387
+    y: 45
+    width: 66
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 16
+    paddingTop: 16
+    paddingBottom: 15
+  - name: VIP_Bubble2
+    x: 160
+    y: 430
+    width: 80
+    height: 82
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 6
+    paddingTop: 4
+    paddingBottom: 6
+  - name: VIP_Bubble3
+    x: 324
+    y: 444
+    width: 72
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 13
+    paddingBottom: 11
+  - name: VIP_Bubble4
+    x: 393
+    y: 172
+    width: 67
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 11
+    paddingTop: 15
+    paddingBottom: 15
+  - name: VIP_Bubble5
+    x: 391
+    y: 303
+    width: 64
+    height: 72
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 5
+    paddingBottom: 15
+  - name: VIP_Bubble6
+    x: 179
+    y: 143
+    width: 71
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 7
+    paddingTop: 17
+    paddingBottom: 15
+  - name: VIP_Bubble7
+    x: 255
+    y: 284
+    width: 70
+    height: 71
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 8
+    paddingBottom: 13
+  - name: VIP_Color
+    x: 456
+    y: 311
+    width: 43
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 24
+    paddingRight: 25
+    paddingTop: 7
+    paddingBottom: 21
+  - name: VIP_Effect1
+    x: 393
+    y: 235
+    width: 66
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 13
+    paddingTop: 12
+    paddingBottom: 13
+  - name: VIP_Effect2
+    x: 320
+    y: 362
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 12
+    paddingBottom: 10
+  - name: VIP_Frame1
+    x: 67
+    y: 20
+    width: 89
+    height: 89
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 3
+  - name: VIP_Frame2
+    x: 92
+    y: 143
+    width: 86
+    height: 88
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 6
+    paddingTop: 4
+    paddingBottom: 0
+  - name: VIP_Frame3
+    x: 243
+    y: 356
+    width: 76
+    height: 76
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 6
+    paddingTop: 8
+    paddingBottom: 8
+  - name: VIP_Frame4
+    x: 174
+    y: 273
+    width: 80
+    height: 76
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 1
+    paddingTop: 6
+    paddingBottom: 10
+  - name: VIP_Frame5
+    x: 391
+    y: 376
+    width: 72
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 5
+    paddingTop: 13
+    paddingBottom: 12
+  - name: VIP_Frame6
+    x: 397
+    y: 444
+    width: 70
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 7
+    paddingTop: 10
+    paddingBottom: 14
+  - name: VIP_Frame7
+    x: 179
+    y: 204
+    width: 77
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 0
+    paddingTop: 10
+    paddingBottom: 14
+  - name: VIP_IconBack
+    x: 0
+    y: 1
+    width: 41
+    height: 38
+    borderLeft: 18
+    borderRight: 18
+    borderTop: 18
+    borderBottom: 18
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: VIP_IconBg1
+    x: 235
+    y: 31
+    width: 52
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: VIP_ListBg
+    x: 0
+    y: 330
+    width: 159
+    height: 182
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+  mCoordinates: 0
+  sprites: []

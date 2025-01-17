@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Player_archer_hit_fly_forward
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.18422997
+  Land_Value: .699930012
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 1.08576059
+      outSlope: 1.08576059
+      tangentMode: 0
+    - time: .0333300009
+      value: .0361884013
+      inSlope: 1.6348784
+      outSlope: 1.6348784
+      tangentMode: 0
+    - time: .0666600019
+      value: .108980998
+      inSlope: 2.03230715
+      outSlope: 2.03230715
+      tangentMode: 0
+    - time: .0999900028
+      value: .171662003
+      inSlope: 1.83490849
+      outSlope: 1.83490849
+      tangentMode: 0
+    - time: .133320004
+      value: .231296003
+      inSlope: 1.7731775
+      outSlope: 1.7731775
+      tangentMode: 0
+    - time: .166649997
+      value: .289862007
+      inSlope: 1.72551727
+      outSlope: 1.72551727
+      tangentMode: 0
+    - time: .199980006
+      value: .34631899
+      inSlope: 1.68162298
+      outSlope: 1.68162298
+      tangentMode: 0
+    - time: .233309999
+      value: .401959002
+      inSlope: 1.66681671
+      outSlope: 1.66681671
+      tangentMode: 0
+    - time: .266640007
+      value: .457428992
+      inSlope: 1.67146683
+      outSlope: 1.67146683
+      tangentMode: 0
+    - time: .299970001
+      value: .513378978
+      inSlope: 1.69560492
+      outSlope: 1.69560492
+      tangentMode: 0
+    - time: .333299994
+      value: .570457995
+      inSlope: 1.731534
+      outSlope: 1.731534
+      tangentMode: 0
+    - time: .366629988
+      value: .628803015
+      inSlope: 1.76300585
+      outSlope: 1.76300585
+      tangentMode: 0
+    - time: .399960011
+      value: .687979996
+      inSlope: 1.78490734
+      outSlope: 1.78490734
+      tangentMode: 0
+    - time: .433290005
+      value: .747784972
+      inSlope: 1.80067587
+      outSlope: 1.80067587
+      tangentMode: 0
+    - time: .466619998
+      value: .808013022
+      inSlope: 1.81029153
+      outSlope: 1.81029153
+      tangentMode: 0
+    - time: .499949992
+      value: .868458986
+      inSlope: 1.84167314
+      outSlope: 1.84167314
+      tangentMode: 0
+    - time: .533280015
+      value: .93077898
+      inSlope: 1.8845489
+      outSlope: 1.8845489
+      tangentMode: 0
+    - time: .566609979
+      value: .994082987
+      inSlope: 1.85375142
+      outSlope: 1.85375142
+      tangentMode: 0
+    - time: .599940002
+      value: 1.05435002
+      inSlope: 1.90004468
+      outSlope: 1.90004468
+      tangentMode: 0
+    - time: .633270025
+      value: 1.12074006
+      inSlope: 1.81473184
+      outSlope: 1.81473184
+      tangentMode: 0
+    - time: .666599989
+      value: 1.17532003
+      inSlope: .952444792
+      outSlope: .952444792
+      tangentMode: 0
+    - time: .699930012
+      value: 1.18422997
+      inSlope: .267324775
+      outSlope: .267324775
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

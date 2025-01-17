@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tencent.qgame.livesdk.widget.LiveWidget
+    android:id="@+id/widget_live"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/container_live_widget"
+        android:layout_width="@dimen/widget_live_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/widget_bg">
+
+        <RelativeLayout
+            android:id="@+id/container_main_icon"
+            android:layout_width="@dimen/widget_live_left_width"
+            android:layout_height="@dimen/widget_live_fold_height"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true">
+
+            <ImageView
+                android:id="@+id/icon_main"
+                android:layout_width="24dp"
+                android:layout_height="22dp"
+                android:src="@drawable/widget_icon_main"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/txt_room_online_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/widget_icon_main"
+                android:textSize="10sp"
+                android:text="1"
+                android:layout_marginBottom="6dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+            <View
+                android:layout_width="1px"
+                android:layout_height="wrap_content"
+                android:background="@color/widget_border_bg_color"
+                android:layout_alignParentEnd="true"
+                />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container_menu"
+            android:layout_width="@dimen/widget_live_middle_width"
+            android:layout_height="@dimen/widget_live_fold_height"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@id/container_main_icon">
+
+            <RelativeLayout
+                android:id="@+id/container_end_live"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:descendantFocusability="blocksDescendants">
+                <ImageView
+                    android:id="@+id/icon_end_live"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/widget_icon_end_live"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/live_end"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="6dp"
+                    android:textSize="10sp"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/container_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:descendantFocusability="blocksDescendants">
+
+                <ImageView
+                    android:id="@+id/icon_camera"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:src="@drawable/widget_icon_open_camera"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_camera"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="6dp"
+                    android:textSize="10sp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/container_share"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:descendantFocusability="blocksDescendants">
+                <ImageView
+                    android:id="@+id/icon_live_share"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/widget_icon_share"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/share"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="6dp"
+                    android:textSize="10sp"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/container_fold_danmaku"
+            android:layout_width="@dimen/widget_live_middle_width"
+            android:layout_height="@dimen/widget_live_fold_height"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/container_main_icon"
+            android:layout_marginRight="10dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/txt_fold_danmaku"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="3dp"
+                android:lineSpacingExtra="2dp"
+                android:textColor="@color/system_msg_color"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/container_fold"
+            android:layout_width="@dimen/widget_live_right_width"
+            android:layout_height="@dimen/widget_live_fold_height"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:descendantFocusability="blocksDescendants">
+            <ImageView
+                android:id="@+id/icon_fold"
+                android:layout_width="11dp"
+                android:layout_height="6dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/widget_icon_arrow_down_normal"/>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line_border"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/widget_border_bg_color"
+            android:layout_below="@+id/container_main_icon"
+            />
+        <RelativeLayout
+            android:id="@+id/container_chat"
+            android:layout_width="@dimen/widget_live_width"
+            android:layout_height="@dimen/widget_live_chat_list_height"
+            android:layout_below="@+id/line_border">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:overScrollMode="never"
+                android:layout_alignParentLeft="true" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</com.tencent.qgame.livesdk.widget.LiveWidget>

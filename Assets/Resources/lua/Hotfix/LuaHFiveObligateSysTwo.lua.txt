@@ -1,0 +1,77 @@
+--
+--  LuaHFiveObligateSysTwo.lua
+--  Created by alexpeng on 2017/02/09 10:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+XSys_H5ObligateSysTwo = 391
+
+local texturePath
+
+LuaHFiveObligateSysTwo = {}
+local this = LuaHFiveObligateSysTwo
+
+local m_Go
+local m_bIsVisible = false
+
+local m_ExchangeBtn;
+local m_BgTexture;
+
+
+--called by MonoBehaviour.Awake
+function LuaHFiveObligateSysTwo.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_ExchangeBtn = m_Go.transform:Find("Button")
+		texturePath = Hotfix.GetGlobalString("H5ObligateSysTwoTexPath")
+		print("LuaHFiveObligateSysOne texturePath"..texturePath);
+	end
+	
+end
+
+function  LuaHFiveObligateSysTwo.OnBtnClick(go)
+	print("OnCDKeyBtnClick")
+	Hotfix.CallSingleMethod("UI.UiUtility", true, false, "OpenHtmlUrl", "H5ObligateSysTwoUrl")
+end
+
+
+function LuaHFiveObligateSysTwo.Start()
+
+end
+
+function LuaHFiveObligateSysTwo.OnEnable()
+	print("LuaHFiveObligateSysTwo.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaHFiveObligateSysTwo.OnDisable()
+	m_bIsVisible = false
+	print("LuaHFiveObligateSysTwo.OnDisable")
+end
+
+
+function LuaHFiveObligateSysTwo.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaHFiveObligateSysTwo.OnShow()
+	print("LuaCDKeyExchangeFrame.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaHFiveObligateSysTwo SetBgTexture")
+	end
+end
+
+function LuaHFiveObligateSysTwo.OnHide()
+	print("LuaHFiveObligateSysTwo.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaHFiveObligateSysTwo DestoryTexture")
+	end
+end
+
+function LuaHFiveObligateSysTwo.IsVisible()
+	return m_bIsVisible
+end

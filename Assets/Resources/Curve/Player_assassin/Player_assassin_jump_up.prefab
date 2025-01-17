@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &148980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 448980}
+  - 114: {fileID: 11448980}
+  m_Layer: 0
+  m_Name: Player_assassin_jump_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448980
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11448980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.14518058
+  Land_Value: .0333300009
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0333300009
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0666600019
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0999900028
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .133320004
+      value: 0
+      inSlope: 7.0875802
+      outSlope: 7.0875802
+      tangentMode: 0
+    - time: .166649997
+      value: .472458005
+      inSlope: 14.1751575
+      outSlope: 14.1751575
+      tangentMode: 0
+    - time: .199980006
+      value: .94491601
+      inSlope: 8.08823776
+      outSlope: 8.08823776
+      tangentMode: 0
+    - time: .233309999
+      value: 1.01162004
+      inSlope: 2.00126028
+      outSlope: 2.00126028
+      tangentMode: 0
+    - time: .266640007
+      value: 1.07832003
+      inSlope: 2.00119948
+      outSlope: 2.00119948
+      tangentMode: 0
+    - time: .299970001
+      value: 1.14502001
+      inSlope: .863185585
+      outSlope: .863185585
+      tangentMode: 0
+    - time: .333299994
+      value: 1.13585997
+      inSlope: -.2746768
+      outSlope: -.2746768
+      tangentMode: 0
+    - time: .366629988
+      value: 1.12671006
+      inSlope: -.274676681
+      outSlope: -.274676681
+      tangentMode: 0
+    - time: .399960011
+      value: 1.11755002
+      inSlope: -.274678469
+      outSlope: -.274678469
+      tangentMode: 0
+    - time: .433290005
+      value: 1.10839999
+      inSlope: -.274678588
+      outSlope: -.274678588
+      tangentMode: 0
+    - time: .466619998
+      value: 1.09923995
+      inSlope: -.2746768
+      outSlope: -.2746768
+      tangentMode: 0
+    - time: .499949992
+      value: 1.09009004
+      inSlope: -2.86280847
+      outSlope: -2.86280847
+      tangentMode: 0
+    - time: .533280015
+      value: .908405006
+      inSlope: -5.45103645
+      outSlope: -5.45103645
+      tangentMode: 0
+    - time: .566609979
+      value: .726724029
+      inSlope: -5.45097637
+      outSlope: -5.45097637
+      tangentMode: 0
+    - time: .599940002
+      value: .545042992
+      inSlope: -5.4509716
+      outSlope: -5.4509716
+      tangentMode: 0
+    - time: .633270025
+      value: .363362014
+      inSlope: -5.45097589
+      outSlope: -5.45097589
+      tangentMode: 0
+    - time: .666599989
+      value: .181681007
+      inSlope: -5.45097637
+      outSlope: -5.45097637
+      tangentMode: 0
+    - time: .699930012
+      value: 0
+      inSlope: -5.4509716
+      outSlope: -5.4509716
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 148980}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

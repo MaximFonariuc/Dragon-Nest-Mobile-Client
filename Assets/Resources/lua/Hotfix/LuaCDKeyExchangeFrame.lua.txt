@@ -1,0 +1,80 @@
+--
+--  CDKEYexchange.lua
+--  Created by alexpeng on 2017/02/09 10:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+
+SYS_CDKey = 841
+
+local texturePath = "atlas/UI/GameSystem/Activity/Tex_cdkey_h2Split"
+
+LuaCDKeyExchangeFrame = {}
+local this = LuaCDKeyExchangeFrame
+
+local m_Go
+local m_bIsVisible = false
+
+local m_ExchangeBtn;
+local m_BgTexture;
+
+
+--called by MonoBehaviour.Awake
+function LuaCDKeyExchangeFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_ExchangeBtn = m_Go.transform:Find("Button")
+		Hotfix.SetClickCallback(m_ExchangeBtn.gameObject, this.OnBtnClick)
+	end
+	
+end
+
+function  LuaCDKeyExchangeFrame.OnBtnClick(go)
+	print("OnCDKeyBtnClick")
+	Hotfix.CallSingleMethod("UI.UiUtility", true, false, "OpenHtmlUrl", "CDKeyUrl")
+end
+
+
+function LuaCDKeyExchangeFrame.Start()
+
+end
+
+function LuaCDKeyExchangeFrame.OnEnable()
+	print("LuaCDKeyExchangeFrame.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaCDKeyExchangeFrame.OnDisable()
+	m_bIsVisible = false
+	print("LuaCDKeyExchangeFrame.OnDisable")
+end
+
+
+function LuaCDKeyExchangeFrame.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaCDKeyExchangeFrame.OnShow()
+	print("LuaCDKeyExchangeFrame.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaOldPlayerRewardFrame SetBgTexture")
+	end
+end
+
+function LuaCDKeyExchangeFrame.OnHide()
+	print("LuaCDKeyExchangeFrame.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaCDKeyExchangeFrame DestoryTexture")
+	end
+end
+
+function LuaCDKeyExchangeFrame.IsVisible()
+	return m_bIsVisible
+end

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blank_color">#16161c</color>
+    <color name="btn_caption">#888899</color>
+    <color name="chat_list_item_normal_nick_color">#AD896F</color>
+    <color name="chat_list_item_owner_nick_color">#FFCB59</color>
+    <color name="common_background_color">#1E1C21</color>
+    <color name="common_msg_color">#CCCCCC</color>
+    <color name="gift_msg_color">#ffcb59</color>
+    <color name="sc_transparent">#00FFFFFF</color>
+    <color name="skin_bar_btn">#FFFFFF</color>
+    <color name="skin_bar_text">#FFFFFF</color>
+    <color name="system_msg_color">#515161</color>
+    <color name="system_msg_color_for_widget">#BBBBBB</color>
+    <color name="third_level_text_color">#515161</color>
+    <color name="title_bar_bg_color">#121217</color>
+    <color name="widget_bg">#CA000000</color>
+    <color name="widget_border_bg_color">#19FFFFFF</color>
+    <color name="widget_chat_bg_color">#E61B1B2B</color>
+    <color name="widget_title_bg_color">#F216161C</color>
+    <declare-styleable name="AnimatedPathView"><attr format="integer" name="type"/></declare-styleable>
+    <declare-styleable name="RecyclerView"><attr format="string" name="layoutManager"/><attr name="android:orientation"/><attr format="integer" name="spanCount"/><attr format="boolean" name="reverseLayout"/><attr format="boolean" name="stackFromEnd"/></declare-styleable>
+    <dimen name="danmaku_common_msg_size">12sp</dimen>
+    <dimen name="danmaku_gift_msg_size">12sp</dimen>
+    <dimen name="danmaku_nick_size">12sp</dimen>
+    <dimen name="danmaku_system_msg_size">12sp</dimen>
+    <dimen name="danmaku_system_msg_size_for_widget">12sp</dimen>
+    <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
+    <dimen name="land_live_left_margin">12dp</dimen>
+    <dimen name="land_share_dialog_margin">45dp</dimen>
+    <dimen name="land_share_margin">8dp</dimen>
+    <dimen name="land_share_padding">22dp</dimen>
+    <dimen name="living_danmaku_size">16sp</dimen>
+    <dimen name="portrait_share_dialog_margin">35dp</dimen>
+    <dimen name="title_bar_height">50dp</dimen>
+    <dimen name="title_bar_image_left">5dp</dimen>
+    <dimen name="widget_chat_list_bg_corner">5dp</dimen>
+    <dimen name="widget_live_chat_list_height">200dp</dimen>
+    <dimen name="widget_live_fold_height">49dp</dimen>
+    <dimen name="widget_live_left_width">42dp</dimen>
+    <dimen name="widget_live_middle_width">180dp</dimen>
+    <dimen name="widget_live_right_width">27dp</dimen>
+    <dimen name="widget_live_unfold_height">250dp</dimen>
+    <dimen name="widget_live_width">250dp</dimen>
+    <item name="item_touch_helper_previous_elevation" type="id"/>
+    <string name="app_name">Livesdk</string>
+    <string name="back">返回</string>
+    <string name="button_back">返回</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_ok">确定</string>
+    <string name="default_privacy_notice">啊哦~主播开启隐私模式了~请耐心等待</string>
+    <string name="for_action">查看操作</string>
+    <string name="for_add">添加</string>
+    <string name="for_delete">删除</string>
+    <string name="for_edit">群公告编辑</string>
+    <string name="for_more">查看更多</string>
+    <string name="for_search">搜索</string>
+    <string name="for_share">分享</string>
+    <string name="for_upload">上传</string>
+    <string name="game">游戏</string>
+    <string name="image_type_error">图片格式错误，请选择正确的图片~</string>
+    <string name="live_end">结束</string>
+    <string name="non_net_tips">网络信号弱弱的，轻触页面刷新</string>
+    <string name="non_net_work">网络未连接</string>
+    <string name="open_camera">摄像</string>
+    <string name="qq_friend">QQ好友</string>
+    <string name="share">分享</string>
+    <string name="share_description">企鹅电竞，全民游戏直播，快来加入我们~</string>
+    <string name="share_dialog_title">请选择分享方式</string>
+    <string name="share_subtitle">企鹅电竞，全民游戏直播，快来加入我们~</string>
+    <string name="share_tips">请先开播再分享！</string>
+    <string name="share_title">我正在直播，快来和我一起玩游戏~</string>
+    <string name="wechat_friend">微信好友</string>
+    <style name="AppTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/common_background_color</item>
+    </style>
+    <style name="QGameDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/sc_transparent</item>
+    </style>
+    <style name="ShareLandTxtStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/land_share_margin</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+    <style name="TitleBtn">
+        <item name="android:textColor">@color/skin_bar_btn</item>
+        <item name="android:textSize">17dp</item>
+    </style>
+    <style name="TitleText">
+        <item name="android:textColor">@color/skin_bar_text</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+</resources>

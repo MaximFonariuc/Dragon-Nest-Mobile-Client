@@ -1,0 +1,969 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &197238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 497238}
+  - component: {fileID: 11497238}
+  m_Layer: 0
+  m_Name: Pet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &497238
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11497238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 72406e118dfabd547981b98866122fde, type: 2}
+  mSprites:
+  - name: activation_01
+    x: 376
+    y: 208
+    width: 40
+    height: 21
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: b_sx1
+    x: 458
+    y: 73
+    width: 30
+    height: 30
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: kz_l3
+    x: 254
+    y: 108
+    width: 59
+    height: 59
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pet_Expression_0
+    x: 376
+    y: 230
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pet_Expression_1
+    x: 335
+    y: 474
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pet_Expression_2
+    x: 421
+    y: 104
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pet_Expression_4
+    x: 414
+    y: 26
+    width: 38
+    height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_0_0
+    x: 70
+    y: 303
+    width: 67
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 3
+    paddingTop: 6
+    paddingBottom: 3
+  - name: zq_0_1
+    x: 134
+    y: 232
+    width: 61
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_10
+    x: 71
+    y: 161
+    width: 62
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_11
+    x: 0
+    y: 247
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_12
+    x: 70
+    y: 371
+    width: 65
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_13
+    x: 198
+    y: 444
+    width: 65
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 3
+    paddingTop: 5
+    paddingBottom: 3
+  - name: zq_0_14
+    x: 0
+    y: 107
+    width: 70
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 5
+    paddingBottom: 3
+  - name: zq_0_15
+    x: 0
+    y: 318
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_16
+    x: 251
+    y: 2
+    width: 60
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 24
+    paddingBottom: 16
+  - name: zq_0_17
+    x: 0
+    y: 176
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_18
+    x: 417
+    y: 198
+    width: 45
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 15
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_19
+    x: 264
+    y: 456
+    width: 70
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 14
+    paddingBottom: 6
+  - name: zq_0_2
+    x: 136
+    y: 90
+    width: 60
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_20
+    x: 205
+    y: 317
+    width: 65
+    height: 59
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 3
+    paddingTop: 8
+    paddingBottom: 9
+  - name: zq_0_21
+    x: 132
+    y: 442
+    width: 65
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_22
+    x: 68
+    y: 36
+    width: 67
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_23
+    x: 438
+    y: 347
+    width: 58
+    height: 44
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 16
+    paddingBottom: 16
+  - name: zq_0_24
+    x: 62
+    y: 442
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_25
+    x: 0
+    y: 389
+    width: 61
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 5
+    paddingBottom: 6
+  - name: zq_0_3
+    x: 371
+    y: 132
+    width: 45
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 15
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_4
+    x: 196
+    y: 244
+    width: 59
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 3
+    paddingTop: 8
+    paddingBottom: 3
+  - name: zq_0_5
+    x: 203
+    y: 377
+    width: 61
+    height: 66
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 3
+    paddingTop: 7
+    paddingBottom: 3
+  - name: zq_0_6
+    x: 134
+    y: 161
+    width: 60
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_7
+    x: 70
+    y: 232
+    width: 63
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_0_8
+    x: 136
+    y: 373
+    width: 66
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 3
+    paddingTop: 5
+    paddingBottom: 3
+  - name: zq_0_9
+    x: 0
+    y: 36
+    width: 67
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: zq_1_0
+    x: 312
+    y: 2
+    width: 44
+    height: 46
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 17
+    paddingRight: 15
+    paddingTop: 16
+    paddingBottom: 14
+  - name: zq_1_1
+    x: 463
+    y: 232
+    width: 47
+    height: 49
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 15
+    paddingTop: 14
+    paddingBottom: 13
+  - name: zq_1_2
+    x: 367
+    y: 14
+    width: 46
+    height: 50
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 15
+    paddingTop: 14
+    paddingBottom: 12
+  - name: zq_1_3
+    x: 379
+    y: 392
+    width: 53
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 11
+    paddingBottom: 9
+  - name: zq_1_4
+    x: 192
+    y: 28
+    width: 58
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 7
+    paddingBottom: 8
+  - name: zq_2_0
+    x: 136
+    y: 24
+    width: 55
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 9
+    paddingTop: 5
+    paddingBottom: 6
+  - name: zq_2_1
+    x: 367
+    y: 65
+    width: 53
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 9
+    paddingTop: 6
+    paddingBottom: 6
+  - name: zq_2_10
+    x: 379
+    y: 449
+    width: 55
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 10
+    paddingTop: 7
+    paddingBottom: 6
+  - name: zq_2_11
+    x: 375
+    y: 269
+    width: 58
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 10
+    paddingBottom: 8
+  - name: zq_2_12
+    x: 385
+    y: 334
+    width: 52
+    height: 57
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 11
+    paddingTop: 10
+    paddingBottom: 9
+  - name: zq_2_13
+    x: 195
+    y: 168
+    width: 65
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 5
+    paddingTop: 8
+    paddingBottom: 5
+  - name: zq_2_14
+    x: 314
+    y: 130
+    width: 56
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 7
+    paddingBottom: 8
+  - name: zq_2_15
+    x: 433
+    y: 392
+    width: 52
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 11
+    paddingTop: 10
+    paddingBottom: 10
+  - name: zq_2_16
+    x: 261
+    y: 192
+    width: 58
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 9
+    paddingTop: 9
+    paddingBottom: 7
+  - name: zq_2_17
+    x: 322
+    y: 391
+    width: 56
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 11
+    paddingTop: 7
+    paddingBottom: 5
+  - name: zq_2_18
+    x: 435
+    y: 457
+    width: 50
+    height: 55
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 13
+    paddingTop: 10
+    paddingBottom: 11
+  - name: zq_2_19
+    x: 434
+    y: 282
+    width: 53
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 13
+    paddingBottom: 12
+  - name: zq_2_2
+    x: 265
+    y: 390
+    width: 56
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 9
+    paddingTop: 4
+    paddingBottom: 7
+  - name: zq_2_21
+    x: 251
+    y: 39
+    width: 55
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 10
+    paddingTop: 6
+    paddingBottom: 6
+  - name: zq_2_22
+    x: 417
+    y: 143
+    width: 56
+    height: 54
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 11
+    paddingTop: 11
+    paddingBottom: 11
+  - name: zq_2_23
+    x: 71
+    y: 107
+    width: 55
+    height: 53
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 10
+    paddingTop: 13
+    paddingBottom: 10
+  - name: zq_2_24
+    x: 256
+    y: 253
+    width: 57
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 9
+    paddingTop: 7
+    paddingBottom: 6
+  - name: zq_2_25
+    x: 0
+    y: 455
+    width: 53
+    height: 57
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 11
+    paddingBottom: 8
+  - name: zq_2_3
+    x: 320
+    y: 203
+    width: 55
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 10
+    paddingTop: 6
+    paddingBottom: 8
+  - name: zq_2_4
+    x: 328
+    y: 328
+    width: 56
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 6
+    paddingBottom: 8
+  - name: zq_2_5
+    x: 138
+    y: 310
+    width: 66
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 6
+    paddingBottom: 8
+  - name: zq_2_6
+    x: 314
+    y: 266
+    width: 60
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 7
+    paddingTop: 8
+    paddingBottom: 10
+  - name: zq_2_7
+    x: 197
+    y: 104
+    width: 56
+    height: 63
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 6
+    paddingBottom: 7
+  - name: zq_2_8
+    x: 271
+    y: 325
+    width: 56
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 10
+    paddingTop: 7
+    paddingBottom: 5
+  - name: zq_2_9
+    x: 307
+    y: 49
+    width: 59
+    height: 58
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 10
+    paddingTop: 9
+    paddingBottom: 9
+  - name: zq_bg2
+    x: 489
+    y: 93
+    width: 19
+    height: 18
+    borderLeft: 9
+    borderRight: 9
+    borderTop: 7
+    borderBottom: 9
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_Gender0
+    x: 474
+    y: 168
+    width: 29
+    height: 30
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_Gender1
+    x: 460
+    y: 112
+    width: 29
+    height: 30
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_jh
+    x: 463
+    y: 199
+    width: 38
+    height: 32
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_jt
+    x: 484
+    y: 42
+    width: 26
+    height: 30
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_letgo
+    x: 421
+    y: 71
+    width: 36
+    height: 32
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: zq_wy
+    x: 453
+    y: 38
+    width: 30
+    height: 32
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+  mCoordinates: 0
+  sprites: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 197238}
+  m_IsPrefabParent: 1

@@ -1,0 +1,735 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1232018971214918}
+  m_IsPrefabParent: 1
+--- !u!1 &1232018971214918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4558928263253450}
+  - component: {fileID: 114382185145451944}
+  m_Layer: 0
+  m_Name: Equip1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4558928263253450
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1232018971214918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114382185145451944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1232018971214918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: e39d13e97804d6343b1a70f9edf0572d, type: 2}
+  mSprites:
+  - name: ac_reddragon_body
+    x: 142
+    y: 372
+    width: 70
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 4
+    paddingBottom: 3
+  - name: ac_reddragon_boots
+    x: 71
+    y: 2
+    width: 62
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 4
+    paddingTop: 12
+    paddingBottom: 12
+  - name: ac_reddragon_cannon_weapon
+    x: 213
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ac_reddragon_gauntlet
+    x: 333
+    y: 165
+    width: 59
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ac_reddragon_glove
+    x: 366
+    y: 114
+    width: 47
+    height: 49
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 14
+    paddingTop: 14
+    paddingBottom: 13
+  - name: ac_reddragon_helmet
+    x: 71
+    y: 55
+    width: 64
+    height: 57
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 6
+    paddingTop: 10
+    paddingBottom: 9
+  - name: ac_reddragon_leg
+    x: 279
+    y: 300
+    width: 61
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 6
+    paddingTop: 3
+    paddingBottom: 3
+  - name: all_reddragon_earrings
+    x: 250
+    y: 107
+    width: 61
+    height: 59
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 8
+    paddingBottom: 9
+  - name: all_reddragon_necklace
+    x: 348
+    y: 307
+    width: 66
+    height: 68
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 4
+    paddingTop: 4
+    paddingBottom: 4
+  - name: all_reddragon_ring
+    x: 126
+    y: 113
+    width: 64
+    height: 57
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 7
+    paddingTop: 11
+    paddingBottom: 8
+  - name: ar_reddragon_bigbow_weapon
+    x: 0
+    y: 371
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_reddragon_body
+    x: 0
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_reddragon_boots
+    x: 211
+    y: 234
+    width: 60
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 6
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_reddragon_glove
+    x: 0
+    y: 16
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_reddragon_helmet
+    x: 402
+    y: 235
+    width: 60
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ar_reddragon_leg
+    x: 194
+    y: 104
+    width: 55
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 10
+    paddingTop: 5
+    paddingBottom: 4
+  - name: ar_reddragon_quiver
+    x: 194
+    y: 172
+    width: 65
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 8
+    paddingTop: 12
+    paddingBottom: 3
+  - name: as_reddragon_body
+    x: 213
+    y: 371
+    width: 68
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_reddragon_boots
+    x: 360
+    y: 44
+    width: 57
+    height: 53
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 11
+    paddingTop: 12
+    paddingBottom: 11
+  - name: as_reddragon_crook
+    x: 142
+    y: 301
+    width: 68
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_reddragon_glove
+    x: 0
+    y: 229
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_reddragon_helmet
+    x: 188
+    y: 39
+    width: 48
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 14
+    paddingTop: 3
+    paddingBottom: 9
+  - name: as_reddragon_leg
+    x: 136
+    y: 42
+    width: 51
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 13
+    paddingTop: 3
+    paddingBottom: 3
+  - name: as_reddragon_scimitar_weapon
+    x: 71
+    y: 371
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_reddragon_body
+    x: 355
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_reddragon_boots
+    x: 71
+    y: 230
+    width: 59
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 12
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_reddragon_glove
+    x: 393
+    y: 164
+    width: 59
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 8
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_reddragon_helmet
+    x: 131
+    y: 236
+    width: 63
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 6
+    paddingTop: 3
+    paddingBottom: 9
+  - name: cl_reddragon_leg
+    x: 71
+    y: 159
+    width: 54
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_reddragon_mace_weapon
+    x: 142
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: cl_reddragon_shield
+    x: 453
+    y: 164
+    width: 54
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ka_reddragon_body
+    x: 348
+    y: 376
+    width: 70
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 8
+    paddingBottom: 3
+  - name: ka_reddragon_boots
+    x: 463
+    y: 235
+    width: 47
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 18
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ka_reddragon_charm
+    x: 305
+    y: 41
+    width: 54
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 11
+    paddingRight: 11
+    paddingTop: 10
+    paddingBottom: 10
+  - name: ka_reddragon_fan_weapon
+    x: 211
+    y: 305
+    width: 67
+    height: 65
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 4
+    paddingTop: 7
+    paddingBottom: 4
+  - name: ka_reddragon_glove
+    x: 426
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: ka_reddragon_helmet
+    x: 250
+    y: 42
+    width: 54
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 10
+    paddingTop: 3
+    paddingBottom: 9
+  - name: ka_reddragon_leg
+    x: 272
+    y: 229
+    width: 60
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_reddragon_body
+    x: 0
+    y: 300
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_reddragon_book
+    x: 282
+    y: 371
+    width: 65
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 4
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_reddragon_boots
+    x: 418
+    y: 93
+    width: 37
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 18
+    paddingRight: 21
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_reddragon_glove
+    x: 0
+    y: 158
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_reddragon_helmet
+    x: 260
+    y: 167
+    width: 61
+    height: 61
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 8
+    paddingTop: 7
+    paddingBottom: 8
+  - name: so_reddragon_leg
+    x: 0
+    y: 87
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: so_reddragon_staff_weapon
+    x: 71
+    y: 301
+    width: 68
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 4
+    paddingTop: 4
+    paddingBottom: 3
+  - name: wa_reddragon_body
+    x: 71
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_reddragon_boots
+    x: 312
+    y: 98
+    width: 53
+    height: 66
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 11
+    paddingTop: 5
+    paddingBottom: 5
+  - name: wa_reddragon_gauntlet
+    x: 415
+    y: 306
+    width: 69
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 4
+    paddingTop: 7
+    paddingBottom: 5
+  - name: wa_reddragon_glove
+    x: 419
+    y: 371
+    width: 65
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 5
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_reddragon_helmet
+    x: 131
+    y: 171
+    width: 62
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 7
+    paddingRight: 7
+    paddingTop: 3
+    paddingBottom: 9
+  - name: wa_reddragon_leg
+    x: 341
+    y: 236
+    width: 60
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 3
+    paddingBottom: 3
+  - name: wa_reddragon_sword_weapon
+    x: 284
+    y: 442
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 3
+    paddingBottom: 3
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+  mCoordinates: 0
+  sprites: []

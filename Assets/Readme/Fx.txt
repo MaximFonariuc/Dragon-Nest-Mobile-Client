@@ -1,0 +1,7 @@
+1.特效gameObject尽量少，移除无用的gameObject（不要单隐藏）
+2.加mesh需要谨慎，不要加一样形状的，不带color的可以和带color的共用，顶点数不宜过高（1000一下），导入fbx后需要用工具把mesh导出（带skin的除外）
+3.不再使用animator（多动作的除外），使用animation，用工具转换animator成animation
+4.加上BindRes的Tag（脚底箭头的使用shadow Tag）
+5.unity5 对默认导入的贴图有问题，需要手动设置各平台贴图的格式
+6.不要使用纯色的贴图，使用shader代替
+7.不要使用原生的particel系列shader，会被雾效影响

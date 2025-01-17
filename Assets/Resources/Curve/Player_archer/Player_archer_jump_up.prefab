@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: Player_archer_jump_up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 1.01180005
+  Land_Value: .666700006
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0333300009
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0666600019
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0999900028
+      value: 0
+      inSlope: 2.15478539
+      outSlope: 2.15478539
+      tangentMode: 0
+    - time: .133320004
+      value: .143638
+      inSlope: 4.45501041
+      outSlope: 4.45501041
+      tangentMode: 0
+    - time: .166649997
+      value: .296970993
+      inSlope: 3.95034504
+      outSlope: 3.95034504
+      tangentMode: 0
+    - time: .199980006
+      value: .406967998
+      inSlope: 3.49042892
+      outSlope: 3.49042892
+      tangentMode: 0
+    - time: .233309999
+      value: .529642999
+      inSlope: 3.66717696
+      outSlope: 3.66717696
+      tangentMode: 0
+    - time: .266640007
+      value: .651422024
+      inSlope: 3.14974499
+      outSlope: 3.14974499
+      tangentMode: 0
+    - time: .299970001
+      value: .73960501
+      inSlope: 2.21567655
+      outSlope: 2.21567655
+      tangentMode: 0
+    - time: .333299994
+      value: .799118996
+      inSlope: 1.73538876
+      outSlope: 1.73538876
+      tangentMode: 0
+    - time: .366629988
+      value: .855286002
+      inSlope: 1.60318041
+      outSlope: 1.60318041
+      tangentMode: 0
+    - time: .399960011
+      value: .905987024
+      inSlope: 1.40743995
+      outSlope: 1.40743995
+      tangentMode: 0
+    - time: .433290005
+      value: .949105978
+      inSlope: 1.14818454
+      outSlope: 1.14818454
+      tangentMode: 0
+    - time: .466619998
+      value: .982524991
+      inSlope: .825443149
+      outSlope: .825443149
+      tangentMode: 0
+    - time: .499949992
+      value: 1.00413001
+      inSlope: .439169824
+      outSlope: .439169824
+      tangentMode: 0
+    - time: .533280015
+      value: 1.01180005
+      inSlope: -.442514658
+      outSlope: -.442514658
+      tangentMode: 0
+    - time: .566609979
+      value: .974632025
+      inSlope: -1.78429425
+      outSlope: -1.78429425
+      tangentMode: 0
+    - time: .599940002
+      value: .892858982
+      inSlope: -2.45343399
+      outSlope: -2.45343399
+      tangentMode: 0
+    - time: .633270025
+      value: .811085999
+      inSlope: -1.78432274
+      outSlope: -1.78432274
+      tangentMode: 0
+    - time: .666599989
+      value: .773916006
+      inSlope: -1.11521256
+      outSlope: -1.11521256
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

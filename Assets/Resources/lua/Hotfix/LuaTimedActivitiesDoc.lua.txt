@@ -1,0 +1,448 @@
+﻿--
+--  HotfixHallDlg.lua
+--  Created by luo on 2018/03/05 17:51:15
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "XSystemActivity_pb.lua"
+
+LuaTimedActivitiesDoc = {}
+local this = LuaTimedActivitiesDoc
+
+local  m_rechargeDataList = {}
+local m_consumeDataList = {}
+
+local Xsys_TimedAcivities = 480 --限时活动总id
+local Xsys_RechargeActitity = 481 --充值返利
+local Xsys_ConsumeAcivity = 482 --消费活动
+
+local CurSelectTab = 480
+
+local m_superActivityTimeTab
+local m_superActivityTaskTab
+
+local m_timedActivitiesDlg
+local m_rechargedActivityDlg
+local m_consumeActivityDlg
+
+local m_rechargeActId = 0--充值返利actid
+local m_consumeActId = 0--累计消费actid
+
+local m_timedActivitiesRedDot = false
+local m_rechargeReddot = false
+local m_consumeReddot = false
+
+local rechargeTimeStr = ""
+local consumeTimeStr = ""
+
+function LuaTimedActivitiesDoc.SetSelectTab(self,id)
+	CurSelectTab = id
+end
+
+function LuaTimedActivitiesDoc.GetSelectTab()
+	return CurSelectTab
+end
+
+function LuaTimedActivitiesDoc.GetRechargedData( ... )
+	return m_rechargeDataList
+end
+
+function LuaTimedActivitiesDoc.GetConsumeData( ... )
+	return m_consumeDataList
+end
+
+function LuaTimedActivitiesDoc.GetTimedActivitiesDlg()
+	return m_timedActivitiesDlg
+end
+function LuaTimedActivitiesDoc.GetTimeTips(self,sysId)
+	if sysId == Xsys_RechargeActitity then
+		return rechargeTimeStr
+	elseif sysId == Xsys_ConsumeAcivity then
+		return consumeTimeStr
+	end
+end
+
+function LuaTimedActivitiesDoc.SetTimedActivitiesDlg(dlg)
+	m_timedActivitiesDlg = dlg
+end
+
+function LuaTimedActivitiesDoc.SetRechargedActivityDlg(dlg)
+	m_rechargedActivityDlg = dlg
+end
+
+function LuaTimedActivitiesDoc.SetConsumeActivityDlg(dlg)
+	m_consumeActivityDlg = dlg
+end
+
+function LuaTimedActivitiesDoc.EnterSceneFinally()
+	print("LuaTimedActivitiesDoc EnterSceneFinally")
+	m_timedActivitiesDlg = nil
+	m_rechargedActivityDlg = nil
+	m_consumeActivityDlg = nil
+
+		m_secondMenuFrame = GameObject.Find("UIRoot(Clone)/HallDlg(Clone)/_canvas/SecondMenuFrame")
+	if not IsNil(m_secondMenuFrame) then
+		--print("------------------------find m_secondMenuFrame----------------------------------")
+		this.RefreshUIRedDot()
+	else
+		print("-----------------------------------m_secondMenuFrame not find ----------------------------")
+	end
+end
+
+function LuaTimedActivitiesDoc.EnterScene()
+	--print("LuaTimedActivitiesDoc.EnterScene")
+end
+
+function LuaTimedActivitiesDoc.Attach()
+	--print("<color=red>-LuaTimedActivitiesDoc Attach</color>")
+	this.InitData()
+end
+
+
+function LuaTimedActivitiesDoc.Detach()
+	print("LuaTimedActivitiesDoc Detach")
+	m_timedActivitiesDlg = nil
+	m_rechargedActivityDlg = nil
+	m_consumeActivityDlg = nil
+
+	this.RecycleData()
+end
+
+function LuaTimedActivitiesDoc.Reconnect()
+	this.RefreshData() --断线重连后刷新一下数据
+end
+
+function LuaTimedActivitiesDoc.InitData()
+
+	this.RecycleData()--先回收老数据
+
+	--时间表
+	this.GetSATime()
+	for i=0,m_superActivityTimeTab.Table.Length - 1,1 do
+		--print("mmmmmmmm .."..m_superActivityTimeTab.Table[i].systemid)
+		if m_superActivityTimeTab.Table[i].systemid == Xsys_RechargeActitity then
+			m_rechargeActId = m_superActivityTimeTab.Table[i].actid
+			this.SetTime(m_superActivityTimeTab.Table[i])
+		elseif m_superActivityTimeTab.Table[i].systemid == Xsys_ConsumeAcivity then
+			m_consumeActId = m_superActivityTimeTab.Table[i].actid
+			this.SetTime(m_superActivityTimeTab.Table[i])
+		end
+	end
+	--print("m_rechargeActId = "..tostring(m_rechargeActId))
+	--任务表
+	this.GetSATask()
+	for i=0,m_superActivityTaskTab.Table.Length - 1,1 do
+		--print("actid = "..tostring(m_superActivityTaskTab.Table[i].actid))
+		if m_rechargeActId ~= 0 and m_superActivityTaskTab.Table[i].actid == m_rechargeActId then
+			m_rechargeDataList[#m_rechargeDataList+1] = this.SetInitData(m_superActivityTaskTab.Table[i])
+		elseif m_consumeActId ~= 0 and m_superActivityTaskTab.Table[i].actid == m_consumeActId and m_superActivityTaskTab.Table[i].icon ~= "" then
+			m_consumeDataList[#m_consumeDataList+1] = this.SetInitData(m_superActivityTaskTab.Table[i])
+		end
+	end
+end
+
+function LuaTimedActivitiesDoc.SetInitData(row)
+	local data = {}
+	--print("<clolr=green>"..tostring(row.actid).."/"..tostring(row.taskid))
+	data.actid = row.actid
+	data.taskid = row.taskid
+	data.targetNum = row.cnt
+	data.items = row.items
+	data.icon = row.icon
+	data.hadRedDot = false
+	data.state = 0
+	data.progress = 0
+
+	return data
+end
+
+
+--设置时间
+function LuaTimedActivitiesDoc.SetTime(row)
+	local timeStr = ""
+	if row.datetype == 2 then 
+		if row.systemid == Xsys_RechargeActitity then
+			rechargeTimeStr = Hotfix.GetStringTable("TimedRechargeTips")
+		elseif row.systemid == Xsys_ConsumeAcivity then
+			consumeTimeStr = Hotfix.GetStringTable("TimedConsumeTips")
+		end
+	end
+end
+
+
+--回收数据
+function LuaTimedActivitiesDoc.RecycleData( ... )
+
+	m_rechargeActId = 0
+	m_consumeActId = 0
+
+	for i=#m_rechargeDataList,1,-1 do
+		m_rechargeDataList[i] = nil
+	end
+
+	for i=#m_consumeDataList,1,-1 do
+		m_consumeDataList[i] = nil
+	end
+end
+
+--获取下一档位需要的数量
+function LuaTimedActivitiesDoc.GetNextNeedNum(self,sysId)
+	local tab
+	if sysId == Xsys_RechargeActitity then
+		tab = m_rechargeDataList
+	elseif sysId == Xsys_ConsumeAcivity then
+		tab = m_consumeDataList
+	end
+
+	local num = 0
+	local num1 = 0
+	for i=1,#tab do
+		if tab[i].state == 0 then
+			num = tab[i].targetNum - tab[i].progress
+			num1 = tab[i].progress
+			print("targetNum = "..tostring(tab[i].targetNum).."/process = "..tostring(tab[i].progress))
+			break
+		end
+	end
+	return num,num1
+end
+
+--当任务更新的时候,刷新此条数据和对应系统的ui,一次只有一条
+function LuaTimedActivitiesDoc.OnTaskChanged(msg)
+	print("LuaTimedActivitiesDoc.OnTaskChanged")
+
+	print("msg.actid = "..tostring(msg.actid).."  msg.taskid ="..tostring(msg.taskid))
+	if msg.actid ~= m_rechargeActId and msg.actid ~= m_consumeActId then return end
+
+	local hadFind = false
+	for i=1,#m_rechargeDataList,1 do
+		if msg.actid == m_rechargeDataList[i].actid and msg.taskid == m_rechargeDataList[i].taskid then
+			m_rechargeDataList[i].state = msg.state
+			m_rechargeDataList[i].progress = msg.progress
+			m_rechargeDataList[i].hadRedDot = (m_rechargeDataList[i].state == 1)
+			--print("单单 充值返利：state ="..tostring(m_rechargeDataList[i].state)..";progress ="..tostring(m_rechargeDataList[i].progress)..";
+				--actid = "..tostring(m_rechargeDataList[i].actid)..";taskid ="..tostring(m_rechargeDataList[i].taskid))
+			hadFind = true
+			break
+		end
+	end
+
+	if hadFind == false then 
+		for i=1,#m_consumeDataList,1 do
+			if msg.actid == m_consumeDataList[i].actid and msg.taskid == m_consumeDataList[i].taskid then
+				m_consumeDataList[i].state = msg.state
+				m_consumeDataList[i].progress = msg.progress
+				m_consumeDataList[i].hadRedDot = (m_consumeDataList[i].state == 1)
+				--print("单单 累计消费：state ="..tostring(m_consumeDataList[i].state)..";progress ="..tostring(m_consumeDataList[i].progress)..";actid = "..tostring(m_consumeDataList[i].actid)..";taskid ="..tostring(m_consumeDataList[i].taskid))
+					
+				hadFind = true
+				break
+			end
+		end
+	end
+	
+	--print("####################### hadFind = "..tostring(hadFind)..";CurSelectTab = "..tostring(CurSelectTab))
+	if hadFind == true then
+		this.SetChildSysRedDot()
+
+		if CurSelectTab == Xsys_RechargeActitity then
+			--print("1111111111111111111111111111")
+			if m_rechargedActivityDlg ~= nil then
+				m_rechargedActivityDlg.RefreshUi()
+			end
+		elseif CurSelectTab == Xsys_ConsumeAcivity then
+			--print("22222222222222222222222222222")
+			if m_consumeActivityDlg ~= nil then
+				m_consumeActivityDlg.RefreshUi()
+			end
+		end
+	end
+end
+
+--登录推送所有任务信息（选角）和断线重连的时候调用 --多条
+function LuaTimedActivitiesDoc.RefreshData( ... )
+	print("<color=green>LuaTimedActivitiesDoc.RefreshData</color>")
+
+	local temp
+	for i=1,#m_rechargeDataList,1 do
+		temp = m_rechargeDataList[i]
+		m_rechargeDataList[i].state = this.GetActivityState(temp.actid,temp.taskid)
+		m_rechargeDataList[i].progress = this.GetActivityProgress(temp.actid,temp.taskid)
+		m_rechargeDataList[i].hadRedDot = (temp.state == 1)
+		--print("多条 累计充值：state ="..tostring(m_rechargeDataList[i].state)..";actid = "..tostring(m_rechargeDataList[i].actid)..";taskid ="..tostring(m_rechargeDataList[i].taskid))
+	end
+
+	for i=1,#m_consumeDataList,1 do
+		temp = m_consumeDataList[i]
+		m_consumeDataList[i].state = this.GetActivityState(temp.actid,temp.taskid)
+		m_consumeDataList[i].progress = this.GetActivityProgress(temp.actid,temp.taskid)
+		m_consumeDataList[i].hadRedDot = (temp.state == 1)
+		--print("多条 累计消费：state ="..tostring(temp.state)..";actid = "..tostring(temp.actid)..";taskid ="..tostring(temp.taskid).."process"..tostring(temp.progress))	
+	end
+
+	this.SetChildSysRedDot()
+end
+
+--0；未完成 1：已完成未领取 2：已领取
+function LuaTimedActivitiesDoc.GetActivityState(actid,taskid)
+	return Hotfix.CallDocumentMethod("TempActivityDocument", true, "GetActivityState", actid, taskid)
+end
+
+--获取进度
+function LuaTimedActivitiesDoc.GetActivityProgress(actid,taskid)
+	return Hotfix.CallDocumentMethod("TempActivityDocument", true, "GetActivityProgress", actid, taskid)
+end
+
+--c#读表
+function LuaTimedActivitiesDoc.GetSATime( ... )
+	--print("LuaTimedActivitiesDoc.GetSATime")
+
+	if m_superActivityTimeTab == nil then
+		m_superActivityTimeTab = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTimeTable", true, false)
+	end
+	return m_superActivityTimeTab
+end
+
+--c#读表
+function LuaTimedActivitiesDoc.GetSATask( ... )
+	--print("LuaTimedActivitiesDoc.GetSATask")
+
+	if m_superActivityTaskTab == nil then
+		m_superActivityTaskTab = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTaskTable", true, false)
+	end
+	return m_superActivityTaskTab
+end
+
+--获取各系统的小红点
+function LuaTimedActivitiesDoc.GetRedDotBySysId(self,sysId)
+
+	if sysId == Xsys_TimedAcivities then
+		return m_timedActivitiesRedDot
+	elseif sysId == Xsys_RechargeActitity then
+		--print("Xsys_RechargeActitity = "..tostring(m_rechargeReddot))
+		return m_rechargeReddot
+	elseif sysId == Xsys_ConsumeAcivity then
+		--print("Xsys_ConsumeAcivity = "..tostring(m_consumeReddot))
+		return m_consumeReddot
+	end
+end
+
+--设置回流tab页的小红点（下发所有任务状态信息和任务状态发生变化时调用）
+function LuaTimedActivitiesDoc.SetChildSysRedDot()
+
+	local ischanged = false
+	--------------------------------
+	local tempFlag = false
+	for i=1,#m_rechargeDataList,1 do
+		if m_rechargeDataList[i].hadRedDot == true then
+			tempFlag = true
+			break
+		end
+	end
+	if tempFlag ~= m_rechargeReddot then
+		m_rechargeReddot = tempFlag
+		ischanged = true
+	end
+	--------------------------------
+	tempFlag = false
+	for i=1,#m_consumeDataList,1 do
+		if m_consumeDataList[i].hadRedDot == true then
+			tempFlag = true
+			break 
+		end
+	end
+	if tempFlag ~= m_consumeReddot then
+		m_consumeReddot = tempFlag
+		ischanged = true
+	end
+
+	print("------------ ischanged = "..tostring(ischanged))
+	--------------------------------
+	if ischanged == true then
+		this.SetRedDot()
+		if m_timedActivitiesDlg ~= nil then
+			m_timedActivitiesDlg.RefreshRedDot()
+		end
+	end
+end
+
+--设置主界面的小红点
+function LuaTimedActivitiesDoc.SetRedDot( ... )
+
+	local hadRedDot = m_rechargeReddot or m_consumeReddot
+
+	if hadRedDot ~= m_timedActivitiesRedDot then
+		m_timedActivitiesRedDot = hadRedDot
+		this.RefreshUIRedDot()
+	end
+end
+
+--刷新主城红点,此处需要改动等ui
+function LuaTimedActivitiesDoc.RefreshUIRedDot( ... )
+	if not IsNil(m_secondMenuFrame) then
+		local tra = m_secondMenuFrame.transform:Find("SecondMenu/H2/SysGridH2_1/SysTimedActivities/RedPoint")
+		if not IsNil(tra) then
+			tra.gameObject:SetActive(m_timedActivitiesRedDot)
+		else
+			print("-----------------not find SysTimedActivities RedPoint")
+		end
+	else
+		print("--------------not find SecondMenuFrame")
+	end
+end
+
+function LuaTimedActivitiesDoc.OnSystemChanged( ... )
+	-- if not IsNil(m_secondMenuFrame) then
+	-- 	local tra = m_secondMenuFrame.transform:Find("SecondMenu/H2/SysGridH2_1/SysTimedActivities")
+	-- 	if not IsNil(tra) then
+	-- 		local isOpen = Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",481) or Hotfix.CallSingleMethod("XGameSysMgr",true,false,"IsSystemOpen",482)
+	-- 		tra.gameObject:SetActive(isOpen)
+	-- 	else
+	-- 		print("-----------------not find SysTimedActivities RedPoint")
+	-- 	end
+	-- else
+	-- 	print("--------------not find SecondMenuFrame")
+	-- end
+	HallDlg.ShowTimedActivities()
+end
+--请求领奖
+function LuaTimedActivitiesDoc.ReqGetActivityReward(self,actid,taskid)
+	--print("LuaTimedActivitiesDoc.ReqGetActivityReward")
+
+	--print("actid == "..tostring(actid)..", taskid = "..tostring(taskid))
+	local msg = XSpActivity_pb.GetSpActivityRewardArg()
+	msg.actid = actid
+	msg.taskid = taskid
+
+	--print("send request msg: "..msg.taskid)
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		Hotfix.SendLuaRPC(7905, TestProtol.data, this.OnGetReward, this.OnErr)
+	else
+		print("test proto data is nil")
+	end
+end
+
+--领取奖励的回调
+function LuaTimedActivitiesDoc.OnGetReward(data,length)
+	--print("GetReward back success")
+	local  msg = XSpActivity_pb.GetSpActivityRewardRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		print("errorcode is: "..tostring(msg.errorcode))
+		if msg.errorcode ~= 0 then
+			-- exclude INVALID_REQUEST
+			if msg.errorcode ~= ERR_INVALID_REQUEST then
+				Hotfix.LuaShowSystemTipErrCode(msg.errorcode)
+			end
+		end
+	else
+		print("GetReward msg is nil")
+	end
+end
+
+function LuaTimedActivitiesDoc.OnErr( ... )
+	print("lua LuaTimedActivitiesDoc OnErr!")
+end

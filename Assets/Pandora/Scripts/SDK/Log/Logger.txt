@@ -1,0 +1,73 @@
+﻿using System;
+using UnityEngine;
+using System.Collections;
+
+namespace com.tencent.pandora
+{
+    public class Logger : MonoBehaviour
+    {
+        public const int ERROR = 0;
+        public const int WARNING = 1;
+        public const int INFO = 2;
+        public const int DEBUG = 3;
+
+        public static Action<string, string, int> HandleLog;
+
+        public static bool Enable = true;
+        public static int LogLevel = 0;
+
+        public static void Log(string message)
+        {
+            if(Enable == true && LogLevel >= DEBUG)
+            {
+                Debug.Log("<b>[Pandora]</b> " + message);
+            }
+            if (HandleLog != null)
+            {
+                HandleLog(message, StackTraceUtility.ExtractStackTrace(), DEBUG);
+            }
+        }
+
+        public static void LogInfo(string message)
+        {
+            if(Enable == true && LogLevel >= INFO)
+            {
+                Debug.Log("<b>[Pandora]</b> " + message);
+            }
+            if (HandleLog != null)
+            {
+                HandleLog(message, StackTraceUtility.ExtractStackTrace(), INFO);
+            }
+        }
+
+        public static void LogWarning(string message)
+        {
+            if(Enable == true && LogLevel >= WARNING)
+            {
+                Debug.LogWarning("<b>[Pandora]</b> " + message);
+            }
+            if (HandleLog != null)
+            {
+                HandleLog(message, StackTraceUtility.ExtractStackTrace(), WARNING);
+            }
+
+        }
+
+        public static void LogError(string message)
+        {
+            if(Enable == true && LogLevel >= ERROR)
+            {
+                Debug.LogWarning("<b>[Pandora]</b> " + message);
+            }
+            if (HandleLog != null)
+            {
+                HandleLog(message, StackTraceUtility.ExtractStackTrace(), ERROR);
+            }
+        }
+
+        
+       
+    }
+
+}
+

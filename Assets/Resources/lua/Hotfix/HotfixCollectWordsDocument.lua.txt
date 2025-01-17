@@ -1,0 +1,281 @@
+﻿--
+--  HotfixCollectWordsDocument.lua
+--
+
+require "HotfixDataPool.lua"
+
+SYS_COLLECTWORDS = 608
+
+XWordData = XDatabase:new()
+function XWordData:Constructor()
+	XDatabase.Constructor(self)
+
+	self.itemID = 0
+	self.itemCount = 0
+	self.itemMaxCount = 0
+
+	self.taskID = 0
+end
+
+function XWordData:Recycle()
+	XDataPool:Recycle(XWordData, self)
+end
+
+XCollectWordsData = XDatabase:new()
+function XCollectWordsData:Constructor()
+	XDatabase.Constructor(self)
+
+	self.words = {}
+	self.reward = 0
+	self.rewardCount = 0
+	self.fetchedCount = 0
+	self.maxFetchCount = 0
+	self.enough = true
+
+	self.taskID = 0
+end
+
+function XCollectWordsData:Recycle()
+	for i=#self.words,1,-1 do
+		self.words[i]:Recycle()
+		self.words[i] = nil
+	end
+	XDataPool:Recycle(XCollectWordsData, self)
+end
+
+------------------------------------------------------------------------------------------
+
+HotfixCollectWordsDocument = {}
+local this = HotfixCollectWordsDocument
+
+local m_DataList = {}
+local m_LeftTime = 0
+local m_ActID = 0
+
+local m_CurActData;
+
+local m_SuperActivityTimeTable = nil
+local m_SuperActivityTaskTable = nil
+local m_SuperActivityTable = nil
+local m_bRedPoint = false
+local m_bUIOpenedRedPoint = false
+
+local m_CollectWordsFrame
+local m_OperatingActivityDlg
+
+local optionDefine = Hotfix.GetEnumType("XOptionsDefine","10004")
+
+function HotfixCollectWordsDocument.GetDatas()
+	return m_DataList
+end
+
+function HotfixCollectWordsDocument.GetLeftTime()
+	return m_LeftTime
+end
+
+function HotfixCollectWordsDocument.GetActID()
+	return m_ActID
+end
+
+function HotfixCollectWordsDocument.GetCurActData()
+	return m_CurActData
+end
+
+function HotfixCollectWordsDocument.SetCollectWordsFrame(frame)
+	m_CollectWordsFrame = frame
+end
+
+function HotfixCollectWordsDocument.SetOperatingActivityDlg(dlg)
+	m_OperatingActivityDlg = dlg
+end
+
+function HotfixCollectWordsDocument.EnterScene()
+	--print("EnterScene")
+	InitTables()
+end
+
+
+function HotfixCollectWordsDocument.EnterSceneFinally()
+	--print("EnterSceneFinally")
+	m_CollectWordsFrame = nil
+	m_OperatingActivityDlg = nil
+end
+
+
+function HotfixCollectWordsDocument.Attach()
+	--print("Attach")
+end
+
+
+function HotfixCollectWordsDocument.Detach()
+	--print("Detach")
+	m_SuperActivityTaskTable = nil
+	m_SuperActivityTimeTable = nil
+	m_SuperActivityTable = nil
+
+	m_ActID = 0
+
+	m_CollectWordsFrame = nil
+	m_OperatingActivityDlg = nil
+	m_bUIOpenedRedPoint = false
+	m_bRedPoint = false
+end
+
+
+function HotfixCollectWordsDocument.Reconnect()
+end
+
+function InitTables()
+	if m_SuperActivityTaskTable == nil then
+		print("Load tables")
+		m_SuperActivityTimeTable = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTimeTable", true, false)
+		m_SuperActivityTaskTable = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTaskTable", true, false)
+		m_SuperActivityTable = Hotfix.GetDocumentStaticMember("XTempActivityDocument", "SuperActivityTable", true, false)
+		
+		Hotfix.AttachSysRedPointRelative(600, SYS_COLLECTWORDS, false)
+	end
+end
+
+function HotfixCollectWordsDocument.RefreshData()
+	print("HotfixCollectWordsDocument.RefreshData")
+	
+	InitTables()
+
+	local offsetDayInfos = Hotfix.GetDocumentMember("TempActivityDocument", "offsetDayInfos", false, true)
+	if offsetDayInfos == nil then
+		return
+	end
+
+	-- 获取 当前激活ActID 和 剩余时间
+	local actChanged = false
+	local init = m_ActID == 0
+
+	for i=0,offsetDayInfos.actid.Count -1 do
+		local actid = offsetDayInfos.actid[i]
+		local superActivityTimeRowData = m_SuperActivityTimeTable:GetByactid(actid)
+		if superActivityTimeRowData ~= nil then
+			if superActivityTimeRowData.systemid == SYS_COLLECTWORDS then
+				actChanged = m_ActID ~= actid
+				m_LeftTime = superActivityTimeRowData.duration - offsetDayInfos.offsetday[i]
+				m_ActID = actid
+				break
+			end
+		end
+	end
+
+	if actChanged then
+		for i=#m_DataList,1,-1 do
+			m_DataList[i]:Recycle()
+			m_DataList[i] = nil
+		end
+
+		for i = 0, m_SuperActivityTaskTable.Table.Length - 1 do
+			local superActivityTaskRowData = m_SuperActivityTaskTable.Table[i]
+			-- 新建个父任务
+			if superActivityTaskRowData.actid == m_ActID and superActivityTaskRowData.tasktype == 1 then
+				local wordsData = XDataPool:GetData(XCollectWordsData)
+				m_DataList[#m_DataList + 1] = wordsData
+				wordsData.taskID = superActivityTaskRowData.taskid
+				wordsData.maxFetchCount = superActivityTaskRowData.cnt
+				wordsData.fetchedCount = 0
+				if superActivityTaskRowData.items.Count > 0 then
+					local items = superActivityTaskRowData.items
+					wordsData.reward = Hotfix.ParseUIntSeqList(superActivityTaskRowData.items,0,0) 
+					wordsData.rewardCount = Hotfix.ParseUIntSeqList(superActivityTaskRowData.items,0, 1)
+				else
+					wordsData.reward = 0
+					wordsData.rewardCount = 0
+				end
+
+				for j = 0, superActivityTaskRowData.taskson.Length - 1 do
+					local sonRowData = m_SuperActivityTaskTable:GetBytaskid(superActivityTaskRowData.taskson[j])
+					-- 新建个子任务
+					if sonRowData ~= nil and sonRowData.tasktype == 2 then
+						local word = XDataPool:GetData(XWordData)
+						wordsData.words[#wordsData.words + 1] = word
+						word.taskID = sonRowData.taskid
+						word.itemID = sonRowData.num[0]
+						word.itemMaxCount = sonRowData.num[1]
+						word.itemCount = 0
+					end
+				end
+			end
+		end
+
+		for i = 0, m_SuperActivityTable.Table.Length - 1 do
+			if m_SuperActivityTable.Table[i].actid == m_ActID then
+				m_CurActData = m_SuperActivityTable.Table[i]
+				break;
+			end
+		end
+
+		if init then
+			local lastOpenActID = Hotfix.CallDocumentMethod("OptionsDocument", true, "GetValue", optionDefine)
+			if lastOpenActID ~= m_ActID then
+				m_bUIOpenedRedPoint = true
+			end
+		end
+	end
+
+	this.RefreshCount()
+end
+
+function HotfixCollectWordsDocument.RefreshCount()
+	m_bRedPoint = false
+	for i=1,#m_DataList do
+		local wordsData = m_DataList[i]
+		wordsData.fetchedCount = Hotfix.CallDocumentMethod("TempActivityDocument", true, "GetActivityProgress", m_ActID, wordsData.taskID)
+		wordsData.enough = true
+
+		for j=1,#wordsData.words do
+			wordsData.words[j].itemCount = Hotfix.CallDocumentMethod("TempActivityDocument", true, "GetActivityProgress", m_ActID, wordsData.words[j].taskID)
+			if wordsData.words[j].itemCount < wordsData.words[j].itemMaxCount then
+				wordsData.enough = false
+			end
+		end
+
+		if wordsData.enough and wordsData.fetchedCount < wordsData.maxFetchCount then
+			m_bRedPoint = true
+		end
+	end
+
+	this._RefreshRedPoint()
+end
+
+function HotfixCollectWordsDocument._RefreshRedPoint()
+	Hotfix.ForceUpdateSysRedPointImmediately(SYS_COLLECTWORDS, m_bRedPoint or m_bUIOpenedRedPoint)
+	local sys = Hotfix.GetEnumType("XSysDefine","XSys_OperatingActivity")
+	Hotfix.CallSingleMethod("XGameSysMgr", true, false, "RecalculateRedPointState", sys)
+end
+
+function HotfixCollectWordsDocument.Refresh()
+	this.RefreshData()
+	this.RefreshUI()
+end
+
+function HotfixCollectWordsDocument.RefreshUI()
+	if m_CollectWordsFrame ~= nil then
+		m_CollectWordsFrame.RefreshUI()
+	end
+
+	if m_OperatingActivityDlg ~= nil and Hotfix.CallSingleMethod("XOperatingActivityView", true, false, "IsVisible") then
+		m_OperatingActivityDlg.RefreshRedPoint()
+	end
+end
+
+function HotfixCollectWordsDocument.OnSpActivityChange( msg )
+	if msg.actid == m_ActID then
+		this.Refresh()
+	end
+end
+
+function HotfixCollectWordsDocument.UIOpened()
+	if m_bUIOpenedRedPoint then
+		Hotfix.CallDocumentMethod("OptionsDocument", true, "SetValue", optionDefine, m_ActID, false)
+		m_bUIOpenedRedPoint = false
+		this._RefreshRedPoint()
+		if m_OperatingActivityDlg ~= nil then 
+			m_OperatingActivityDlg.RefreshRedPoint()
+		end
+	end
+end

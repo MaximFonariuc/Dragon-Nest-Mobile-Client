@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &143988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 443988}
+  - 114: {fileID: 11443988}
+  m_Layer: 0
+  m_Name: Player_archer_attack_doublesomersault_landing_side
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443988
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11443988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0154142e09d81a74984510dd638cc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Max_Value: 7.45056283e-09
+  Land_Value: .0333300009
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .0333300009
+      value: 0
+      inSlope: -1.78831374e-06
+      outSlope: -1.78831374e-06
+      tangentMode: 0
+    - time: .0666600019
+      value: -1.19208998e-07
+      inSlope: -2.68247823e-06
+      outSlope: -2.68247823e-06
+      tangentMode: 0
+    - time: .0999900028
+      value: -1.78814005e-07
+      inSlope: -1.82409224e-06
+      outSlope: -1.82409224e-06
+      tangentMode: 0
+    - time: .133320004
+      value: -2.4080299e-07
+      inSlope: -1.82407757e-06
+      outSlope: -1.82407757e-06
+      tangentMode: 0
+    - time: .166649997
+      value: -3.00407009e-07
+      inSlope: -1.78831385e-06
+      outSlope: -1.78831385e-06
+      tangentMode: 0
+    - time: .199980006
+      value: -3.60011995e-07
+      inSlope: -1.78832875e-06
+      outSlope: -1.78832875e-06
+      tangentMode: 0
+    - time: .233309999
+      value: -4.1961701e-07
+      inSlope: -1.78831397e-06
+      outSlope: -1.78831397e-06
+      tangentMode: 0
+    - time: .266640007
+      value: -4.79221001e-07
+      inSlope: -1.78831351e-06
+      outSlope: -1.78831351e-06
+      tangentMode: 0
+    - time: .299970001
+      value: -5.38825986e-07
+      inSlope: -1.82409258e-06
+      outSlope: -1.82409258e-06
+      tangentMode: 0
+    - time: .333299994
+      value: -6.00814985e-07
+      inSlope: -1.82407803e-06
+      outSlope: -1.82407803e-06
+      tangentMode: 0
+    - time: .366629988
+      value: -6.60419005e-07
+      inSlope: -1.78829976e-06
+      outSlope: -1.78829976e-06
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 143988}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

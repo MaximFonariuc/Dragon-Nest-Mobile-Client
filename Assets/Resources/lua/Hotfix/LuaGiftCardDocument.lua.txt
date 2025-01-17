@@ -1,0 +1,111 @@
+require "XGiftCard_pb.lua"
+
+XSys_GiftCard = 848
+
+LuaGiftCardDocument = {}
+local this = LuaGiftCardDocument
+
+local m_LuaGiftCardFrame= nil
+local giftList = nil
+local isShowDetail = false
+local clickLeftTime = {0, 0, 0}
+
+function LuaGiftCardDocument.EnterScene()
+	--print("EnterScene")
+	Hotfix.AttachSysRedPointRelative(600, XSys_GiftCard, false)
+end
+
+function LuaGiftCardDocument.SetLuaGiftCardFrame(frame)
+	m_LuaGiftCardFrame = frame
+end
+
+--PtcG2C_PayGiftNtf协议接收调用
+function LuaGiftCardDocument.OnPayGiftNtf(msg)
+	print("LuaGiftCardDocument.OnPayGiftNtf")
+
+	--检查需不需要刷界面,避免服务器重启
+	local needRefresh = false
+
+	if giftList == nil then
+		needRefresh = true
+	end
+
+	if giftList ~= nil and #msg.gift ~= #giftList then
+		needRefresh = true
+	end
+
+	if msg.isShowDetail ~= isShowDetail then
+		needRefresh = true
+	end
+
+	if giftList ~= nil and #msg.gift == #giftList then
+		for i = 1, #msg.gift do 
+			for j = 1, #giftList do
+				if msg.gift[i].id == giftList[j].id then
+					if msg.gift[i].buycount ~= giftList[j].buycount then
+						needRefresh = true
+					elseif msg.gift[i].reqTime == 0 and giftList[j].reqTime > 0 then
+						needRefresh = true
+					elseif msg.gift[i].reqTime > 0 and giftList[j].reqTime == 0 then
+						needRefresh = true
+					end 
+				end
+			end	
+		end
+	end
+	print("LuaGiftCardDocument.OnPayGiftNtf needRefresh:"..tostring(needRefresh))
+	--------------------
+
+	giftList = msg.gift
+	isShowDetail = msg.isShowDetail
+	clickLeftTime = {0, 0, 0}
+	print("LuaGiftCardDocument.OnPayGiftNtf isShowDetail:"..tostring(isShowDetail))
+
+	for i = 1, #giftList do 
+		clickLeftTime[giftList[i].id] = giftList[i].reqTime	
+		print("LuaGiftCardDocument.OnPayGiftNtf id:"..giftList[i].id..", buycount:"..giftList[i].buycount..", lastBuyTime:"..giftList[i].lastBuyTime..",reqTime"..giftList[i].reqTime)		
+	end 
+
+	this.PrintLeftTime()
+
+	if m_LuaGiftCardFrame ~= nil and needRefresh then
+		m_LuaGiftCardFrame.RefreshReward()
+	end
+end
+
+function LuaGiftCardDocument.GetGiftData(id)
+	if giftList ~= nil then
+		for i = 1, #giftList do 
+			if giftList[i].id == id then
+				return giftList[i]
+			end			
+		end 
+	end	
+	return
+end
+
+function LuaGiftCardDocument.GetClickLeftTime(id)
+	return clickLeftTime[id]
+end
+
+function LuaGiftCardDocument.SetGiftData(id)
+	this.PrintLeftTime()
+
+	for i = 1, #clickLeftTime do
+		if i == id then
+			clickLeftTime[id] = 600
+		end		
+	end
+
+	this.PrintLeftTime()
+end
+
+function LuaGiftCardDocument.IsShowDetail()
+	return isShowDetail
+end
+
+function LuaGiftCardDocument.PrintLeftTime( ... )
+	for i = 1, #clickLeftTime do
+		print("LeftTime "..i..":"..clickLeftTime[i])
+	end
+end

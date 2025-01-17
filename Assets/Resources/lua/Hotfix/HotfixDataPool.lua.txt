@@ -1,0 +1,91 @@
+--
+--  LuaParseLogin.lua
+--  Created by alexpeng on 2016/04/19 11:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+XDatabase = 
+{
+	bRecycled = false, 
+	_data_id
+}
+
+function  XDatabase:new(o)                          
+    o = o or {}
+    setmetatable(o , self)
+    self.__index = self
+    o:Constructor()
+    return o                                 
+end
+
+function XDatabase:Constructor()
+	self._data_id = math.random(10000)
+end
+
+function  XDatabase:Recycle()                          
+                            
+end
+function  XDatabase:Init()                          
+                            
+end
+
+XDataPool = 
+{
+	_Pools = {}
+}
+
+function XDataPool:GetData(className)
+	local classPool = self._Pools[className]
+
+	local t
+	if classPool == nil or #classPool == 0 then
+		t = className:new()
+	else
+		t = classPool[#classPool]
+		classPool[#classPool] = nil
+	end
+
+	-- if classPool == nil then
+	-- 	print("GetData PoolCount nil")
+	-- else
+	-- 	print("GetData PoolCount "..#classPool)
+	-- end
+
+	t:Init()
+	t.bRecycled = false
+	return t
+end
+
+function XDataPool:Recycle(className, t)
+	if not t.bRecycled then
+		local classPool = self._Pools[className]
+		if classPool == nil then
+			classPool = {}
+			self._Pools[className] = classPool
+		end
+		classPool[#classPool + 1] = t
+		t.bRecycled = true
+
+		-- print("Recycle PoolCount "..#classPool)
+
+	end
+end
+---------------------------------------------------------------------------------------
+XHehe = XDatabase:new({a=3})
+
+function XHehe:Init()
+	print("eeeeeeeee")
+end
+function XHehe:Recycle()
+	XDataPool:Recycle(XHehe, self)
+end
+
+XHaha = XDatabase:new()
+
+function XHaha:Init()
+	print("aaaaaaaaa")
+end
+function XHaha:Recycle()
+	XDataPool:Recycle(XHaha, self)
+end
+

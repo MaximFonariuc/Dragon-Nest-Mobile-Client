@@ -1,0 +1,109 @@
+--
+--  LuaQQWallet.lua
+--  Created by alexpeng on 2017/02/09 10:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+XSys_QQWallet = 393
+
+
+local json = require 'cjson'
+local texturePath
+
+LuaQQWalletFrame = {}
+local this = LuaQQWalletFrame
+
+local m_Go
+local m_bIsVisible = false
+
+local m_ExchangeBtn;
+local m_BgTexture;
+
+
+--called by MonoBehaviour.Awake
+function LuaQQWalletFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_ExchangeBtn = m_Go.transform:Find("Button")
+		Hotfix.SetClickCallback(m_ExchangeBtn.gameObject, this.OnBtnClick)
+		texturePath = Hotfix.GetGlobalString("QQWalletBgPath")
+		print("LuaQQWalletFrame texturePath"..texturePath);
+	end
+end
+
+function  LuaQQWalletFrame.OnBtnClick(go)
+	print("LuaQQWalletFrame OnBtnClick")
+
+	local access_token = Hotfix.GetSingleMember("XLoginDocument","TokenCache",true,false,false)
+	local channel = Hotfix.GetSingleMember("XLoginDocument","Channel",true,false,false)
+	local area =Hotfix.GetSingleMember("XClientNetwork","AreaId",true,false,false)
+	local partition=Hotfix.GetSingleMember("XClientNetwork","ServerID",true,false,false)
+	local roleid=Hotfix.CallSingleMethod("UI.UiUtility",true,false,"GetRoleId")
+	local xplatGo= GameObject.Find("XGamePoint")
+	local xpalt = xplatGo:GetComponent("XPlatform")
+
+
+	local paybill = xpalt:GetPayBill()
+	local data = json.decode(paybill)
+	local pay_token="0"
+	local pay_pf = "0"
+	if data ~= nil then 
+		pay_token = data.pay_token 
+		pay_pf = data.pf
+	end
+
+	local baseurl = "https://i.qianbao.qq.com/act/wallet/201705/longzg_game/index.html"
+	if tostring(channel) == "XAuthorization_WeChat" then   --微信用另外一个链接
+		baseurl = "https://i.qianbao.qq.com/act/wallet/201706/longzg_game_wx/index.html"
+	end
+	local url1 = baseurl.."?partition="..tostring(partition).."&areaid="..tostring(area).."&roleid="..tostring(roleid)
+	local url2 = "&dn_pay_tok="..tostring(pay_token).."&dn_pf="..tostring(pay_pf).."&dn_acc_tok="..tostring(access_token)
+
+	local t ={}
+	t["url"] = url1..url2
+	t["screendir"] = "LANDSCAPE"
+
+	local url = json.encode(t)
+	xpalt:SendExtDara("open_url",url)
+end
+
+
+function LuaQQWalletFrame.Start()
+
+end
+
+function LuaQQWalletFrame.OnEnable()
+	print("LuaQQWalletFrame.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaQQWalletFrame.OnDisable()
+	m_bIsVisible = false
+	print("LuaQQWalletFrame.OnDisable")
+end
+
+
+function LuaQQWalletFrame.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaQQWalletFrame.OnShow()
+	print("LuaCDKeyExchangeFrame.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaQQWalletFrame SetBgTexture")
+	end
+end
+
+function LuaQQWalletFrame.OnHide()
+	print("LuaQQWalletFrame.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+	end
+end
+
+function LuaQQWalletFrame.IsVisible()
+	return m_bIsVisible
+end

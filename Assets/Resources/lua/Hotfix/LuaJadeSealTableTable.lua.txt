@@ -1,0 +1,43 @@
+﻿require "HotfixGlobal.lua"
+
+--generate by ProtoGen at date: 2018/3/26 15:17:26
+
+--读取表格
+function ReadJadeSealTableTable(table)
+	local reader = Hotfix.LuaTableBin(table)
+	if not IsNil(reader) then
+		local rows = {}
+		Hotfix.ReadFileSize(reader)
+		local lineCount = reader:ReadInt32()
+		Hotfix.ReadDataHandle(reader)
+		local columnCount = reader:ReadByte()
+		for i = 1, columnCount, 1 
+		do
+			reader:ReadByte()
+			reader:ReadByte()
+		end
+		for i = 1, lineCount, 1 
+		do
+			Hotfix.ReadRowSize(reader)
+			rows[i] = {};	
+			rows[i].SealID = reader:ReadUInt32()
+			rows[i].SealJob = ReadUIntArray(reader)
+			rows[i].SealEquip = ReadUIntArray(reader)
+			rows[i].SealNum = reader:ReadUInt32()
+			rows[i].SealName = Hotfix.ReadString(reader)
+			rows[i].SealLevel = reader:ReadUInt32()
+			rows[i].SealQuality = reader:ReadUInt32()
+			-- print "------------------------------------------------------"
+			rows[i].SealAttributes = ReadUIntSeqList(reader,2)
+			rows[i].SealSuit = ReadUIntArray(reader)
+			rows[i].SealWeight = reader:ReadUInt32()
+			rows[i].SealBuff = ReadUIntSeqList(reader,2)
+
+			Hotfix.CheckRowSize(reader,"JadeSealTable",i)
+		end
+		Hotfix.CheckFileSize(reader,"JadeSealTable")
+		Hotfix.ReturnableStream(reader)
+		return rows
+	end
+	return nil
+end

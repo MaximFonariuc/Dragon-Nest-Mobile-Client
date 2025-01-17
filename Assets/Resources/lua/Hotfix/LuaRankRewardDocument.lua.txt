@@ -1,0 +1,30 @@
+require "LuaCompeteDragonRankRewardTableTable.lua"
+LuaRankRewardDocument = {}
+local this = LuaRankRewardDocument
+local nowstate = 0
+local CompeteRankRewardTable = nil
+local print = Debugger.LogWarning
+function LuaRankRewardDocument.SetState(state)
+	nowstate = state
+end
+
+function LuaRankRewardDocument.GetState()
+	return nowstate
+end
+
+function LuaRankRewardDocument.ReadTable()
+	print("LuaRankRewardDocument   ReadTable")
+	CompeteRankRewardTable = ReadCompeteDragonRankRewardTableTable("Table/CompeteDragonRankReward");
+end
+
+function LuaRankRewardDocument.GetTable()
+	print("LuaRankRewardDocument   GetTable")
+	if nowstate ~= 2 then
+		print("this is a bug in LuaCompeteDragonRankRewarDocument")
+	end
+	if CompeteRankRewardTable == nil then
+		this.ReadTable()
+	end
+	print("LuaRankRewardDocument   GetTable    table == "..tostring(CompeteRankRewardTable))
+	return CompeteRankRewardTable
+end

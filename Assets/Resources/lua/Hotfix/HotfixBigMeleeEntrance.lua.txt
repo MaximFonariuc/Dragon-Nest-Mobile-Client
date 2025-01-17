@@ -1,0 +1,29 @@
+﻿require "LuaRankRewardDocument.lua"
+BigMeleeEntrance={}
+local this = BigMeleeEntrance
+
+local m_Go
+local m_RankRewardBtn
+local m_RankRewardHandler
+
+function BigMeleeEntrance.BeforeRefresh(go)
+	print("BigMeleeEntrance.BeforeRefresh")
+	m_Go=go
+	m_RankRewardBtn= go.transform:Find("Bg/RankRewardBtn").gameObject
+	Hotfix.SetClickCallback(m_RankRewardBtn, this.OnRankRewardBtnClick)
+	return false
+end
+
+function  BigMeleeEntrance.OnRankRewardBtnClick()
+	print("BigMeleeEntrance.OnRankRewardBtnClick")
+	LuaRankRewardDocument.SetState(1)
+	if IsNil(m_RankRewardHandler) then
+		LuaUIManager.Instance:Load("UI/GameSystem/RankRewardHandler")
+		m_RankRewardHandler=GameObject.Find("RankRewardHandler")
+		m_RankRewardHandler.transform.parent = m_Go.transform:Find("Bg")
+		m_RankRewardHandler.transform.localPosition = Vector3.zero
+		m_RankRewardHandler.transform.localScale = Vector3.one
+	else
+		m_RankRewardHandler:SetActive(true)
+	end
+end

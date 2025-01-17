@@ -1,0 +1,277 @@
+﻿require "LuaTimedActivitiesDoc.lua"
+
+LuaConsumActivityHandler = {}
+local this = LuaConsumActivityHandler
+
+local m_bIsVisible = false
+
+local m_progress
+local m_rewardTpl
+local m_itemTpl
+local m_timeLab
+local m_curLab
+local m_nextLab
+local m_gotGo
+local m_getBtn
+local m_helpBtn
+
+local m_rewardPool
+local m_itemPool
+
+--called by MonoBehaviour.Awake
+function LuaConsumActivityHandler.Awake(go)
+	--print("Awake")
+	m_getBtn = go.transform:Find("GetBtn").gameObject
+	m_helpBtn = go.transform:Find("HelpBtn").gameObject
+	m_gotGo = go.transform:Find("GotLab").gameObject
+	m_timeLab = go.transform:Find("TimeLab"):GetComponent("UILabel")
+	m_curLab = go.transform:Find("CurGoal"):GetComponent("UILabel")
+	m_nextLab = go.transform:Find("NextGoal"):GetComponent("UILabel")
+	m_progress = go.transform:Find("Process"):GetComponent("UISlider")
+
+	m_rewardTpl = go.transform:Find("Rewards/RewardTpl")
+	m_rewardPool = Hotfix.SetupPool(m_rewardTpl.parent.gameObject, m_rewardTpl.gameObject, 2)
+
+	m_itemTpl = go.transform:Find("Items/ItemTpl")
+	m_itemPool = Hotfix.SetupPool(m_itemTpl.parent.gameObject, m_itemTpl.gameObject, 2)
+
+	--m_colorLab = tra:Find("num"):GetComponent("UILabel")
+	LuaTimedActivitiesDoc.SetConsumeActivityDlg(this)
+
+	Hotfix.SetClickCallback(m_helpBtn, this.OnClickHelp)
+end
+
+
+function LuaConsumActivityHandler.Start()
+	--print("Start")
+end
+
+
+function LuaConsumActivityHandler.OnEnable()
+	--print("LuaConsumActivityHandler.OnEnable")
+	m_bIsVisible = true
+	this.FillContent()
+end
+
+
+function LuaConsumActivityHandler.OnDisable()
+	--print("LuaConsumActivityHandler.OnDisable")
+	m_bIsVisible = false
+	if not IsNil(m_rewardPool) then
+		m_rewardPool:FakeReturnAll()
+	end
+
+	if not IsNil(m_itemPool) then
+		m_itemPool:FakeReturnAll()
+	end
+end
+
+
+function LuaConsumActivityHandler.OnDestroy()
+	--print("LuaConsumActivityHandler.OnDestroy")
+	m_bIsVisible = false
+	if not IsNil(m_rewardPool) then
+		m_rewardPool:FakeReturnAll()
+	end
+
+	if not IsNil(m_itemPool) then
+		m_itemPool:FakeReturnAll()
+	end
+end
+
+
+function LuaConsumActivityHandler.OnShow()
+	--print("LuaConsumActivityHandler.OnShow")
+end
+
+function LuaConsumActivityHandler.OnHide()
+	--print("LuaConsumActivityHandler.OnHide")
+end
+
+function LuaConsumActivityHandler.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaConsumActivityHandler.RefreshUi( ... )
+	print("LuaConsumActivityHandler.RefreshUi m_bIsVisible = "..tostring(m_bIsVisible))
+	if m_bIsVisible == false then return end
+
+	this.FillContent()
+end
+
+function LuaConsumActivityHandler.FillContent( ... )
+	--print("LuaConsumActivityHandler.FillContent")
+	m_timeLab.text = LuaTimedActivitiesDoc:GetTimeTips(482)
+	this.FillRewards()
+	this.FillProcess()
+
+	local count = Hotfix.CallDocumentMethod("XBagDocument",false,"GetItemCount",13)
+	local num =  LuaTimedActivitiesDoc:GetNextNeedNum(482)
+	if num == 0 then
+		m_curLab.text = Hotfix.GetStringTable("TimedLimitTotalTips")
+		m_nextLab.gameObject:SetActive(false)
+	else
+		m_nextLab.gameObject:SetActive(true)
+		m_curLab.text = Hotfix.GetStringTable("TimedConsumeTips1")..tostring(count)
+		m_nextLab.text = Hotfix.GetStringTable("TimedLimitTips")..tostring(num)
+	end
+	--print("<color=red> 13Count = "..tostring(count).."</color>")
+end
+
+local m_selectIndex = 1
+local m_selectGo = nil
+function LuaConsumActivityHandler.FillRewards( ... )
+	--print("LuaConsumActivityHandler.FillRewards")
+	m_rewardPool:ReturnAll()
+
+	local datas = LuaTimedActivitiesDoc:GetConsumeData()
+	if datas == nil then return end
+
+	local go
+	local child
+	local data
+	for i=1,#datas do
+
+		data = datas[i]
+		go = m_rewardPool:FetchGameObject()
+		go:SetActive(true)
+		go.name = tostring(i)
+
+		local icon = go.transform:GetComponent("UISprite")
+		icon.uid = i
+		Hotfix.SetClickCallback(go, this.OnClickReward)
+
+		go.transform.localScale = Vector3.one
+		go.transform.localPosition = Vector3(m_rewardPool.TplPos.x + m_rewardPool.TplWidth * (i - 1),m_rewardPool.TplPos.y-m_rewardPool.TplHeight * ((i-1) % 2),0)
+		
+		go.transform:Find("Get").gameObject:SetActive(data.state == 0 or data.state == 1)
+		go.transform:Find("Got").gameObject:SetActive(data.state == 2)
+
+		icon = go.transform:Find("Box"):GetComponent("UISprite")
+		if data.state == 0 or data.state == 1 then
+			icon.spriteName = data.icon
+		elseif data.state == 2 then
+			icon.spriteName = data.icon.."_1"
+		end
+
+		go.transform:Find("RedPoint").gameObject:SetActive(data.hadRedDot)
+
+		local num = go.transform:Find("Num/Txt"):GetComponent("UILabel")
+		num.text = tostring(data.targetNum)
+
+		go.transform:Find("Selected").gameObject:SetActive(i==m_selectIndex)
+		if(i==m_selectIndex) then
+			this.OnClickReward(go)
+		end
+	end
+end
+
+function LuaConsumActivityHandler.FillProcess( ... )
+	--print("LuaConsumActivityHandler.FillProcess")
+	local datas = LuaTimedActivitiesDoc:GetConsumeData()
+	if datas == nil then return end
+	--print("datas.count = "..tostring(#datas))
+	local total = datas[#datas].targetNum
+	local cur = datas[#datas].progress
+	m_progress.value = cur / total 
+	if m_progress.value > 1 then 
+		m_progress.value = 1
+	end
+
+	local num = m_progress.transform:Find("Current"):GetComponent("UILabel")
+	num.text = tostring(cur).."/"..tostring(total)
+end
+
+--点击物品的时候调用
+function LuaConsumActivityHandler.FillItems(data)
+
+	if data == nil then return end
+
+	print("data.state = "..tostring(data.state))
+	--处理领取按钮
+	m_gotGo:SetActive(data.state == 2)
+	m_getBtn:SetActive(true)
+	local spr = m_getBtn.transform:GetComponent("UISprite")
+	if data.state == 0 then
+		spr.color = Color.black
+	elseif data.state == 1 then
+		spr.color = Color.white
+	elseif data.state == 2 then
+		m_getBtn:SetActive(false)
+	end
+
+	Hotfix.SetClickCallback(m_getBtn, this.GetReward)
+
+	--填充奖励物品
+	if data.items == nil then return end
+
+	m_itemPool:ReturnAll()
+	local rewards = data.items
+	local go
+	for i=0,rewards.count-1 do
+		go = m_itemPool:FetchGameObject()
+		go:SetActive(true)
+		go.name = tostring(i)
+
+		go.transform.localScale = Vector3.one
+		go.transform.localPosition = Vector3(-m_itemPool.TplWidth * i, 0, 0)
+
+		local id = Hotfix.ParseUIntSeqList(rewards,i,0) 
+		local num = Hotfix.ParseUIntSeqList(rewards,i,1)
+		Hotfix.DrawItemView(go, id, num, true)
+
+		local icon = go.transform:Find("Icon"):GetComponent("UISprite")
+		icon.uid = id
+		Hotfix.SetClickCallback(icon.gameObject, this.ShowIconTip)
+	end
+end
+
+--点击奖励
+function LuaConsumActivityHandler.OnClickReward(go)
+	--print("LuaConsumActivityHandler.OnClickReward")
+
+	local datas = LuaTimedActivitiesDoc:GetConsumeData()
+	if datas == nil then return end
+
+	local spr = go.transform:GetComponent("UISprite")
+	local index = spr.uid
+	if index > #datas or index <= 0 then
+		print("Index "..index.."out of range: "..#datas)
+		return
+	end
+
+	if not IsNil(m_selectGo) then
+		m_selectGo.transform:Find("Selected").gameObject:SetActive(false)
+	end
+	go.transform:Find("Selected").gameObject:SetActive(true)
+
+	m_selectGo = go
+	m_selectIndex = index
+
+	this.FillItems(datas[index])
+end
+
+--点击物品tips
+function LuaConsumActivityHandler.ShowIconTip(go)
+	--print("LuaConsumActivityHandler.ShowIconTip")
+	Hotfix.LuaShowItemTooltipDialog(go:GetComponent("UISprite").uid, go)
+end
+
+--领取奖励
+function LuaConsumActivityHandler.GetReward(go)
+	--print("<color=green>LuaConsumActivityHandler.GetReward</color>")
+	local datas = LuaTimedActivitiesDoc:GetConsumeData()
+	if datas == nil then return end
+	
+	local data = datas[m_selectIndex]
+	--print("<color=green>data.state = </color>"..tostring(data.state))
+	if data.state ~= 1 then return end --未达到领取条件不能领取
+
+	LuaTimedActivitiesDoc:ReqGetActivityReward(data.actid,data.taskid)
+end
+
+function LuaConsumActivityHandler.OnClickHelp( ... )
+	--print("<color=green>LuaConsumActivityHandler.OnClickHelp</color>")
+
+	Hotfix.CallSingleMethod("UI.XCommonHelpTipView", true, false, "ShowHelp", 482)
+end

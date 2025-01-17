@@ -1,0 +1,1406 @@
+﻿require "XJadeEquipNew_pb.lua"
+require "LuaJadeGroupTableTable.lua"
+require "LuaJadeSealTableTable.lua"
+
+----新龙玉系统数据业务逻辑模型
+LuaJadeEquipDataModel={}
+local this = LuaJadeEquipDataModel
+
+local LuaJadeBagListDlgFrame = nil	--龙玉背包的lua界面
+local LuaJadeGroupDlgFrame = nil	--龙玉组合的lua界面
+local HotfixJadeEquipHandler = nil 	--龙玉装备的hotfix主界面
+
+
+local JadeGroupTable = nil
+local GroupLv1PreTable ={}
+
+
+local JadeSealTable = nil
+
+local Group1LocalTable ={}				--没有卵用，单颗龙玉没有组合，拿来仅仅为了保持队形的
+local Group1Lv1LocalTable ={}
+
+local Group2LocalTable ={}
+local Group2Lv1LocalTable ={}
+
+local Group3LocalTable ={}
+local Group3Lv1LocalTable ={}
+
+local Group4LocalTable ={}
+local Group4Lv1LocalTable ={}
+
+local Group5LocalTable ={}
+local Group5Lv1LocalTable ={}
+
+local Group6LocalTable ={}			--六龙总表
+local Group6Lv1LocalTable ={}		--六龙组合未达成预览表
+
+
+local CurrSelectedGroupNum = 6		--第一版只有6龙组合
+
+local CurrSelectedSlot = 0
+
+local CurrEquipUidStr = nil 		--string c#
+local CurrSelectedEquip = nil  		--XItem c#
+local CurrEquipPos = 0
+
+local CurrProfTotalSealTable = { }
+
+
+local theGroupBodyEqIdList = { 0,0,0,0,0,0,0,0,0,0 }
+
+function LuaJadeEquipDataModel.ClearData()
+
+	print "clear"
+
+	for i = 1,#theGroupBodyEqIdList do
+		theGroupBodyEqIdList[i] = 0
+	end
+
+	CurrSelectedSlot = 0
+	CurrEquipUidStr = nil
+	CurrSelectedEquip = nil
+	CurrEquipPos = 0
+
+	JadeGroupTable = nil
+	GroupLv1PreTable ={}
+
+	JadeSealTable = nil
+
+	Group1LocalTable ={}
+	Group1Lv1LocalTable ={}
+
+	Group2LocalTable ={}
+	Group2Lv1LocalTable ={}
+
+	Group3LocalTable ={}
+	Group3Lv1LocalTable ={}
+
+	Group4LocalTable ={}
+	Group4Lv1LocalTable ={}
+
+	Group5LocalTable ={}
+	Group5Lv1LocalTable ={}
+
+	Group6LocalTable ={}
+	Group6Lv1LocalTable ={}
+
+	CurrProfTotalSealTable = {}
+
+	cacheNextTabNum = 1
+end
+
+---设置当前几龙组合标签页数--
+function LuaJadeEquipDataModel.SetCurrGroupNum(num)
+	CurrSelectedGroupNum = num
+end
+---获取当前几龙组合标签页数--
+function LuaJadeEquipDataModel.GetCurrGroupNum( )
+	return CurrSelectedGroupNum
+end
+
+
+---获取当前玩家身上装备槽位（如果有对应装备的话）的龙玉组合SealId值
+function LuaJadeEquipDataModel.GetBodyEqSealID(epPos)
+	return theGroupBodyEqIdList[epPos]
+end
+
+---设置龙玉背包界面缓存
+function LuaJadeEquipDataModel.SetJadeBagListFrame(dlgFrame)
+	LuaJadeBagListDlgFrame = dlgFrame
+end
+function LuaJadeEquipDataModel.JadeBagDlgUnLoad()
+	LuaJadeBagListDlgFrame = nil
+end
+
+---设置龙玉组合组合界面缓存
+function LuaJadeEquipDataModel.SetJadeGroupFrame(dlgFrame)
+	LuaJadeGroupDlgFrame = dlgFrame
+end
+function LuaJadeEquipDataModel.JadGroupDlgUnLoad()
+	LuaJadeGroupDlgFrame = nil
+end
+
+---设置龙玉装备主界面缓存
+function LuaJadeEquipDataModel.SetJadeEquipHandler(dlgHandle)
+	HotfixJadeEquipHandler = dlgHandle
+end
+function LuaJadeEquipDataModel.GetJadeEquipHandler()
+	return HotfixJadeEquipHandler
+end
+function LuaJadeEquipDataModel.JadeEquipDlgUnLoad()
+	HotfixJadeEquipHandler = nil
+end
+
+
+---设置当前选中装备缓存
+function LuaJadeEquipDataModel.SetCurrEquip(currEq)
+
+	if type(currEq) ~= "userdata" then
+		print "the currEq must be userdata"
+		return
+	end
+
+	CurrSelectedEquip = currEq
+
+	this.RefreshCurrEquip()
+end
+
+function LuaJadeEquipDataModel.GetCurrEquipPos()
+	return CurrEquipPos
+end
+function LuaJadeEquipDataModel.GetCurrEquipUidStr()
+	if currEquipUidStr == nil then 
+		return "0"
+	end
+
+	return CurrEquipUidStr
+end
+function LuaJadeEquipDataModel.GetCurrEquip()
+	if CurrSelectedEquip ~= nil then
+		return CurrSelectedEquip
+	end
+end
+function LuaJadeEquipDataModel.RefreshCurrEquip()
+	CurrEquipUidStr = Hotfix.GetGetDocumentLongMember("JadeDocument","selectedEquip",true,true)		--string
+	
+	if currEquipUidStr == nil then 
+		currEquipUidStr =  "0"
+	end
+
+	if CurrEquipUidStr ~= "0" then
+		-- print("curr equip uid: "..CurrEquipUidStr)
+		local equipUid = Hotfix.GetLuaLong(CurrEquipUidStr)							--XLuaLong
+
+		CurrSelectedEquip = Hotfix.CallDocumentMethod("XBagDocument", true,"GetItemByUID", equipUid)
+
+		local equipListRowData = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"GetEquipConf",CurrSelectedEquip.itemID)
+		if equipListRowData ~= nil then
+			CurrEquipPos = equipListRowData.EquipPos
+		end
+	end
+end
+
+
+---设置当前镶嵌槽位缓存
+function LuaJadeEquipDataModel.SetSelectSlot(slot)
+	if type(slot) ~= "number" then
+		print "the currEq must be number"
+		return
+	end
+
+	CurrSelectedSlot = slot
+end
+function LuaJadeEquipDataModel.GetSelectSlot()
+	return CurrSelectedSlot
+end
+
+
+---获取组合预览JadeGroup表(筛选过的，非JadeGroup总表，only 1 level)
+function LuaJadeEquipDataModel.GetPreGroupTable()
+	return GroupLv1PreTable
+end
+
+---根据参数groupid获取对应龙玉itemid
+function LuaJadeEquipDataModel.GetPreJadeItemId(groupId)
+	for i = 1,#GroupLv1PreTable do 
+		local temp = GroupLv1PreTable[i]
+		if temp.GroupID == groupId then
+			return temp.JadeID
+		end
+	end
+end
+
+---根据传入龙玉的itemid，获取对应的groupid
+function LuaJadeEquipDataModel.GetGroupIdByjadeItemId(jadeItemid)
+	for i = 1, #JadeGroupTable do 
+		local temp = JadeGroupTable[i]
+		if temp.JadeID == jadeItemid then
+			return temp.GroupID
+		end
+	end
+end
+
+function LuaJadeEquipDataModel.GetLocalSealSingleDataBytabNum(sealId,tabnum)
+	if type(sealId) ~= "number" then
+ 		print "sealId must be a number!!!"
+ 	end
+
+ 	local targetTotalTable = this.GetSealTotalTableByTabNum(tabnum)
+
+ 	-- print("~~~~~~~~~~~~~~~~~~~~~~~~~the total table count: "..tostring(#targetTotalTable))
+
+	for i = 1, #targetTotalTable do 
+		local tempData = targetTotalTable[i]
+		if tempData.SealID == sealId then
+			return tempData
+		end	
+ 	end
+
+ 	return nil
+end
+
+---根据传入参数sealid，获取对应的JadeSeal本地数据
+function LuaJadeEquipDataModel.GetLocalSealSingleData(sealId)
+ 	if type(sealId) ~= "number" then
+ 		print "sealId must be a number!!!"
+ 	end
+
+ 	local targetTotalTable = this.GetCurrSelectedGroupTotalTable()
+
+	for i = 1, #targetTotalTable do 
+		local tempData = targetTotalTable[i]
+		if tempData.SealID == sealId then
+			return tempData
+		end	
+ 	end
+
+ 	return nil
+end
+
+function LuaJadeEquipDataModel.GetSealTotalTableByTabNum(tabnum)
+	if tabnum == 1 then
+		return Group1LocalTable
+		elseif tabnum == 2 then
+			return Group2LocalTable
+			elseif tabnum == 3 then
+				return Group3LocalTable
+				elseif tabnum == 4 then
+					return Group4LocalTable
+					elseif tabnum == 5 then
+						return Group5LocalTable
+						elseif tabnum == 6 then
+							return Group6LocalTable
+	end
+end
+
+---根据当前的组合类型，获取对应组合JadeSeal总表
+function LuaJadeEquipDataModel.GetCurrSelectedGroupTotalTable()
+
+	-- print("Curr tab: "..tostring(CurrSelectedGroupNum))
+
+	if CurrSelectedGroupNum == 1 then
+		return Group1LocalTable
+		elseif CurrSelectedGroupNum == 2 then
+			return Group2LocalTable
+			elseif CurrSelectedGroupNum == 3 then
+				return Group3LocalTable
+				elseif CurrSelectedGroupNum == 4 then
+					return Group4LocalTable
+					elseif CurrSelectedGroupNum == 5 then
+						return Group5LocalTable
+						elseif CurrSelectedGroupNum == 6 then
+							return Group6LocalTable
+	end
+end
+
+function LuaJadeEquipDataModel.GetSealTableByTabNum(tabnum)
+	local tempTable = {}
+	local returnTable = {}
+	local currPos = this.GetCurrEqPos()
+
+	if tabnum == 1 then
+		tempTable = Group1Lv1LocalTable
+		elseif tabnum == 2 then
+			tempTable = Group2Lv1LocalTable
+			elseif tabnum == 3 then
+				tempTable = Group3Lv1LocalTable
+				elseif tabnum == 4 then
+					tempTable = Group4Lv1LocalTable
+					elseif tabnum == 5 then
+						tempTable = Group5Lv1LocalTable
+						elseif tabnum == 6 then
+							tempTable = Group6Lv1LocalTable
+	end
+
+
+	for i = 1,#tempTable do
+		local temp = tempTable[i]
+
+		local eqPosCount = #temp.SealEquip
+		for j = 1,eqPosCount do
+			if currPos == temp.SealEquip[j] then
+				local index = #returnTable + 1
+				returnTable[index] = temp
+				break
+			end
+		end
+	end
+
+	return returnTable
+end
+
+---根据当前的组合类型，获取对应筛选过用于预览的JadeSeal表
+function LuaJadeEquipDataModel.GetCurrSelectedGroupTable()
+
+	local tempTable = {}
+	local returnTable = {}
+	local currPos = this.GetCurrEqPos()
+
+	if CurrSelectedGroupNum == 1 then
+		tempTable = Group1Lv1LocalTable
+		elseif CurrSelectedGroupNum == 2 then
+			tempTable = Group2Lv1LocalTable
+			elseif CurrSelectedGroupNum == 3 then
+				tempTable = Group3Lv1LocalTable
+				elseif CurrSelectedGroupNum == 4 then
+					tempTable = Group4Lv1LocalTable
+					elseif CurrSelectedGroupNum == 5 then
+						tempTable = Group5Lv1LocalTable
+						elseif CurrSelectedGroupNum == 6 then
+							tempTable = Group6Lv1LocalTable
+	end
+
+
+	for i = 1,#tempTable do
+		local temp = tempTable[i]
+
+		local eqPosCount = #temp.SealEquip
+		for j = 1,eqPosCount do
+			if currPos == temp.SealEquip[j] then
+				local index = #returnTable + 1
+				returnTable[index] = temp
+				break
+			end
+		end
+	end
+
+	return returnTable
+
+	-- local switch = {
+	-- 	[1] = function ()
+	-- 		return Group1LocalTable
+	-- 	end,
+
+	-- 	[2] = function ()
+	-- 		return Group2LocalTable
+	-- 	end,
+
+	-- 	[3] = function ()
+	-- 		return Group3LocalTable
+	-- 	end,
+
+	-- 	[4] = function ()
+	-- 		return Group4LocalTable
+	-- 	end,
+
+	-- 	[5] = function ()
+	-- 		return Group5LocalTable
+	-- 	end,
+
+	-- 	[6] = function ()
+	-- 		print "1111"
+	-- 		print("group 6 count: "..tonumber(#Group6LocalTable))
+	-- 		return Group6LocalTable
+	-- 	end
+	-- }
+
+	-- local f = switch[CurrSelectedGroupNum]
+
+	-- if (f) then
+	-- 	f()
+	-- else
+	-- 	print "Case default."
+	-- end
+end
+
+---初始化本地配表数据
+function LuaJadeEquipDataModel.LocalTableInit()
+
+	local XPlayerData = Hotfix.GetSingleMember("XAttributeMgr", "XPlayerData", true, false, false)
+	local prof =XPlayerData.BasicTypeID
+
+	-- print("PROF: "..prof)
+
+	if JadeGroupTable == nil then
+		JadeGroupTable = ReadJadeGroupTableTable("Table/JadeGroup")
+
+		local groupTableCount = #JadeGroupTable
+
+		for i=1,groupTableCount do 
+			local temp = JadeGroupTable[i]
+
+			local preTableCount = #GroupLv1PreTable
+			if preTableCount  == 0 then
+				GroupLv1PreTable[i] = temp
+			else
+				if GroupLv1PreTable[preTableCount].GroupID ~= temp.GroupID then
+					GroupLv1PreTable[preTableCount + 1] = temp
+				end
+			end
+
+		end
+	end
+
+	if JadeSealTable == nil then
+		JadeSealTable = ReadJadeSealTableTable("Table/JadeSeal")
+		
+		local sealTableCount = #JadeSealTable
+		print("total count: "..tostring(sealTableCount))
+
+		for i = 1, sealTableCount do
+			
+			local temp = JadeSealTable[i]
+
+			for i = 1,#temp.SealJob do
+				local job = temp.SealJob[i]
+				-- print("job: "..tostring(job))
+				-- local Matched = Hotfix.CallDocumentStaticMethod("XBagDocument",true,"IsProfMatched",job)
+				-- if Matched then
+				if prof == job then
+					local index = #CurrProfTotalSealTable + 1
+					CurrProfTotalSealTable[index] = temp
+					break
+				end
+				-- end
+			end
+		end
+
+		local currProfSealTableCount = #CurrProfTotalSealTable
+		print("curr pro count: "..tostring(currProfSealTableCount))
+		for i = 1,currProfSealTableCount do
+			local temp = CurrProfTotalSealTable[i]
+			this.doTableSwitch(temp,temp.SealNum)
+		end
+	end
+end
+function LuaJadeEquipDataModel.doTableSwitch(tableData, groupType)
+	
+	if type(groupType) ~= "number" then
+		return
+	end
+
+	local switch = {
+		[1] = function()	-- for case 1
+		 	this.insertTable(Group1LocalTable, tableData, Group1Lv1LocalTable)
+		end,
+
+		[2] = function()	-- for case 2
+			this.insertTable(Group2LocalTable, tableData, Group2Lv1LocalTable)
+		end,
+
+		[3] = function()	-- for case 3
+			this.insertTable(Group3LocalTable, tableData, Group3Lv1LocalTable)
+		end,
+
+		[4] = function()	-- for case 4
+			this.insertTable(Group4LocalTable, tableData, Group4Lv1LocalTable)
+		end,
+
+		[5] = function()	-- for case 5
+			this.insertTable(Group5LocalTable, tableData, Group5Lv1LocalTable)
+		end,
+
+		[6] = function()	-- for case 6
+			-- print "2333"
+			this.insertTable(Group6LocalTable, tableData, Group6Lv1LocalTable)
+		end
+	}
+
+	local f = switch[groupType]
+
+	if (f) then
+		f()
+	else
+		print "Case default."
+	end
+end
+function LuaJadeEquipDataModel.insertTable(theTable,tableData,theUnLockTable)
+	local theIndex = #theTable + 1
+ 	theTable[theIndex] = tableData
+
+ 	if tableData.SealLevel == 1 then
+		local theUnLockIndex = #theUnLockTable + 1
+		theUnLockTable[theUnLockIndex] = tableData 	
+ 	end
+end
+
+function LuaJadeEquipDataModel.GetMinTabNum()
+	if #Group1LocalTable > 0 then
+		return 1
+	end
+
+	if #Group2LocalTable > 0 then
+		return 2
+	end
+
+	if #Group3LocalTable > 0 then
+		return 3
+	end
+
+	if #Group4LocalTable > 0 then
+		return 4
+	end
+
+	if #Group5LocalTable > 0 then
+		return 5
+	end
+
+	if #Group6LocalTable > 0 then
+		return 6
+	end
+end
+
+----获取可显示的多少龙组合，一定要在读表全部结束后才能获取！！！！！！
+function LuaJadeEquipDataModel.GetInitSealTabeCount()
+	local count = 0
+	if #Group1LocalTable > 0 then
+		count = count + 1
+	end
+
+	if #Group2LocalTable > 0 then
+		count = count + 1
+	end
+
+	if #Group3LocalTable > 0 then
+		count = count + 1
+	end
+
+	if #Group4LocalTable > 0 then
+		count = count + 1
+	end
+
+	if #Group5LocalTable > 0 then
+		count = count + 1
+	end
+
+	if #Group6LocalTable > 0 then
+		count = count + 1
+	end
+
+	cacheNextTabNum = 1
+	print("the tab count: "..count)
+	return count
+end
+local cacheNextTabNum = 1
+function LuaJadeEquipDataModel.GetSealTabNumByNum()
+
+	-- print("cacheNextTabNum: "..tostring(cacheNextTabNum))
+	cacheNextTabNum = 1
+	-- print "----------------------------------------------------------"
+
+	if cacheNextTabNum == 1 then
+		if #Group1LocalTable > 0 then
+			-- print "11"
+			cacheNextTabNum = 2
+			return 1
+		else
+			-- print "22"
+			cacheNextTabNum = cacheNextTabNum +1
+		end
+
+	end
+
+	if cacheNextTabNum == 2 then
+		if #Group2LocalTable > 0 then
+			-- print "33"
+			cacheNextTabNum = 3
+			return 2
+		else
+			-- print "44"
+			cacheNextTabNum = cacheNextTabNum +1
+		end
+	end
+
+	if cacheNextTabNum == 3 then
+		if #Group3LocalTable > 0 then
+			-- print "55"
+			cacheNextTabNum = 4
+			return 3
+		else
+			-- print "66"
+			cacheNextTabNum = cacheNextTabNum +1
+		end
+	end
+
+	if cacheNextTabNum == 4 then
+		if #Group4LocalTable > 0 then
+			-- print "77"
+			cacheNextTabNum = 5
+			return 4
+		else
+			-- print "88"
+			cacheNextTabNum = cacheNextTabNum +1
+		end
+	end
+
+	if cacheNextTabNum == 5 then
+		if #Group5LocalTable > 0 then
+			-- print "99"
+			cacheNextTabNum = 6
+			return 5
+		else
+			-- print "1010"
+			cacheNextTabNum = cacheNextTabNum +1
+		end
+	end
+
+	if cacheNextTabNum == 6 then
+		if #Group6LocalTable > 0 then
+			-- print "1111"
+			cacheNextTabNum = 7
+			do return 6 end
+		else
+			cacheNextTabNum = cacheNextTabNum +1
+			print("can not find: SealNum 7")
+		end
+	end
+	
+end
+
+
+
+local leftNumTable = {}
+local rightNumTable = {}
+---比较从c#里取出的两个ulong类型的数字大小，ulua里不支持64位数字，所以转成string处理
+function LuaJadeEquipDataModel.HasEnough(ownNum, needNum)
+	
+	if type(ownNum) ~= "string" or type(needNum) ~= "string" then
+		print "ownNum or needNum type is not the string!!!"
+		return
+	end
+
+	local logicalNum = this.CompareULong(ownNum, needNum)
+
+	if logicalNum == 0 or logicalNum == 1 then
+		return true
+		elseif logicalNum == 2 then
+			return false
+			else
+				print("the logicalNum has wrong number: "..tostring(logicalNum))
+	end
+end
+---比较从c#里取出的两个ulong类型的数字大小，ulua里不支持64位数字，所以转成string处理
+---返回0表示左右相等，返回1表示左大于右，返回2表示右大于左
+function LuaJadeEquipDataModel.CompareULong(left,right)
+	
+	if type(left) ~= "string" or type(right) ~= "string" then
+		print "left or right type is not the string!!!"
+		return
+	end
+
+	leftNumTable = {}
+	rightNumTable = {}
+
+	local leftLen = string.len(left)
+	local rightLen = string.len(right)
+
+	if leftLen == rightLen then
+
+		for unit in string.gmatch(left, ".") do
+			table.insert(leftNumTable,unit)
+		end
+
+		for unit in string.gmatch(right, ".") do
+			table.insert(rightNumTable,unit)
+		end
+
+		for i = 1, leftLen do
+			local numL = tonumber(leftNumTable[i])
+			local numR = tonumber(rightNumTable[i])
+
+			if numL == numR then
+				if i == leftLen then
+					return 0
+				end
+			else
+				-- return numL > numR
+				if numL > numR then
+					return 1
+					elseif numL < numR then
+						return 2
+				end
+			end
+		end
+
+	else
+		-- return leftLen > rightLen
+		if leftLen > rightLen then
+			return 1
+			elseif leftLen < rightLen then
+				return 2
+		end
+	end
+end
+ 
+local hasSeal = false
+local needShowGroupNum = 2
+local CurrActiveSealId = 0
+local lastEpPos = 0
+local EpPosAndSealIDTable = {0,0,0,0,0,0,0,0,0,0}
+
+ function LuaJadeEquipDataModel.HasSealIdAndGroupNum()
+
+ 	-- print("当前装备位置： "..tostring(CurrEquipPos))
+ 	-- print("当前装备是否有组合id： "..tostring(EpPosAndSealIDTable[CurrEquipPos]))
+ 	-- print("当前装备是否有组合id： "..tostring(theGroupBodyEqIdList[CurrEquipPos])) 	
+
+ 	local ActiveSealId = theGroupBodyEqIdList[CurrEquipPos]--EpPosAndSealIDTable[CurrEquipPos]
+	local hasSealId = false
+
+ 	if ActiveSealId ~= nil and ActiveSealId ~= 0 then
+		hasSealId = true
+ 	end
+
+ 	return hasSealId,needShowGroupNum,ActiveSealId
+ 	-- return hasSeal,needShowGroupNum,CurrActiveSealId
+ end
+
+
+function LuaJadeEquipDataModel.GroupLbShow(SealId)
+	local theName = this.GetTheSealName(SealId)
+	print("组合名字："..theName)
+end
+
+------------<获取当前服务器传来的SealId来显示组合名字，仅LuaJadeEquipDataModel内部可用!!!!!!>--------------------------
+function LuaJadeEquipDataModel.GetTheSealName(SealId)
+
+	if CurrEquipPos ~= nil then
+		-- print("cur eqPos: "..tostring(CurrEquipPos))
+		lastEpPos = CurrEquipPos
+	end
+
+	if SealId == 0 then
+		CurrSelectedGroupNum = this.GetMinTabNum()
+		hasSeal = false
+		needShowGroupNum = this.GetMinTabNum()
+		CurrActiveSealId = 0
+
+		EpPosAndSealIDTable[CurrEquipPos] = 0
+		return "未激活组合"
+	end
+	
+	-- print("the total table count: "..tostring(#CurrProfTotalSealTable))
+	for i = 1,#CurrProfTotalSealTable do
+		local tempdata = CurrProfTotalSealTable[i]
+		if tempdata.SealID == SealId then
+
+			CurrSelectedGroupNum = tempdata.SealNum
+
+			hasSeal = true
+			needShowGroupNum = tempdata.SealNum
+			CurrActiveSealId = SealId
+
+			EpPosAndSealIDTable[CurrEquipPos] = SealId
+			
+			return tempdata.SealName
+		end
+	end
+
+	CurrSelectedGroupNum = this.GetMinTabNum()
+	hasSeal = false
+	needShowGroupNum = this.GetMinTabNum()
+	CurrActiveSealId = 0
+	EpPosAndSealIDTable[CurrEquipPos] = 0
+	return "找不到对应的id: "..tostring(SealId)
+end
+
+
+local CurrJadeSealID = 0
+function LuaJadeEquipDataModel.GetCurrJadeSealID()
+	return CurrJadeSealID
+end
+
+
+---------------------------------------------------------work request---------------------------------------------------------
+---镶嵌龙玉请求协议--
+function LuaJadeEquipDataModel.ReqPutOnJade(jadeUid)
+
+	if type(jadeUid) ~= "string" then		--龙玉uid
+		print "jadeUid must be string!!!"
+		return
+	end
+	
+	-- local slotPos = Hotfix.GetGetDocumentLongMember("JadeDocument","selectedSlotIndex",true,true)		--c# int
+	-- this.ArgOperation(0,jadeUid,slotPos)
+
+ 	this.ArgOperation({0,jadeUid,CurrSelectedSlot})
+	
+end
+
+---卸下龙玉请求协议---
+function LuaJadeEquipDataModel.ReqTakeOffJade(slotIndex)
+	if type(slotIndex) ~= "number" then			--龙玉镶嵌槽位
+		print "slotIndex must be number!!!"
+	end
+
+	this.ArgOperation({1,"0",slotIndex})  --卸下龙玉的时候，不用传龙玉的uid，只用传槽位index和当前装备的uid就可以了
+end
+
+---升级龙玉请求协议---
+function LuaJadeEquipDataModel.ReqUpdateJade(slot, addLv)
+	if type(slot) ~= "number" or type(addLv) ~= "number" then
+		print "slot or addLv must be number!!!"
+	end
+
+	this.ArgJadeCompose(1,slot,addLv)
+end
+
+
+
+
+
+---------------------------------------------------------basic Request and Response---------------------------------------------------------
+function LuaJadeEquipDataModel.ArgGetJadeSealSingleInfo()
+	-- 2424
+
+	this.RefreshCurrEquip()
+	if CurrEquipUidStr == "0" then
+		print "now have not any bodyEquip Item"
+		return
+	end
+
+	local msg = XJadeEquipNew_pb.GetJadeSealAllInfoArg()
+
+	print("CurrEquipPos: "..tostring(CurrEquipPos))
+	msg.equipPos = CurrEquipPos		--和服务器约定，-1，返回全部bodyEq的sealid，0~9返回对应装备部位的sealid
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+
+		print "do send rpc 2424"
+		Hotfix.SendLuaRPC(2424, TestProtol.data, this.ResGetJadeSealAllInfo, this.ResErr)
+	end
+
+end
+
+--获取全部组合信息请求
+function LuaJadeEquipDataModel.ArgGetJadeSealAllInfo()
+	-- 2424
+
+	this.RefreshCurrEquip()
+	if CurrEquipUidStr == "0" then
+		print "now have not any bodyEquip Item"
+		return
+	end
+
+	-- print("to do XJadeEquipNew_pb.GetJadeSealAllInfoArg")
+
+	local msg = XJadeEquipNew_pb.GetJadeSealAllInfoArg()
+
+	msg.equipPos = -1		--和服务器约定，-1，返回全部bodyEq的sealid，0~9返回对应装备部位的sealid
+
+	-- print("eqPos: "..tostring(msg.equipPos))
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+
+		print "do send rpc 2424"
+		Hotfix.SendLuaRPC(2424, TestProtol.data, this.ResGetJadeSealAllInfo, this.ResErr)
+	end
+
+end
+--获取全部组合信息请求返回
+function LuaJadeEquipDataModel.ResGetJadeSealAllInfo(data,length)
+	print "Response Ok"
+
+	local  msg = XJadeEquipNew_pb.GetJadeSealAllInfoRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		
+		-- print("msg: "..type(msg))
+		-- for k,v in pairs(msg) do
+		-- 	print "---------------------------------------------"
+		-- 	print("key: "..tostring(k))
+		-- 	print("value: "..tostring(v))
+			
+		-- 	local vtype = type(v)
+			
+		-- 	print("value type: "..vtype)
+		-- 	if vtype == "table" then
+		-- 		for x,y in pairs(v) do
+		-- 			print "****************************"
+		-- 			print("x: "..tostring(x))
+		-- 			print("y: "..tostring(y))
+		-- 		end
+		-- 	end
+			
+		-- end
+
+		-- print("errorcode is: "..tostring(msg.result))
+		-- if msg.result ~= 0 then
+		-- 	-- exclude INVALID_REQUEST
+		-- 	if msg.result ~= ERR_INVALID_REQUEST then
+		-- 		Hotfix.LuaShowSystemTipErrCode(msg.result)
+		-- 	end
+		-- end
+
+		print("errorCode: "..tostring(msg.errorCode))
+
+		-- print("jadeSelInfo Arr type: "..tostring(type(msg.jadeSealInfo)))
+
+		-- print("jadeSelInfo count: "..tostring(#msg.jadeSealInfo ))
+
+		for i = 1,#msg.jadeSealInfo do 
+			local temp = msg.jadeSealInfo[i]
+			print("eqPos: "..tostring(temp.equipPos))
+			print("jadeSealID: "..tostring(temp.jadeSealID))
+			theGroupBodyEqIdList[temp.equipPos] = temp.jadeSealID
+		end	
+
+	else
+		print("restart reply msg is nil")
+	end
+
+
+	if HotfixJadeEquipHandler ~= nil then
+
+		local thetargetName = ""
+
+		if msg ~= nil then
+
+			if #msg.jadeSealInfo == 0 then
+				thetargetName = this.GetTheSealName(0)
+			else
+				thetargetName = this.GetTheSealName(theGroupBodyEqIdList[CurrEquipPos])
+
+				-- local bag = Hotfix.GetDocumentMember("XBagDocument", "EquipBag", true, true)
+				-- local bag_arr = PrivateExtensions.GetPrivateField(bag,"Bag")
+				-- if bag_arr ~= nil then
+
+				-- 	ArrayList = luanet.import_type("System.Collections.ArrayList")
+				-- 	local arr = ArrayList()
+				-- 	arr:AddRange(bag_arr)
+					
+				-- 	local index = 0
+				-- 	for i =0,bag_arr.Length - 1 do
+				-- 		if arr[i] ~= nil then
+				-- 			if arr[i].itemID == CurrSelectedEquip.itemID then
+				-- 				index = i
+				-- 				break
+				-- 			end
+				-- 		end
+				-- 	end
+
+				-- 	local findtheSealId = false
+				-- 	for i = 1,#theGroupBodyEqIdList do
+				-- 		if i == index then
+				-- 			findtheSealId = true
+				-- 			local theSealId = theGroupBodyEqIdList[i]
+				-- 			thetargetName = this.GetTheSealName(theSealId)
+				-- 		end
+				-- 	end
+
+				-- 	if not findtheSealId then
+				-- 		thetargetName = this.GetTheSealName(0)
+				-- 	end
+					
+				-- else
+				-- 	print "正常逻辑走不到这里！！！ please checkout"
+				-- 	thetargetName = this.GetTheSealName(0)
+				-- end
+
+			end
+		else
+			thetargetName = this.GetTheSealName(0)
+		end
+
+		HotfixJadeEquipHandler.RefreshSelectedName(thetargetName)		
+	end
+end
+
+function LuaJadeEquipDataModel.GetCurrEqPos()
+	local bag = Hotfix.GetDocumentMember("XBagDocument", "EquipBag", true, true)
+	local bag_arr = PrivateExtensions.GetPrivateField(bag,"Bag")
+	if bag_arr ~= nil then
+
+		ArrayList = luanet.import_type("System.Collections.ArrayList")
+		local arr = ArrayList()
+		arr:AddRange(bag_arr)
+		
+		local index = 0
+		for i =0,bag_arr.Length - 1 do
+			if arr[i] ~= nil then
+				if arr[i].itemID == CurrSelectedEquip.itemID then
+					index = i
+					break
+				end
+			end
+		end
+
+		return index
+	end
+end
+
+
+
+local cacheOpType = 0
+local cacheSlotPos = 0
+--龙玉操作基本请求
+--OperationType 为0表示穿上
+--OperationType 为1表示脱掉
+function LuaJadeEquipDataModel.ArgOperation(theTable)--(opType，jadeUid, slotPos)
+
+	local opType = theTable[1]
+	local jadeUid = theTable[2]
+	local slotPos = theTable[3]
+
+	-- print("type: "..tostring(opType))
+	-- print("jadeUid: "..tostring(jadeUid))
+	-- print("slotPos: "..tostring(slotPos))
+
+	-- print("------------")
+	-- print("1 type: "..type(opType))
+
+	-- if type(opType) ~= "number" then		--操作类型
+	-- 	print "opType must be number!!!"
+	-- 	return
+	-- end
+
+	-- if type(jadeUid) ~= "string" then		--龙玉uid
+	-- 	print "jadeUid must be string!!!"
+	-- 	return
+	-- end
+
+	-- if type(slotPos) ~= "number" then			--龙玉镶嵌槽位
+	-- 	print "slotPos must be number!!!"
+	-- 	return
+	-- end
+
+	-- print "1"
+
+	local msg = XJadeEquipNew_pb.JadeOperationNewArg()
+	msg.OperationType = opType
+
+	-- print "2"
+
+	local currEquipUidStr = Hotfix.GetGetDocumentLongMember("JadeDocument","selectedEquip",true,true)		--c# string
+	msg.EquipUniqueId = currEquipUidStr
+
+	-- print "3"
+
+	if jadeUid ~= "0" then 			---脱龙玉的时候，龙玉id可以不填写
+		msg.JadeUniqueId = jadeUid
+	end
+
+	-- print "4"
+	msg.Pos = slotPos
+
+	cacheOpType = opType
+	cacheSlotPos = slotPos
+
+	-- print "5"
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+
+		print "do send rpc 46652"
+		Hotfix.SendLuaRPC(40839, TestProtol.data, this.ResOperation, this.ResErr)
+	end
+end
+--龙玉操作请求回调
+function LuaJadeEquipDataModel.ResOperation(data,length)
+	print "Response Ok"
+
+	local  msg = XJadeEquipNew_pb.JadeOperationNewRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		-- print("msg: "..type(msg))
+		-- for k,v in pairs(msg) do
+		-- 	print("key: "..tostring(k))
+		-- 	print("value: "..tostring(v))
+		-- end
+
+		-- print(msg)
+		-- print("errorcode is: "..tostring(msg.result))
+		-- if msg.result ~= 0 then
+		-- 	-- exclude INVALID_REQUEST
+		-- 	if msg.result ~= ERR_INVALID_REQUEST then
+		-- 		Hotfix.LuaShowSystemTipErrCode(msg.result)
+		-- 	end
+		-- end
+	else
+		print("restart reply msg is nil")
+	end
+
+	this.RefreshCurrEquip()
+
+	print("errorcode: "..tostring(msg.ErrorCode))
+	if msg.ErrorCode ~= 0 then
+		-- local erroType = Hotfix.GetEnumType("KKSG.ErrorCode",tostring(msg.ErrorCode))	
+		Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",msg.ErrorCode,"fece00")
+	end
+
+
+	print("jadeSealID: "..tostring(msg.jadeSealID))
+
+
+
+	local hasSeal = false
+	if msg.jadeSealID ~= nil then
+		-- this.GroupLbShow(msg.jadeSealID)
+		hasSeal = true
+
+		theGroupBodyEqIdList[CurrEquipPos] = msg.jadeSealID
+	else
+		this.ArgGetJadeSealSingleInfo()
+	end
+
+	local theName = ""
+	if hasSeal then
+		theName = this.GetTheSealName(msg.jadeSealID)
+	else
+		theName = this.GetTheSealName(0)
+	end
+
+	if HotfixJadeEquipHandler ~= nil then
+		HotfixJadeEquipHandler.RefreshSelectedName(theName)	
+		
+		HotfixJadeEquipHandler.RefreshEqPos(CurrEquipPos)	--非常重要，用于处理骚操作，全元素龙玉策划要求写死的需求
+		-- if cacheOpType == 0 then
+			HotfixJadeEquipHandler.ShaoCaoZuo(cacheSlotPos)
+		-- end
+		
+		HotfixJadeEquipHandler.RefreshEquipListRedPoint()
+	end
+
+	if LuaJadeGroupDlgFrame ~= nil then
+
+		LuaJadeGroupDlgFrame.RefreshAllJadeSlot()	--刷新龙玉组合界面，龙玉槽位当前镶嵌情况
+		LuaJadeGroupDlgFrame.RefreshScrollViewAfterResOperation()
+
+		-- 优化体验不频繁的切页签刷整个界面了
+		-- LuaJadeGroupDlgFrame.RefreshSealAbout()	
+	end
+end
+
+
+local JadeInfoSlot = 0
+
+--龙玉合成请求--
+--ComposeType 1为合成升级请求--
+function LuaJadeEquipDataModel.ArgJadeCompose(CoType,slot,addLv)
+	print("send rpc")
+
+	if type(CoType) ~= "number" then		--合成类型
+		print "opType must be number!!!"
+		return
+	end
+
+	if type(slot) ~= "number" then			--龙玉镶嵌槽
+		print "jadeUid must be number!!!"
+		return
+	end
+
+	if type(addLv) ~= "number" then			--龙玉目标等级
+		print "addLv must be number!!!"
+		return
+	end
+
+	JadeInfoSlot = slot
+	print("slot: "..slot)
+
+	local msg = XJadeEquipNew_pb.JadeComposeNewArg()
+	msg.SlotPos = slot
+	msg.ComposeType = CoType
+
+	this.RefreshCurrEquip()
+	-- local currEquipUidStr = Hotfix.GetGetDocumentLongMember("JadeDocument","selectedEquip",true,true)		--string
+	-- print("curr id: "..currEquipUidStr)
+	msg.EquipUniqueId = CurrEquipUidStr							
+
+	msg.AddLevel = addLv
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+
+		print "do send rpc 46652"
+		Hotfix.SendLuaRPC(46652, TestProtol.data, this.ResCompose, this.ResErr)
+	end
+end
+--龙玉合成请求返回--
+function LuaJadeEquipDataModel.ResCompose(data,length)
+
+	print "Response Ok"
+
+	local  msg = XJadeEquipNew_pb.JadeComposeNewRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		-- print("errorcode is: "..tostring(msg.result))
+		-- if msg.result ~= 0 then
+		-- 	-- exclude INVALID_REQUEST
+		-- 	if msg.result ~= ERR_INVALID_REQUEST then
+		-- 		Hotfix.LuaShowSystemTipErrCode(msg.result)
+		-- 	end
+		-- end
+	else
+		print("restart reply msg is nil")
+	end
+
+
+	print("errorcode: "..tostring(msg.ErrorCode))
+	print("jadeSealID: "..tostring(msg.jadeSealID))
+
+	local hasSeal = false
+	if msg.jadeSealID ~= nil then
+		theGroupBodyEqIdList[CurrEquipPos] = msg.jadeSealID
+		this.GroupLbShow(msg.jadeSealID)
+		hasSeal = true
+	end
+
+	if HotfixJadeEquipHandler ~= nil then
+		local theName = ""
+		if hasSeal then
+			theName = this.GetTheSealName(msg.jadeSealID)
+		else
+			theName = this.GetTheSealName(0)
+		end
+		
+		HotfixJadeEquipHandler.RefreshSelectedName(theName)	
+		
+		HotfixJadeEquipHandler.RefreshEqPos(CurrEquipPos)	--非常重要，用于处理骚操作，全元素龙玉策划要求写死的需求
+		
+		HotfixJadeEquipHandler.ShaoCaoZuo(cacheSlotPos)
+
+		HotfixJadeEquipHandler.RefreshEquipListRedPoint()
+	end
+
+	local ComposeHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_JadeComposeFrameHandler", true, true, false)
+	if ComposeHandler ~= nil then
+
+		this.RefreshCurrEquip()
+
+		print("curEq itemid: "..CurrSelectedEquip.itemID)
+		print("slot: "..JadeInfoSlot)
+
+		local jadeItem = CurrSelectedEquip.jadeInfo.jades[JadeInfoSlot]
+
+		if jadeItem ~= nil then
+
+			local jadeTable = Hotfix.GetDocumentMember("JadeDocument","jadeTable",true,false)
+
+			if jadeTable ~= nil then
+				print("jade itemid: "..tostring(jadeItem.itemID))
+				local jadeRowData = PublicExtensions.CallPublicMethod(jadeTable,"GetByJadeID",jadeItem.itemID)
+
+				print("jadeRowData.JadeLevel: "..jadeRowData.JadeLevel)
+				PublicExtensions.CallPublicMethod(ComposeHandler,"ShowUi",JadeInfoSlot,jadeItem.itemID,jadeRowData.JadeLevel,0)
+			end
+
+			if HotfixJadeEquipHandler ~= nil then
+				print "do refresh"
+				HotfixJadeEquipHandler.RefreshSelectJadeInfoFrame(JadeInfoSlot)
+			end			
+		end		
+	end
+end
+
+
+--当前选中装备，一键镶嵌龙玉请求
+function LuaJadeEquipDataModel.ArgInlayAllJade()
+
+	this.RefreshCurrEquip()
+
+	print("currEq uid: "..currEquipUidStr)
+
+	if CurrEquipUidStr ~= "0" then
+		local msg = XJadeEquipNew_pb.InlayAllJadeArg()
+		msg.uid = CurrEquipUidStr
+
+		local pb_data = msg:SerializeToString()
+		TestProtol.data = pb_data
+		if TestProtol.data ~= nil then
+
+			print "do send rpc 58864"
+			Hotfix.SendLuaRPC(58864, TestProtol.data, this.ResInlayAllJade, this.ResErr)
+		end
+	end
+
+end
+
+function LuaJadeEquipDataModel.ResInlayAllJade(data,length)
+
+	print "Response Ok"
+
+	local  msg = XJadeEquipNew_pb.InlayAllJadeRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		-- print("errorcode is: "..tostring(msg.result))
+		-- if msg.result ~= 0 then
+		-- 	-- exclude INVALID_REQUEST
+		-- 	if msg.result ~= ERR_INVALID_REQUEST then
+		-- 		Hotfix.LuaShowSystemTipErrCode(msg.result)
+		-- 	end
+		-- end
+	else
+		print("restart reply msg is nil")
+	end
+
+
+	print("errorcode: "..tostring(msg.errorCode))
+	
+	print("jadeSealID: "..tostring(msg.jadeSealID))
+
+
+
+	local hasSeal = false
+	if msg.jadeSealID ~= nil then
+		-- this.GroupLbShow(msg.jadeSealID)
+		hasSeal = true
+
+		theGroupBodyEqIdList[CurrEquipPos] = msg.jadeSealID
+	else
+		this.ArgGetJadeSealSingleInfo()
+	end
+
+	local theName = ""
+	if hasSeal then
+		theName = this.GetTheSealName(msg.jadeSealID)
+	else
+		theName = this.GetTheSealName(0)
+	end
+	
+	
+	if HotfixJadeEquipHandler ~= nil then
+		HotfixJadeEquipHandler.RefreshSelectedName(theName)	
+		
+		HotfixJadeEquipHandler.RefreshEqPos(CurrEquipPos)	--非常重要，用于处理骚操作，全元素龙玉策划要求写死的需求
+		-- if cacheOpType == 0 then
+			HotfixJadeEquipHandler.ShaoCaoZuo(cacheSlotPos)
+		-- end
+		
+		HotfixJadeEquipHandler.RefreshEquipListRedPoint()
+	end
+	
+	-- this.ArgGetJadeSealAllInfo()
+end
+
+
+--龙玉购买请求
+function LuaJadeEquipDataModel.BuyJadeSlotClick(go)
+	-- 37588
+end
+--龙玉购买请求返回
+function LuaJadeEquipDataModel.ResComposeBuyJadeSlot(data,length)
+	print "Response Ok"
+end
+
+
+
+--龙玉脱光请求
+function LuaJadeEquipDataModel.TakeOffAllJadeClick(go)
+	-- 33760
+end
+--龙玉脱光请求返回
+function LuaJadeEquipDataModel.ResComposeTakeOffAllJade(data,length)
+	print "Response Ok"
+end
+
+
+
+function LuaJadeEquipDataModel.ResErr()
+	-- body
+end
+
+---老龙玉c#镶嵌卸载协议后，服务器会发一条ptc的lua协议
+function LuaJadeEquipDataModel.OperationOldAfterHandler( msg )
+	local operatorType = msg.operatorType
+
+	local jadeSlot = msg.jadeSlot
+
+	print("type: "..operatorType)
+	print("slot: "..jadeSlot)
+end

@@ -1,0 +1,78 @@
+--
+--  Lua520DayDocument.lua
+--  Created by alexpeng on 2017/04/26 14:06:00
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+
+Lua520DayDocument = {}
+local this = Lua520DayDocument
+
+local timeAll  = 0
+local timestamp = 0
+local offset = 0
+
+local m_ActID = 9
+local m_SysID = 847
+
+local hour = 12
+local day = 0
+
+ValentClicked = false
+ValentREDPOINT = false
+local isAttach = false
+
+function Lua520DayDocument.EnterScene()
+	if not isAttach then
+		Hotfix.AttachSysRedPointRelative(600, m_SysID, false)
+		isAttach = true
+	end
+end
+
+-- 这个模块只有520那天会用到
+function Lua520DayDocument.CalAllByTable( ... )
+	hour = Hotfix.GetGlobalString("ValentDuration")
+	if hour == nil then 
+		print("<color=red>******* error hour is nil*******</color>")
+		timeAll = 1000
+	else
+		timeAll = (day * 24 + hour) * 3600
+	end
+end
+
+
+
+function  Lua520DayDocument.OnTimeChange(msg)
+	--print("<color=blue>actid is: "..tostring(table.getn(msg.actid)).."</color>")
+	if timeAll == 0 then
+		this.CalAllByTable()
+	end
+
+	local actids = msg.actid
+	for i=1,#actids,1 do
+		if tonumber(actids[i]) == m_ActID then
+			if msg.offsettime[i] ~=nil then
+			  offset = msg.offsettime[i]
+			else
+				offsettime = 0
+			end
+
+			timestamp = math.ceil(Time.time) 
+			--print("offsettime is: "..tostring(offset).." left:"..tostring(timestamp))
+			ValentREDPOINT = true
+			Hotfix.ForceUpdateSysRedPointImmediately(m_SysID, ValentREDPOINT and not ValentClicked)
+			break
+		end
+	end
+end
+
+
+
+function Lua520DayDocument.GetTimeleft( ... )
+	if timestamp == 0 then
+		print("<color=yellow>******* 520 data not initial *******</color>")
+	end
+	local now = math.ceil(Time.time)
+	--print("timeAll: "..tostring(timeAll).." now: "..tostring(now).." offset:"..tostring(offset).." timestamp: "..tostring(timestamp))
+	return timeAll  - now - offset + timestamp
+end

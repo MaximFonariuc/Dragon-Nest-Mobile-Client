@@ -1,0 +1,473 @@
+--
+--  Lua520FestivityDoc.lua
+--  Created by Declanchen on 2018/04/17 15:06:00
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require("LuaFestivityLoveTableTable.lua")
+require("LuaFestivityLoveRankRewardTable.lua")
+require("LuaFestivityLovePersonRewardTable.lua")
+require("XLoveFestivity_pb.lua")
+
+--520庆典大会的业务逻辑模型
+---@class Lua520FestivityDoc
+Lua520FestivityDoc = {}
+local this = Lua520FestivityDoc
+
+local festivityFrame = nil
+
+local festivityTable = nil
+local rankRewardTable = nil
+local personRewardTable = nil
+
+XSys_520Festivity = 486		--520庆典大会的系统id
+
+local m_OperatingActivityDlg = nil
+
+
+local theRedBagFrame = nil
+function Lua520FestivityDoc.SetRedBagFrame(theFrame)
+	theRedBagFrame = theFrame
+end
+function Lua520FestivityDoc.UnLoadRedBagFrame()
+	theRedBagFrame = nil
+end
+
+function Lua520FestivityDoc.RefreshRedPoint(RedState)
+	Hotfix.ForceUpdateSysRedPointImmediately(XSys_520Festivity, RedState)
+	if m_OperatingActivityDlg ~= nil then
+		m_OperatingActivityDlg.RefreshRedPoint()
+	end
+end
+
+
+function Lua520FestivityDoc.EnterScene()
+	this.InitLocalTable()
+
+	this.ArgFestivityInfo()
+end
+
+function Lua520FestivityDoc.Detach()
+    festivityFrame = nil
+
+    theRedBagFrame = nil
+
+    LuaUIManager.Instance:Destroy("UI/GameSystem/520FestivityRedPackageDlg")
+	
+    LuaUIManager.Instance:Destroy("UI/GameSystem/UI_hongbaoForLua")
+end
+
+function Lua520FestivityDoc.SetOperatingActivityDlg(dlg)
+	m_OperatingActivityDlg = dlg
+end
+
+function Lua520FestivityDoc.InitLocalTable()
+	print"11"
+	festivityTable = ReadFestivityLoveTableTable("Table/FestivityLoveTable")
+	print"22"
+	rankRewardTable = ReadFestivityLoveRankRewardTable("Table/FestivityLoveRankReward")
+	print"33"
+	personRewardTable = ReadFestivityLovePersonRewardTable("Table/FestivityLovePersonReward")
+end
+
+--获取520庆典总表
+function Lua520FestivityDoc.GetFestivityTable()
+	return festivityTable
+end
+
+--获取520庆典排名奖励表
+function Lua520FestivityDoc.GetRankRewardTable()
+    return rankRewardTable
+end
+
+--获取520庆典个人奖励表
+function Lua520FestivityDoc.GetPersonRewardTable()
+    return personRewardTable
+end
+
+
+function Lua520FestivityDoc.SetFestivityFrame(theFrame)
+    festivityFrame = theFrame
+end
+function Lua520FestivityDoc.UnloadFestivityFrame()
+    festivityFrame = nil
+end
+
+
+---------------------------------------------------------work request---------------------------------------------------------
+
+local myRank = nil
+--请求520庆典恋爱值排行榜
+function Lua520FestivityDoc.ArgLoveRankList()
+
+	local msg = XLoveFestivity_pb.ClientQueryRankListArg()
+
+	msg.RankType = 42
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+		print "do send rpc 39913"
+		Hotfix.SendLuaRPC(39913, TestProtol.data, this.ResLoveRankList, this.ResErr)
+	end
+end
+
+local theRankTable = nil
+function Lua520FestivityDoc.ResLoveRankList(data,length)
+	print "Response Ok"
+
+	local  msg = XLoveFestivity_pb.ClientQueryRankListRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+	else
+		print("restart reply msg is nil")
+	end
+
+	theRankTable = msg.RankList.RankData
+	--print("the rank data count: "..#theRankTable)
+	--for i = 1, #theRankTable do
+	--	print("theRank: "..theRankTable[i].Rank)
+	--end
+
+
+	myRank = msg.RoleRankData.Rank
+	print("my rank state: "..myRank)
+
+	if festivityFrame ~= nil then
+		festivityFrame.refreshAboutRankInfo(myRank, theRankTable)
+	end
+
+end
+
+function Lua520FestivityDoc.GetRankTable()
+	return theRankTable
+end
+
+function Lua520FestivityDoc.GetMyRankValue()
+	return myRank
+end
+
+
+
+
+--请求520庆典基础数据，个人恋爱值、全民福利宝箱领取情况等
+function Lua520FestivityDoc.ArgFestivityInfo()
+	this.ArgOperation520Festival(4)
+end
+
+local theDonateType = 0
+local isDonateArg = false
+--玫瑰贡献请求
+function Lua520FestivityDoc.ArgDonateLoveItem(itemid)
+
+	-- local theType = 1
+
+	if itemid == 3550 then
+		theDonateType = 1
+	elseif itemid == 3551 then
+		theDonateType = 2
+	end
+
+	isDonateArg = true
+	this.ArgOperation520Festival(theDonateType)
+end
+
+
+--福利宝箱领取请求
+function Lua520FestivityDoc.ArgGetBoxReward(boxNum)
+    local msg = XLoveFestivity_pb.Operation520FestivalArg()
+
+    --type 1為普通捐獻，2為特殊捐獻，3為領取寶箱，4為獲取info信息
+    msg.type = 3
+    msg.num = boxNum
+
+    local pb_data = msg:SerializeToString()
+    TestProtol.data = pb_data
+    if TestProtol.data ~= nil then
+
+        print "do send rpc 17971"
+        Hotfix.SendLuaRPC(17971, TestProtol.data, this.ResOperation520Festival, this.ResErr)
+    end
+end
+
+
+
+
+local redPacketType = nil
+local redPacketPlayerName = nil
+local redPacketNum = nil
+local headpic = nil
+
+--紅包獎勵ptc彈窗
+function Lua520FestivityDoc.RedBagPtc(msg)
+
+	--type 為0的話，每日固定紅包雨
+	redPacketType = msg.type
+	print("type: "..redPacketType)
+
+
+	if theRedBagFrame == nil and redPacketType == 2 then
+
+		redPacketPlayerName = msg.name
+		print("name: "..redPacketPlayerName)
+
+		redPacketNum = msg.num
+		print("num: "..redPacketNum)
+
+		headpic = msg.headpic
+		print("headpic: "..headpic)
+
+		-- print("红包界面")
+		LuaUIManager.Instance:Load("UI/GameSystem/520FestivityRedPackageDlg")
+	elseif redPacketType == 1 then
+		-- print("红包雨特效")
+        LuaUIManager.Instance:Load("UI/GameSystem/UI_hongbaoForLua")
+		--播放紅包雨特效
+	end
+
+end
+
+function Lua520FestivityDoc.GetHeadPicSpriteName()
+	return headpic
+end
+
+function Lua520FestivityDoc.GetRedPacketPlayerName()
+	return redPacketPlayerName
+end
+
+function Lua520FestivityDoc.GetredPacketType()
+	return redPacketType
+end
+
+
+function Lua520FestivityDoc.ArgOpen520FestivityRedPacket()
+	local msg = XLoveFestivity_pb.Open520FestivityRedPacketArg()
+
+	msg.num = redPacketNum
+	msg.name = redPacketPlayerName
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+
+		print "do send rpc 57488"
+		Hotfix.SendLuaRPC(57488, TestProtol.data, this.ResOpen520FestivityRedPacket, this.ResErr)
+	end
+end
+function Lua520FestivityDoc.ResOpen520FestivityRedPacket(data,length)
+	print "Response Ok"
+
+	local  msg = XLoveFestivity_pb.Open520FestivityRedPacketRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+	else
+		print("restart reply msg is nil")
+	end
+
+	local theErrorCode = msg.errorcode
+	print("the errorCode: "..theErrorCode)
+
+	if theErrorCode == 9 or theErrorCode == 12 then
+
+		LuaUIManager.Instance:Hide("UI/GameSystem/520FestivityRedPackageDlg")
+
+		if theErrorCode == 9 then
+			--GetGlobalString
+			local tips = Hotfix.GetStringTable("redPacketTips1")
+			Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",tips,"fece00")
+
+		elseif theErrorCode == 12 then
+			local tips = Hotfix.GetStringTable("redPacketTips2")
+			Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",tips,"fece00")
+		end
+
+		return
+	end
+
+	local IsStillHavePacket = msg.stillHavePacket
+	print("still havePacke: "..tostring(IsStillHavePacket))
+
+	if IsStillHavePacket then
+		redPacketPlayerName = msg.name
+		print("the redPacket Name: "..msg.name)
+
+		redPacketNum = msg.num
+		print("the redPacket num: "..msg.num)
+
+		if theRedBagFrame ~= nil then
+			theRedBagFrame.RefreshUI()
+		end
+	else
+		LuaUIManager.Instance:Hide("UI/GameSystem/520FestivityRedPackageDlg")
+	end
+end
+
+
+
+---------------------------------------------------------basic Request and Response---------------------------------------------------------
+function Lua520FestivityDoc.ArgOperation520Festival( theType )
+	local msg = XLoveFestivity_pb.Operation520FestivalArg()
+
+	--type 1為普通捐獻，2為特殊捐獻，3為領取寶箱，4為獲取info信息
+	msg.type = theType
+
+	local pb_data = msg:SerializeToString()
+	TestProtol.data = pb_data
+	if TestProtol.data ~= nil then
+
+		print "do send rpc 17971"
+		Hotfix.SendLuaRPC(17971, TestProtol.data, this.ResOperation520Festival, this.ResErr)
+	end
+end
+
+local AllServiceLoveValue = 0
+local theBoxGetStateTable = nil
+local MyCurLoveValue = 0
+function Lua520FestivityDoc.ResOperation520Festival(data,length)
+	print "Response Ok"
+
+	local  msg = XLoveFestivity_pb.Operation520FestivalRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+	else
+		print("restart reply msg is nil")
+	end
+
+	print("errorcode: "..msg.errorcode)
+    if msg.errorcode ~= 0 then
+        return
+    end
+
+	theBoxGetStateTable = msg.data.alreadyGet
+	--print("box count: "..#theBoxGetStateTable)
+
+	if isDonateArg then
+		local theAddLoveValue = msg.data.loveValue - MyCurLoveValue
+		local theTps = Hotfix.GetStringTable("LoveDonateTips",theAddLoveValue)
+		isDonateArg = false
+	 	Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",theTps,"fece00")
+	end
+
+	MyCurLoveValue = msg.data.loveValue
+	print("myLoveValue: "..MyCurLoveValue)
+
+	AllServiceLoveValue = msg.totalLoveValue
+	print("loveValue: "..AllServiceLoveValue)
+
+	if festivityFrame ~= nil then
+		festivityFrame.refreshAboutFestivalInfo(MyCurLoveValue, AllServiceLoveValue, theBoxGetStateTable)
+
+		if theDonateType == 1 or theDonateType == 2 then
+			theDonateType = 0
+			this.ArgLoveRankList()
+		end
+
+	else
+		--外部红点处理
+		if festivityTable ~= nil then
+			local needShowRedPoint = false
+			for i = 1, #festivityTable do
+				if AllServiceLoveValue >= festivityTable[i].LoveScore and not theBoxGetStateTable[i] then
+					needShowRedPoint = true
+					break
+				end
+			end
+
+			this.RefreshRedPoint(needShowRedPoint)
+		end
+	end
+
+end
+
+function Lua520FestivityDoc.GetMyCurLoveValue()
+	return MyCurLoveValue
+end
+
+function Lua520FestivityDoc.GetServiceLoveValue()
+    return AllServiceLoveValue
+end
+
+function Lua520FestivityDoc.GetRewardBoxStateList()
+    return theBoxGetStateTable
+end
+
+
+
+function Lua520FestivityDoc.ResErr()
+
+end
+
+
+
+
+
+
+
+-- local timeAll  = 0
+-- local timestamp = 0
+-- local offset = 0
+
+-- local m_ActID = 9
+-- local m_SysID = 847
+
+-- local hour = 12
+-- local day = 0
+
+-- ValentClicked = false
+-- ValentREDPOINT = false
+-- local isAttach = false
+
+-- function Lua520DayDocument.EnterScene()
+-- 	if not isAttach then
+-- 		Hotfix.AttachSysRedPointRelative(600, m_SysID, false)
+-- 		isAttach = true
+-- 	end
+-- end
+
+-- -- 这个模块只有520那天会用到
+-- function Lua520DayDocument.CalAllByTable( ... )
+-- 	hour = Hotfix.GetGlobalString("ValentDuration")
+-- 	if hour == nil then 
+-- 		print("<color=red>******* error hour is nil*******</color>")
+-- 		timeAll = 1000
+-- 	else
+-- 		timeAll = (day * 24 + hour) * 3600
+-- 	end
+-- end
+
+
+
+-- function  Lua520DayDocument.OnTimeChange(msg)
+-- 	--print("<color=blue>actid is: "..tostring(table.getn(msg.actid)).."</color>")
+-- 	if timeAll == 0 then
+-- 		this.CalAllByTable()
+-- 	end
+
+-- 	local actids = msg.actid
+-- 	for i=1,#actids,1 do
+-- 		if tonumber(actids[i]) == m_ActID then
+-- 			if msg.offsettime[i] ~=nil then
+-- 			  offset = msg.offsettime[i]
+-- 			else
+-- 				offsettime = 0
+-- 			end
+
+-- 			timestamp = math.ceil(Time.time) 
+-- 			--print("offsettime is: "..tostring(offset).." left:"..tostring(timestamp))
+-- 			ValentREDPOINT = true
+-- 			Hotfix.ForceUpdateSysRedPointImmediately(m_SysID, ValentREDPOINT and not ValentClicked)
+-- 			break
+-- 		end
+-- 	end
+-- end
+
+
+
+-- function Lua520DayDocument.GetTimeleft( ... )
+-- 	if timestamp == 0 then
+-- 		print("<color=yellow>******* 520 data not initial *******</color>")
+-- 	end
+-- 	local now = math.ceil(Time.time)
+-- 	--print("timeAll: "..tostring(timeAll).." now: "..tostring(now).." offset:"..tostring(offset).." timestamp: "..tostring(timestamp))
+-- 	return timeAll  - now - offset + timestamp
+-- end

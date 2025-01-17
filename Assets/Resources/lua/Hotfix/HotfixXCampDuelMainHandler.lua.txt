@@ -1,0 +1,134 @@
+﻿require "XCampDuel_pb.lua"
+
+XCampDuelMainHandler={}
+local this = XCampDuelMainHandler
+
+local m_Go
+
+local m_Camp1Point
+local m_Camp2Point
+local m_CampPoint
+
+local m_token = 0
+
+local m_MainCurChest
+
+
+function XCampDuelMainHandler.AfterHandlerShow(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_CampPoint=m_Go.transform:Find("MainFrame/Camp/Score").gameObject
+		m_Camp1Point=m_Go.transform:Find("MainFrame/Camp/Score/JScore"):GetComponent("UILabel")
+		m_Camp2Point=m_Go.transform:Find("MainFrame/Camp/Score/BScore"):GetComponent("UILabel")
+		
+		m_MainCurChest=m_Go.transform:Find("MainFrame/CurrnetReward/ChestTpl"):GetComponent("UISprite")
+	end
+	
+	Hotfix.SetClickCallback(m_MainCurChest.gameObject, this._OnChestClick)
+	
+	m_CampPoint:SetActive(false)
+	m_token = Hotfix.LuaLoop(3000,10000,this.SendRPC)
+	this.SendRPC()
+end
+
+--收协议,刷新
+function XCampDuelMainHandler.Refresh(msg)
+	print("Refresh")
+	
+	--m_MainCurChest.color=Color.white
+	
+	--刷比分
+	print("HasField1 is: "..tostring(msg:HasField("campDuelPoint1")))
+	print("HasField2 is: "..tostring(msg:HasField("campDuelPoint2")))
+	
+	if(msg:HasField("campDuelPoint1") == nil or msg:HasField("campDuelPoint2")== nil)then
+		m_CampPoint:SetActive(false)
+	else
+		m_CampPoint:SetActive(true)
+		print("campDuelPoint1 is: "..tostring(msg.campDuelPoint1))
+		print("campDuelPoint2 is: "..tostring(msg.campDuelPoint2))
+		m_Camp1Point.text=tostring(msg.campDuelPoint1)
+		m_Camp2Point.text=tostring(msg.campDuelPoint2)
+	end
+	
+	return false
+end
+
+
+function XCampDuelMainHandler.SendRPC()
+	local msg = XCampDuel_pb.CampDuelActivityOperationArg()
+	msg.type = 1
+	local pb_data = msg:SerializeToString()
+	if pb_data ~= nil then
+		Hotfix.SendLuaRPC(1361, pb_data, this.ResCompose, this.ResComposeErr)
+		print("send rpc1361")
+	end
+end
+
+function XCampDuelMainHandler.ResCompose(data,length)
+	print("XCampDuelMainHandler.ResCompose")
+	local  msg = XCampDuel_pb.CampDuelActivityOperationRes()
+	if msg ~= nil then
+		msg:ParseFromString(data,length)
+		if msg.errorcode == 0 then
+			local handler = Hotfix.GetDocumentMember("XCampDuelDocument","handler",true,true)
+			if (not IsNil(handler)) then
+				this.Refresh(msg)
+			end
+		end
+	end
+end
+
+function XCampDuelMainHandler.ResComposeErr()
+	print("ResComposeErr1361")
+end
+
+function XCampDuelMainHandler.Hide( )
+	print("XCampDuelMainHandler.Hide")
+	if m_token ~= 0 then
+		Hotfix.RemoveTimer(m_token)
+		m_token = 0
+	end
+end
+
+function XCampDuelMainHandler.Unload()
+	print("XCampDuelMainHandler.Unload")
+	if m_token ~= 0 then
+		Hotfix.RemoveTimer(m_token)
+		m_token = 0
+	end
+end
+
+function XCampDuelMainHandler._OnChestClick(go)
+	print("XCampDuelMainHandler._OnChestClick")
+	local m_point =Hotfix.GetDocumentMember("XCampDuelDocument","point",true,true)
+	print("m_point:"..m_point)
+	local m_ChestData= Hotfix.CallDocumentMethod("XCampDuelDocument", true, "GetNextPointReward",m_point)
+	if(m_ChestData==nil)then
+		return
+	end	
+	
+	local m_handler=Hotfix.GetSingleMember("XOperatingActivityView","m_CampDuelMainHandler",false,true,false)
+	if(IsNil(m_handler))then
+		print("XCampDuelMainHandler.m_handler null")
+		return
+	end
+	
+	local tip
+	tip="内含"
+	local cnt=m_ChestData.Reward.count
+	print("cnt:"..cnt)
+	for i=0, cnt-1 do
+		local itemid=Hotfix.ParseIntSeqList(m_ChestData.Reward,i,0)
+		local itemCount=Hotfix.ParseIntSeqList(m_ChestData.Reward,i,1)
+		local item=Hotfix.CallDocumentStaticMethod("XBagDocument", true, "GetItemConf",itemid)
+		local itemName=item.ItemName[0]
+		print(tostring(itemName))
+		tip=tip..itemCount.."个"..itemName
+		if i ~= cnt-1 then
+			tip=tip.."，"
+		end
+	end
+	print("tip:"..tip)
+	Hotfix.LuaShowSystemTip(tip)
+end

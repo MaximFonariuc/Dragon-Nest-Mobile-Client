@@ -1,0 +1,201 @@
+﻿require "LuaJadeEquipDataModel.lua"
+
+--新龙玉系统升级合成界面
+JadeComposeFrameHandler = {}
+local this = JadeComposeFrameHandler
+
+local ComposeHandler = nil		--c#里面的龙玉升级合成界面
+
+local shopTipsTransPath = "ComposeMenu/CostJade/Shop"
+local shopTipsTrans = nil
+
+local thisObj = nil
+
+function JadeComposeFrameHandler.Hide( )
+	
+end
+
+function JadeComposeFrameHandler.Unload()
+	
+end
+
+
+function JadeComposeFrameHandler.BeforeHandlerShow(go)
+	-- print(1333)
+end
+
+function JadeComposeFrameHandler.AfterHandlerShow(go)
+
+	 local jadeEqHandler = LuaJadeEquipDataModel.GetJadeEquipHandler()
+	 if jadeEqHandler == nil then
+	 	return 
+	 end
+
+	print(2333)
+
+	thisObj = go
+
+	ComposeHandler = Hotfix.GetSingleMember("UI.ItemSystemDlg", "_JadeComposeFrameHandler", true, true, false)
+
+	if ComposeHandler == nil then
+		print "can not find the JadeComposeFrameHandler in c#!!!"
+	end
+
+	local UpgradeBtn = go.transform:FindChild("ComposeMenu/BtnCompose")
+	if UpgradeBtn ~= nil then
+		Hotfix.SetClickCallback(UpgradeBtn.gameObject, this.UpgradeBtnOnClick)
+	end	
+   		
+	shopTipsTrans = go.transform:FindChild(shopTipsTransPath)
+	if not IsNil(shopTipsTrans) then
+		local P = shopTipsTrans:FindChild("P")
+		local P2 = shopTipsTrans:FindChild("P2")
+		P.gameObject:SetActive(false)
+		P2.gameObject:SetActive(false)
+	end
+end
+
+
+
+function JadeComposeFrameHandler.UpgradeBtnOnClick(go)
+
+	if ComposeHandler ~= nil then
+
+		local m_effectIsEnd = PrivateExtensions.GetPrivateField(ComposeHandler,"m_effectIsEnd") --c# bool
+		if not m_effectIsEnd then
+			print "m_effectIsEnd is false"
+			return
+		end
+
+		local m_coolTime = PrivateExtensions.GetPrivateField(ComposeHandler,"m_coolTime") 	--c# float
+		local isBtnCool = PrivateExtensions.CallPrivateMethod(ComposeHandler,"SetButtonCool",m_coolTime)		--c# bool
+		if isBtnCool then
+			print "SetButtonCool is true"
+			return
+		end
+
+		local m_addLevel = PrivateExtensions.GetPrivateField(ComposeHandler,"m_addLevel")	--c# uint
+		if m_addLevel == 0 then
+			local LvMaxTips = Hotfix.GetStringTable("JadeHadCurMax")
+			Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",LvMaxTips,"fece00")
+			return
+		end
+
+		local goldType = Hotfix.GetEnumType("ItemEnum",tostring(1))			--ItemEnum.GOLD 金币c#枚举为1
+		local ownGold = Hotfix.CallDocumentLongMethod("XBagDocument",false,"GetVirtualItemCount",goldType)  --string
+
+		-- print("ownGold: "..ownGold)
+		
+		local m_needGold = Hotfix.GetObjectString(ComposeHandler,"m_needGold",false,true)	--c# ulong   to  ulua string
+		local enoughGold = LuaJadeEquipDataModel.HasEnough(ownGold, m_needGold)
+
+		if not enoughGold then
+			local goldNotEnoughTip = Hotfix.GetStringTable("ERR_LACKCOIN")
+			Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",goldNotEnoughTip,"fece00")
+			return
+		end
+
+		local mallType = Hotfix.GetEnumType("ItemEnum",tostring(7))		--ItemEnum.DRAGON_COIN	龙币c#枚举为7
+		local ownMall = Hotfix.CallDocumentLongMethod("XBagDocument",false,"GetVirtualItemCount",mallType)  --string
+		
+		local m_needMall = PrivateExtensions.GetPrivateField(ComposeHandler,"m_needMall") 	--c# uint
+		local enoughMall = LuaJadeEquipDataModel.HasEnough(ownMall, tostring(m_needMall))
+
+		if not enoughMall then
+
+			Hotfix.CallSingleMethod("XPurchaseView",true,false,"ReqQuickCommonPurchase",mallType)
+			local mallNotEnoughTip = Hotfix.GetStringTable("ERR_AUCT_DRAGONCOINLESS")
+			Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowSystemTip",mallNotEnoughTip,"fece00")
+			return
+		end
+
+		if m_needMall > 0 then
+			local txt = Hotfix.GetStringTable("JadeComposeTips")
+			txt = Hotfix.CallSingleMethod("UI.UiUtility", false, false, "ReplaceReturn", txt)
+			-- print("txt: "..txt)
+
+			local costTip = string.gsub(txt,"{0}",tostring(m_needMall))
+			-- print("costTip: "..costTip)
+			local DoOkClickEvent = DelegateFactory.UILib_ButtonClickEventHandler(this.DoOK)
+			Hotfix.CallSingleMethod("UI.UiUtility",true,false,"ShowModalDialog",costTip, DoOkClickEvent)
+
+		else
+
+			if not IsNil(thisObj) then
+				----特殊龙玉只能通过宝箱获取，不能合成升级
+				local costMallObj = thisObj.transform:FindChild("ComposeMenu/CostMall").gameObject
+				if not IsNil(costMallObj) then
+					if costMallObj.activeInHierarchy then
+						local tips = Hotfix.GetGlobalString("JadeNotLvUpTips")
+						Hotfix.LuaShowSystemTip(tips)
+						--Hotfix.LuaShowSystemTip("可通过指定龙玉宝箱获得")
+						do return end
+					end
+				end
+			end
+
+
+			local m_type = PrivateExtensions.GetPrivateField(ComposeHandler,"m_type") --c# int
+
+			-- local m_jadeUid = Hotfix.GetObjectString(ComposeHandler,"m_jadeUid",false,true)	--c# ulong   to  ulua string
+
+			local m_addLevel = PrivateExtensions.GetPrivateField(ComposeHandler,"m_addLevel") --c# uint
+
+			print("the solt is: "..tostring(m_type))
+
+			if m_type ~= -1 then
+				LuaJadeEquipDataModel.ReqUpdateJade(m_type, m_addLevel)
+			else
+				local m_jadeUid = Hotfix.GetObjectString(ComposeHandler,"m_jadeUid",false,true)
+				local jadeUidLuaLong = Hotfix.GetLuaLong(m_jadeUid)
+
+				Hotfix.CallDocumentMethod("JadeDocument", true,"ReqComposeJade", jadeUidLuaLong, m_addLevel)
+			end
+		end
+ 
+	end
+end
+
+---c#里ButtonClickEventHandler自定delegate返回的bool值
+function JadeComposeFrameHandler.DoOK( xuiBtn )
+	local m_type = PrivateExtensions.GetPrivateField(ComposeHandler,"m_type") --c# int
+
+	local m_addLevel = PrivateExtensions.GetPrivateField(ComposeHandler,"m_addLevel") --c# uint
+
+	print("the solt is: "..tostring(m_type))
+
+	if m_type ~= -1 then
+		LuaJadeEquipDataModel.ReqUpdateJade(m_type, m_addLevel)
+
+		Hotfix.CallSingleMethod("UI.ModalDlg",true,false,"SetVisible",false, true)
+	else
+		local m_jadeUid = Hotfix.GetObjectString(ComposeHandler,"m_jadeUid",false,true)
+		local jadeUidLuaLong = Hotfix.GetLuaLong(m_jadeUid)
+
+		Hotfix.CallDocumentMethod("JadeDocument", true,"ReqComposeJade", jadeUidLuaLong, m_addLevel)
+	end
+
+	Hotfix.CallSingleMethod("UI.UiUtility",true,false,"CloseModalDlg")
+	return true
+end
+
+
+
+
+
+
+
+
+		-- local xuiBtn = UpgradeBtn:GetComponent("XUIButton")
+		-- xuiBtn.ID = 123
+
+		-- local clickEvent = DelegateFactory.UILib_ButtonClickEventHandler(this.XUIbuttonOnClick)
+		-- xuiBtn:RegisterClickEventHandler(clickEvent)
+
+
+-- ---c#里ButtonClickEventHandler自定delegate返回的bool值
+-- function JadeComposeFrameHandler.XUIbuttonOnClick( xuibtn )
+-- 	print("xuibtn id : "..tostring(xuibtn.ID))
+
+-- 	return false
+-- end

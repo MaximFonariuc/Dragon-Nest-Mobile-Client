@@ -1,0 +1,82 @@
+--
+--  CDKEYexchange.lua
+--  Created by alexpeng on 2017/02/09 10:13:13
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+require "HotfixGlobal.lua"
+require "XSpActivity_pb.lua"
+local json = require 'cjson'
+
+SYS_OldPlayerReward = 842
+
+local texturePath = "atlas/UI/GameSystem/Activity/Tex_double_h2Split"
+
+LuaOldPlayerRewardFrame = {}
+local this = LuaOldPlayerRewardFrame
+
+local m_Go
+local m_bIsVisible = false
+
+local m_ExchangeBtn;
+local m_BgTexture;
+
+
+--called by MonoBehaviour.Awake
+function LuaOldPlayerRewardFrame.Awake(go)
+	if(IsNil(m_Go)) then
+		m_Go = go
+		m_BgTexture = m_Go.transform:Find("Tex"):GetComponent("UITexture")
+		m_ExchangeBtn = m_Go.transform:Find("Button")
+		Hotfix.SetClickCallback(m_ExchangeBtn.gameObject, this.OnBtnClick)
+	end
+	
+end
+
+function  LuaOldPlayerRewardFrame.OnBtnClick(go)
+	print("OnOldPlayerRewardBtnClick")
+	Hotfix.CallSingleMethod("UI.UiUtility", true, false, "OpenHtmlUrl", "OldPlayerRewardUrl")
+
+end
+
+
+function LuaOldPlayerRewardFrame.Start()
+
+end
+
+function LuaOldPlayerRewardFrame.OnEnable()
+	print("LuaOldPlayerRewardFrame.OnEnable")
+	m_bIsVisible = true
+end
+
+
+function LuaOldPlayerRewardFrame.OnDisable()
+	m_bIsVisible = false
+	print("LuaOldPlayerRewardFrame.OnDisable")
+end
+
+
+function LuaOldPlayerRewardFrame.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaOldPlayerRewardFrame.OnShow()
+	print("LuaOldPlayerRewardFrame.OnShow")
+	if m_BgTexture~=nil then
+		Hotfix.SetTexture(m_BgTexture, texturePath, false)
+		print("LuaOldPlayerRewardFrame SetBgTexture")
+	end
+end
+
+function LuaOldPlayerRewardFrame.OnHide()
+	print("LuaOldPlayerRewardFrame.OnHide")
+	if m_BgTexture~=nil then
+		Hotfix.DestoryTexture(m_BgTexture, texturePath)
+		print("LuaOldPlayerRewardFrame DestoryTexture")
+	end
+end
+
+function LuaOldPlayerRewardFrame.IsVisible()
+	return m_bIsVisible
+end

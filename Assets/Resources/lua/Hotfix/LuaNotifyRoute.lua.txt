@@ -1,0 +1,186 @@
+﻿--
+--  LuaNotifyRoute.lua
+--  Created by alexpeng on 2016/06/07 07:26:47
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+LuaNotifyRoute={}
+local this = LuaNotifyRoute
+local entityList = nil
+
+require "XSpActivity_pb.lua"
+require "HotfixCollectWordsDocument.lua"
+require "HotfixPartnerDayDocument.lua"
+require "HotfixHallDlg.lua"
+require "XBackFlowSealType_pb.lua"
+require "Lua520DayDocument.lua"
+require "XLoginReward_pb.lua"
+require "LuaLoginRewardDocument.lua"
+require "XBackFlowNtf_pb.lua"
+require "LuaFashionCompoundDlg.lua"
+require "XGiftCard_pb.lua"
+require "LuaGiftCardDocument.lua"
+require "LuaTimedActivitiesDoc.lua"
+require "LuaJadeEquipDataModel.lua"
+
+require("Lua520FestivityDoc.lua")
+require("XLoveFestivity_pb.lua")
+
+--require "XArtifactEffectNotify_pb.lua"
+--require "XSpriteDrawLottery_pb.lua"
+--require "HotfixSpriteLotteryHandler.lua"
+
+
+function LuaNotifyRoute.Regist24832(data,length) 
+	local msg = XSpActivity_pb.SpActivityChange()
+	msg:ParseFromString(data,length)
+	
+	HotfixCollectWordsDocument.OnSpActivityChange(msg)
+	
+	HotfixPartnerDayDocument.OnSpActivityChange(msg)	
+
+	LuaTimedActivitiesDoc.OnTaskChanged(msg)
+end
+
+function LuaNotifyRoute.Regist4059(data,length) 
+	local msg = XSpActivity_pb.SpActivityOffsetDay()
+	msg:ParseFromString(data,length)
+	Lua520DayDocument.OnTimeChange(msg)
+
+	HotfixCollectWordsDocument.Refresh()
+	HotfixPartnerDayDocument.Refresh()
+end
+
+function LuaNotifyRoute.Regist28079(data,length) 
+	print("<color=Red> LuaNotifyRoute.Regist28079 ==></color>")
+	local msg = XArtifactEffectNotify_pb.ArtifactEffectWorkData()
+	msg:ParseFromString(data,length)
+	
+	for i=1,#msg.effects do
+		local effect = msg.effects[i]
+		if effect ~= nil then
+			this.ArtifactEffectWorkProcess(effect)
+		end
+	end
+end
+
+--function LuaNotifyRoute.ArtifactEffectWorkProcess(effect)
+--	print("<color=Red> effect uid = "..tostring(effect.uid).."</color>")
+--	local uid = Hotfix.GetLuaLong(effect.uid);
+--	local enumType =  Hotfix.GetEnumType("ItemType","31")
+--	local item = Hotfix.CallDocumentMethod("XBagDocument",true,"GetItemByUID",uid)
+--	if item ~= nil and item.type == enumType then
+		--print("<color=Red>type != 31 type = "..tostring(item.type).."</color>")
+--		local count = item.EffectInfoList.Count
+--		for i=0,count-1 do
+--			if #effect.isWork >= count and item.EffectInfoList[i] ~= nil then
+			--必须这样写否则赋值不正确
+--				local info = item.EffectInfoList[i];
+--				info.IsValid = effect.isWork[i+1]
+--				item.EffectInfoList[i] = info
+--			end
+--		end
+--	end
+--
+--end
+-- function LuaNotifyRoute.Regist11558( data,length )
+-- 	-- body
+
+-- 	local msg = XTeamUseTicket_pb.TeamUseTicketPara()
+-- 	if msg ~= nil then
+-- 		msg:ParseFromString(data,length)
+-- 		HotfixMyTeamDocument.SetUseTicket(msg.useticket)
+-- 	end
+-- 	print("XTeamUseTicket_pb ..Regist11558..."..tostring(msg.useticket))
+-- end
+
+
+function LuaNotifyRoute.Regist41168(data,length)
+	print("LuaNotifyRoute.Regist41168  ==>")
+	--HallDlg.ShowBackflowBtn()
+	LuaTimedActivitiesDoc.OnSystemChanged()
+	HallDlg.DragonSysShowSet()
+end
+
+function LuaNotifyRoute.Regist3009(data,length)
+	print("LuaNotifyRoute.Regist3009 ==>")
+	local msg = XBackFlowSealType_pb.BackFlowSealTypeNtfData()
+	msg:ParseFromString(data,length)
+	print("msg = "..tostring(msg.levelSealType))
+end
+
+function LuaNotifyRoute.Regist34113(data,length)
+	print("LuaNotifyRoute.Regist34113  ==>")
+	local msg = XLoginReward_pb.LoginActivityStatus()
+	msg:ParseFromString(data,length)
+	LuaLoginRewardDocument.SetStatus(msg.state)
+end
+
+function LuaNotifyRoute.Regist40338(data,length)
+	print("LuaNotifyRoute.Regist40338  ==>")
+
+	LuaTimedActivitiesDoc.RefreshData()
+end
+
+-- function LuaNotifyRoute.Regist41168(data,length)
+-- 	print("LuaNotifyRoute.Regist41168  ==>")
+
+-- end
+
+function LuaNotifyRoute.Regist27749(data,length)
+	-- print("LuaNotifyRoute.Regist27749  ==>")
+	-- local msg = XBackFlowNtf_pb.BackFlowOpenNtf()
+	-- msg:ParseFromString(data,length)
+	-- print(tostring(msg.isopen).."open open")
+	-- LuaBackflowDocument.SetBackFlowOpen(msg.isopen)
+end
+
+-- function LuaNotifyRoute.Regist23114(data,length)
+-- 	-- body
+-- 	local msg = XBackFlowNtf_pb.HintNotify()
+-- 	msg:ParseFromString(data,length)
+-- 	for k,v in msg.systemid do 
+-- 		if v == 994 then
+-- 			print("HintNotifyData has 994")
+-- 			LuaBackflowDocument.SetBfWelfareRedDot(true);
+-- 		end
+-- 	end
+-- end
+
+-- function LuaNotifyRoute.Regist27802(data,length)
+-- 	print("LuaNotifyRoute.Regist27802  ==>")
+-- 	local res = XSpriteDrawLottery_pb.DrawLotteryRes()
+-- 	res:ParseFromString(data,length)
+-- 	SpriteLotteryHandler.OnDrawLottery(res)
+-- end
+
+function LuaNotifyRoute.RegistFashionBuy( ... )
+	-- body
+	if LuaFashionCompoundDlg.IsVisible then
+		LuaFashionCompoundDlg.RefreshBuyResp()
+	end
+end
+
+function LuaNotifyRoute.RegistPayGiftNtf(data,length)
+	local msg = XGiftCard_pb.PayGiftNtfData()
+	msg:ParseFromString(data,length)	
+	LuaGiftCardDocument.OnPayGiftNtf(msg)
+end
+
+
+function LuaNotifyRoute.Regist51248(data,length)
+	print "receive ptc"
+	local msg = XJadeEquipNew_pb.JadeSlotInfo()
+	msg:ParseFromString(data,length)	
+	LuaJadeEquipDataModel.OperationOldAfterHandler(msg)
+end
+
+function LuaNotifyRoute.Regist28202(data,length)
+
+	print("LuaNotifyRoute.Regist28202  ==>")
+
+	local msg = XLoveFestivity_pb.Get520FestivalRedPacket()
+	msg:ParseFromString(data,length)
+
+	Lua520FestivityDoc.RedBagPtc(msg)
+end

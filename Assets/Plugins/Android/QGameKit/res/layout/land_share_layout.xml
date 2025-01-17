@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center">
+    <LinearLayout
+            android:id="@+id/share_qq_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/land_share_padding"
+            android:paddingBottom="@dimen/land_share_padding"
+            android:gravity="center"
+            android:orientation="vertical">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/share_to_friend"/>
+        <TextView
+                style="@style/ShareLandTxtStyle"
+                android:text="@string/qq_friend"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/share_wechat_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/land_share_padding"
+            android:paddingBottom="@dimen/land_share_padding"
+            android:layout_marginLeft="@dimen/land_share_dialog_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/share_to_wechat"/>
+        <TextView
+                style="@style/ShareLandTxtStyle"
+                android:text="@string/wechat_friend"/>
+    </LinearLayout>
+
+</LinearLayout>

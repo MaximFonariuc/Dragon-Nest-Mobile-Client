@@ -1,0 +1,109 @@
+﻿--
+--  LuaFashionCompoundBagHandler.lua
+--  Created by huailiang.peng on 2017/10/09 09:40:32
+--  Please make sure you file start with "Hotfix" or "Lua"
+--
+
+-- 时装合成-背包界面
+require "LuaFashionCompoundData.lua"
+require "LuaFashionCompoundDlg.lua"
+
+LuaFashionCompoundBagHandler={}
+local this = LuaFashionCompoundBagHandler
+
+local m_bIsVisible = false
+
+local m_part
+local m_uiWrapContent
+local m_close
+
+
+local m_data
+local m_uid_data
+
+function LuaFashionCompoundBagHandler.Awake(go)
+	--print("Awake")
+	m_close = go.transform:Find("Close").gameObject
+	m_uiWrapContent = go.transform:Find("Bg/Panel/WrapContent").gameObject
+	Hotfix.InitWrapContent(m_uiWrapContent, this.WrapContentItemUpdated)
+end
+
+function LuaFashionCompoundBagHandler.Start()
+	--print("Start")
+	Hotfix.SetClickCallback(m_close,this.OnCloseClick)
+end
+
+
+function LuaFashionCompoundBagHandler.OnEnable()
+	m_bIsVisible = true
+end
+
+
+function LuaFashionCompoundBagHandler.OnDisable()
+	m_bIsVisible = false
+end
+
+
+function LuaFashionCompoundBagHandler.OnDestroy()
+	m_bIsVisible = false
+end
+
+
+function LuaFashionCompoundBagHandler.OnShow()
+	m_data = FashionCompoundData.curr_compounds
+	m_uid_data = FashionCompoundData.curr_uid_compounds
+	this.RefreshUi()
+end
+
+function LuaFashionCompoundBagHandler.OnHide() 
+	-- body
+end
+
+function LuaFashionCompoundBagHandler.IsVisible()
+	return m_bIsVisible
+end
+
+function LuaFashionCompoundBagHandler.RefreshUi( ... )
+	Hotfix.SetWrapContentCount(m_uiWrapContent, #m_data, false)
+end
+
+function LuaFashionCompoundBagHandler.WrapContentItemUpdated(t,index)
+	local item = t:Find("Item")
+	if (#m_data) < (index+1) then
+		--print(tostring(index).." set false")
+		item.gameObject:SetActive(false)
+	else
+		--print("uid: "..m_uid_data[index+1].." itemid:"..tostring(m_data[index+1]))
+		Hotfix.DrawItemView(item.gameObject,  m_data[index+1], 1, true)
+		local m_icon = item:Find("Icon"):GetComponent("UISprite")
+		m_icon.sid = tostring(index+1)
+		Hotfix.SetClickCallback(m_icon.gameObject,this.OnItemClick)
+	end
+	--print("itemid:",tostring(m_data[index+1]))
+end
+
+
+function LuaFashionCompoundBagHandler.OnCloseClick(go)
+	LuaUIManager.Instance:Destroy("UI/GameSystem/FashionCompoundBagHandler")
+	FashionCompoundData.curr_compounds ={}
+end
+
+
+function LuaFashionCompoundBagHandler.OnItemClick( go )
+	local spr = go:GetComponent("UISprite")
+	local index = tonumber(spr.sid)
+	local itemid = m_data[index]
+	local uid = m_uid_data[index]
+	print("uid: "..uid)
+	if FashionCompoundData.curr_select == 0 then
+		FashionCompoundData.compose_id1 = itemid
+		FashionCompoundData.compose_uid1 = uid
+	else
+		FashionCompoundData.compose_id2 = itemid
+		FashionCompoundData.compose_uid2 = uid
+	end
+	LuaFashionCompoundDlg.OnSelectByBag()
+	this.OnCloseClick()
+end
+
+
