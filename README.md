@@ -46,11 +46,11 @@ This project is a Unity-based application originally developed in Unity 5.5.2f1 
    Here are some screenshots to guide you through the setup and running process:
    
 1. **LFSUtility Execution**
-   LFSUtility
+   ![LFSUtility](Screenshots/LFSUtility.png)
 2. **DN_Updater Scene**
-   DN_Updater Scene
+   ![DN_Updater Scene](Screenshots/DN_Updater.png)
 3. **Login Scene**
-   Login Scene
+   ![Login Scene](Screenshots/LoginScene.png)
 
 ## Repository Links
    Client Repository: Link to this [repository](https://github.com/MaximFonariuc/Dragon-Nest-Mobile-Client)
