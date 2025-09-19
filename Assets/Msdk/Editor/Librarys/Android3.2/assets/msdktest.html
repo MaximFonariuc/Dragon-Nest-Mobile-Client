@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://img.ssl.msdk.qq.com/wiki/test/msdkjs.html -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>webview测试页面</title>
+        <style>
+            .vp-main li {
+                float: left;
+                width: 42%;
+                margin-right:0.2em;
+                overflow: hidden;
+            }
+            .imgPop{
+                background: rgba(0,0,0,.6);
+                position: absolute;         
+                left: 0;
+                right: 0;
+                z-index: 1;
+            }
+            .imgPop img{
+                width:80%;
+                height:80%;
+            }
+            .btn{
+                padding: 6px 12px;
+                font-size: 13px;
+                color: #fff;
+                background-color: #3276b1;
+                border: 1px solid transparent;
+                border-color: #2c699d;
+                cursor: pointer;
+                border-radius: 2px;
+                -webkit-border-radius: 2px;
+                margin-bottom: 10px;
+                margin-right: 5px;
+            }
+            #logContent p{
+                padding: 0px;
+                margin: 2px 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p id="pageLink" style="word-break:break-all;">aaa</p>
+		<div>
+            <p align="center" style="margin-bottom: 20px;margin-top: 0px;">MSDK Embeded WebView Test Page</p>
+            
+            <h2>浏览器能力：</h2>
+			<input class="btn" type="button" onclick="CloseWeb()" value="关闭页面" />
+            <input class="btn" type="button" onclick="GoBack()" value="后退一页" />
+            <input class="btn" type="button" onclick="GoForward()" value="前进一页" />
+            <input class="btn" type="button" onclick="GetUserAgent()" value="获取UserAgent">
+            <input class="btn" type="button" onclick="QueryNetworkType()" value="查询网络状态" />
+            <a href="https://img.ssl.msdk.qq.com/wiki/msdktest.html">跳转到测试页2</a>
+
+            <h2>伪协议测试：</h2>
+            <a href="mqqwpa://im/chat?chat_type=wpa&uin=2996337391">跳转到手Q</a>
+            <br><br>
+            <a href="weixin://dl/business/?ticket=t5084d55f4f843869154aafc47a483fe2#wechat_redirect">跳转到微信</a>
+            <br><br>
+            <a href="tmast://">跳转到应用宝</a>
+            <br><br>
+            <a href="smobagamehelper://welcome">王者营地smobagamehelper</a>
+            <br><br>
+            <a href="kohsocialapp://momentadd/setting">王者营地kohsocialapp</a>
+            <br><br>
+
+            <input class="btn" type="button" onclick="isQQInstalled()" value="QQ是否安装" />
+            <input class="btn" type="button" onclick="isWXInstalled()" value="WX是否安装" />
+
+            <h2>与游戏交互：</h2>
+            <textarea name="msgToGame" id="msgToGame" cols="40" rows="5"></textarea><br/>
+            <input class="btn" type="button" onclick="SendToGame()" value="发送信息到游戏" />
+
+            <h2>分享能力(使用网页截图)：</h2>
+            <input class="btn" type="button" value="QQ结构化消息分享To空间" onclick="msdkShare(QQStructuredShare2zone)"/>
+            <input class="btn" type="button" value="QQ结构化消息分享To会话" onclick="msdkShare(QQStructuredShare2friend)"/>
+            <input class="btn" type="button" value="QQ音乐分享To空间" onclick="msdkShare(QQMusicShare2zone)"/> 
+            <input class="btn" type="button" value="QQ音乐分享To会话" onclick="msdkShare(QQMusicShare2friend)"/> 
+            <input class="btn" type="button" value="QQ大图分享To空间" onclick="msdkShare(QQPhotoShare2zone)"/> 
+            <input class="btn" type="button" value="QQ大图分享To会话" onclick="msdkShare(QQPhotoShare2friend)"/> 
+            <br/>
+            <input class="btn" type="button" value="微信结构化消息分享" onclick="msdkShare(WXStructuredShare)"/> 
+            <input class="btn" type="button" value="微信音乐分享To朋友圈" onclick="msdkShare(WXMusicShare2zone)"/> 
+            <input class="btn" type="button" value="微信音乐分享To会话" onclick="msdkShare(WXMusicShare2friend)"/> 
+            <input class="btn" type="button" value="微信大图分享To朋友圈" onclick="msdkShare(WXPhotoShare2zone)"/> 
+            <input class="btn" type="button" value="微信大图分享To会话" onclick="msdkShare(WXPhotoShare2friend)"/> 
+            <input class="btn" type="button" value="微信URL分享To朋友圈" onclick="msdkShare(WXUrlShare2zone)"/> 
+            <input class="btn" type="button" value="微信URL分享To会话" onclick="msdkShare(WXUrlShare2friend)"/> 
+
+            <h2>分享能力(使用网页截图)：</h2>
+            <h3>使用网络图片(仅限Android QQ分享)：</h3>
+            <input class="btn" type="button" value="QQ结构化分享(其他QQ分享类似)" onclick="msdkShare(QQShareCustomImage)"> <br/>
+            <h3>使用图片数据(Android/iOS；图片数据大会造成页面卡顿，建议根据实际情况进行压缩)：</h3>
+            <p>QQ结构化消息分享To会话<input type="file" id="22" onchange="ReaderImgage(this,1)"></p>
+            <p>QQQ大图分享To空间<input type="file" id="33" onchange="ReaderImgage(this,2)"></p>
+            <p>QQ大图分享To会话<input type="file" id="44" onchange="ReaderImgage(this,3)"></p>
+            <p>微信结构化消息分享<input type="file" id="55" onchange="ReaderImgage(this,4)"></p>
+            <p>微信大图分享To朋友圈<input type="file" id="66" onchange="ReaderImgage(this,5)"></p>
+		</div>
+
+        <div id="log"> 
+        </div>
+
+<script src="https://ossweb-img.qq.com/images/js/mobile/util/zepto.js" type="text/javascript"></script>
+
+<script>
+// --- MSDK Js接口核心封装 请忽修改 START ---    
+    var uniqueId = 1
+    var msdkiOSHandler
+    var msdkCallback
+    var iOSRegister
+
+    function MsdkWebLog(message, data) {
+        var log = document.getElementById('log')
+        var el = document.createElement('div')
+        el.className = 'logLine'
+        var logMsg
+        if (data) {
+            logMsg = uniqueId++ + '.MSDK ' + message + ', ' + JSON.stringify(data)
+        } else {
+            logMsg = uniqueId++ + '.MSDK ' + message
+        }
+        console.info(logMsg)        
+        el.innerHTML = logMsg
+        if (log && log.children && log.children.length) {
+            log.insertBefore(el, log.children[0]);
+        } else if (log) {
+            log.appendChild(el);
+        } else {
+        //
+        }
+    }
+
+    window.onerror = function(err) {
+        MsdkWebLog('window.onerror: ' + err)
+    }
+
+    function connectWebViewJavascriptBridge(callback) {
+        if (window.WebViewJavascriptBridge) {
+            callback(WebViewJavascriptBridge)
+        } else {
+            document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                callback(WebViewJavascriptBridge)
+            }, false)
+        }
+    }
+
+    connectWebViewJavascriptBridge(function(bridge) {
+        bridge.init(function(message, responseCallback) {
+            MsdkWebLog('JS got a message', message)
+            var data = {
+                'Javascript Responds': 'Wee!'
+            }
+            MsdkWebLog('JS responding with', data)
+            responseCallback(data)
+        })
+        bridge.registerHandler('msdkNativeCallback', function(data, responseCallback) { msdkCallback(data); })
+        bridge.registerHandler('OnEnterForeground', function(data, responseCallback) { OnEnterForeground(); })
+        bridge.registerHandler('OnEnterBackground', function(data, responseCallback) { OnEnterBackground(); })
+
+        iOSRegister = bridge.registerHandler
+        msdkiOSHandler = bridge.callHandler
+    })
+
+    function isiOS() {
+        var agent = navigator.userAgent
+        return !!agent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    }
+    
+    function setMsdkCallback(callback) {
+        msdkCallback = callback
+    }
+    
+    function msdkCallNative(data) {
+        MsdkWebLog('msdkCallNative', data)
+        if (isiOS()) {
+            try {
+                var jsonObj = JSON.parse(data)
+                if (jsonObj.Callback) {
+                    MsdkWebLog("register", jsonObj.Callback)
+                    iOSRegister(jsonObj.Callback, function(data, responseCallback) { 
+                        MsdkWebLog("receive func:" + jsonObj.Callback + " data:" + data);
+                        eval(jsonObj.Callback + "('" + data + "')")
+                    })
+                }
+            } catch (e) {
+                MsdkWebLog("MSDK json error", e)
+            }  finally {
+                msdkiOSHandler('msdkCallNative', data, null)
+            }
+            return null;
+        } else {
+            return prompt(data);
+        }
+    }
+    
+    function msdkNativeCallback(data) {
+        msdkCallback(data)
+    }
+
+    function msdkShare(data) {
+        msdkCallNative(data)
+    }
+// --- MSDK Js接口核心封装 END ---  
+</script> 
+
+<script>
+    $("#pageLink").html("当前页面链接："+ window.location.href);
+
+	// ---MSDK JS接口 调用示例 START---
+    // 生命周期函数，实现同名函数可在游戏回前台时触发
+    function OnEnterForeground() {
+        // TODO by game
+    }
+
+    // 生命周期函数，实现同名函数可在游戏退到后台时触发
+    function OnEnterBackground() {
+        // TODO by game
+    }
+
+    // 游戏在native层可通过接口发送消息到js函数
+    setMsdkCallback(EventFormGame)
+    function EventFormGame(param) {
+        // TODO by game
+        alert(param)
+    }
+
+    // 发送信息到游戏，不包含"MsdkMethod"键值的信息会透传到游戏的OnJsCallback回调
+    function SendToGame() {
+        var params = $("#msgToGame").val()
+        msdkCallNative(params);
+    }
+
+	// 关闭浏览器
+	function CloseWeb() {
+    	msdkCallNative('{"MsdkMethod":"CloseWebview"}')
+    }
+
+    function GoBack() {
+        msdkCallNative('{"MsdkMethod":"GoBack"}')
+    }
+
+    function GoForward() {
+        msdkCallNative('{"MsdkMethod":"GoForward"}')
+    }
+
+    function GetUserAgent(){
+        var agent = navigator.userAgent;
+        alert(agent);
+    }
+
+    // 获取手机网络类型，通过"Callback"键值设置回调函数
+    function QueryNetworkType() {
+        msdkCallNative('{"MsdkMethod":"GetNetworkType","Callback":"OnGetNetworkType"}');
+    }
+    // 判断QQ是否安装
+    function isQQInstalled(){
+        var isInstalled = msdkCallNative('{"MsdkMethod":"isAppInstalled","package":"com.tencent.mobileqq"}');
+        alert(isInstalled);
+    }
+    // 判断微信是否安装
+    function isWXInstalled(){
+        var isInstalled = msdkCallNative('{"MsdkMethod":"isAppInstalled","package":"com.tencent.mm"}');
+        alert(isInstalled);
+    }
+
+    // 查询网络状态的回调函数
+    function OnGetNetworkType(type) {
+        switch(type){
+            case "0":
+                alert("网络状态：无网");break;
+            case "1":
+                alert("网络状态：wifi");break;
+            case "2":
+                alert("网络状态：2g");break;
+            case "3":
+                alert("网络状态：3g");break;
+            case "4":
+                alert("网络状态：4g");break;
+            case "5":
+                alert("网络状态：5g");break;
+            default:
+                alert("网络状态，未知：" + type);
+        }
+    }
+
+    // 分享数据, Android iOS 都通过接口 msdkShare 实现分享
+    var QQStructuredShare2zone='{"MsdkMethod":"WGSendToQQ","scene":"1","title":"QQ JS 结构化分享","desc":"from js share","url":"http://www.qq.com"}';
+    var QQStructuredShare2friend='{"MsdkMethod":"WGSendToQQ","scene":"2","title":"QQ JS 结构化分享","desc":"from js share","url":"http://www.qq.com"}';
+    var QQMusicShare2zone='{"MsdkMethod":"WGSendToQQWithMusic","scene":"1","title":"QQ JS 音乐分享","desc":"from js share","musicUrl":"https://i.y.qq.com/v8/playsong.html?songmid=001ppCla4M3DS0","musicDataUrl":"http://wiki.msdk.qq.com/Common/cry.mp3","imgUrl":"http://imgcache.qq.com/music/photo/mid_album_300/g/l/002ma2S64Gjtgl.jpg"}';
+    var QQMusicShare2friend='{"MsdkMethod":"WGSendToQQWithMusic","scene":"2","title":"QQ JS 音乐分享","desc":"from js share","musicUrl":"https://i.y.qq.com/v8/playsong.html?songmid=001ppCla4M3DS0","musicDataUrl":"http://wiki.msdk.qq.com/Common/cry.mp3","imgUrl":"http://imgcache.qq.com/music/photo/mid_album_300/g/l/002ma2S64Gjtgl.jpg"}';
+    var QQPhotoShare2zone='{"MsdkMethod":"WGSendToQQWithPhoto","scene":"1"}';
+    var QQPhotoShare2friend='{"MsdkMethod":"WGSendToQQWithPhoto","scene":"2"}';
+    
+    var WXStructuredShare='{"MsdkMethod":"WGSendToWeixin","title":"WX JS 结构化分享","desc":"from js share","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt"}';
+    var WXMusicShare2zone='{"MsdkMethod":"WGSendToWeixinWithMusic","scene":"1","title":"WX JS 音乐分享","desc":"from js share","musicUrl":"https://i.y.qq.com/v8/playsong.html?songmid=001ppCla4M3DS0","musicDataUrl":"http://wiki.msdk.qq.com/Common/cry.mp3","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt","messageAction":"WECHAT_SNS_JUMP_APP"}';
+    var WXMusicShare2friend='{"MsdkMethod":"WGSendToWeixinWithMusic","scene":"0","title":"WX JS 音乐分享","desc":"from js share","musicUrl":"https://i.y.qq.com/v8/playsong.html?songmid=001ppCla4M3DS0","musicDataUrl":"http://wiki.msdk.qq.com/Common/cry.mp3","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt","messageAction":"WECHAT_SNS_JUMP_APP"}';
+    var WXPhotoShare2zone='{"MsdkMethod":"WGSendToWeixinWithPhoto","scene":"1","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt","messageAction":"WECHAT_SNS_JUMP_APP"}';
+    var WXPhotoShare2friend='{"MsdkMethod":"WGSendToWeixinWithPhoto","scene":"0","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt","messageAction":"WECHAT_SNS_JUMP_APP"}';
+    var WXUrlShare2zone='{"MsdkMethod":"WGSendToWeiXinWithUrl","scene":"1","title":"WX JS 链接分享","desc":"from js share","url":"http://www.qq.com","mediaTagName":"MSG_INVITE","messageExt":"js 自定义"}';
+    var WXUrlShare2friend='{"MsdkMethod":"WGSendToWeiXinWithUrl","scene":"0","title":"WX JS 链接分享","desc":"from js share","url":"http://www.qq.com","mediaTagName":"MSG_INVITE","messageExt":"js 自定义"}';
+
+    // imgUrl,支持网络图片，也支持本地图片数据
+    var QQShareCustomImage='{"MsdkMethod":"WGSendToQQ","scene":"1","title":"QQ JS 结构化分享","desc":"from js share","url":"http://www.qq.com","imgUrl":"http://qzonestyle.gtimg.cn/open_proj/proj_open_v2/ac/home/qrcode.jpg"}';
+
+    function ReaderImgage(fileObj,type) {
+        var file = fileObj.files['0'];
+        console.log(file)
+        var rFilter = /^(image\/jpeg|image\/png)$/i; // 检查图片格式
+        if (!rFilter.test(file.type)) {
+            alert("请选择jpeg、png格式的图片");           
+            return;
+        }
+        var oReader = new FileReader();
+        oReader.onload = function(e) {
+            var imgstr = e.target.result; //这就是base64字符串
+            compressImg(imgstr, 0.9, function(imgstr) {
+                if(type == 1){
+                    var js='{"MsdkMethod":"WGSendToQQ","scene":"2","title":"QQ JS 结构化分享","desc":"from js share","url":"http://www.qq.com","imgData":"'+imgstr+'"}'
+                    msdkShare(js);
+                }else if(type == 2){
+                    var js='{"MsdkMethod":"WGSendToQQWithPhoto","scene":"1","imgData":"'+imgstr+'"}';
+                    msdkShare(js);
+                }else if(type == 3){
+                    var js='{"MsdkMethod":"WGSendToQQWithPhoto","scene":"2","imgData":"'+imgstr+'"}';
+                    msdkShare(js);
+                }else if(type == 4){
+                    var js='{"MsdkMethod":"WGSendToWeixin","title":"WX JS 结构化分享","desc":"from js share","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt","imgData":"'+imgstr+'"}';
+                    msdkShare(js);
+                }else if(type == 5){
+                    var js='{"MsdkMethod":"WGSendToWeixinWithPhoto","scene":"1","mediaTagName":"MSG_INVITE","messageExt":"JS messageExt","messageAction":"WECHAT_SNS_JUMP_APP","imgData":"'+imgstr+'"}';
+                    msdkShare(js);
+                }
+            })
+        }
+        oReader.readAsDataURL(file);
+    }
+
+    //压缩图片 图片路径src ,图片品质（0，1）, callback回调处理
+    function compressImg(src,quality,callback) {
+        var img = new Image();
+        img.src = src;
+        img.onload = function(){
+            var that = this;
+            // 默认按比例压缩
+            var w = that.width;
+            h = that.height;
+            scale = w / h;
+            w = w>550?550:w;
+            h = w / scale;
+            //生成canvas
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            // 创建属性节点
+            var anw = document.createAttribute("width");
+            anw.nodeValue = w;
+            var anh = document.createAttribute("height");
+            anh.nodeValue = h;
+            canvas.setAttributeNode(anw);
+            canvas.setAttributeNode(anh); 
+            ctx.drawImage(that, 0, 0, w, h);
+
+            // quality值越小，所绘制出的图像越模糊
+            var base64 = canvas.toDataURL('image/jpeg', quality);
+            // 回调函数返回base64的值
+            callback(base64);
+        }
+    }
+    // ---MSDK JS接口 调用示例 START---
+</script>
+
+
+</body>
+</html>

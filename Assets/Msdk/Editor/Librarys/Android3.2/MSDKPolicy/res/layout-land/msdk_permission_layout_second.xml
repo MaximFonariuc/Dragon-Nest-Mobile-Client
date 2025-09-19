@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MSDK.Policy.Window.Inner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/msdk_permission_second_title_tv"
+        style="@style/MSDK.Policy.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/msdk_permission_layout_second_title"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/msdk_permission_second_content_tv"
+        style="@style/MSDK.Policy.Content.Window"
+        android:layout_height="@dimen/msdk_permission_layout_second_content_height"
+        android:layout_below="@id/msdk_permission_second_title_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/msdk_policy_positive_space_width_16dp"
+        android:scrollbars="vertical" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/msdk_policy_layout_button_group_bg">
+
+        <RelativeLayout
+            android:id="@+id/msdk_permission_second_btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/msdk_permission_layout_second_button_group_height">
+
+            <Button
+                android:layout_centerVertical="true"
+                android:id="@+id/msdk_permission_second_quit_btn"
+                style="@style/MSDK.Policy.Other.Button.Small"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="@dimen/msdk_policy_positive_space_width_30dp"
+                android:layout_marginLeft="@dimen/msdk_policy_positive_space_width_30dp"
+                android:text="@string/msdk_permission_layout_second_quit_button_text"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_centerVertical="true"
+                android:id="@+id/msdk_permission_second_setting_btn"
+                style="@style/MSDK.Policy.Other.Button.Small"
+                android:layout_centerHorizontal="true"
+                android:text="@string/msdk_permission_layout_second_setting_button_text"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_centerVertical="true"
+                android:id="@+id/msdk_permission_second_confirm_btn"
+                style="@style/MSDK.Policy.Confirm.Button.Small"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="@dimen/msdk_policy_positive_space_width_30dp"
+                android:layout_marginRight="@dimen/msdk_policy_positive_space_width_30dp"
+                android:text="@string/msdk_permission_layout_second_confirm_button_text" />
+        </RelativeLayout>
+    </FrameLayout>
+
+</RelativeLayout>

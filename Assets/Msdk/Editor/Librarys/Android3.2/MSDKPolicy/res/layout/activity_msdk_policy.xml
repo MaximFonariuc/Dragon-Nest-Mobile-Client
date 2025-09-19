@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/msdk_policy_bg"
+    tools:context=".policy.MSDKPolicyActivity">
+
+  <FrameLayout
+      android:layout_centerInParent="true"
+      android:layout_width="@dimen/msdk_policy_popup_window_grey_bg_width"
+      android:layout_height="@dimen/msdk_policy_popup_window_grey_bg_height"
+      android:background="@drawable/msdk_policy_grey_bg"/>
+
+  <com.tencent.gcloud.msdk.core.policy.MSDKPolicyLayout
+      android:id="@+id/msdk_policy_layout"
+      style="@style/MSDK.Policy.Popup"
+      android:layout_centerInParent="true" />
+
+  <com.tencent.gcloud.msdk.core.policy.MSDKPermissionLayout
+      android:id="@+id/msdk_perimission_layout"
+      android:visibility="invisible"
+      style="@style/MSDK.Policy.Popup"
+      android:layout_centerInParent="true"/>
+
+  <com.tencent.gcloud.msdk.core.policy.MSDKPermissionLayoutSecond
+      android:id="@+id/msdk_perimission_layout_second"
+      android:visibility="invisible"
+      style="@style/MSDK.Policy.Popup.Permission.Second"
+      android:layout_centerInParent="true"/>
+</RelativeLayout>

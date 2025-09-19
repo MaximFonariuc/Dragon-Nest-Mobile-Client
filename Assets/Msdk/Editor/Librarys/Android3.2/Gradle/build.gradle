@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    // Unity 2019.3及以上版本
+    compileSdkVersion getParent().ext.common.compileSdkVersion
+    buildToolsVersion getParent().ext.common.buildToolsVersion
+    // Unity 2019.3以下版本（不包含2019.3）
+    // compileSdkVersion rootProject.ext.common.compileSdkVersion
+    // buildToolsVersion rootProject.ext.common.buildToolsVersion
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+    buildTypes{
+        release{
+            // Zipalign优化
+            zipAlignEnabled true
+            proguardFiles 'proguard-android-optimize.pro'
+        }
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+    }
+    lintOptions {
+        abortOnError false
+    }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MSDK.Policy.Window.Inner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/msdk_policy_title_tv"
+        style="@style/MSDK.Policy.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/msdk_policy_layout_title"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/msdk_policy_content_tv"
+        style="@style/MSDK.Policy.Content.Window"
+        android:layout_below="@id/msdk_policy_title_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/msdk_policy_positive_space_width_16dp"
+        android:scrollbars="vertical" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/msdk_policy_layout_button_group_bg">
+
+        <RelativeLayout
+            android:id="@+id/msdk_policy_btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/msdk_policy_layout_button_group_height">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <Button
+                    android:id="@+id/msdk_policy_confirm_btn"
+                    style="@style/MSDK.Policy.Confirm.Button.Large"
+                    android:text="@string/msdk_policy_layout_confirm_button_text" />
+
+                <Button
+                    android:id="@+id/msdk_policy_reject_btn"
+                    style="@style/MSDK.Policy.Other.Button.Large"
+                    android:layout_below="@id/msdk_policy_confirm_btn"
+                    android:layout_marginTop="@dimen/msdk_policy_positive_space_width_12dp"
+                    android:text="@string/msdk_policy_layout_reject_button_text" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </FrameLayout>
+</RelativeLayout>

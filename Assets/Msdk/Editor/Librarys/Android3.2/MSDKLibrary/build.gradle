@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes{
+        release{
+            // 是否混淆
+            minifyEnabled false
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            //shrinkResources true
+            // 混淆策略文件路径
+            proguardFiles 'proguard-android-optimize.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+//    variantFilter { variant ->
+//        if (variant.buildType.name == "debug") {
+//            variant.ignore = true
+//        }
+//    }
+}

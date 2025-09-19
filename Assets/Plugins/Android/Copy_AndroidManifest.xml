@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.wegame"
+    android:versionCode="3000"
+    android:versionName="@string/versionName">
+
+    <!-- TODO SDK接入必须权限模块 START -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <!-- Beacon 所需权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!-- Bugly 所需权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- QQ 所需权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- 【必须】 腾讯移动推送SDK VIP版本所需权限 -->
+	<!--注： 其中com.example.wegame修改为应用的包名-->
+    <permission
+        android:name="com.example.wegame.permission.XGPUSH_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.wegame.permission.XGPUSH_RECEIVE" />
+    <!-- 【必须】 腾讯移动推送 SDK 所需权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 魅族推送SDK内部使用的自定义组件权限，不涉及用户个人敏感信息及隐私合规问题 -->
+    <uses-permission android:name="com.meizu.flyme.permission.PUSH" />
+
+    <!-- 【可选】 腾讯移动推送SDK所需权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/> <!--华为自定义权限-->
+    <uses-permission android:name="com.vivo.notification.permission.BADGE_ICON"/> <!--VIVO 自定义权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <!-- 厂商通道权限配置 Start -->
+	<!--注： 其中com.example.wegame修改为应用的包名-->
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+    <permission android:name="com.example.wegame.push.permission.MESSAGE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.example.wegame.push.permission.MESSAGE" />
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
+    <permission android:name="com.example.wegame.permission.C2D_MESSAGE"
+        android:protectionLevel="signature">
+    </permission>
+    <uses-permission android:name="com.example.wegame.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE"/>
+    <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE"/>
+    <!--注： 其中com.example.wegame修改为应用的包名-->
+    <!-- 厂商通道权限配置 End -->
+
+     <!-- 读取sdcard权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<!-- TODO SDK接入 必须权限模块 END -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<!-- TODO SDK接入 接入支付需要设置屏幕兼容声明 START -->
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true" />
+    <!-- TODO SDK接入 接入支付需要设置屏幕兼容声明 END -->
+
+	<uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="31" />
+    <queries>
+        <!--QQ -->
+        <package android:name="com.tencent.mobileqq" />
+        <package android:name="com.tencent.tim" />
+        <package android:name="com.tencent.minihd.qq" />
+        <package android:name="com.tencent.qqlite" />
+        <!--WeChat -->
+        <package android:name="com.tencent.mm" />
+    </queries>
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <!-- MSDKPolicy 数据合规组件配置 -->
+<!--        <activity android:name="com.tencent.gcloud.msdk.core.policy.MSDKPolicyActivity"-->
+<!--            android:configChanges = "keyboard|keyboardHidden|screenLayout|screenSize"-->
+<!--            android:launchMode="singleTask"-->
+<!--            android:theme="@style/MSDKPolicyTheme"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--                  MSDK_POLICY_TARGET_ACTIVITY 用于指定要跳转到的【应用或者游戏的首个activity】-->
+<!--            <meta-data-->
+<!--                android:name="MSDK_POLICY_TARGET_ACTIVITY"-->
+<!--                android:value="com.example.wegame.MainActivity" />-->
+<!--            <meta-data android:name="MSDK_POLICY_DEBUG" android:value="true"/>-->
+<!--                 下面这个 MSDK_RESULT_FILE_NAME 配置从 MSDKCoreV5.17 版本, V3-3.3.19 版本开始默认关闭-->
+<!--                 去掉此配置后，如果用户之前未同意过协议，覆盖安装的情况下都必须弹协议-->
+<!--                 <meta-data android:name="MSDK_RESULT_FILE_NAME" android:value="WEGAMEDB2"/>-->
+<!--            <meta-data android:name="IS_MSDK_V5" android:value="false"/>-->
+<!--                 如果业务不想升级到 TDM 的合规版本，需要将下面的 MSDK_POLICY_TDM_REPORT_DISABLE 开关设置为 true，注意，打开后，MSDKPolicy流程不会做 TDM 上报，流程无法被追踪-->
+<!--                 <meta-data android:name="MSDK_POLICY_TDM_REPORT_DISABLE" android:value="false"/>-->
+<!--                 用于标记协议版本，如果协议有更新，则往上累加，请填写整数值-->
+<!--                 <meta-data android:name="MSDK_POLICY_VERSION" android:value="1"/>-->
+<!--        </activity>-->
+
+        <!-- TODO MSDKDemo配置 START -->
+        <!--注： 其中com.example.wegame修改为应用的包名-->
+        <activity 
+            android:name="com.example.wegame.MainActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden|navigation"
+            android:screenOrientation="sensor"
+            android:launchMode="singleTask"
+            android:label="@string/app_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+				<data android:scheme="msdkmainactivity"/>                
+				<action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <!-- TODO MSDKDemo配置 END -->
+        
+        <!-- 兼容6.0及以上系统权限-->
+        <activity
+            android:name="com.tencent.msdk.PermissionActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="PermissionActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:screenOrientation="behind"
+            android:taskAffinity="com.example.wegame.diff" >
+			<!--注： 其中com.example.wegame修改为应用的包名-->
+        </activity>
+        
+        <activity
+            android:name="com.tencent.msdk.NameAuthActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        
+        <!-- TODO SDK接入 QQ接入配置 START -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+				<!-- 这里请设置tencent+qqappid-->
+                <data android:scheme="tencent100703379" />
+				<!-- 这里请设置tencentminiapp+qqappid-->
+                <data android:scheme="tencentminiapp100703379" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.msdk.SchemeActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+				<!-- 这里请设置tencentmsdk+qqappid-->
+                <data android:scheme="tencentmsdk100703379" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- TODO SDK接入 QQ接入配置 END -->
+        
+        <!-- TODO SDK接入 微信接入配置 START -->
+        <activity
+            android:name="com.example.wegame.wxapi.WXEntryActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="WXEntryActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:taskAffinity="com.example.wegame.diff" >
+			<!--注： 其中com.example.wegame修改为应用的包名-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+				<!-- 【必须】此处应改为 游戏的微信 appid -->
+                <data android:scheme="wxcde873f99466f74a" />
+            </intent-filter>
+        </activity>
+        <!-- TODO SDK接入 微信接入配置 END -->
+        
+        <!-- TODO SDK接入 微信扫码登录配置 START -->
+        <activity
+            android:name="com.tencent.msdk.weixin.qrcode.WXQrCodeActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="WXQrCodeActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.wegame.diff" 
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait">
+			<!--注： 其中com.example.wegame修改为应用的包名-->
+        </activity>
+        <!-- TODO SDK接入  微信扫码登录配置 END -->
+        
+        <!-- TODO Notice 公告 配置 START -->
+        <activity
+            android:name="com.tencent.msdk.notice.AlertMsgActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensor"
+            android:theme="@style/NoticeAlertTheme" >
+        </activity>
+
+        <service android:name="com.tencent.msdk.notice.RollFloatService" >
+        </service>
+        <!-- TODO Notice 公告 配置  END -->
+        
+        <!-- TODO 浏览器相关 START -->
+        <activity
+            android:name="com.tencent.msdk.webview.JumpShareActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+
+        <activity
+            android:name="com.tencent.msdk.webview.WebViewActivity"
+            android:process=":msdk_inner_webview"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation|fontScale|locale"
+            android:screenOrientation="unspecified"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+            <meta-data android:name="titlebar_hideable" android:value="false"/>
+            <meta-data android:name="toolbar_portrait_hideable" android:value="false"/>
+            <meta-data android:name="toolbar_landscape_hideable" android:value="false"/>
+        </activity>
+		<!-- TODO 浏览器相关 END -->
+		
+		<!-- TODO 应用宝省流量更新相关 START -->
+        <service
+            android:name="com.tencent.tmdownloader.TMAssistantDownloadService"
+            android:exported="false"
+            android:process=":TMAssistantDownloadSDKService" >
+        </service>
+        <!-- TODO 应用宝省流量更新 END -->
+        
+        <!-- 信鸽配置START -->
+        <!-- 用于延迟 xg service 启动，直到注册时才启动service，以满足合规-->
+        <meta-data
+            android:name="XG_SERVICE_PULL_UP_OFF"
+            android:value="true" />
+
+        <meta-data
+            android:name="XG_OLD_ACCESS_ID"
+            android:value="old_access_id" />
+        <!-- 【必须】 请修改为APP的AccessId，不同集群AccessId前缀不一样，上海集群前缀是158开头，广州集群前缀是150开头，以注册后生成的为准，中间没空格 -->
+        <meta-data
+            android:name="XG_V2_ACCESS_ID"
+            android:value="1580002756" />
+        <!-- 【必须】 请修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
+        <meta-data
+            android:name="XG_V2_ACCESS_KEY"
+            android:value="A06RWNK5XUHV" />
+		<meta-data
+            android:name="XG_GUID_SERVER"
+            android:value="https://guid.tpns.sh.tencent.com/guid/api/GetGuidAndMqttServer" />
+        <meta-data
+            android:name="XG_STAT_SERVER"
+            android:value="https://stat.tpns.sh.tencent.com/log/statistics/push" />
+        <meta-data
+            android:name="XG_LOG_SERVER"
+            android:value="https://log.tpns.sh.tencent.com/v3/mobile/log/upload" />
+        <meta-data
+            android:name="XG_SERVER_SUFFIX"
+            android:value="tpns.sh.tencent.com" />
+
+        <!-- 信鸽厂商通道组件配置 Start -->
+        <meta-data
+            android:name="com.huawei.hms.client.appid"
+            android:value="101719355" >
+        </meta-data>
+        <!-- 101719355替换为自己华为的appId -->
+        <!-- 【必须】 信鸽默认通知 -->
+        <activity android:name="com.tencent.android.tpush.TpnsActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true">
+            <intent-filter>
+                <data
+                    android:scheme="tpns"
+                    android:host="com.example.wegame"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tencent.android.tpush.InnerTpnsActivity"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="com.example.wegame.OPEN_TPNS_ACTIVITY_V2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <data
+                    android:host="com.example.wegame"
+                    android:scheme="stpns" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- 【必须】 信鸽receiver广播接收 -->
+        <receiver
+            android:name="com.tencent.android.tpush.XGPushReceiver"
+            android:exported="false"
+            android:process=":xg_vip_service">
+            <intent-filter android:priority="0x7fffffff">
+                <!-- 【必须】 信鸽SDK的内部广播 -->
+                <action android:name="com.tencent.android.xg.vip.action.SDK" />
+                <action android:name="com.tencent.android.xg.vip.action.INTERNAL_PUSH_MESSAGE" />
+                <action android:name="com.tencent.android.xg.vip.action.ACTION_SDK_KEEPALIVE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 【必须】 信鸽service -->
+        <service
+            android:name="com.tencent.android.tpush.service.XGVipPushService"
+            android:process=":xg_vip_service"></service>
+
+        <service android:name="com.tencent.android.tpush.rpc.XGRemoteService"
+            android:exported="true">
+            <intent-filter>
+                <!-- 【必须】 请修改为当前APP名包.XGVIP_PUSH_ACTION -->
+                <action android:name="com.example.wegame.XGVIP_PUSH_ACTION" />
+            </intent-filter>
+        </service>
+
+        <!-- 在自身应用的AndroidManifest.xml文件中添加如下结点，其中 xxx 为任意自定义名称: -->
+        <!-- 关闭与 TPNS 应用的联合保活功能，请配置 -->
+        <provider
+            android:name="com.tencent.android.tpush.XGPushProvider"
+            tools:replace="android:authorities"
+            android:authorities="com.example.wegame.v3.XGVIP_PUSH_AUTH"
+            android:exported="false"
+            android:enabled="false"/>
+
+        <!-- 【必须】 【注意】authorities修改为 包名.TPUSH_PROVIDER -->
+        <provider
+            android:name="com.tencent.android.tpush.SettingsContentProvider"
+            android:authorities="com.example.wegame.TPUSH_PROVIDER" />
+
+        <!-- 【可选】用于增强保活能力 -->
+		<!-- 【注意】authorities修改为 包名.AUTH_XGPUSH_KEEPALIVE -->
+<!--        <provider-->
+<!--            android:name="com.tencent.android.tpush.XGVipPushKAProvider"-->
+<!--            android:authorities="com.example.wegame.AUTH_XGPUSH_KEEPALIVE"-->
+<!--            android:exported="true" />-->
+
+        <!-- MQTT START-->
+        <service android:exported="false"
+            android:process=":xg_vip_service"
+            android:name="com.tencent.tpns.mqttchannel.services.MqttService" />
+
+        <!--【注意】authorities修改为 包名.XG_SETTINGS_PROVIDER -->
+        <provider
+            android:exported="false"
+            android:name="com.tencent.tpns.baseapi.base.SettingsContentProvider"
+            android:authorities="com.example.wegame.XG_SETTINGS_PROVIDER" />
+        <!-- MQTT END-->
+        <!-- 厂商通道 -->
+<!-- 这里不需要声明 BridgeActivity ，已在 HWPushSDK 中声明了 -->
+<!--        <activity-->
+<!--            tools:replace="android:configChanges"-->
+<!--            android:name="com.huawei.hms.activity.BridgeActivity"-->
+<!--            android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"-->
+<!--            android:excludeFromRecents="true"-->
+<!--            android:exported="false"-->
+<!--            android:hardwareAccelerated="true"-->
+<!--            android:theme="@android:style/Theme.Translucent" >-->
+<!--            <meta-data-->
+<!--                android:name="hwc-theme"-->
+<!--                android:value="androidhwext:style/Theme.Emui.Translucent" />-->
+<!--        </activity>-->
+		<!--【注意】authorities修改为 包名.hms.update.provider -->
+<!-- 这里不需要声明 UpdateProvider ，已在 HWPushSDK 中声明了 -->
+<!--        <provider-->
+<!--            tools:replace="android:authorities"-->
+<!--            android:name="com.huawei.hms.update.provider.UpdateProvider"-->
+<!--            android:authorities="com.example.wegame.hms.update.provider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true" >-->
+<!--        </provider>-->
+        <!--魅族-->
+        <service
+            android:name="com.meizu.cloud.pushsdk.NotificationService"
+            android:exported="true"/>
+
+        <receiver
+            android:name="com.meizu.cloud.pushsdk.MzPushSystemReceiver"
+            android:exported="false"
+            android:permission="com.meizu.flyme.permission.PUSH">
+            <intent-filter>
+                <action android:name="com.meizu.flyme.push.intent.PUSH_SYSTEM" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.tencent.android.mzpush.MZPushMessageReceiver"
+            android:exported="true">
+            <intent-filter>
+                <!-- 接收push消息 -->
+                <action android:name="com.meizu.flyme.push.intent.MESSAGE" />
+                <!-- 接收register消息-->
+                <action android:name="com.meizu.flyme.push.intent.REGISTER.FEEDBACK"/>
+                <!-- 接收unregister消息-->
+                <action android:name="com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK"/>
+
+                <action android:name="com.meizu.c2dm.intent.REGISTRATION" />
+                <action android:name="com.meizu.c2dm.intent.RECEIVE" />
+				<!-- com.example.wegame替换为APP包名 -->
+                <category android:name="com.example.wegame"></category>
+            </intent-filter>
+        </receiver>
+        <!-- vivo -->
+        <service
+            android:name="com.vivo.push.sdk.service.CommandClientService"
+            android:permission="com.push.permission.UPSTAGESERVICE"
+            android:exported="true" />
+
+        <activity
+            android:name="com.vivo.push.sdk.LinkProxyClientActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="sdk_version_vivo"
+            android:value="483" />
+
+        <meta-data
+            android:name="local_iv"
+            android:value="MzMsMzQsMzUsMzYsMzcsMzgsMzksNDAsNDEsMzIsMzgsMzcsMzYsMzUsMzQsMzMsI0AzNCwzMiwzMywzNywzMywzNCwzMiwzMywzMywzMywzNCw0MSwzNSwzNSwzMiwzMiwjQDMzLDM0LDM1LDM2LDM3LDM4LDM5LDQwLDQxLDMyLDM4LDM3LDMzLDM1LDM0LDMzLCNAMzQsMzIsMzMsMzcsMzMsMzQsMzIsMzMsMzMsMzMsMzQsNDEsMzUsMzIsMzIsMzI" />
+
+        <!-- push应用定义消息receiver声明 -->
+        <receiver android:name="com.tencent.android.vivopush.VivoPushMessageReceiver"
+            android:exported="true">
+            <intent-filter>
+
+                <!-- 接收push消息 -->
+                <action android:name="com.vivo.pushclient.action.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <meta-data
+            android:name="com.vivo.push.api_key"
+            android:value="565e7564dc59694dc0917b839d17ce99" />
+        <meta-data
+            android:name="com.vivo.push.app_id"
+            android:value="104256046" />
+        <!-- oppo -->
+        <!--OPPO 推送服务必须组件-->
+        <service
+            android:name="com.heytap.msp.push.service.CompatibleDataMessageCallbackService"
+            android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.heytap.msp.push.service.DataMessageCallbackService"
+            android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE"/>
+                <action android:name="com.heytap.msp.push.RECEIVE_MCS_MESSAGE"/>
+            </intent-filter>
+        </service>
+
+        <!-- 信鸽厂商通道组件配置 End -->
+        <!-- 信鸽配置END -->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.wegame.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
+    </application>
+
+</manifest>
