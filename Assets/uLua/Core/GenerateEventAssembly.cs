@@ -104,14 +104,13 @@ namespace LuaInterface
 
         private CodeGeneration()
         {
-            assemblyName = new AssemblyName("LuaInterface_generatedcode");
-
-            newAssembly = AssemblyBuilder.DefineDynamicAssembly(
-                assemblyName,
-                AssemblyBuilderAccess.Run
-            );
-
-            newModule = newAssembly.DefineDynamicModule("LuaInterface_generatedcode");
+            // Create an assembly name
+            assemblyName=new AssemblyName( );
+            assemblyName.Name="LuaInterface_generatedcode";
+            // Create a new assembly with one module.
+            newAssembly=Thread.GetDomain().DefineDynamicAssembly(
+                assemblyName, AssemblyBuilderAccess.Run);
+            newModule=newAssembly.DefineDynamicModule("LuaInterface_generatedcode");
         }
 
         /*

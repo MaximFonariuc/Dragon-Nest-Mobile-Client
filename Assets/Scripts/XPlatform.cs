@@ -6,7 +6,6 @@ using System.Collections;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.IO;
-using FMODUnity;
 using Unity.Performance;
 using Unity.AutoTune;
 
@@ -105,29 +104,26 @@ public class XPlatform : MonoBehaviour, IPlatform
 
     private static string _testVersionServer = @"127.0.0.1:24001";
 #else
-    
-    private static string LOCALHOST_PROXY = "10.0.2.2"; 
+    private static string _defaultLoginServer = @"127.0.0.1:25001";
+    private static string _androidQQLoginServer = @"127.0.0.1:25001";
+    private static string _androidWeChatLoginServer = @"127.0.0.1:25001";
+    private static string _iOSQQLoginServer = @"127.0.0.1:25001";
+    private static string _iOSWeChatLoginServer = @"127.0.0.1:25001";
+    private static string _iOSGuestLoginServer = @"127.0.0.1:25001";
 
-    private static string _defaultLoginServer =LOCALHOST_PROXY + ":25001";
-    private static string _androidQQLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _androidWeChatLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _iOSQQLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _iOSWeChatLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _iOSGuestLoginServer = LOCALHOST_PROXY + ":25001";
-
-    private static string _versionServer = LOCALHOST_PROXY + ":24001";
+    private static string _versionServer = @"127.0.0.1:24001";
 
     private static string _hostUrl = @"https://image.lzgjx.qq.com/Test/";
     private static bool _isPublish = false;
 
-    private static string _testDefaultLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _testAndroidQQLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _testAndroidWeChatLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _testiOSQQLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _testiOSWeChatLoginServer = LOCALHOST_PROXY + ":25001";
-    private static string _testiOSGuestLoginServer = LOCALHOST_PROXY + ":25001";
+    private static string _testDefaultLoginServer = @"127.0.0.1:25001";
+    private static string _testAndroidQQLoginServer = @"127.0.0.1:25001";
+    private static string _testAndroidWeChatLoginServer = @"127.0.0.1:25001";
+    private static string _testiOSQQLoginServer = @"127.0.0.1:25001";
+    private static string _testiOSWeChatLoginServer = @"127.0.0.1:25001";
+    private static string _testiOSGuestLoginServer = @"127.0.0.1:25001";
 
-    private static string _testVersionServer = LOCALHOST_PROXY + ":24001";
+    private static string _testVersionServer = @"127.0.0.1:24001";
 #endif
 
     private static bool _isTestMode = false;
