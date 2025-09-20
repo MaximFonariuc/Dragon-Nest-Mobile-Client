@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.tencent.bugly.crashreport.CrashReport;
+
 import com.tencent.msdk.WeGame;
 import com.tencent.msdk.adapter.MsdkActivity;
 import com.tencent.msdk.api.LoginRet;
@@ -89,11 +89,11 @@ public class MainActivity extends MsdkActivity {
     /**
      * 游戏崩溃后会将堆栈信息上报到腾讯组件————灯塔中。这时制造native层崩溃测试异常上报
      */
-    public static void nativeCrashTest() {
+
         // Native异常测试
-        Logger.d("nativeCrashTest called");
-        CrashReport.testNativeCrash();
-    }
+
+
+
     
     /**
      * 游戏崩溃后会将堆栈信息上报到腾讯组件————灯塔中。这时制造空指针异常测试异常上报

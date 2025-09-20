@@ -6,6 +6,7 @@ using System.Collections;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.IO;
+using FMODUnity;
 using Unity.Performance;
 using Unity.AutoTune;
 
@@ -53,14 +54,14 @@ public class XPlatform : MonoBehaviour, IPlatform
     private static string _hostUrl = @"https://image.lzgjx.qq.com/QATest/";
     private static bool _isPublish = false;
 
-    private static string _testDefaultLoginServer = @"127.0.0.1:25001";
-    private static string _testAndroidQQLoginServer = @"127.0.0.1:25001";
-    private static string _testAndroidWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSQQLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSGuestLoginServer = @"127.0.0.1:25001";
+    private static string _testDefaultLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidQQLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSQQLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSGuestLoginServer = @"10.0.2.2:25001";
 
-    private static string _testVersionServer = @"127.0.0.1:24001";
+    private static string _testVersionServer = @"10.0.2.2:24001";
 #elif PANDORA_TEST
       private static string _defaultLoginServer = @"123.206.102.160:26050";
     private static string _androidQQLoginServer = @"123.206.102.160:26050";
@@ -74,35 +75,56 @@ public class XPlatform : MonoBehaviour, IPlatform
     private static string _hostUrl = @"https://image.lzgjx.qq.com/QATest/";
     private static bool _isPublish = false;
 
-    private static string _testDefaultLoginServer = @"127.0.0.1:25001";
-    private static string _testAndroidQQLoginServer = @"127.0.0.1:25001";
-    private static string _testAndroidWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSQQLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSGuestLoginServer = @"127.0.0.1:25001";
+    private static string _testDefaultLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidQQLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSQQLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSGuestLoginServer = @"10.0.2.2:25001";
 
-    private static string _testVersionServer = @"127.0.0.1:24001";
+    private static string _testVersionServer = @"10.0.2.2:24001";
 #elif RECHARGE_TEST
-    private static string _defaultLoginServer = @"127.0.0.1:25001";
-    private static string _androidQQLoginServer = @"127.0.0.1:25001";
-    private static string _androidWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _iOSQQLoginServer = @"127.0.0.1:25001";
-    private static string _iOSWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _iOSGuestLoginServer = @"127.0.0.1:25001";
+    private static string _defaultLoginServer = @"10.0.2.2:25001";
+    private static string _androidQQLoginServer = @"10.0.2.2:25001";
+    private static string _androidWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _iOSQQLoginServer = @"10.0.2.2:25001";
+    private static string _iOSWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _iOSGuestLoginServer = @"10.0.2.2:25001";
 
-    private static string _versionServer = @"127.0.0.1:24001";
+    private static string _versionServer = @"10.0.2.2:24001";
 
     private static string _hostUrl = @"https://image.lzgjx.qq.com/Test/";
     private static bool _isPublish = false;
 
-    private static string _testDefaultLoginServer = @"127.0.0.1:25001";
-    private static string _testAndroidQQLoginServer = @"127.0.0.1:25001";
-    private static string _testAndroidWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSQQLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSWeChatLoginServer = @"127.0.0.1:25001";
-    private static string _testiOSGuestLoginServer = @"127.0.0.1:25001";
+    private static string _testDefaultLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidQQLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSQQLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSGuestLoginServer = @"10.0.2.2:25001";
 
-    private static string _testVersionServer = @"127.0.0.1:24001";
+    private static string _testVersionServer = @"10.0.2.2:24001";
+#elif UNITY_ANDROID && !UNITY_EDITOR
+    private static string _defaultLoginServer = @"10.0.2.2:25001";
+    private static string _androidQQLoginServer = @"10.0.2.2:25001";
+    private static string _androidWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _iOSQQLoginServer = @"10.0.2.2:25001";
+    private static string _iOSWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _iOSGuestLoginServer = @"10.0.2.2:25001";
+
+    private static string _versionServer = @"10.0.2.2:24001";
+
+    private static string _hostUrl = @"https://image.lzgjx.qq.com/Test/";
+    private static bool _isPublish = false;
+
+    private static string _testDefaultLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidQQLoginServer = @"10.0.2.2:25001";
+    private static string _testAndroidWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSQQLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSWeChatLoginServer = @"10.0.2.2:25001";
+    private static string _testiOSGuestLoginServer = @"10.0.2.2:25001";
+
+    private static string _testVersionServer = @"10.0.2.2:24001";
 #else
     private static string _defaultLoginServer = @"127.0.0.1:25001";
     private static string _androidQQLoginServer = @"127.0.0.1:25001";
@@ -123,7 +145,7 @@ public class XPlatform : MonoBehaviour, IPlatform
     private static string _testiOSWeChatLoginServer = @"127.0.0.1:25001";
     private static string _testiOSGuestLoginServer = @"127.0.0.1:25001";
 
-    private static string _testVersionServer = @"127.0.0.1:24001";
+    private static string _testVersionServer = @"10.0.2.2:24001";
 #endif
 
     private static bool _isTestMode = false;
